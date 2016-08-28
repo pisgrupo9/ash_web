@@ -7,8 +7,10 @@ import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
-import { loadUsers } from './actions/userActions';
 import { syncHistoryWithStore } from 'react-router-redux';
+
+import { loadUsers } from './actions/userActions';
+import { loadServerStatus } from './actions/serverStatusActions';
 
 const store = configureStore();
 
@@ -16,6 +18,7 @@ const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 store.dispatch(loadUsers());
+store.dispatch(loadServerStatus());
 
 render(
   <Provider store={store}>
