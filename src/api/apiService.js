@@ -39,7 +39,24 @@ class Api {
   }
 
   get(uri) {
-    return this.performRequest(uri);
+    let requestData = {
+      method: 'get',
+      headers: {
+        'Accept': 'application/json'
+      }
+    };
+    return this.performRequest(uri,requestData);
+  }
+  post(uri,data) {
+    let requestData = {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+    return this.performRequest(uri,requestData);
   }
 }
 
