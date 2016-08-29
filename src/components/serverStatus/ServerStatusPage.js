@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as serverStatusActions from '../../actions/serverStatusActions';
+import '../../styles/server-status.scss';
 
 class ServerStatusPage extends Component {
   constructor(props, context) {
@@ -11,9 +12,11 @@ class ServerStatusPage extends Component {
   render() {
     const { serverStatus } = this.props;
     let online = serverStatus.online ? 'Conectado' : 'No conectado';
+    let statusClass = serverStatus.online ? 'green-color' : 'red-color';
     return (
-      <div>
-        <h1>{`Estado del servidor: ${online}`}</h1>
+      <div className="status-container">
+        <span>Estado del servidor: </span>
+        <span className={statusClass}>{online}</span>
       </div>
     );
   }
