@@ -11,6 +11,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import './styles/styles.scss';
 import { loadUsers } from './actions/userActions';
 import { loadServerStatus } from './actions/serverStatusActions';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const store = configureStore();
 

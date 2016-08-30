@@ -29,9 +29,11 @@
   "author": "PIS Grupo 9 2016",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "3.3.7",
     "isomorphic-fetch": "2.2.1",
     "object-assign": "4.1.0",
     "react": "15.3.0",
+    "react-bootstrap": "0.30.3",
     "react-dom": "15.3.0",
     "react-redux": "4.4.5",
     "react-router": "2.6.1",

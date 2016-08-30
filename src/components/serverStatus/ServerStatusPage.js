@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as serverStatusActions from '../../actions/serverStatusActions';
 import '../../styles/server-status.scss';
+import { Label } from 'react-bootstrap';
 
 class ServerStatusPage extends Component {
   constructor(props, context) {
@@ -12,11 +13,11 @@ class ServerStatusPage extends Component {
   render() {
     const { serverStatus } = this.props;
     let online = serverStatus.online ? 'Conectado' : 'No conectado';
-    let statusClass = serverStatus.online ? 'green-color' : 'red-color';
+    let statusClass = serverStatus.online ? 'success' : 'danger';
     return (
       <div className="status-container">
         <span>Estado del servidor: </span>
-        <span className={statusClass}>{online}</span>
+        <Label bsStyle={statusClass}>{online}</Label>
       </div>
     );
   }
