@@ -1,0 +1,15 @@
+.contenedor-header {
+  display: table;
+  margin: 0 auto 10px auto;
+  font-weight: 300;
+
+  .title-header {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .image-header {
+    display: table;
+    margin: 0 auto;    
+  }
+}
