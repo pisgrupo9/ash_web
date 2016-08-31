@@ -1,7 +1,47 @@
+$light-red: #FF6F59;
+$pink: #F67787;
+$orange: #E8A948;
+$black: #4A4A4A;
+$dark-grey: #9B9B9B;
+$grey: #E6E6E6;
+$light-grey: #F7F7F7;
+
 .red-color {
   color: red;
 }
 
 .green-color {
   color: green;
+}
+
+.light-red-color {
+  color: $light-red  
+}
+
+.pink-color {
+  color: $pink
+}
+
+.orange-color {
+  color: $orange
+}
+
+.black-color {
+  color: $black 
+}
+
+.dark-grey-color {
+  color: $dark-grey 
+}
+
+.grey-color {
+  color: $grey 
+}
+
+.light-grey-color {
+  color: $light-grey 
+}
+
+#app {
+  font-family: 'Roboto', sans-serif;  
 }
