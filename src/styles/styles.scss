@@ -43,5 +43,20 @@ $light-grey: #F7F7F7;
 }
 
 #app {
-  font-family: 'Roboto', sans-serif;  
+  font-family: 'Roboto', sans-serif;
+  background-color: $grey;
+}
+
+body {
+  background-color: $light-grey !important;
+}
+
+.login-box {
+  display: block;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 4px 4px 10px $grey;
+  border: 1px solid $grey;
+  margin: 50px 10px;
+  padding: 5px;
 }
