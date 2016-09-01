@@ -5,7 +5,7 @@ const LogoHeader = ({ title }) => {
   return (
     <div className="contenedor-header">
       <img className="image-header" src="https://s3-sa-east-1.amazonaws.com/ash-assets/logo-dos.png" />
-        <p className="title-header dark-grey-color">{title.text}</p>
+      <p className="title-header dark-grey-color">{title.text}</p>
     </div>
   );
 };
