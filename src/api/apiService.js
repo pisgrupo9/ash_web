@@ -1,9 +1,10 @@
 import fetch from 'isomorphic-fetch';
+import * as message from '../constants/apiMessage';
 
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
     if (!response) {
-      reject({ message: 'No response returned from fetch' });
+      reject({ message: message.ERROR_RESPONSE_EMPTY});
       return;
     }
 
@@ -11,12 +12,15 @@ const handleErrors = (response) =>
       resolve(response);
       return;
     }
-
+    try{
     response.json()
       .then(json => {
         const error = json || { message: response.statusText };
         reject(error);
       });
+    }catch(err){
+      reject({message:message.ERROR_RESPONSE_NOT_JSON});
+    }
   });
 
 const getResponseBody = (response) => {

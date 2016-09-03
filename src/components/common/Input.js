@@ -10,7 +10,7 @@ const Input = ({ styleClass, name, label, type, onChange, placeholder, value, er
   return (
     <div>
       <div className={wrapperClass}>
-        <label className="input-label" htmlFor={name}>{label}</label>
+        {label && <label className="input-label" htmlFor={name}>{label}</label>}
         <div className="field">
           <input type={type}
                  name={name}
@@ -30,10 +30,10 @@ const { string, func } = PropTypes;
 Input.propTypes = {
   styleClass: string,
   name: string.isRequired,
-  label: string.isRequired,
+  label: string,
   type: string.isRequired,
   onChange: func.isRequired,
-  placeholder: string.isRequired,
+  placeholder: string,
   value: string,
   error: string
 };

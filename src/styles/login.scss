@@ -1,0 +1,21 @@
+
+.login-box {
+  .form {
+    .remLink{
+      text-align: center;
+      width: 100%;
+      margin: 10px auto;
+      text-decoration: none;
+      font-size: 10px;
+      a:hover{
+        text-decoration: none;
+      }
+    } 
+    .submit{
+      border-radius: 1px;
+    }
+  }
+  .btn{
+    width: 100%;  
+  }
+}
