@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <div className="content">
-            {this.props.children}
+          {this.props.children}
         </div>
         <Footer text={footerText} />
       </div>

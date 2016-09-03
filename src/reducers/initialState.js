@@ -1,5 +1,6 @@
 export default {
   users: [],
   serverStatus: {},
-  login:{}
+  login: {},
+  userForm: {}
 };
