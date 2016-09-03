@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Col } from 'react-bootstrap';
 
-const { object } = PropTypes;
+const { array } = PropTypes;
 
 class LoginBox extends Component {
   render() {
@@ -16,7 +16,7 @@ class LoginBox extends Component {
 }
 
 LoginBox.propTypes = {
-  children: object.isRequired
+  children: array.isRequired
 };
 
 export default LoginBox;

@@ -30,10 +30,10 @@ const { string, func } = PropTypes;
 Input.propTypes = {
   styleClass: string,
   name: string.isRequired,
-  label: string.isRequired,
+  label: string,
   type: string.isRequired,
   onChange: func.isRequired,
-  placeholder: string.isRequired,
+  placeholder: string,
   value: string,
   error: string
 };
