@@ -4,7 +4,9 @@ import LogoHeader from '../common/LogoHeader';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as loginActions from '../../actions/loginActions';
+import * as StringV from '../../actions/StringValidate';
 import LoginForm from './LoginForm';
+import * as message from '../../constants/apiMessage';
 import '../../styles/login.scss';
 
 const title ='Ingresar';
@@ -29,11 +31,15 @@ class LoginPage extends Component {
     form.email.error = null;
     form.pass.error = null;
     if(form.email.value == '' ){
-      form.email.error = 'Campo Necesario';
+      form.email.error = message.ERROR_CAMPO_REQUERIDO;
+      error =true;
+    }
+    if(!StringV.isEmail(form.email.value)){
+      form.email.error = message.ERROR_EMAIL;
       error =true;
     }
     if(form.pass.value == ''){
-      form.pass.error = 'Campo Necesario';
+      form.pass.error = message.ERROR_CAMPO_REQUERIDO;
       error =true;
     }
     if(!error){
@@ -61,7 +67,6 @@ class LoginPage extends Component {
       <LoginBox>
         <LogoHeader title={title}/>
         <LoginForm form={this.form} error={error} onChange={this.onChange} onSummit={this.onSummit}/>
-        <br/>
         <Link to="register" className="btn orange-color">Crear Cuenta</Link>
       </LoginBox>
     );
