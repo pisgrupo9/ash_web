@@ -19,12 +19,14 @@
   width: 100%;  
 }
 
+
 .login-box .container{
   display: table;
   margin: 0 auto;
 }
 
-.login-box .form{
-  
+.login-box .form .alert-danger{
+  padding: 5px;
+  font-size: x-small;
 }
 

@@ -19,9 +19,9 @@ export const  loginError = (request) =>  {
 export const login = (user) => {
   return (dispatch) => {
     loginApi.postLogin(user).then(respons => {
-      if(respons.error == undefined){
+      if(respons.user){
         seccion.saveState(respons);
-        //window.location = '/';
+        window.location = '/';
         dispatch(loginUser(respons));
       }else{
         dispatch(loginError(respons));
