@@ -2,34 +2,31 @@ import React, { Component,PropTypes } from 'react';
 import LoginBox from '../common/LoginBox';
 import LogoHeader from '../common/LogoHeader';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 import * as loginActions from '../../actions/loginActions';
-import * as StringV from '../../actions/StringValidate';
+import * as StringV from '../../util/StringValidate';
 import LoginForm from './LoginForm';
 import * as message from '../../constants/apiMessage';
 import '../../styles/login.scss';
 
 const title ='Ingresar';
 class LoginPage extends Component {
-
   constructor(props, context) {
     super(props, context);
     this.form ={
-          email:{
-            value:''
-          },
-          pass:{
-            value:''
-          }
+          email:{ value:''},
+          pass:{ value:''}
         };
     this.onSummit = this.onSummit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
  onSummit(){
     let error = false;
     let form = this.form;
-    form.email.error = null;
-    form.pass.error = null;
+    delete form.email.error;
+    delete form.pass.error;
     if(form.email.value == '' ){
       form.email.error = message.ERROR_CAMPO_REQUERIDO;
       error =true;
@@ -49,7 +46,7 @@ class LoginPage extends Component {
                         password : form.pass.value
                       }
                   };
-      this.props.dispatch(loginActions.login(user));
+      this.props.actions.login(user);
     }
     return this.setState({form });
   }
@@ -73,13 +70,17 @@ class LoginPage extends Component {
   }
 }
 
-const { func,object } = PropTypes;
+const { object } = PropTypes;
 LoginPage.propTypes = {
-  dispatch: func.isRequired,
+  actions: object.isRequired,
   login : object
 };
 
 const mapState = (state) => ({ login: state.login});
-
-export default connect(mapState)(LoginPage);
+const mapDispatch = (dispatch) => {
+  return {
+    actions: bindActionCreators(loginActions, dispatch)
+  };
+};
+export default connect(mapState,mapDispatch)(LoginPage);
 

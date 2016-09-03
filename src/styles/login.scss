@@ -1,32 +1,25 @@
 
-.login-box .form .remLink{
-  text-align: center;
-  width: 100%;
-  margin: 10px auto;
-  text-decoration: none;
-  font-size: 10px;
+.login-box {
+  .form {
+    .remLink{
+      text-align: center;
+      width: 100%;
+      margin: 10px auto;
+      text-decoration: none;
+      font-size: 10px;
+      a:hover{
+        text-decoration: none;
+      }
+    } 
+    .summit{
+      border-radius: 1px;
+    }
+    .alert-danger{
+        padding: 5px;
+      font-size: x-small;
+    }
+  }
+  .btn{
+    width: 100%;  
+  }
 }
-
-.login-box .form .remLink > a:hover{
-  text-decoration: none;
-}
-
-.login-box .form .summit{
-  border-radius: 1px;
-}
-
-.login-box .btn{
-  width: 100%;  
-}
-
-
-.login-box .container{
-  display: table;
-  margin: 0 auto;
-}
-
-.login-box .form .alert-danger{
-  padding: 5px;
-  font-size: x-small;
-}
-

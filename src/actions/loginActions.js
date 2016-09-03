@@ -2,17 +2,17 @@ import * as types from './actionTypes';
 import loginApi from '../api/loginApi';
 import * as seccion from './stateActions';
 
-export const  loginUser = (request) =>  {
+export const  loginUser = (respons) =>  {
     return {
-        type: types.LOGIN_USER,
-        request
+        type: types.LOGIN_USER_SUCCES,
+        respons
     };
 };
 
-export const  loginError = (request) =>  {
+export const  loginError = (respons) =>  {
     return {
         type: types.LOGIN_USER_ERROR,
-        request
+        respons
     };
 };
 
@@ -29,6 +29,5 @@ export const login = (user) => {
     }).catch(err => {
       throw(err);
     });
-   
   };
 };
