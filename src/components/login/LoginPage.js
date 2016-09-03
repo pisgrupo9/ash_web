@@ -12,8 +12,6 @@ class LoginPage extends Component {
 
   constructor(props, context) {
     super(props, context);
-    console.log(this.props);
-
     this.form ={
           email:{
             value:''
@@ -31,11 +29,11 @@ class LoginPage extends Component {
     form.email.error = null;
     form.pass.error = null;
     if(form.email.value == '' ){
-      form.email.error = 'Campo Necesario'
+      form.email.error = 'Campo Necesario';
       error =true;
     }
     if(form.pass.value == ''){
-      form.pass.error = 'Campo Necesario'
+      form.pass.error = 'Campo Necesario';
       error =true;
     }
     if(!error){
@@ -44,11 +42,10 @@ class LoginPage extends Component {
                         email : form.email.value,
                         password : form.pass.value
                       }
-                  }
+                  };
       this.props.dispatch(loginActions.login(user));
     }
-    else
-      return this.setState({form });
+    return this.setState({form });
   }
 
   onChange(e) {
@@ -58,7 +55,6 @@ class LoginPage extends Component {
     return this.setState({ form });
   }
   render() {
-    console.log(this.props);
     const login = this.props.login;
     let error = login ? login.errorMessag : null;
     return (

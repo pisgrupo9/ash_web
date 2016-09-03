@@ -1,6 +1,8 @@
+import * as constant from '../constants/apiConstants';
+
 export const loadState = () => {
   try {
-    const serializedState = localStorage.getItem('token')
+    const serializedState = localStorage.getItem(constant.SECCION_STORAGE);
     if(serializedState === null){
       return undefined;
     }
@@ -8,11 +10,11 @@ export const loadState = () => {
   }catch(e){
     return undefined;
   }
-}
+};
 
 export const saveState = (token) =>{
     try{
       const serializedState = JSON.stringify(token);
-      localStorage.setItem('token',serializedState);
-    }catch(e){}
-} 
+      localStorage.setItem(constant.SECCION_STORAGE,serializedState);
+    }catch(e){return;}
+};

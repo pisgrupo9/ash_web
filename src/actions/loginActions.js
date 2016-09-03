@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import loginApi from '../api/loginApi';
+import * as seccion from './stateActions';
 
 export const  loginUser = (request) =>  {
     return {
@@ -8,12 +9,26 @@ export const  loginUser = (request) =>  {
     };
 };
 
+export const  loginError = (request) =>  {
+    return {
+        type: types.LOGIN_USER_ERROR,
+        request
+    };
+};
+
 export const login = (user) => {
   return (dispatch) => {
-    return loginApi.postLogin(user).then(respons => {
-      dispatch(loginUser(respons));
+    loginApi.postLogin(user).then(respons => {
+      if(respons.error == undefined){
+        seccion.saveState(respons);
+        //window.location = '/';
+        dispatch(loginUser(respons));
+      }else{
+        dispatch(loginError(respons));
+      }
     }).catch(err => {
       throw(err);
     });
+   
   };
 };
