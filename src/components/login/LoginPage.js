@@ -4,32 +4,28 @@ import LogoHeader from '../common/LogoHeader';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import * as loginActions from '../../actions/loginActions';
-import * as StringV from '../../actions/StringValidate';
+import * as StringV from '../../util/StringValidate';
 import LoginForm from './LoginForm';
 import * as message from '../../constants/apiMessage';
 import '../../styles/login.scss';
 
 const title ='Ingresar';
 class LoginPage extends Component {
-
   constructor(props, context) {
     super(props, context);
     this.form ={
-          email:{
-            value:''
-          },
-          pass:{
-            value:''
-          }
+          email:{ value:''},
+          pass:{ value:''}
         };
     this.onSummit = this.onSummit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
+
  onSummit(){
     let error = false;
     let form = this.form;
-    form.email.error = null;
-    form.pass.error = null;
+    delete form.email.error;
+    delete form.pass.error;
     if(form.email.value == '' ){
       form.email.error = message.ERROR_CAMPO_REQUERIDO;
       error =true;
