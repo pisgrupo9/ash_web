@@ -10,36 +10,35 @@ import LoginForm from './LoginForm';
 import * as message from '../../constants/apiMessage';
 import '../../styles/login.scss';
 
-const title ='Ingresar';
+const title = 'Ingresar';
 class LoginPage extends Component {
   constructor(props, context) {
     super(props, context);
-    this.form ={
-          email:{ value:''},
-          pass:{ value:''}
+    this.form = {
+          email : { value : ''},
+          pass : { value : ''}
         };
-    this.onSummit = this.onSummit.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
- onSummit(){
+  onSubmit() {
     let error = false;
     let form = this.form;
     delete form.email.error;
     delete form.pass.error;
-    if(form.email.value == '' ){
-      form.email.error = message.ERROR_CAMPO_REQUERIDO;
-      error =true;
-    }
-    if(!StringV.isEmail(form.email.value)){
+    if(form.email.value == '') {
+      form.email.error = message.ERROR_REQUIRED_FIELD;
+      error = true;
+    } else if(!StringV.isEmail(form.email.value)) {
       form.email.error = message.ERROR_EMAIL;
-      error =true;
+      error = true;
     }
-    if(form.pass.value == ''){
-      form.pass.error = message.ERROR_CAMPO_REQUERIDO;
-      error =true;
+    if(form.pass.value == '') {
+      form.pass.error = message.ERROR_REQUIRED_FIELD;
+      error = true;
     }
-    if(!error){
+    if(!error) {
       let user = {
                   user:{
                         email : form.email.value,
@@ -48,7 +47,7 @@ class LoginPage extends Component {
                   };
       this.props.actions.login(user);
     }
-    return this.setState({form });
+    return this.setState({ form });
   }
 
   onChange(e) {
@@ -57,13 +56,14 @@ class LoginPage extends Component {
     form[ field ].value = e.target.value;
     return this.setState({ form });
   }
+
   render() {
     const login = this.props.login;
     let error = login ? login.errorMessag : null;
     return (
       <LoginBox>
         <LogoHeader title={title}/>
-        <LoginForm form={this.form} error={error} onChange={this.onChange} onSummit={this.onSummit}/>
+        <LoginForm form={this.form} error={error} onChange={this.onChange} onSubmit={this.onSubmit}/>
         <Link to="register" className="btn orange-color">Crear Cuenta</Link>
       </LoginBox>
     );

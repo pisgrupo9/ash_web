@@ -10,7 +10,7 @@ const Input = ({ styleClass, name, label, type, onChange, placeholder, value, er
   return (
     <div>
       <div className={wrapperClass}>
-        <label className="input-label" htmlFor={name}>{label}</label>
+        {label && <label className="input-label" htmlFor={name}>{label}</label>}
         <div className="field">
           <input type={type}
                  name={name}

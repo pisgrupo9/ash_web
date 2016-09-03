@@ -4,7 +4,7 @@ import * as message from '../constants/apiMessage';
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
     if (!response) {
-      reject({ message: message.ERROR_RESPON_EMPTY});
+      reject({ message: message.ERROR_RESPONSE_EMPTY});
       return;
     }
 
@@ -19,7 +19,7 @@ const handleErrors = (response) =>
         reject(error);
       });
     }catch(err){
-      reject({message:message.ERROR_RESPON_NOT_JSON});
+      reject({message:message.ERROR_RESPONSE_NOT_JSON});
     }
   });
 

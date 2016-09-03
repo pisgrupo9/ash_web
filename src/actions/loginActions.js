@@ -1,30 +1,30 @@
 import * as types from './actionTypes';
 import loginApi from '../api/loginApi';
-import * as seccion from './stateActions';
+import * as session from './stateActions';
 
-export const  loginUser = (respons) =>  {
+export const  loginUser = (response) =>  {
     return {
         type: types.LOGIN_USER_SUCCES,
-        respons
+        response
     };
 };
 
-export const  loginError = (respons) =>  {
+export const  loginError = (response) =>  {
     return {
         type: types.LOGIN_USER_ERROR,
-        respons
+        response
     };
 };
 
 export const login = (user) => {
   return (dispatch) => {
-    loginApi.postLogin(user).then(respons => {
-      if(respons.user){
-        seccion.saveState(respons);
+    loginApi.postLogin(user).then(response => {
+      if(response.user){
+        session.saveState(response);
         window.location = '/';
-        dispatch(loginUser(respons));
+        dispatch(loginUser(response));
       }else{
-        dispatch(loginError(respons));
+        dispatch(loginError(response));
       }
     }).catch(err => {
       throw(err);

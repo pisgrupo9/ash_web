@@ -49,6 +49,10 @@ $light-grey: #F7F7F7;
 #app {
   font-family: 'Roboto', sans-serif;
   background-color: $grey;
+  .alert-danger{
+      padding: 5px;
+      font-size: x-small;
+  }
 }
 
 body {
