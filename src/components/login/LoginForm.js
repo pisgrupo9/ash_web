@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Input from '../common/Input'
+import Input from '../common/Input';
 import { Col } from 'react-bootstrap';
 
 const LoginForm = ({ form, error,onChange,onSummit }) => {
@@ -20,5 +20,15 @@ const LoginForm = ({ form, error,onChange,onSummit }) => {
     </Col>
   );
 };
+
+const { string, func,object } = PropTypes;
+
+LoginForm.propTypes = {
+  form: object.isRequired,
+  onChange: func.isRequired,
+  onSummit: func.isRequired,
+  error: string
+};
+
 
 export default LoginForm;
