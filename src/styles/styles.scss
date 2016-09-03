@@ -53,10 +53,17 @@ $light-grey: #F7F7F7;
       padding: 5px;
       font-size: x-small;
   }
+  height: 100%;
 }
 
 body {
   background-color: $light-grey !important;
+  height: 100%;
+  margin: 0;
+}
+
+html {
+  height: 100%;
 }
 
 .login-box {
@@ -69,10 +76,17 @@ body {
   padding: 5px;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
+.content {
+  min-height: 100%;
+  margin-bottom: -50px;
+}
+
+.content:after {
+  content: "";
+  display: block;
+}
+
+.footer, .content:after {
+  height: 50px; 
   text-align: center;
 }
