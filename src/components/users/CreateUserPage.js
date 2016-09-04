@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router';
 import * as userActions from '../../actions/userActions';
 import UserForm from './UserForm';
 import LoginBox from '../common/LoginBox';
@@ -123,6 +124,9 @@ class CreateUserPage extends Component {
                   onSave={this.submitUserForm}
                   onChange={this.updateUserState}
                   errors={erorsFromServer ? this.props.errors : this.state.errors} />
+        <div className="link-wrapper">
+          <Link to="login" className="form-link">Ingresar</Link>
+        </div>
       </LoginBox>
     );
   }

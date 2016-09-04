@@ -11,6 +11,7 @@ import { syncHistoryWithStore } from 'react-router-redux';
 import './styles/styles.scss';
 import { loadServerStatus } from './actions/serverStatusActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import ReduxToastr from 'react-redux-toastr';
 
 const store = configureStore();
 
@@ -20,6 +21,12 @@ const history = syncHistoryWithStore(browserHistory, store);
 store.dispatch(loadServerStatus());
 render(
   <Provider store={store}>
-    <Router history={history} routes={routes} />
+    <div>
+      <Router history={history} routes={routes} />
+      <ReduxToastr
+        timeOut={4000}
+        newestOnTop={false}
+        position="top-right"/>
+    </div>
   </Provider>, document.getElementById('app')
 );

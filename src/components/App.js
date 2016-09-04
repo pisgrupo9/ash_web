@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     const footerText = 'Animales Sin Hogar - Asociación Civil sin fines de lucro. - Personería Jurídica 9985';
     return (
-      <div>
+      <div className="h-100">
         <div className="content">
           {this.props.children}
         </div>

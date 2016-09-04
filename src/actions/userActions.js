@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
 import userApi from '../api/userApi';
+import {toastr} from 'react-redux-toastr';
 
 export const loadUsersSuccess = (users) => {
   return {
@@ -35,6 +36,7 @@ export const sendUserForm = (user, history) => {
   return (dispatch) => {
     return userApi.sendForm(user).then(() => {
       history.push(`/login`);
+      toastr.success('','Tu solicitud de cuenta ha sido enviada');
       dispatch(sendUserFormSuccess());
     }).catch(err => {
       dispatch(sendUserFormError(err));
