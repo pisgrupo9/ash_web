@@ -48,11 +48,14 @@ $light-grey: #F7F7F7;
 
 #app {
   font-family: 'Roboto', sans-serif;
-  background-color: $grey;
   .alert-danger{
-      padding: 5px;
-      font-size: x-small;
+    padding: 5px;
+    font-size: x-small;
   }
+  height: 100%;
+}
+
+#app > div {
   height: 100%;
 }
 
@@ -89,4 +92,16 @@ html {
 .footer, .content:after {
   height: 50px; 
   text-align: center;
+}
+
+.row {
+  margin: 0 !important;
+}
+
+.m-bot30 {
+  margin-bottom: 30px;
+}
+
+.w-100 {
+  width: 100%;
 }

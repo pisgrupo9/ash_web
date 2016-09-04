@@ -45,7 +45,7 @@ class LoginPage extends Component {
                         password : form.pass.value
                       }
                   };
-      this.props.actions.login(user);
+      this.props.actions.login(user, this.context.router);
     }
     return this.setState({ form });
   }
@@ -64,23 +64,30 @@ class LoginPage extends Component {
       <LoginBox>
         <LogoHeader title={title}/>
         <LoginForm form={this.form} error={error} onChange={this.onChange} onSubmit={this.onSubmit}/>
-        <Link to="register" className="btn orange-color">Crear Cuenta</Link>
+        <Link to="solicitud-registro" className="w-100 btn orange-color">Crear Cuenta</Link>
       </LoginBox>
     );
   }
 }
 
 const { object } = PropTypes;
+
 LoginPage.propTypes = {
   actions: object.isRequired,
   login : object
 };
 
+LoginPage.contextTypes = {
+  router: object
+};
+
 const mapState = (state) => ({ login: state.login});
+
 const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(loginActions, dispatch)
   };
 };
+
 export default connect(mapState,mapDispatch)(LoginPage);
 
