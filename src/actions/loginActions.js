@@ -3,25 +3,25 @@ import loginApi from '../api/loginApi';
 import * as session from './stateActions';
 
 export const  loginUser = (response) =>  {
-    return {
-        type: types.LOGIN_USER_SUCCES,
-        response
-    };
+  return {
+      type: types.LOGIN_USER_SUCCES,
+      response
+  };
 };
 
 export const  loginError = (response) =>  {
-    return {
-        type: types.LOGIN_USER_ERROR,
-        response
-    };
+  return {
+    type: types.LOGIN_USER_ERROR,
+    response
+  };
 };
 
-export const login = (user) => {
+export const login = (user, history) => {
   return (dispatch) => {
     loginApi.postLogin(user).then(response => {
       if(response.user){
         session.saveState(response);
-        window.location = '/';
+        history.push(`/`);
         dispatch(loginUser(response));
       }else{
         dispatch(loginError(response));

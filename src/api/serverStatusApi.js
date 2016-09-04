@@ -3,7 +3,7 @@ import * as consts from '../constants/apiConstants.js';
 
 class ServerStatusApi {
   static getServerStatus() {
-    return api.get(`${consts.API_URL}`);
+    return api.get(`${consts.HEROKU_URL}`);
   }
 }
 

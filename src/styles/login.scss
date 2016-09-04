@@ -1,21 +1,35 @@
+$dark-grey: #9B9B9B;
+$dark-orange: #ff6600;
 
-.login-box {
-  .form {
-    .remLink{
-      text-align: center;
-      width: 100%;
-      margin: 10px auto;
-      text-decoration: none;
-      font-size: 10px;
-      a:hover{
-        text-decoration: none;
-      }
-    } 
-    .submit{
-      border-radius: 1px;
-    }
+.remLink{
+  text-align: center;
+  width: 100%;
+  margin: 10px auto;
+  text-decoration: none;
+  font-size: 10px;
+
+  a:hover{
+    text-decoration: none;
   }
-  .btn{
-    width: 100%;  
+}
+
+.user-form {
+  .user-submit-btn {
+    color: white;
+    transition-duration: 0.4s;
+    border-radius: 1px;
+    width: 100%;
+  }
+
+  .user-submit-btn:hover {
+    color: white;
+    background: $dark-orange;
+  }
+}
+
+.user-input {
+  .input-label {
+    font-weight: 300;
+    color: $dark-grey;
   }
 }
