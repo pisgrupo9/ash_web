@@ -7,7 +7,7 @@ class UserApi {
   }
 
   static sendForm(user) {
-    return api.post(`${consts.API_URL}/users`, user);
+    return api.post(`${consts.API_STAGING_URL}/users`, user);
   }
 }
 

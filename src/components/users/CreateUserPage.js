@@ -27,17 +27,25 @@ class CreateUserPage extends Component {
         password: '',
         password_confirmation: ''
       },
-      form: { valid: false }
+      form: { valid: false },
+      loading: false
     };
 
     this.updateUserState = this.updateUserState.bind(this);
     this.submitUserForm = this.submitUserForm.bind(this);
+    this.updateValidField = this.updateValidField.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ loading: false });
+    }
   }
 
   validateNames(name) {
     let errors = this.state.errors;
-    const fistLastName = name.split(' ');
-    const valid = fistLastName[0] && fistLastName[1];
+    const firstLastName = name.split(' ');
+    const valid = firstLastName[0] && firstLastName[1];
     errors.name = valid ? '' : 'Ingrese nombre y apellido';
     this.setState({ errors });
   }
@@ -57,6 +65,9 @@ class CreateUserPage extends Component {
   validatePassword(pass, passConfirmation) {
     let errors = this.state.errors;
     errors.password_confirmation = pass === passConfirmation ? '' : 'Las contraseñas no coinciden';
+    if(pass.length < 8) {
+      errors.password = 'contraseña muy corta(minimo 8 caracteres)';
+    }
     this.setState({ errors });
   }
 
@@ -91,8 +102,11 @@ class CreateUserPage extends Component {
     }
   }
 
-  updateUserState(e) {
+  updateValidField(e) {
     this.validateField(e.target);
+  }
+
+  updateUserState(e) {
     const field = e.target.name;
     let user = this.state.user;
     user[ field ] = e.target.value;
@@ -101,17 +115,20 @@ class CreateUserPage extends Component {
 
   submitUserForm(e) {
     e.preventDefault();
+    this.setState({ loading: true });
     this.validateForm();
     if(this.state.form.valid) {
       let dataUser = Object.assign({}, this.state.user);
       if(dataUser.name) {
-        const fistLastName = dataUser.name.split(' ');
-        dataUser.fist_name = fistLastName[0];
-        dataUser.last_name = fistLastName[1];
+        const firstLastName = dataUser.name.split(' ');
+        dataUser.first_name = firstLastName[0];
+        dataUser.last_name = firstLastName[1];
       }
       delete dataUser.name;
       const user = { 'user': dataUser };
       this.props.actions.sendUserForm(user, this.context.router);
+    } else {
+      this.setState({ loading: false });
     }
   }
 
@@ -121,8 +138,10 @@ class CreateUserPage extends Component {
       <LoginBox>
         <LogoHeader title="Solicitud Registro" />
         <UserForm user={this.state.user}
+                  loading={this.state.loading}
                   onSave={this.submitUserForm}
                   onChange={this.updateUserState}
+                  onBlur={this.updateValidField}
                   errors={erorsFromServer ? this.props.errors : this.state.errors} />
         <div className="link-wrapper">
           <Link to="login" className="form-link">Ingresar</Link>

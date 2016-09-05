@@ -1,8 +1,15 @@
 import React, { PropTypes } from 'react';
 import Input from '../common/Input';
 import { Col, Row } from 'react-bootstrap';
+import Spinner from 'react-spinkit';
 
-const LoginForm = ({ form, error, onChange, onSubmit }) => {
+const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
+  const submitButton = (<input type="button" className="btn user-submit-btn bg-orange-color" value="INGRESAR" onClick={onSubmit}/>);
+
+  const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
+                          <Spinner spinnerName="three-bounce" noFadeIn />
+                         </div>);
+
   return (
     <Row>
       <Col lg={8} lgOffset={2} md={10} mdOffset={1} sm={10} smOffset={1} xs={12}>
@@ -22,11 +29,7 @@ const LoginForm = ({ form, error, onChange, onSubmit }) => {
                   value={form.pass.value}
                   onChange={onChange}
                   error={form.pass.error}/>
-          <Row>
-            <Col lg={10} lgOffset={1}>
-              <input type="button" className="btn user-submit-btn bg-orange-color" value="Ingresar" onClick={onSubmit}/>
-            </Col>
-          </Row>
+          { loading ? loadingButton : submitButton}
           <p className="remLink"><a href="javascript:void()" className="dark-grey-color">Olvide mi Contraseña</a></p>
         </div>
       </Col>
@@ -34,11 +37,12 @@ const LoginForm = ({ form, error, onChange, onSubmit }) => {
   );
 };
 
-const { string, func, object } = PropTypes;
+const { string, func, object, bool } = PropTypes;
 
 LoginForm.propTypes = {
   form: object.isRequired,
   onChange: func.isRequired,
+  loading: bool.isRequired,
   onSubmit: func.isRequired,
   error: string
 };
