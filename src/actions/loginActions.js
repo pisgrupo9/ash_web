@@ -19,14 +19,14 @@ export const  loginError = (response) =>  {
 export const login = (user, history) => {
   return (dispatch) => {
     loginApi.postLogin(user).then(response => {
-      if(response.user){
         session.saveState(response);
         history.push(`/`);
         dispatch(loginUser(response));
-      }else{
-        dispatch(loginError(response));
+      },
+      error => {
+        dispatch(loginError(error));
       }
-    }).catch(err => {
+    ).catch(err => {
       throw(err);
     });
   };
