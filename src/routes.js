@@ -5,7 +5,6 @@ import UsersPage from './components/users/UsersPage';
 import ServerStatusPage from './components/serverStatus/ServerStatusPage';
 import LoginPage from './components/login/LoginPage';
 import CreateUserPage from './components/users/CreateUserPage';
-import LogoutPage from './components/logout/LogoutPage';
 
 export default (
   <Route path="/" component={App}>
@@ -13,6 +12,5 @@ export default (
     <Route path="login" component={LoginPage}/>
     <Route path="users" component={UsersPage}/>
     <Route path="solicitud-registro" component={CreateUserPage}/>
-    <Route path="logout" component={LogoutPage}/>
   </Route>
 );

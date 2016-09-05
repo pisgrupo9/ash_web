@@ -18,9 +18,3 @@ export const saveState = (token) =>{
       localStorage.setItem(constant.SECCION_STORAGE,serializedState);
     }catch(e){return;}
 };
-
-export const deletState = (key = constant.SECCION_STORAGE) =>{
-   try{
-      localStorage.removeItem(key);
-   }catch(e){return;}
-};
