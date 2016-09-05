@@ -64,7 +64,11 @@ class LoginPage extends Component {
       <LoginBox>
         <LogoHeader title={title}/>
         <LoginForm form={this.form} error={error} onChange={this.onChange} onSubmit={this.onSubmit}/>
-        <Link to="solicitud-registro" className="w-100 btn orange-color">Crear Cuenta</Link>
+        <div className="link-wrapper">
+          <Link to="solicitud-registro" className="form-link">
+            Crear Cuenta
+          </Link>
+        </div>
       </LoginBox>
     );
   }

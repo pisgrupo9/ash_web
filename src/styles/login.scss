@@ -1,5 +1,6 @@
 $dark-grey: #9B9B9B;
 $dark-orange: #ff6600;
+$orange: #E8A948;
 
 .remLink{
   text-align: center;
@@ -32,4 +33,19 @@ $dark-orange: #ff6600;
     font-weight: 300;
     color: $dark-grey;
   }
+}
+
+.link-wrapper {
+  text-align: center;
+  margin: 12px 0;
+  color: $orange;
+}
+
+.form-link {
+  color: $orange;
+}
+
+.form-link:hover {
+  color: $dark-orange;
+  text-decoration: none;
 }

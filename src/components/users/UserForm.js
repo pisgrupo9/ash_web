@@ -7,7 +7,7 @@ const UserForm = ({ user, onSave, onChange, errors}) => {
   return (
     <Row>
       <Col lg={8} lgOffset={2} md={10} mdOffset={1} sm={10} smOffset={1} xs={12}>
-        <div className="user-form m-bot30">
+        <div className="user-form">
           <Input styleClass="user-input"
                   name="name"
                   label="Nombre y apellido"
