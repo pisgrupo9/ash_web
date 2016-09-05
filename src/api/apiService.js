@@ -62,6 +62,17 @@ class Api {
     };
     return this.performRequest(uri,requestData);
   }
+  delete(uri,data) {
+    let requestData = {
+      method: 'delete',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    return this.performRequest(uri,requestData);
+  }
 }
 
 export default new Api();
