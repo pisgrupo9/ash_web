@@ -20,11 +20,27 @@ $orange: #E8A948;
     transition-duration: 0.4s;
     border-radius: 1px;
     width: 100%;
+
+    .three-bounce > div{
+      background-color: white;
+      width: 16px;
+      height: 16px;
+    }
   }
 
   .user-submit-btn:hover {
     color: white;
     background: $dark-orange;
+  }
+
+  .user-submit-btn:focus {
+    color: white;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Input = ({ styleClass, name, label, type, onChange, placeholder, value, error }) => {
+const Input = ({ styleClass, name, label, type, onChange, onBlur, placeholder, value, error }) => {
   let wrapperClass = `form-group ${styleClass}`;
 
   if (error && error.length > 0) {
@@ -17,6 +17,7 @@ const Input = ({ styleClass, name, label, type, onChange, placeholder, value, er
                  placeholder={placeholder}
                  value={value}
                  onChange={onChange}
+                 onBlur={onBlur}
                  className="form-control" />
           {error && <div className="alert alert-danger">{error}</div>}
         </div>
@@ -33,6 +34,7 @@ Input.propTypes = {
   label: string,
   type: string.isRequired,
   onChange: func.isRequired,
+  onBlur: func,
   placeholder: string,
   value: string,
   error: string

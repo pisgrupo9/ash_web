@@ -14,15 +14,28 @@ const title = 'Ingresar';
 class LoginPage extends Component {
   constructor(props, context) {
     super(props, context);
+
+    this.state = {
+      loading: false
+    };
+
     this.form = {
-          email : { value : ''},
-          pass : { value : ''}
-        };
+      email : { value: ''},
+      pass : { value: ''}
+    };
+
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.login) {
+      this.setState({ loading: false });
+    }
+  }
+
   onSubmit() {
+    this.setState({ loading: true });
     let error = false;
     let form = this.form;
     delete form.email.error;
@@ -46,7 +59,7 @@ class LoginPage extends Component {
                       }
                   };
       this.props.actions.login(user, this.context.router);
-    }
+    } else { this.setState({ loading: false }); }
     return this.setState({ form });
   }
 
@@ -63,7 +76,11 @@ class LoginPage extends Component {
     return (
       <LoginBox>
         <LogoHeader title={title}/>
-        <LoginForm form={this.form} error={error} onChange={this.onChange} onSubmit={this.onSubmit}/>
+        <LoginForm form={this.form}
+                    error={error}
+                    onChange={this.onChange}
+                    loading={this.state.loading}
+                    onSubmit={this.onSubmit}/>
         <div className="link-wrapper">
           <Link to="solicitud-registro" className="form-link">
             Crear Cuenta
