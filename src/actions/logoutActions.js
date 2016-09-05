@@ -12,6 +12,6 @@ export const logoutDispatch = (history) => {
       session.deletState();
       history.push('/login');
       dispatch(logout());
-    },()=>{});
+    });
   };
 };

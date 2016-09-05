@@ -6,7 +6,6 @@ import { bindActionCreators } from 'redux';
 import * as logoutActions from '../../actions/logoutActions';
 import { Col, Row } from 'react-bootstrap';
 
-const title = 'Desea salir?';
 
 
 class LogoutPage extends Component {
@@ -19,6 +18,7 @@ class LogoutPage extends Component {
   }
 
   render (){
+    let title = 'Desea salir?';
     return(
       <LoginBox>       
         <LogoHeader title={title}/>
@@ -48,11 +48,12 @@ LogoutPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({ login: state.login});
+const mapState = () => ({});
 
 const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(logoutActions, dispatch)
   };
 };
+
 export default connect(mapState, mapDispatch)(LogoutPage);
