@@ -59,7 +59,7 @@ class LoginPage extends Component {
 
   render() {
     const login = this.props.login;
-    let error = login ? login.errorMessag : null;
+    let error = login ? login.errorLogin : null;
     return (
       <LoginBox>
         <LogoHeader title={title}/>
