@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import * as message from '../constants/apiMessage';
+import * as session from '../actions/stateActions';
 
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
@@ -31,6 +32,8 @@ const getResponseBody = (response) => {
   return response.json();
 };
 
+
+
 class Api {
   performRequest(uri, requestData = {}) {
     return new Promise((resolve, reject) => {
@@ -41,7 +44,10 @@ class Api {
         .catch(error => reject(error));
     });
   }
-
+  addTokenHeader() {
+    let current_session = session.loadState();
+    return (current_session && current_session.token) ? { 'X-USER-TOKEN': current_session.token } : {};
+  }
   get(uri) {
     let requestData = {
       method: 'get',
@@ -60,6 +66,18 @@ class Api {
       },
       body: JSON.stringify(data),
     };
+    return this.performRequest(uri,requestData);
+  }
+  delete(uri, data) {
+    let requestData = {
+      method: 'delete',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-Type' : 'application/json'
+      },
+      body: JSON.stringify(data)
+    };
+    requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
     return this.performRequest(uri,requestData);
   }
 }
