@@ -12,10 +12,10 @@ class App extends Component {
     const footerText = 'Animales Sin Hogar - Asociación Civil sin fines de lucro. - Personería Jurídica 9985';
     const {pathname} = this.props.location;
     const haveHeader =  !(
-                        pathname.includes('/login') |
-                        pathname.includes('/solicitud-registro') |
-                        pathname.includes('/reset') |
-                        pathname.includes('/updatePass') 
+                        pathname.includes('login') |
+                        pathname.includes('solicitud-registro') |
+                        pathname.includes('reset') |
+                        pathname.includes('updatePass')
                          );
     return (
       <div className="h-100">

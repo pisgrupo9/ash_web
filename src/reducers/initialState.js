@@ -3,5 +3,10 @@ export default {
   serverStatus: {},
   login: {},
   userForm: {},
-  resetPass: {}
+  resetPass: {},
+  species: [],
+  animalForm: {
+    errors: '',
+    success: false
+  }
 };

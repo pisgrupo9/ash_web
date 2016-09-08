@@ -31,7 +31,7 @@ export const updatePass = (pass, history) => {
   return (dispatch) => {
     return PasswordApi.upadatePass(pass).then(() => {
       history.push(`/login`);
-      toastr.success('','Tu password se a actualizado correctamente');
+      toastr.success('','Su password se actualizo correctamente');
     }).catch(err => {
       dispatch(updatePassError(err));
     });

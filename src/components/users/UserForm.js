@@ -4,7 +4,7 @@ import Spinner from 'react-spinkit';
 import Input from '../common/Input';
 import '../../styles/login.scss';
 
-const UserForm = ({ user, loading, onSave, onChange, onBlur, errors}) => {
+const UserForm = ({ user, loading, onSave, onChange, onBlur, errors }) => {
   const submitButton = (<input className="btn user-submit-btn bg-orange-color"
                                 type="submit"
                                 value="ENVIAR"
