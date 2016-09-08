@@ -44,13 +44,12 @@ class Api {
     });
   }
 
-
   addTokenHeader()  {
       let current_session = session.loadState();
       return (current_session && current_session.token) ? { 'X-USER-TOKEN': current_session.token } : {};
   }
+
   get(uri) {
-    let current_session = session.loadState();
     let requestData = {
       method: 'get',
       headers: {

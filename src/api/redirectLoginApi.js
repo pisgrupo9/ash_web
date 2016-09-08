@@ -11,5 +11,7 @@ export const CheckAuth  = (nextState, replace) => {
 
 export const isLogged = () => {
   let current_session = session.loadState();
-  return(current_session && current_session.token);
+  return(current_session && current_session.email && current_session.token);
 };
+
+export default CheckAuth;
