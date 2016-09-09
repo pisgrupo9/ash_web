@@ -2,5 +2,6 @@ export default {
   users: [],
   serverStatus: {},
   login: {},
-  userForm: {}
+  userForm: {},
+  resetPass: {}
 };

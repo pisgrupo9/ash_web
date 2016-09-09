@@ -7,6 +7,7 @@ import LoginPage from './components/login/LoginPage';
 import CreateUserPage from './components/users/CreateUserPage';
 import LogoutPage from './components/logout/LogoutPage';
 import * as auth from './api/redirectLoginApi';
+import ResetPasswordPage from './components/reset/ResetPasswordPage';
 
 export default (
   <Route path="/" component={App}>
@@ -16,5 +17,6 @@ export default (
     <Route path="users" component={UsersPage}/>
     <Route path="solicitud-registro" component={CreateUserPage}/>
     <Route path="logout" onEnter={auth.CheckAuth} component={LogoutPage}/>
+    <Route path="reset" onEnter={auth.CheckIfUnlogged} component={ResetPasswordPage}/>
   </Route>
 );

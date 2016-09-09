@@ -4,6 +4,7 @@ import users from './userReducer';
 import serverStatus from './serverStatusReducer';
 import login from './loginReducer';
 import userForm from './userFormReducer';
+import resetPass from './passwordReducer';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   serverStatus,
   login,
   userForm,
+  resetPass,
   toastr: toastrReducer,
   routing: routerReducer
 });

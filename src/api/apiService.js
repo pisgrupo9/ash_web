@@ -13,16 +13,14 @@ const handleErrors = (response) =>
       resolve(response);
       return;
     }
-    try{
+
     response.json()
       .then(json => {
         const error = json || { message: response.statusText };
         reject(error);
-      });
-    }catch(err){
-      reject({message:message.ERROR_RESPONSE_NOT_JSON});
+      }).catch(() => reject({ message:message.ERROR_RESPONSE_NOT_JSON }));
     }
-  });
+  );
 
 const getResponseBody = (response) => {
   const bodyIsEmpty = response.status === 204;
