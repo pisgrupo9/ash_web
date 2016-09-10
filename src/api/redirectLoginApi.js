@@ -14,4 +14,13 @@ export const isLogged = () => {
   return(current_session && current_session.email && current_session.token);
 };
 
+export const CheckIfUnlogged = (nextState, replace) => {
+  if (isLogged()) {
+    replace({
+      pathname: '/logout',
+      state: { nextPathname: nextState.location.pathname }
+    });
+  }
+};
+
 export default CheckAuth;
