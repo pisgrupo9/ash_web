@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
 import Input from '../common/Input';
-import { Link } from 'react-router';
 import { Col, Row } from 'react-bootstrap';
 import Spinner from 'react-spinkit';
 
-const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
-  const submitButton = (<input type="button" className="btn user-submit-btn bg-orange-color" value="INGRESAR" onClick={onSubmit}/>);
+const UpdatePassForm = ({ form, error, onChange, loading, onSubmit }) => {
+  const submitButton = (<input type="button" className="btn user-submit-btn bg-orange-color" value="CONFIRMAR" onClick={onSubmit}/>);
 
   const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
                           <Spinner spinnerName="three-bounce" noFadeIn />
@@ -17,21 +16,20 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
         <div className="user-form">
           {error && <div className="alert alert-danger">{error}</div>}
           <Input styleClass="user-input"
-                  label="Email"
-                  type="text"
-                  name="email"
-                  value={form.email.value}
-                  onChange={onChange}
-                  error={form.email.error}/>
-          <Input styleClass="user-input"
-                  label="Password"
+                  label="Contraseña"
                   type="password"
-                  name="pass"
-                  value={form.pass.value}
+                  name="password"
+                  value={form.password.value}
                   onChange={onChange}
-                  error={form.pass.error}/>
+                  error={form.password.error}/>
+          <Input styleClass="user-input"
+                  label="Confirmar contraseña"
+                  type="password"
+                  name="password_confirmation"
+                  value={form.password_confirmation.value}
+                  onChange={onChange}
+                  error={form.password_confirmation.error}/>
           { loading ? loadingButton : submitButton}
-          <p className="remLink"><Link to="reset" className="dark-grey-color">Olvide mi Contraseña</Link></p>
         </div>
       </Col>
     </Row>
@@ -40,7 +38,7 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
 
 const { string, func, object, bool } = PropTypes;
 
-LoginForm.propTypes = {
+UpdatePassForm.propTypes = {
   form: object.isRequired,
   onChange: func.isRequired,
   loading: bool.isRequired,
@@ -48,4 +46,4 @@ LoginForm.propTypes = {
   error: string
 };
 
-export default LoginForm;
+export default UpdatePassForm;

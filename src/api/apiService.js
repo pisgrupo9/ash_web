@@ -54,8 +54,7 @@ class Api {
         'Accept' : 'application/json'
       }
     };
-    requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
-  
+    requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());  
     return this.performRequest(uri,requestData);
   }
 

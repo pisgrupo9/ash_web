@@ -3,3 +3,7 @@ const rexEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@
 export const isEmail = (text) =>{
   return rexEmail.test(text);
 };
+
+export const isPass = (text) =>{
+  return text && text.length >= 8 ;
+};
