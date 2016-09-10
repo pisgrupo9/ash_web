@@ -19,12 +19,14 @@ class LogoutPage extends Component {
   render (){
     const title = 'Desea salir?';
     return(
-      <LoginBox> 
-        <div>
-          <LogoHeader title={title}/>
-          <LogoutButton onClickLogout={this.onClickLogout}/>
-        </div>
-      </LoginBox>
+      <div>
+        <LoginBox> 
+          <div>
+            <LogoHeader title={title}/>
+            <LogoutButton onClickLogout={this.onClickLogout}/>
+          </div>
+        </LoginBox>
+      </div>
     );
   }
 }
@@ -32,7 +34,7 @@ class LogoutPage extends Component {
 const { object } = PropTypes;
 
 LogoutPage.propTypes = {
-  actions: object.isRequired
+  actions : object.isRequired
 };
 
 LogoutPage.contextTypes = {

@@ -12,6 +12,10 @@ export const logoutDispatch = (history) => {
       session.deleteState();
       history.push('/login');
       dispatch(logout());
+    }).catch(() =>{
+      session.deleteState();
+      history.push('/login');
+      dispatch(logout());
     });
   };
 };
