@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class AdoptantesPage extends Component {
   constructor(props, context){
     super(props, context);
