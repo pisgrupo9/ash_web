@@ -22,9 +22,13 @@ class LogoutPage extends Component {
     return(
       <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         <Header location={this.props.location}/>
 >>>>>>> 96760ec... Crear Header Y pagenas para navegar
+=======
+        <Header location={this.props.location} user={this.props.user}/>
+>>>>>>> c46bfc9... Coneccion con show user
         <LoginBox> 
           <div>
             <LogoHeader title={title}/>
@@ -43,15 +47,20 @@ LogoutPage.propTypes = {
   actions : object.isRequired
 =======
   actions : object.isRequired,
+<<<<<<< HEAD
   location : object.isRequired
 >>>>>>> 96760ec... Crear Header Y pagenas para navegar
+=======
+  location : object.isRequired,
+  user : object.isRequired
+>>>>>>> c46bfc9... Coneccion con show user
 };
 
 LogoutPage.contextTypes = {
   router: object
 };
 
-const mapState = () => ({});
+const mapState = (state) => ({ user: state.user });
 
 const mapDispatch = (dispatch) => {
   return {

@@ -16,6 +16,17 @@ class AnimalPage extends Component {
   }
 }
 
+const { object } = PropTypes;
+
+AnimalPage.propTypes = {
+  location : object.isRequired,
+  user : object.isRequired
+};
+
+AnimalPage.contextTypes = {
+  router: object
+};
+
 const mapState = () => ({});
 
 export default connect(mapState)(AnimalPage);

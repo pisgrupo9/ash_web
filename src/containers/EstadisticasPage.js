@@ -15,6 +15,17 @@ class EstadisticasPage extends Component {
   }
 }
 
+const { object } = PropTypes;
+
+EstadisticasPage.propTypes = {
+  location : object.isRequired,
+  user : object.isRequired
+};
+
+EstadisticasPage.contextTypes = {
+  router: object
+};
+
 const mapState = () => ({});
 
 export default connect(mapState)(EstadisticasPage);

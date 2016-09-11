@@ -16,6 +16,17 @@ class AdoptantesPage extends Component {
   }
 }
 
+const { object } = PropTypes;
+
+AdoptantesPage.propTypes = {
+  location : object.isRequired,
+  user : object.isRequired
+};
+
+AdoptantesPage.contextTypes = {
+  router: object
+};
+
 const mapState = () => ({});
 
 export default connect(mapState)(AdoptantesPage);

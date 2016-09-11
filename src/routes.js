@@ -24,11 +24,7 @@ export default (
     <Route path="solicitud-registro" onEnter={auth.CheckIfUnlogged} component={CreateUserPage}/>
     <Route path="logout" onEnter={auth.CheckAuth} component={LogoutPage}/>
     <Route path="reset" onEnter={auth.CheckIfUnlogged} component={ResetPasswordPage}/>
-<<<<<<< HEAD
     <Route path="updatePass" onEnter={auth.CheckIfUnlogged} component={UpdatePassPage}/>
-=======
-    <Route path="updatePass" component={UpdatePassPage}/>
->>>>>>> 96760ec... Crear Header Y pagenas para navegar
     <Route path="animales" onEnter={auth.CheckAuth} component={AnimalPage}/>
     <Route path="perfil" onEnter={auth.CheckAuth} component={PerfilPage}/>
     <Route path="adoptantes" onEnter={auth.CheckAuth} component={AdoptantesPage}/>
