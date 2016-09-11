@@ -12,23 +12,20 @@ class Header extends Component {
   constructor(props, context){
     super(props, context);
     this.onClickLogout = this.onClickLogout.bind(this);
-    this.onLoad = this.onLoad.bind(this);
   }
 
-  onLoad(){
-    this.props.uActions.showLoginUser();
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.user.first_name){
+      this.props.userActions.showLoginUser();
+    }
   }
   
   onClickLogout(){
-    this.props.actions.logoutDispatch(this.context.router);
+    this.props.logoutActions.logoutDispatch(this.context.router);
   }
 
   render (){
     const location = this.props.location;
-
-    if(this.props.user == null | this.props.user.first_name){
-      this.onLoad();
-    }
     return  ( 
       <Navbar className ="bg-orange-color">
         <Navbar.Header>
@@ -52,7 +49,7 @@ class Header extends Component {
           <ul className="nav navbar-nav navbar-right">
             <Link to="/perfil">Hola {this.props.user.first_name}</Link>
             &nbsp;|&nbsp;
-            <a href="javascript:void()" onClick={this.onClickLogout}>SALIR</a>
+            <a href="#" onClick={this.onClickLogout}>SALIR</a>
           </ul>
         </Navbar.Collapse>
       </Navbar>
@@ -63,8 +60,8 @@ class Header extends Component {
 const { object,string } = PropTypes;
 
 Header.propTypes = {
-  actions : object.isRequired,
-  uActions : object.isRequired,
+  logoutActions : object.isRequired,
+  userActions : object.isRequired,
   location : string.isRequired,
   user : object.isRequired
 };
@@ -77,8 +74,8 @@ const mapState = () => ({});
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(logoutActions, dispatch),
-    uActions: bindActionCreators(userActions, dispatch)
+    logoutActions: bindActionCreators(logoutActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   };
 };
 

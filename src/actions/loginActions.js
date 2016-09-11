@@ -4,7 +4,7 @@ import * as session from './stateActions';
 
 export const  loginUser = (response) =>  {
   return {
-      type: types.LOGIN_USER_SUCCES,
+      type: types.LOGIN_USER_SUCCESS,
       response
   };
 };

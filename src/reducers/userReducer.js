@@ -7,6 +7,8 @@ const userReducer = (state = initialState.user, action) => {
       return action.user;
     case types.SHOW_USER_LOGINS_ERROR:
       return {};
+    case types.LOGIN_USER_SUCCESS:
+      return {};
     default:
       return state;
   }

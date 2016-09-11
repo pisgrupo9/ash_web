@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class PerfilPage extends Component {
   constructor(props, context){
     super(props, context);

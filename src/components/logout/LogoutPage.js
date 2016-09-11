@@ -41,7 +41,7 @@ LogoutPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({ user: state.user });
+const mapState = () => ({});
 
 const mapDispatch = (dispatch) => {
   return {

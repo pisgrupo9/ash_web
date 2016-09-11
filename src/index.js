@@ -21,6 +21,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 store.dispatch(loadServerStatus());
 store.dispatch(showLoginUser());
+
 render(
   <Provider store={store}>
     <div>

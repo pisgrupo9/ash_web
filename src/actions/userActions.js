@@ -51,10 +51,15 @@ export const sendUserForm = (user, history) => {
 
 export const showLoginUser = () => {
   return (dispatch) => {
-      userApi.showLoginUser().then(user => {
-      dispatch(showLoginUserSuccess(user));
-    }).catch(err => {
-       session.deleteState();
+      userApi.showLoginUser().then(
+      user => {
+        dispatch(showLoginUserSuccess(user));
+      },
+      error => {
+        if(error.errors) session.deleteState();
+        dispatch(sendUserFormError(error));
+      }
+    ).catch(err => {
        dispatch(sendUserFormError(err));
     });
   };
