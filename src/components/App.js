@@ -1,7 +1,9 @@
 // This component handles the App template used on every page.
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Footer from './common/Footer.js';
 import Header from '../components/common/Header';
+
 
 const { object } = PropTypes;
 
@@ -17,7 +19,7 @@ class App extends Component {
                          );
     return (
       <div className="h-100">
-        {haveHeader ? <Header location={pathname}/> : ''}
+        {haveHeader ? <Header location={pathname} user={this.props.user}/> : ''}
         <div className="content">
           {this.props.children}
         </div>
@@ -29,7 +31,10 @@ class App extends Component {
 
 App.propTypes = {
   children: object.isRequired,
-  location : object.isRequired
+  location : object.isRequired,
+  user : object.isRequired
 };
 
-export default App;
+const mapState = (state) => ({user : state.user});
+
+export default connect(mapState)(App);

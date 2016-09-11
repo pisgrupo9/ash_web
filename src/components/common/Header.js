@@ -18,14 +18,15 @@ class Header extends Component {
   onLoad(){
     this.props.uActions.showLoginUser();
   }
+  
   onClickLogout(){
     this.props.actions.logoutDispatch(this.context.router);
   }
 
   render (){
     const location = this.props.location;
-    const location = this.props.location;
-    if(!this.props.user.first_name){
+
+    if(this.props.user == null | this.props.user.first_name){
       this.onLoad();
     }
     return  ( 
@@ -62,9 +63,9 @@ class Header extends Component {
 const { object,string } = PropTypes;
 
 Header.propTypes = {
-  actions: object.isRequired,
-  location : string.isRequired
+  actions : object.isRequired,
   uActions : object.isRequired,
+  location : string.isRequired,
   user : object.isRequired
 };
 

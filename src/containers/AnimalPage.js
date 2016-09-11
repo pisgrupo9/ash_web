@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-
 class AnimalPage extends Component {
   constructor(props, context){
     super(props, context);
@@ -15,17 +14,6 @@ class AnimalPage extends Component {
     );
   }
 }
-
-const { object } = PropTypes;
-
-AnimalPage.propTypes = {
-  location : object.isRequired,
-  user : object.isRequired
-};
-
-AnimalPage.contextTypes = {
-  router: object
-};
 
 const mapState = () => ({});
 
