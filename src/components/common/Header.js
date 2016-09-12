@@ -4,18 +4,24 @@ import { connect } from 'react-redux';
 import { Navbar, Image } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
 import * as logoutActions from '../../actions/logoutActions';
+import * as userActions from '../../actions/userActions';
 import '../../styles/header.scss';
 
 class Header extends Component {
 
   constructor(props, context){
     super(props, context);
-    this.user = {name :"User Name"};
     this.onClickLogout = this.onClickLogout.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(!nextProps.user.first_name){
+      this.props.userActions.showLoginUser();
+    }
+  }
+  
   onClickLogout(){
-    this.props.actions.logoutDispatch(this.context.router);
+    this.props.logoutActions.logoutDispatch(this.context.router);
   }
 
   render (){
@@ -41,9 +47,9 @@ class Header extends Component {
             <Link to="/estadisticas">ESTADISTICAS</Link>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <Link to="/perfil">Hola {this.user.name}</Link>
+            <Link to="/perfil">Hola {this.props.user.first_name}</Link>
             &nbsp;|&nbsp;
-            <a href="javascript:void()" onClick={this.onClickLogout}>SALIR</a>
+            <a href="#" onClick={this.onClickLogout}>SALIR</a>
           </ul>
         </Navbar.Collapse>
       </Navbar>
@@ -54,8 +60,10 @@ class Header extends Component {
 const { object,string } = PropTypes;
 
 Header.propTypes = {
-  actions: object.isRequired,
-  location : string.isRequired
+  logoutActions : object.isRequired,
+  userActions : object.isRequired,
+  location : string.isRequired,
+  user : object.isRequired
 };
 
 Header.contextTypes = {
@@ -66,7 +74,8 @@ const mapState = () => ({});
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(logoutActions, dispatch)
+    logoutActions: bindActionCreators(logoutActions, dispatch),
+    userActions: bindActionCreators(userActions, dispatch)
   };
 };
 

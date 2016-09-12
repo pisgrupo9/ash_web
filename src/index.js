@@ -10,6 +10,7 @@ require('./favicon.ico'); // Tell webpack to load favicon.ico
 import { syncHistoryWithStore } from 'react-router-redux';
 import './styles/styles.scss';
 import { loadServerStatus } from './actions/serverStatusActions';
+import { showLoginUser } from './actions/userActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ReduxToastr from 'react-redux-toastr';
 
@@ -19,6 +20,8 @@ const store = configureStore();
 const history = syncHistoryWithStore(browserHistory, store);
 
 store.dispatch(loadServerStatus());
+store.dispatch(showLoginUser());
+
 render(
   <Provider store={store}>
     <div>
