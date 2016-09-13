@@ -11,7 +11,14 @@ class Header extends Component {
 
   constructor(props, context){
     super(props, context);
+
+    this.state = {
+      toggleMenu: false
+    };
+
     this.onClickLogout = this.onClickLogout.bind(this);
+    this.onToggle = this.onToggle.bind(this);
+    this.onClickLink = this.onClickLink.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -24,10 +31,19 @@ class Header extends Component {
     this.props.logoutActions.logoutDispatch(this.context.router);
   }
 
+  onToggle() {
+    this.setState({ toggleMenu: !this.state.toggleMenu });
+  }
+
+  onClickLink() {
+    if(this.state.toggleMenu) {
+      this.setState({ toggleMenu: false });
+    }
+  }
+
   render (){
-    const location = this.props.location;
-    return  ( 
-      <Navbar className ="bg-orange-color">
+    return  (
+      <Navbar className="bg-orange-color" expanded={this.state.toggleMenu} onToggle={this.onToggle}>
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/" className="imageheader">
@@ -37,19 +53,37 @@ class Header extends Component {
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse className="nav-Options">
-          <ul className={(location.includes('/animales') ? 'select ' : '' ) + 'nav navbar-nav item'}>
-            <Link to="/animales">ANIMALES</Link>
+          <ul className="nav navbar-nav item">
+            <Link activeClassName="active-link"
+                  className="header-link"
+                  to="animales"
+                  onClick={this.onClickLink}>
+              ANIMALES
+            </Link>
           </ul>
-          <ul className={(location.includes('/adoptantes') ? 'select ' :'' )+ 'nav navbar-nav item'}>
-            <Link to="/adoptantes">ADOPTANTES</Link>
+          <ul className="nav navbar-nav item">
+            <Link activeClassName="active-link"
+                  className="header-link"
+                  to="adoptantes"
+                  onClick={this.onClickLink}>
+              ADOPTANTES
+            </Link>
           </ul>
-          <ul className={(location.includes('/estadisticas') ? 'select ' : '') + 'nav navbar-nav'}>
-            <Link to="/estadisticas">ESTADISTICAS</Link>
+          <ul className="nav navbar-nav item">
+            <Link activeClassName="active-link"
+                  className="header-link"
+                  to="estadisticas"
+                  onClick={this.onClickLink}>
+              ESTADISTICAS
+            </Link>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <Link to="/perfil">Hola {this.props.user.first_name}</Link>
-            &nbsp;|&nbsp;
-            <a href="#" onClick={this.onClickLogout}>SALIR</a>
+            <Link to="/perfil" onClick={this.onClickLink}>
+              <i className="material-icons">account_circle</i>
+              <span className="header-span"> Hola {this.props.user.first_name}</span>
+            </Link>
+              <span className="header-span">&nbsp;|&nbsp;</span>
+            <button className="logout-button" onClick={this.onClickLogout}>SALIR</button>
           </ul>
         </Navbar.Collapse>
       </Navbar>
