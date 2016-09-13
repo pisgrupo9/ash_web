@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import userApi from '../api/userApi';
-import * as session from './stateActions';
+import * as session from './sessionActions';
 import {toastr} from 'react-redux-toastr';
 
 export const loadUsersSuccess = (users) => {
@@ -50,17 +50,21 @@ export const sendUserForm = (user, history) => {
 };
 
 export const showLoginUser = () => {
-  return (dispatch) => {
-      userApi.showLoginUser().then(
-      user => {
-        dispatch(showLoginUserSuccess(user));
-      },
-      error => {
-        if(error.errors) session.deleteState();
-        dispatch(sendUserFormError(error));
-      }
-    ).catch(err => {
-       dispatch(sendUserFormError(err));
-    });
-  };
+  const current_session = session.loadSession();
+  if(current_session && current_session.token)
+    return (dispatch) => {
+        userApi.showLoginUser().then(
+        user => {
+          dispatch(showLoginUserSuccess(user));
+        },
+        error => {
+          if(error.errors) session.deleteSession();
+          dispatch(sendUserFormError(error));
+        }
+      ).catch(err => {
+         dispatch(sendUserFormError(err));
+      });
+    };
+  else
+    return () => {};
 };

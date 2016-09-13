@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import * as message from '../constants/apiMessage';
-import * as session from '../actions/stateActions';
+import * as session from '../actions/sessionActions';
 
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
@@ -43,7 +43,7 @@ class Api {
   }
 
   addTokenHeader()  {
-      let current_session = session.loadState();
+      let current_session = session.loadSession();
       return (current_session && current_session.token) ? { 'X-USER-TOKEN': current_session.token } : {};
   }
 
