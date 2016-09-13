@@ -21,10 +21,8 @@ class LogoutPage extends Component {
     return(
       <div>
         <LoginBox> 
-          <div>
             <LogoHeader title={title}/>
             <LogoutButton onClickLogout={this.onClickLogout}/>
-          </div>
         </LoginBox>
       </div>
     );

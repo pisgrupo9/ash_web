@@ -1,6 +1,6 @@
 import * as constant from '../constants/apiConstants';
 
-export const loadState = () => {
+export const loadSession = () => {
   try {
     const serializedState = localStorage.getItem(constant.SECCION_STORAGE);
     if(serializedState === null){
@@ -12,14 +12,14 @@ export const loadState = () => {
   }
 };
 
-export const saveState = (token) =>{
+export const saveSession = (token) =>{
     try{
       const serializedState = JSON.stringify(token);
       localStorage.setItem(constant.SECCION_STORAGE,serializedState);
     }catch(e){return;}
 };
 
-export const deleteState = (key = constant.SECCION_STORAGE) =>{
+export const deleteSession = (key = constant.SECCION_STORAGE) =>{
    try{
       localStorage.removeItem(key);
    }catch(e){return;}

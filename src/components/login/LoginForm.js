@@ -24,7 +24,7 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
                   onChange={onChange}
                   error={form.email.error}/>
           <Input styleClass="user-input"
-                  label="Password"
+                  label="Contraseña"
                   type="password"
                   name="pass"
                   value={form.pass.value}
