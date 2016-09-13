@@ -3,7 +3,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, browserHistory } from 'react-router';
+import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
@@ -13,6 +13,7 @@ import { loadServerStatus } from './actions/serverStatusActions';
 import { showLoginUser } from './actions/userActions';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ReduxToastr from 'react-redux-toastr';
+import { useScroll } from 'react-router-scroll';
 
 const store = configureStore();
 
@@ -25,7 +26,7 @@ store.dispatch(showLoginUser());
 render(
   <Provider store={store}>
     <div>
-      <Router history={history} routes={routes} />
+      <Router history={history} routes={routes} render={applyRouterMiddleware(useScroll())}/>
       <ReduxToastr
         timeOut={4000}
         newestOnTop={false}
