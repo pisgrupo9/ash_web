@@ -8,19 +8,17 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, placeholder, v
   }
 
   return (
-    <div>
-      <div className={wrapperClass}>
-        {label && <label className="input-label" htmlFor={name}>{label}</label>}
-        <div className="field">
-          <input type={type}
-                 name={name}
-                 placeholder={placeholder}
-                 value={value}
-                 onChange={onChange}
-                 onBlur={onBlur}
-                 className="form-control" />
-          {error && <div className="alert alert-danger">{error}</div>}
-        </div>
+    <div className={wrapperClass}>
+      {label && <label className="input-label" htmlFor={name}>{label}</label>}
+      <div className="field">
+        <input type={type}
+               name={name}
+               placeholder={placeholder}
+               value={value}
+               onChange={onChange}
+               onBlur={onBlur}
+               className="form-control" />
+        {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>
   );

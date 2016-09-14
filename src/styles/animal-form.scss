@@ -1,0 +1,136 @@
+$dark-grey: #9B9B9B;
+$orange: #E8A948;
+$dark-orange: #ff6600;
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  min-height: 400px;
+
+  .three-bounce {
+    align-self: center;
+  }
+
+  .three-bounce > div{
+    background-color: $orange;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.animal-form-wrapper {
+  margin: 20px;
+}
+
+.animal-form-title {
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-weight: 300;
+  color: #5d5a5a;
+}
+
+.animal-form {
+  display: flex;
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  align-items: flex-start;
+  margin-bottom: 30px;
+
+  .animal-checkbox {
+    margin: 7px;
+    font-weight: 300;
+    color: $dark-grey;
+  }
+
+  .checkbox + .checkbox {
+    margin-top: 7px;
+  }
+
+  .alert-danger {
+    padding: 5px;
+    font-size: x-small;
+    margin-bottom: 6px;
+  }
+}
+
+.animal-buttons{
+  display: flex;
+  flex-flow: row-reverse wrap;
+  justify-content: flex-start;
+
+  .submit-button {
+    background: $orange;
+    color: white;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border-radius: 1px;
+    width: 125px;
+    margin: 0 10px 10px 10px;
+  }
+
+  .submit-button:hover {
+    background: $dark-orange;
+    color: white;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border-radius: 1px;
+    width: 125px;
+  }
+
+  .submit-button:focus {
+    color: white;
+    outline: none;
+  }
+
+  .cancel-button {
+    @extend .submit-button;
+    background: $dark-grey;
+  }
+
+  .cancel-button:hover {
+    color: white;
+    background: #5d5d5d;
+  }
+
+  .cancel-button:focus {
+    @extend .submit-button:focus;
+  }
+}
+
+.animal-input {
+  order: 1;
+  flex: 1 1 auto;
+  align-self: auto;
+  min-width: 198px;
+  min-height: auto;
+  margin: 0 7px;
+
+  .input-label {
+    font-weight: 300;
+    color: $dark-grey;
+  }
+}
+
+.button-animal {
+  background: none;
+  border: none;
+
+  .add-button {
+    font-size: 50px;
+    text-shadow: 1px 1px 1px #ccc;
+    margin: 0 30px;
+    float: right;
+  }
+}
+
+.button-animal:focus {
+  outline: none;
+}
+
+@media only screen and (max-device-width: 736px) {
+  .animal-buttons {
+    justify-content: center;
+  }
+}
