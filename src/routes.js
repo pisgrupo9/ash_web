@@ -13,6 +13,7 @@ import AnimalPage from './containers/AnimalPage';
 import PerfilPage from './containers/PerfilPage';
 import AdoptantesPage from './containers/AdoptantesPage';
 import EstadisticasPage from './containers/EstadisticasPage';
+import TestPage from './containers/TestPage';
 
 export default (
   <Route path="/" component={App}>
@@ -27,5 +28,6 @@ export default (
     <Route path="perfil" onEnter={auth.CheckAuth} component={PerfilPage}/>
     <Route path="adoptantes" onEnter={auth.CheckAuth} component={AdoptantesPage}/>
     <Route path="estadisticas" onEnter={auth.CheckAuth} component={EstadisticasPage}/>
+    <Route path="test" component={TestPage}/>
   </Route>
 );

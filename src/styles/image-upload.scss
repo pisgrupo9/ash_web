@@ -1,0 +1,40 @@
+.test h3{
+  margin-left: 15px;
+}
+
+.test .fileInput{
+
+  cursor: pointer;
+}
+
+.test .imgPreview{
+  position: relative;
+  text-align: center;
+  border: 1px solid gray;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  .image-form{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+} 
+
+.test .previewText{
+  width: 100%;
+  margin-top: 20px;
+}  
+
+.test .submitButton{
+  padding: 12px;
+  margin-left: 10px;
+  background: white;
+  border: 4px solid lightgray;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 10pt;
+  cursor: pointer;
+  float: top;
+}

@@ -15,7 +15,8 @@ class App extends Component {
                         pathname.includes('login') |
                         pathname.includes('solicitud-registro') |
                         pathname.includes('reset') |
-                        pathname.includes('updatePass')
+                        pathname.includes('updatePass') |
+                        pathname.includes('test')
                          );
     return (
       <div className="h-100">
