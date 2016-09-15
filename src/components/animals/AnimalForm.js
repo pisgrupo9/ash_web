@@ -5,8 +5,8 @@ import { Checkbox } from 'react-bootstrap';
 
 const AnimalForm = ({ animal, species, onSave, onChange, onCancel, errors }) => {
 
-  const genders = [ { id: "male", name: "Masculino" },
-                    { id: "female", name: "Femenino" } ];
+  const genders = [ { id: "male", name: "Macho" },
+                    { id: "female", name: "Hembra" } ];
 
   const checkboxCastrated = (<Checkbox className="animal-input animal-checkbox"
                                       name="castrated"
