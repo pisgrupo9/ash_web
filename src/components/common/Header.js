@@ -91,12 +91,11 @@ class Header extends Component {
   }
 }
 
-const { object,string } = PropTypes;
+const { object } = PropTypes;
 
 Header.propTypes = {
   logoutActions : object.isRequired,
   userActions : object.isRequired,
-  location : string.isRequired,
   user : object.isRequired
 };
 

@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as serverStatusActions from '../../actions/serverStatusActions';
-import '../../styles/server-status.scss';
+import * as serverStatusActions from '../actions/serverStatusActions';
+import '../styles/server-status.scss';
 import { Label, Well } from 'react-bootstrap';
 
 class ServerStatusPage extends Component {

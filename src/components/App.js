@@ -19,7 +19,7 @@ class App extends Component {
                          );
     return (
       <div className="h-100">
-        {haveHeader ? <Header location={pathname} user={this.props.user}/> : ''}
+        {haveHeader ? <Header user={this.props.user}/> : ''}
         <div className="content">
           {this.props.children}
         </div>

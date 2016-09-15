@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import LoginBox from '../common/LoginBox';
-import LogoHeader from '../common/LogoHeader';
 import {connect} from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as logoutActions from '../../actions/logoutActions';
-import LogoutButton from './LogoutButton';
+import LoginBox from '../components/common/LoginBox';
+import LogoHeader from '../components/common/LogoHeader';
+import * as logoutActions from '../actions/logoutActions';
+import LogoutButton from '../components/logout/LogoutButton';
 
 class LogoutPage extends Component {
   constructor(props, context){

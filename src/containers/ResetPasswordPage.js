@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as passwordActions from '../../actions/passwordActions';
-import LoginBox from '../common/LoginBox';
-import LogoHeader from '../common/LogoHeader';
-import ResetForm from './ResetForm';
-import * as StringV from '../../util/StringValidate';
-import * as message from '../../constants/apiMessage';
-import '../../styles/reset-password.scss';
+import * as passwordActions from '../actions/passwordActions';
+import LoginBox from '../components/common/LoginBox';
+import LogoHeader from '../components/common/LogoHeader';
+import ResetForm from '../components/reset/ResetForm';
+import * as StringV from '../util/StringValidate';
+import * as message from '../constants/apiMessage';
+import '../styles/reset-password.scss';
 
 class ResetPasswordPage extends Component {
   constructor(props, context) {

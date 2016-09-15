@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import * as userActions from '../../actions/userActions';
-import UserForm from './UserForm';
-import LoginBox from '../common/LoginBox';
-import LogoHeader from '../common/LogoHeader';
-import * as checkEmail from '../../util/StringValidate';
+import * as userActions from '../actions/userActions';
+import UserForm from '../components/users/UserForm';
+import LoginBox from '../components/common/LoginBox';
+import LogoHeader from '../components/common/LogoHeader';
+import * as checkEmail from '../util/StringValidate';
 
 class CreateUserPage extends Component {
   constructor(props, context) {
