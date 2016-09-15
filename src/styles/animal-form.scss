@@ -30,6 +30,7 @@ $dark-orange: #ff6600;
 }
 
 .animal-form {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-flow: row wrap;
   display: flex;
@@ -101,7 +102,7 @@ $dark-orange: #ff6600;
 
 .animal-input {
   order: 1;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   align-self: auto;
   min-width: 198px;
   min-height: auto;

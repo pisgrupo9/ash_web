@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, error, options }) => {
-  let wrapperClass = `form-group test ${styleClass}`;
+  let wrapperClass = `form-group ${styleClass}`;
 
   return (
     <div className={wrapperClass}>
