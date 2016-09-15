@@ -6,7 +6,7 @@ class AdoptantesPage extends Component {
     super(props, context);
   }
 
-  render() {
+  render () {
     return (
       <div>
         <p>Proximamente Adoptantes</p>
