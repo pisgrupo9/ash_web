@@ -1,14 +1,14 @@
 import React, { Component,PropTypes } from 'react';
-import LoginBox from '../common/LoginBox';
-import LogoHeader from '../common/LogoHeader';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
-import * as loginActions from '../../actions/loginActions';
-import * as StringV from '../../util/StringValidate';
-import LoginForm from './LoginForm';
-import * as message from '../../constants/apiMessage';
-import '../../styles/login.scss';
+import LoginBox from '../components/common/LoginBox';
+import LogoHeader from '../components/common/LogoHeader';
+import * as loginActions from '../actions/loginActions';
+import * as StringV from '../util/StringValidate';
+import LoginForm from '../components/login/LoginForm';
+import * as message from '../constants/apiMessage';
+import '../styles/login.scss';
 
 const title = 'Ingresar';
 class LoginPage extends Component {
