@@ -22,7 +22,8 @@ class NewAnimalModal extends Component {
         race: '',
         death_date: '',
         castrated: false,
-        vaccines: false
+        vaccines: false,
+        profile_image: ''
       },
       errors: {
         chip_num: '',
@@ -34,7 +35,8 @@ class NewAnimalModal extends Component {
         race: '',
         death_date: '',
         castrated: '',
-        vaccines: ''
+        vaccines: '',
+        profile_image: ''
       },
       requiredFields: {
         chip_num: false,
@@ -46,10 +48,13 @@ class NewAnimalModal extends Component {
         race: false,
         death_date: false,
         castrated: false,
-        vaccines: false
+        vaccines: false,
+        profile_image: true
       },
       loading: true,
-      images: []
+      images: [],
+      profilePic: {},
+      processedImage: {}
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -57,6 +62,7 @@ class NewAnimalModal extends Component {
     this.onClose = this.onClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onDeleteImage = this.onDeleteImage.bind(this);
+    this.onDropProfile = this.onDropProfile.bind(this);
   }
 
   componentWillMount() {
@@ -68,6 +74,11 @@ class NewAnimalModal extends Component {
     if (nextProps.success) {
       this.onClose();
     }
+/*    if ( nextProps.success ) {
+      this.props.actions.sendProfilePic(this.state.processedImage);
+    } else {
+      this.setState({ loading: false });
+    }*/
   }
 
   validateForm(animal) {
@@ -103,6 +114,18 @@ class NewAnimalModal extends Component {
     }
   }
 
+  onDropProfile(img) {
+    const reader = new FileReader();
+    const file = img[0];
+    this.setState({ profilePic: file });
+    reader.readAsDataURL(file);
+    reader.onload = (upload) => {
+      let animal = this.state.animal;
+      animal["profile_image"] = upload.target.result;
+      this.setState({ animal });
+    };
+  }
+
   onClose() {
     this.props.actions.cancelAnimalForm();
     this.props.onClose();
@@ -134,11 +157,13 @@ class NewAnimalModal extends Component {
                     <AnimalForm animal={this.state.animal}
                                 species={this.props.species}
                                 images={this.state.images}
+                                profilePic={this.state.profilePic}
                                 onSave={this.onSubmit}
                                 onChange={this.onChange}
                                 onCancel={this.onClose}
                                 onDrop={this.onDrop}
                                 onDelete={this.onDeleteImage}
+                                onDropProfile={this.onDropProfile}
                                 errors={localErrors ? this.state.errors : this.props.errors}
                                 />
                   </div>);

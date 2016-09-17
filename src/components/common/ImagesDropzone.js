@@ -6,13 +6,13 @@ import '../../styles/images-dropzone.scss';
 const ImagesDropzone = ({ images, onDrop, onDelete }) => {
   return (
     <div className="dropzone-container">
-      <p>Galeria</p>
+      <p>Galería</p>
       <Dropzone className="dropzone"
                 activeClassName="dropzone-active"
                 accept="image/*"
                 onDrop={onDrop}>
         <p className="dropzone-text">
-          Arrastre las imagenes aqui o haga click para seleccionarlas manualmente
+          Arrastre las imágenes aquí o haga click para seleccionarlas manualmente
         </p>
       </Dropzone>
       <ImagesPreview images={images} onDelete={onDelete}/>
