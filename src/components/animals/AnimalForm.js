@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import Input from '../common/Input';
 import SelectInput from '../common/SelectInput';
 import { Checkbox } from 'react-bootstrap';
+import ImagesDropzone from '../common/ImagesDropzone';
 
-const AnimalForm = ({ animal, species, onSave, onChange, onCancel, errors }) => {
+const AnimalForm = ({ animal, species, images, onSave, onChange, onCancel, onDrop, onDelete, errors }) => {
 
   const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
@@ -94,6 +95,10 @@ const AnimalForm = ({ animal, species, onSave, onChange, onCancel, errors }) => 
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
       </div>
+      <ImagesDropzone title="Galeria"
+                      images={images}
+                      onDrop={onDrop}
+                      onDelete={onDelete} />
       <div className="animal-buttons">
         <input className="btn submit-button"
                 type="submit"
@@ -112,9 +117,12 @@ const { object, func, array } = PropTypes;
 AnimalForm.propTypes = {
   animal: object.isRequired,
   species: array.isRequired,
+  images: array.isRequired,
   onSave: func.isRequired,
   onChange: func.isRequired,
   onCancel: func.isRequired,
+  onDrop: func.isRequired,
+  onDelete: func.isRequired,
   errors: object.isRequired
 };
 

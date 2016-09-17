@@ -5,12 +5,12 @@ import Input from '../common/Input';
 import '../../styles/login.scss';
 
 const UserForm = ({ user, loading, onSave, onChange, onBlur, errors }) => {
-  const submitButton = (<input className="btn user-submit-btn bg-orange-color"
+  const submitButton = (<input className="btn user-submit-btn"
                                 type="submit"
                                 value="ENVIAR"
                                 onClick={onSave} />);
 
-  const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
+  const loadingButton = (<div className="btn user-submit-btn">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                          </div>);
 

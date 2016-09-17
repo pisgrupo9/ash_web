@@ -48,12 +48,15 @@ class NewAnimalModal extends Component {
         castrated: false,
         vaccines: false
       },
-      loading: true
+      loading: true,
+      images: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onDeleteImage = this.onDeleteImage.bind(this);
   }
 
   componentWillMount() {
@@ -105,6 +108,22 @@ class NewAnimalModal extends Component {
     this.props.onClose();
   }
 
+  onDrop(images) {
+    this.setState({
+      images: images
+    });
+  }
+
+  onDeleteImage(imageName) {
+    let images = this.state.images;
+    for (let i = 0; i < images.length; i++) {
+      if (images[i].name == imageName) {
+        images.splice(i, 1);
+      }
+    }
+    this.setState({ images: images });
+  }
+
   render() {
     const localErrors = !valid.notErrors(this.state.errors);
     const loadingView = (<div className="loading-container">
@@ -114,9 +133,12 @@ class NewAnimalModal extends Component {
                     <h2 className="animal-form-title"> INGRESO DE ANIMALES </h2>
                     <AnimalForm animal={this.state.animal}
                                 species={this.props.species}
+                                images={this.state.images}
                                 onSave={this.onSubmit}
                                 onChange={this.onChange}
                                 onCancel={this.onClose}
+                                onDrop={this.onDrop}
+                                onDelete={this.onDeleteImage}
                                 errors={localErrors ? this.state.errors : this.props.errors}
                                 />
                   </div>);

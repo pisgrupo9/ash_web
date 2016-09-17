@@ -28,7 +28,7 @@ class AddAnimalButton extends Component {
                         <button className="button-animal" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
-                        <Modal show={this.state.showModal} onHide={this.onClose} >
+                        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
                           <NewAnimalModal onClose={this.onClose} />
                         </Modal>
                       </div>
