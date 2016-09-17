@@ -55,21 +55,20 @@ class ImagesGallery extends Component {
                        },
                        {
                         breakpoint: 992,
-                          settings: { slidesToShow: 6, slidesToScroll: 2 }
+                          settings: { slidesToShow: 5, slidesToScroll: 2 }
                         },
                         {
                           breakpoint: 10000,
-                          settings: { slidesToShow: 10, slidesToScroll: 3 }
+                          settings: { slidesToShow: 7, slidesToScroll: 3 }
                         }
                     ]
-
     };
     let imageList = [];
-    for (let i = 0; i < images.length; i++) {
+    for (let i = 0; images && i < images.length; i++) {
       if (!this.state.removeImage[i])
           imageList.push(
                         <div key={'div'+i} className="img-container" >
-                          <img className="img-galery" src={images[i].image} />
+                          <img className="img-galery" src={images[i].thumb} />
                             {edit &&
                               <button
                                 className="btn-img-remove"
@@ -87,9 +86,11 @@ class ImagesGallery extends Component {
 
     return (
       <div className={styleClass}>
+        {!imageList.isEmpty &&
         <Slider {...settings}>
           {imageList}
         </Slider>
+        }
       </div>
     );
   }

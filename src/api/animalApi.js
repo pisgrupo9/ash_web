@@ -11,12 +11,17 @@ class AnimalApi {
   }
 
   static showAnimal(id_animal) {
-    return api.get(`${consts.APIARY_URL}/animals/${id_animal}`);
+    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}`);
   }
 
   static sendImage(image) {
     return api.post(`${consts.APIARY_URL}/image`, image);
   }
+
+  static showAnimalImages(id_animal) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/images`);
+  }
+
 }
 
 export default AnimalApi;
