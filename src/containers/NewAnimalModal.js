@@ -1,4 +1,4 @@
-import React, { Component,PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
@@ -61,7 +61,7 @@ class NewAnimalModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ loading : false });
+    this.setState({ loading: false });
     if (nextProps.success) {
       this.onClose();
     }
@@ -69,8 +69,8 @@ class NewAnimalModal extends Component {
 
   validateForm(animal) {
     let errors = this.state.errors;
-    for(let name in animal) {
-      if(this.state.requiredFields[name]) {
+    for (let name in animal) {
+      if (this.state.requiredFields[name]) {
         errors[name] = valid.validateEmptyField(name, animal[name]);
       }
     }
@@ -80,8 +80,8 @@ class NewAnimalModal extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.validateForm(this.state.animal);
-    if(valid.notErrors(this.state.errors)) {
-      this.setState({ loading : true });
+    if (valid.notErrors(this.state.errors)) {
+      this.setState({ loading: true });
       this.props.actions.sendAnimalForm(this.state.animal);
     }
   }
@@ -93,7 +93,7 @@ class NewAnimalModal extends Component {
     let animal = this.state.animal;
     animal[ field ] = value;
     this.setState({ animal });
-    if(this.state.requiredFields[ field ]) {
+    if (this.state.requiredFields[ field ]) {
       let errors = this.state.errors;
       errors[field] = valid.validateEmptyField(field, value);
       this.setState({ errors: errors });
@@ -141,7 +141,7 @@ NewAnimalModal.propTypes = {
 
 const mapState = (state) => {
   const errors = {};
-  for(let error in state.animalForm.errors) {
+  for (let error in state.animalForm.errors) {
     errors[error] = state.animalForm.errors[error][0];
   }
 

@@ -4,14 +4,13 @@ import { connect } from 'react-redux';
 import Footer from './common/Footer.js';
 import Header from '../components/common/Header';
 
-
 const { object } = PropTypes;
 
 class App extends Component {
   render() {
     const footerText = 'Animales Sin Hogar - Asociación Civil sin fines de lucro. - Personería Jurídica 9985';
-    const {pathname} = this.props.location;
-    const haveHeader =  !(
+    const { pathname } = this.props.location;
+    const haveHeader = !(
                         pathname.includes('login') |
                         pathname.includes('solicitud-registro') |
                         pathname.includes('reset') |
@@ -31,10 +30,10 @@ class App extends Component {
 
 App.propTypes = {
   children: object.isRequired,
-  location : object.isRequired,
-  user : object.isRequired
+  location: object.isRequired,
+  user: object.isRequired
 };
 
-const mapState = (state) => ({user : state.user});
+const mapState = (state) => ({ user: state.user });
 
 export default connect(mapState)(App);

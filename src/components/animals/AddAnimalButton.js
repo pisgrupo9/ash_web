@@ -23,7 +23,7 @@ class AddAnimalButton extends Component {
 
   render() {
     const showButton = this.props.userPermission === 'animals_edit';
-    const button =  (
+    const button = (
                       <div>
                         <button className="button-animal" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>

@@ -1,4 +1,4 @@
-import React, { Component,PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
@@ -20,8 +20,8 @@ class LoginPage extends Component {
     };
 
     this.form = {
-      email : { value: ''},
-      pass : { value: ''}
+      email: { value: '' },
+      pass: { value: '' }
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -40,26 +40,28 @@ class LoginPage extends Component {
     let form = this.form;
     delete form.email.error;
     delete form.pass.error;
-    if(form.email.value == '') {
+    if (form.email.value == '') {
       form.email.error = message.ERROR_REQUIRED_FIELD;
       error = true;
-    } else if(!StringV.isEmail(form.email.value)) {
+    } else if (!StringV.isEmail(form.email.value)) {
       form.email.error = message.ERROR_EMAIL;
       error = true;
     }
-    if(form.pass.value == '') {
+    if (form.pass.value == '') {
       form.pass.error = message.ERROR_REQUIRED_FIELD;
       error = true;
     }
-    if(!error) {
-      let user = {
-                  user:{
-                        email : form.email.value,
-                        password : form.pass.value
-                      }
+    if (!error) {
+      let user = { user:
+                    {
+                        email: form.email.value,
+                        password: form.pass.value
+                    }
                   };
       this.props.actions.login(user, this.context.router);
-    } else { this.setState({ loading: false }); }
+    } else {
+      this.setState({ loading: false });
+    }
     return this.setState({ form });
   }
 
@@ -95,14 +97,14 @@ const { object } = PropTypes;
 
 LoginPage.propTypes = {
   actions: object.isRequired,
-  login : object
+  login: object
 };
 
 LoginPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({ login: state.login});
+const mapState = (state) => ({ login: state.login });
 
 const mapDispatch = (dispatch) => {
   return {
@@ -110,4 +112,4 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapState,mapDispatch)(LoginPage);
+export default connect(mapState, mapDispatch)(LoginPage);

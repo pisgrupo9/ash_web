@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import {toastr} from 'react-redux-toastr';
+import { toastr } from 'react-redux-toastr';
 import PasswordApi, { parseEmail } from '../api/passwordApi';
 
 export const sendPasswordRequestError = () => {
@@ -8,7 +8,7 @@ export const sendPasswordRequestError = () => {
   };
 };
 
-export const  updatePassError = (response) =>  {
+export const updatePassError = (response) => {
   return {
     type: types.SEND_USER_UPDATE_PASS_ERROR,
     response
@@ -31,7 +31,7 @@ export const updatePass = (pass, history) => {
   return (dispatch) => {
     return PasswordApi.upadatePass(pass).then(() => {
       history.push(`/login`);
-      toastr.success('','Su password se actualizo correctamente');
+      toastr.success('', 'Su password se actualizo correctamente');
     }).catch(err => {
       dispatch(updatePassError(err));
     });

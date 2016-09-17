@@ -1,6 +1,6 @@
 import * as session from '../actions/sessionActions';
 
-export const CheckAuth  = (nextState, replace) => {
+export const CheckAuth = (nextState, replace) => {
   if (!isLogged()) {
    replace({
      pathname: '/login',
@@ -11,7 +11,7 @@ export const CheckAuth  = (nextState, replace) => {
 
 export const isLogged = () => {
   let current_session = session.loadSession();
-  return(current_session && current_session.email && current_session.token);
+  return (current_session && current_session.email && current_session.token);
 };
 
 export const CheckIfUnlogged = (nextState, replace) => {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LoginBox from '../components/common/LoginBox';
 import LogoHeader from '../components/common/LogoHeader';
@@ -7,20 +7,20 @@ import * as logoutActions from '../actions/logoutActions';
 import LogoutButton from '../components/logout/LogoutButton';
 
 class LogoutPage extends Component {
-  constructor(props, context){
+  constructor(props, context) {
     super(props, context);
     this.onClickLogout = this.onClickLogout.bind(this);
   }
-  
-  onClickLogout(){
+
+  onClickLogout() {
     this.props.actions.logoutDispatch(this.context.router);
   }
 
-  render (){
+  render() {
     const title = 'Desea salir?';
-    return(
+    return (
       <div>
-        <LoginBox> 
+        <LoginBox>
             <LogoHeader title={title}/>
             <LogoutButton onClickLogout={this.onClickLogout}/>
         </LoginBox>
@@ -32,7 +32,7 @@ class LogoutPage extends Component {
 const { object } = PropTypes;
 
 LogoutPage.propTypes = {
-  actions : object.isRequired
+  actions: object.isRequired
 };
 
 LogoutPage.contextTypes = {

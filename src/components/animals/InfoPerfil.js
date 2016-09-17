@@ -4,7 +4,8 @@ const InfoPerfil = ({ animal }) => {
   let vaccines = animal.vaccines;
   let castrado = animal.castrated;
   let imagen = animal.profile_image;
-  return(
+
+  return (
     <div className="Perfil-box">
       <img className="Pimage-header" src={imagen} />
         <div className="Prow">
@@ -60,7 +61,7 @@ const InfoPerfil = ({ animal }) => {
 const { object } = PropTypes;
 
 InfoPerfil.propTypes = {
-  animal : object.isRequired
+  animal: object.isRequired
 };
 
 export default InfoPerfil;

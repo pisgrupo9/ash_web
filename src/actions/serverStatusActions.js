@@ -13,7 +13,7 @@ export const loadServerStatus = () => {
     return serverStatusApi.getServerStatus().then(serverStatus => {
       dispatch(loadServerStatusSuccess(serverStatus));
     }).catch(err => {
-      throw(err);
+      throw (err);
     });
   };
 };

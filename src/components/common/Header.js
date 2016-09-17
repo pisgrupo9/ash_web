@@ -8,8 +8,7 @@ import * as userActions from '../../actions/userActions';
 import '../../styles/header.scss';
 
 class Header extends Component {
-
-  constructor(props, context){
+  constructor(props, context) {
     super(props, context);
 
     this.state = {
@@ -22,12 +21,12 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(!nextProps.user.first_name){
+    if (!nextProps.user.first_name) {
       this.props.userActions.showLoginUser();
     }
   }
-  
-  onClickLogout(){
+
+  onClickLogout() {
     this.props.logoutActions.logoutDispatch(this.context.router);
   }
 
@@ -36,13 +35,13 @@ class Header extends Component {
   }
 
   onClickLink() {
-    if(this.state.toggleMenu) {
+    if (this.state.toggleMenu) {
       this.setState({ toggleMenu: false });
     }
   }
 
-  render (){
-    return  (
+  render() {
+    return (
       <Navbar className="bg-orange-color" expanded={this.state.toggleMenu} onToggle={this.onToggle}>
         <Navbar.Header>
           <Navbar.Brand>
@@ -94,9 +93,9 @@ class Header extends Component {
 const { object } = PropTypes;
 
 Header.propTypes = {
-  logoutActions : object.isRequired,
-  userActions : object.isRequired,
-  user : object.isRequired
+  logoutActions: object.isRequired,
+  userActions: object.isRequired,
+  user: object.isRequired
 };
 
 Header.contextTypes = {
