@@ -19,6 +19,7 @@ $orange: #E8A948;
   }
 
   .slick-slide{
+    max-width: 400px;
     opacity: 0;
     height: 0;
     filter:alpha(opacity=0);

@@ -8,8 +8,8 @@ const ProfileDropzone = ({ profilePic, onDrop, error }) => {
   const picture = Object.keys(profilePic).length === 0 ? no_image : image;
 
   return (
-    <div className="dropzone-container">
-      <p>Foto de perfil:</p>
+    <div className="dropzone-profile-container">
+      <p>Foto de perfil *</p>
         <Dropzone className="profile-dropzone"
                   activeClassName="dropzone-active"
                   onDrop={onDrop}
