@@ -4,7 +4,8 @@ import initialState from './initialState';
 const animalFormReducer = (state = initialState.animalForm, action) => {
   let animalForm = {
     errors: '',
-    success: false
+    success: false,
+    success_image: false
   };
 
   switch (action.type) {
@@ -15,6 +16,9 @@ const animalFormReducer = (state = initialState.animalForm, action) => {
       animalForm.success = true;
       return animalForm;
     case types.CANCEL_ANIMAL_FORM:
+      return animalForm;
+    case types.SEND_IMAGE_SUCCESS:
+      animalForm.success_image = true;
       return animalForm;
     default:
       return state;

@@ -3,8 +3,9 @@ import Input from '../common/Input';
 import SelectInput from '../common/SelectInput';
 import { Checkbox } from 'react-bootstrap';
 import ImagesDropzone from '../common/ImagesDropzone';
+import ProfileDropzone from './ProfileDropzone';
 
-const AnimalForm = ({ animal, species, images, onSave, onChange, onCancel, onDrop, onDelete, errors }) => {
+const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
 
   const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
@@ -95,6 +96,9 @@ const AnimalForm = ({ animal, species, images, onSave, onChange, onCancel, onDro
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
       </div>
+      <ProfileDropzone profilePic={profilePic}
+                       onDrop={onDropProfile}
+                       error={errors.profile_image} />
       <ImagesDropzone title="Galeria"
                       images={images}
                       onDrop={onDrop}
@@ -118,11 +122,13 @@ AnimalForm.propTypes = {
   animal: object.isRequired,
   species: array.isRequired,
   images: array.isRequired,
+  profilePic: object.isRequired,
   onSave: func.isRequired,
   onChange: func.isRequired,
   onCancel: func.isRequired,
   onDrop: func.isRequired,
   onDelete: func.isRequired,
+  onDropProfile: func.isRequired,
   errors: object.isRequired
 };
 

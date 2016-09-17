@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
-import animalApi, { parseAnimal } from '../api/animalApi';
 import { toastr } from 'react-redux-toastr';
+import animalApi, { parseAnimal, parseImage } from '../api/animalApi';
 
 export const sendAnimalFormSuccess = (success) => {
   return {
@@ -12,6 +12,20 @@ export const sendAnimalFormSuccess = (success) => {
 export const sendAnimalFormError = (errors) => {
   return {
     type: types.SEND_ANIMAL_FORM_ERROR,
+    errors
+  };
+};
+
+export const sendImageSuccess = (success) => {
+  return {
+    type: types.SEND_IMAGE_SUCCESS,
+    success
+  };
+};
+
+export const sendImageError = (errors) => {
+  return {
+    type: types.SEND_IMAGE_ERROR,
     errors
   };
 };
@@ -44,6 +58,18 @@ export const sendAnimalForm = (animal) => {
       dispatch(sendAnimalFormSuccess());
     }).catch(err => {
       dispatch(sendAnimalFormError(err));
+    });
+  };
+};
+
+export const sendProfilePic = (image) => {
+  return (dispatch) => {
+    let imageSend = parseImage(image);
+    return animalApi.sendImage(imageSend).then(() => {
+      toastr.success('', 'Nuevo animal creado con exito');
+      dispatch(sendImageSuccess());
+    }).catch(err => {
+      dispatch(sendImageError(err));
     });
   };
 };
