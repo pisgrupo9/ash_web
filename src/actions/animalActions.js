@@ -29,6 +29,13 @@ export const cancelAnimalForm = () => {
   };
 };
 
+export const showAnimalPerfil = (animal) => {
+  return {
+    type: types.SHOW_ANIMAL_PROFILE,
+    animal
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -45,6 +52,16 @@ export const loadSpecies = () => {
   return (dispatch) => {
     return animalApi.getSpecies().then(species => {
       dispatch(loadSpeciesSuccess(species));
+    }).catch(err => {
+      throw(err);
+    });
+  };
+};
+
+export const showPerfilAnimal = (id_animal) => {
+  return (dispatch) => {
+    return animalApi.showAnimal(id_animal).then(animal => {
+      dispatch(showAnimalPerfil(animal));
     }).catch(err => {
       throw(err);
     });

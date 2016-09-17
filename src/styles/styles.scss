@@ -134,3 +134,32 @@ html {
   /* Support for IE. */
   font-feature-settings: 'liga';
 }
+
+.table-borderless tbody tr td{
+  border: none;
+  width: 2000px;
+  padding-bottom: 0.3em;
+}
+
+.Perfil-box {
+  width: 300px;
+  height: 450px;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 13px;
+  display: block;
+  background-color: white;
+  border: 2px solid $grey;
+  margin: 8px 8px;
+}
+
+.Prow {
+  padding: 30px;
+}
+
+.Pimage-header {
+  width: 290px;
+  max-height: 200px;
+  display: table;
+  margin: 0 auto;
+}

@@ -8,5 +8,6 @@ export default {
   animalForm: {
     errors: '',
     success: false
-  }
+  },
+  animal: {}
 };

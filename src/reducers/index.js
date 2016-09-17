@@ -7,6 +7,7 @@ import userForm from './userFormReducer';
 import resetPass from './passwordReducer';
 import species from './speciesReducer';
 import animalForm from './animalFormReducer';
+import animal from './animalReducer';
 import {reducer as toastrReducer} from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   resetPass,
   species,
   animalForm,
+  animal,
   toastr: toastrReducer,
   routing: routerReducer
 });

@@ -13,6 +13,7 @@ import AnimalPage from './containers/AnimalPage';
 import PerfilPage from './containers/PerfilPage';
 import AdoptantesPage from './containers/AdoptantesPage';
 import EstadisticasPage from './containers/EstadisticasPage';
+import AnimalPerfil from './containers/AnimalPerfil';
 
 export default (
   <Route path="/" component={App}>
@@ -25,6 +26,7 @@ export default (
     <Route path="updatePass" onEnter={auth.CheckIfUnlogged} component={UpdatePassPage}/>
     <Route path="animales" onEnter={auth.CheckAuth} component={AnimalPage}/>
     <Route path="perfil" onEnter={auth.CheckAuth} component={PerfilPage}/>
+    <Route path="perfil-animal/:id" onEnter={auth.CheckAuth} component={AnimalPerfil}/>
     <Route path="adoptantes" onEnter={auth.CheckAuth} component={AdoptantesPage}/>
     <Route path="estadisticas" onEnter={auth.CheckAuth} component={EstadisticasPage}/>
   </Route>
