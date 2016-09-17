@@ -4,12 +4,12 @@ import AddAnimalButton from '../components/animals/AddAnimalButton';
 import { Link } from 'react-router';
 
 class AnimalPage extends Component {
-  constructor(props, context){
+  constructor(props, context) {
     super(props, context);
   }
-  
-  render (){
-    return(
+
+  render() {
+    return (
       <div>
         <p>Proximamente Animales</p>
         <AddAnimalButton />
@@ -20,7 +20,7 @@ class AnimalPage extends Component {
     );
   }
 }
-  
+
 const mapState = () => ({});
 
 export default connect(mapState)(AnimalPage);

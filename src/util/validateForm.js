@@ -6,7 +6,7 @@ export const validateEmptyField = (name, value) => {
 
 export const notErrors = (errors) => {
   let valid = true;
-  for(let i in errors){
+  for (let i in errors) {
     valid = valid && !errors[i];
   }
   return valid;

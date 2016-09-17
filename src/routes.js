@@ -17,7 +17,7 @@ import AnimalPerfil from './containers/AnimalPerfil';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute  onEnter={auth.CheckAuth}  component={HomePage}/>
+    <IndexRoute onEnter={auth.CheckAuth} component={HomePage}/>
     <Route path="serverStatus" component={ServerStatusPage}/>
     <Route path="login" onEnter={auth.CheckIfUnlogged} component={LoginPage}/>
     <Route path="solicitud-registro" onEnter={auth.CheckIfUnlogged} component={CreateUserPage}/>

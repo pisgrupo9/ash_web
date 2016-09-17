@@ -5,7 +5,7 @@ import * as session from '../actions/sessionActions';
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
     if (!response) {
-      reject({ message: message.ERROR_RESPONSE_EMPTY});
+      reject({ message: message.ERROR_RESPONSE_EMPTY });
       return;
     }
 
@@ -18,7 +18,7 @@ const handleErrors = (response) =>
       .then(json => {
         const error = json || { message: response.statusText };
         reject(error);
-      }).catch(() => reject({ message:message.ERROR_RESPONSE_NOT_JSON }));
+      }).catch(() => reject({ message: message.ERROR_RESPONSE_NOT_JSON }));
     }
   );
 
@@ -42,7 +42,7 @@ class Api {
     });
   }
 
-  addTokenHeader()  {
+  addTokenHeader() {
       let current_session = session.loadSession();
       return (current_session && current_session.token) ? { 'X-USER-TOKEN': current_session.token } : {};
   }
@@ -51,63 +51,63 @@ class Api {
     let requestData = {
       method: 'get',
       headers: {
-        'Accept' : 'application/json'
+        'Accept': 'application/json'
       }
     };
-    requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());  
-    return this.performRequest(uri,requestData);
+    requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
+    return this.performRequest(uri, requestData);
   }
 
   post(uri, data) {
     let requestData = {
       method: 'post',
       headers: {
-        'Accept' : 'application/json',
-        'Content-Type' : 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     };
     requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
-    return this.performRequest(uri,requestData);
+    return this.performRequest(uri, requestData);
   }
 
-   delete(uri, data) {
+  delete(uri, data) {
     let requestData = {
       method: 'delete',
       headers: {
-        'Accept' : 'application/json',
-        'Content-Type' : 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     };
     requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
-    return this.performRequest(uri,requestData);
+    return this.performRequest(uri, requestData);
   }
 
   put(uri, data) {
     let requestData = {
       method: 'put',
       headers: {
-        'Accept' : 'application/json',
-        'Content-Type' : 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     };
     requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
-    return this.performRequest(uri,requestData);
+    return this.performRequest(uri, requestData);
   }
 
-  patch(uri, data){
+  patch(uri, data) {
     let requestData = {
       method: 'patch',
       headers: {
-        'Accept' : 'application/json',
-        'Content-Type' : 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(data)
     };
     requestData.headers = Object.assign({}, requestData.headers, this.addTokenHeader());
-    return this.performRequest(uri,requestData);
+    return this.performRequest(uri, requestData);
   }
 }
 

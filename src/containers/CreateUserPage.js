@@ -56,7 +56,7 @@ class CreateUserPage extends Component {
     this.setState({ errors });
   }
 
-  validateEmptyField(fieldVaule, fieldName){
+  validateEmptyField(fieldVaule, fieldName) {
     let errors = this.state.errors;
     errors[fieldName] = fieldVaule ? '' : 'Campo Obligatorio';
     this.setState({ errors });
@@ -65,7 +65,7 @@ class CreateUserPage extends Component {
   validatePassword(pass, passConfirmation) {
     let errors = this.state.errors;
     errors.password_confirmation = pass === passConfirmation ? '' : 'Las contraseñas no coinciden';
-    if(pass.length < 8) {
+    if (pass.length < 8) {
       errors.password = 'contraseña muy corta(minimo 8 caracteres)';
     }
     this.setState({ errors });
@@ -73,21 +73,21 @@ class CreateUserPage extends Component {
 
   validateForm() {
     let user = this.state.user;
-    for(let input in user) {
+    for (let input in user) {
       let field = {
         value: user[input],
         name: input
       };
       this.validateField(field);
     }
-    if(user.password) {
+    if (user.password) {
       this.validatePassword(user.password, user.password_confirmation);
     }
 
     let errors = this.state.errors;
     let form = this.state.form;
     form.valid = true;
-    for(let i in errors) {
+    for (let i in errors) {
       form.valid = form.valid && !errors[i];
     }
     this.setState({ form });
@@ -95,7 +95,7 @@ class CreateUserPage extends Component {
 
   validateField(field) {
     this.validateEmptyField(field.value, field.name);
-    if(field.name === 'name') {
+    if (field.name === 'name') {
       this.validateNames(field.value);
     } else if (field.name === 'email') {
       this.validateEmail(field.value);
@@ -117,9 +117,9 @@ class CreateUserPage extends Component {
     e.preventDefault();
     this.setState({ loading: true });
     this.validateForm();
-    if(this.state.form.valid) {
+    if (this.state.form.valid) {
       let dataUser = Object.assign({}, this.state.user);
-      if(dataUser.name) {
+      if (dataUser.name) {
         const firstLastName = dataUser.name.split(' ');
         dataUser.first_name = firstLastName[0];
         dataUser.last_name = firstLastName[1];
@@ -164,7 +164,7 @@ CreateUserPage.contextTypes = {
 
 const mapState = (state) => {
   const errors = {};
-  for(let error in state.userForm.error) {
+  for (let error in state.userForm.error) {
     errors[error] = state.userForm.error[error][0];
   }
 

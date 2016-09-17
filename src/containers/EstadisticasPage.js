@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class EstadisticasPage extends Component {
-  constructor(props, context){
+  constructor(props, context) {
     super(props, context);
   }
-  
-  render (){
-    return(
+
+  render() {
+    return (
       <div>
         <p>Proximamente Estadisticas</p>
       </div>

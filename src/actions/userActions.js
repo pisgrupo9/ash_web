@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 import userApi from '../api/userApi';
 import * as session from './sessionActions';
-import {toastr} from 'react-redux-toastr';
+import { toastr } from 'react-redux-toastr';
 
 export const loadUsersSuccess = (users) => {
   return {
@@ -41,7 +41,7 @@ export const sendUserForm = (user, history) => {
   return (dispatch) => {
       userApi.sendForm(user).then(() => {
       history.push(`/login`);
-      toastr.success('','Tu solicitud de cuenta ha sido enviada');
+      toastr.success('', 'Tu solicitud de cuenta ha sido enviada');
       dispatch(sendUserFormSuccess());
     }).catch(err => {
       dispatch(sendUserFormError(err));
@@ -51,14 +51,14 @@ export const sendUserForm = (user, history) => {
 
 export const showLoginUser = () => {
   const current_session = session.loadSession();
-  if(current_session && current_session.token)
+  if (current_session && current_session.token)
     return (dispatch) => {
         userApi.showLoginUser().then(
         user => {
           dispatch(showLoginUserSuccess(user));
         },
         error => {
-          if(error.errors) session.deleteSession();
+          if (error.errors) session.deleteSession();
           dispatch(sendUserFormError(error));
         }
       ).catch(err => {

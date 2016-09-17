@@ -12,7 +12,7 @@ import '../styles/reset-password.scss';
 class ResetPasswordPage extends Component {
   constructor(props, context) {
     super(props, context);
-  
+
     this.state = {
       loading: false,
       form: {
@@ -31,7 +31,7 @@ class ResetPasswordPage extends Component {
   }
 
   onSubmit() {
-    this.setState({ loading: true});
+    this.setState({ loading: true });
     let form = this.state.form;
     form.email.error = '';
     if (form.email.value == '') {
@@ -42,7 +42,9 @@ class ResetPasswordPage extends Component {
     if (!form.email.error) {
       let email = form.email.value;
       this.props.actions.sendPasswordRequest(email, this.context.router);
-    } else { this.setState({ loading: false }); }
+    } else {
+      this.setState({ loading: false });
+    }
   }
 
   onChange(e) {
@@ -62,8 +64,8 @@ class ResetPasswordPage extends Component {
         <LogoHeader title={title} error={error} />
         <p className="reset-password-info">Si desea restablecer su contraseña, ingrese su mail.</p>
         <ResetForm form={this.state.form}
-                    error={error} 
-                    onChange={this.onChange} 
+                    error={error}
+                    onChange={this.onChange}
                     onSubmit={this.onSubmit}
                     loading={this.state.loading}/>
       </LoginBox>
