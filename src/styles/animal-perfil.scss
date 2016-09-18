@@ -1,0 +1,44 @@
+$grey: #E6E6E6;
+
+.perfil-div{
+  border: 2px solid $grey;
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 5px;
+  position: relative;
+}
+
+.perfil-box{
+  font-weight: normal;
+  font-style: normal;
+  height: 100%;
+  font-size: 13px;
+  display: block;
+}
+
+.tabel-div{
+  width : 100%;
+  max-width : 280px;
+  padding: 10px 30px 10px 30px;
+  .table-borderless{
+    width: 100%;
+  }
+}
+
+.event-div{
+  height: 345px;
+}
+
+.gallery-div{
+  height: 150px;
+}
+
+.info-div{
+  height: 500px;
+}
+
+.perfil-image {
+  width: 100%;
+  max-width: 400px;
+  max-height: 400px;
+}

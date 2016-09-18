@@ -55,7 +55,7 @@ class Header extends Component {
           <ul className="nav navbar-nav item">
             <Link activeClassName="active-link"
                   className="header-link"
-                  to="animales"
+                  to="/animales"
                   onClick={this.onClickLink}>
               ANIMALES
             </Link>
@@ -63,7 +63,7 @@ class Header extends Component {
           <ul className="nav navbar-nav item">
             <Link activeClassName="active-link"
                   className="header-link"
-                  to="adoptantes"
+                  to="/adoptantes"
                   onClick={this.onClickLink}>
               ADOPTANTES
             </Link>
@@ -71,7 +71,7 @@ class Header extends Component {
           <ul className="nav navbar-nav item">
             <Link activeClassName="active-link"
                   className="header-link"
-                  to="estadisticas"
+                  to="/estadisticas"
                   onClick={this.onClickLink}>
               ESTADISTICAS
             </Link>

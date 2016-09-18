@@ -50,6 +50,13 @@ export const showAnimalPerfil = (animal) => {
   };
 };
 
+export const showAnimalPerfilImages = (response) => {
+  return {
+    type: types.SHOW_ANIMAL_PROFILE_IMAGES_SUCCES,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -88,6 +95,17 @@ export const showPerfilAnimal = (id_animal) => {
   return (dispatch) => {
     return animalApi.showAnimal(id_animal).then(animal => {
       dispatch(showAnimalPerfil(animal));
+      showPerfilAnimalImages(id_animal)(dispatch);
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const showPerfilAnimalImages = (id_animal) => {
+  return (dispatch) => {
+    return animalApi.showAnimalImages(id_animal).then(animal => {
+      dispatch(showAnimalPerfilImages(animal));
     }).catch(err => {
       throw (err);
     });
