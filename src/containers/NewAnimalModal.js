@@ -6,6 +6,7 @@ import AnimalForm from '../components/animals/AnimalForm';
 import '../styles/animal-form.scss';
 import * as valid from '../util/validateForm';
 import Spinner from 'react-spinkit';
+import { toastr } from 'react-redux-toastr';
 
 class NewAnimalModal extends Component {
   constructor(props, context) {
@@ -52,9 +53,11 @@ class NewAnimalModal extends Component {
         profile_image: true
       },
       loading: true,
+      images_to_send: 0,
+      uploading_images: false,
+      success_uploading_images: true,
       images: [],
-      profilePic: {},
-      processedImage: {}
+      profilePic: {}
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -70,15 +73,48 @@ class NewAnimalModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ loading: false });
     if (nextProps.success) {
-      this.onClose();
-    }
-/*    if ( nextProps.success ) {
-      this.props.actions.sendProfilePic(this.state.processedImage);
-    } else {
+      this.setState({ uploading_images: true });
+      if (this.state.images.length === 0) {
+        toastr.success('', 'Nuevo animal creado con exito');
+        this.onClose();
+      } else if (this.state.images_to_send) {
+        let success_upload = this.state.success_uploading_images;
+        let noMoreImages = nextProps.sended_images === this.state.images_to_send;
+        if (!nextProps.success_image) {
+          success_upload = false;
+          this.setState({ success_uploading_images: false });
+        }
+        if (noMoreImages) {
+          if (success_upload) {
+            toastr.success('', 'Nuevo animal creado con exito');
+            let cantImgs = this.state.images.length;
+            toastr.info('Galeria', `Se agregaron ${cantImgs} nuevas fotos a la galeria`);
+          } else {
+            toastr.error('Galeria', 'Ocurrio un error al agregar las imagenes');
+          }
+          this.onClose();
+        }
+      } else {
+        this.sendImages();
+      }
+    } else if (!this.state.uploading_images) {
       this.setState({ loading: false });
-    }*/
+    }
+  }
+
+  sendImages() {
+    this.setState({
+      images_to_send: this.state.images.length + this.props.sended_images
+    });
+    for (let image of this.state.images) {
+      const reader = new FileReader();
+      const file = image;
+      reader.readAsDataURL(file);
+      reader.onload = (upload) => {
+        this.props.actions.uploadImageAnimal(upload.target.result, this.props.id);
+      };
+    }
   }
 
   validateForm(animal) {
@@ -132,8 +168,9 @@ class NewAnimalModal extends Component {
   }
 
   onDrop(images) {
+    let allImages = this.state.images.concat(images);
     this.setState({
-      images: images
+      images: allImages,
     });
   }
 
@@ -152,6 +189,12 @@ class NewAnimalModal extends Component {
     const loadingView = (<div className="loading-container">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                         </div>);
+    const loadingImagesView = (<div className="loading-container">
+                                <span className="loading-text">Cargando imagenes </span>
+                                <div className="loading-images">
+                                  <i className="material-icons loading-icon">pets</i>
+                                </div>
+                              </div>);
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> INGRESO DE ANIMALES </h2>
                     <AnimalForm animal={this.state.animal}
@@ -168,21 +211,33 @@ class NewAnimalModal extends Component {
                                 />
                   </div>);
 
+    const getView = () => {
+      if (this.state.uploading_images) {
+        return loadingImagesView;
+      } else if (this.state.loading) {
+        return loadingView;
+      } else {
+        return body;
+      }
+    };
+
     return (
       <div>
-        { this.state.loading ? loadingView : body }
+        { getView() }
       </div>
     );
   }
 }
 
-const { object, array, func, bool } = PropTypes;
+const { object, array, func, bool, string, number } = PropTypes;
 
 NewAnimalModal.propTypes = {
   errors: object.isRequired,
   success: bool.isRequired,
   onClose: func.isRequired,
   species: array.isRequired,
+  id: string.isRequired,
+  sended_images: number.isRequired,
   actions: object.isRequired
 };
 
@@ -195,7 +250,10 @@ const mapState = (state) => {
   return {
     species: state.species,
     errors: errors,
-    success: state.animalForm.success
+    success: state.animalForm.success,
+    success_image: state.animalForm.success_image,
+    sended_images: state.animalForm.sended_images,
+    id: state.animalForm.id.toString()
   };
 };
 

@@ -4,6 +4,7 @@ import SelectInput from '../common/SelectInput';
 import { Checkbox } from 'react-bootstrap';
 import ImagesDropzone from '../common/ImagesDropzone';
 import ProfileDropzone from './ProfileDropzone';
+import ModalAnimalButtons from '../common/ModalAnimalButtons';
 
 const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
 
@@ -27,7 +28,8 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
   let showCheckboxes = (animal.species_id == "1" || animal.species_id == "2");
 
   return (
-    <div>
+    <div className="form-container">
+      <p> * campos necesarios </p>
       <div className="animal-form">
         <Input styleClass="animal-input"
                 name="chip_num"
@@ -39,7 +41,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                  />
         <Input styleClass="animal-input"
                 name="name"
-                label="Nombre"
+                label="Nombre *"
                 type="text"
                 value={animal.name}
                 onChange={onChange}
@@ -47,7 +49,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                  />
         <SelectInput styleClass="animal-input"
                       name="sex"
-                      label="Sexo"
+                      label="Sexo *"
                       value={animal.sex}
                       onChange={onChange}
                       options={genders}
@@ -55,7 +57,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                        />
         <Input styleClass="animal-input"
                 name="admission_date"
-                label="Fecha de ingreso"
+                label="Fecha de ingreso *"
                 type="date"
                 value={animal.admission_date}
                 onChange={onChange}
@@ -63,7 +65,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                  />
         <SelectInput styleClass="animal-input"
                       name="species_id"
-                      label="Especie"
+                      label="Especie *"
                       value={animal.species_id}
                       onChange={onChange}
                       options={species}
@@ -79,7 +81,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                  />
         <Input styleClass="animal-input"
                 name="birthdate"
-                label="Fecha de Nacimiento"
+                label="Fecha de Nacimiento *"
                 type="month"
                 value={animal.birthdate}
                 onChange={onChange}
@@ -96,22 +98,16 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
       </div>
-      <ProfileDropzone profilePic={profilePic}
-                       onDrop={onDropProfile}
-                       error={errors.profile_image} />
-      <ImagesDropzone title="Galeria"
-                      images={images}
-                      onDrop={onDrop}
-                      onDelete={onDelete} />
-      <div className="animal-buttons">
-        <input className="btn submit-button"
-                type="submit"
-                value="ENVIAR"
-                onClick={onSave} />
-        <button className="btn cancel-button" onClick={onCancel}>
-          CANCELAR
-        </button>
+      <div className="dropzones-container">
+        <ProfileDropzone profilePic={profilePic}
+                         onDrop={onDropProfile}
+                         error={errors.profile_image} />
+        <ImagesDropzone title="Galeria"
+                        images={images}
+                        onDrop={onDrop}
+                        onDelete={onDelete} />
       </div>
+      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };

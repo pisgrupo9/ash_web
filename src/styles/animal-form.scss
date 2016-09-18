@@ -6,15 +6,29 @@ $dark-orange: #ff6600;
   display: flex;
   justify-content: center;
   min-height: 400px;
-
-  .three-bounce {
-    align-self: center;
-  }
+  align-items: center;
+  color: $orange;
+  font-family: 'Roboto', sans-serif;
 
   .three-bounce > div{
     background-color: $orange;
     width: 20px;
     height: 20px;
+  }
+
+  .loading-images {
+    align-self: center;
+    animation: roll 3s infinite;
+    transform: rotate(30deg);
+
+    .loading-icon {
+      font-size: 49px; 
+    }
+  }
+
+  .loading-text {
+    font-size: 24px;
+    margin-right: 12px;
   }
 }
 
@@ -24,25 +38,30 @@ $dark-orange: #ff6600;
 
 .animal-form-title {
   font-size: 18px;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
   font-weight: 300;
   color: #5d5a5a;
+}
+
+.form-container {
+  font-family: 'Roboto', sans-serif;
+  color: $dark-grey;
+  font-weight: 300;
 }
 
 .animal-form {
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-flow: row wrap;
-  display: flex;
   justify-content: flex-start;
   align-content: flex-start;
   align-items: flex-start;
-  margin-bottom: 30px;
 
   .animal-checkbox {
     margin: 7px;
     font-weight: 300;
     color: $dark-grey;
+    flex: 0 0 0;
   }
 
   .checkbox + .checkbox {
@@ -128,6 +147,27 @@ $dark-orange: #ff6600;
 
 .button-animal:focus {
   outline: none;
+}
+
+.button-add-images {
+  @extend .button-animal;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  .add-button {
+    font-size: 35px;
+    margin: 0;
+  }
+}
+
+@keyframes roll {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media only screen and (max-device-width: 736px) {

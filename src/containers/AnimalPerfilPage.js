@@ -5,6 +5,7 @@ import { Row, Col } from 'react-bootstrap';
 import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
+import AddGalleryButton from '../components/animals/AddGalleryButton';
 import Spinner from '../components/common/SpinnerComponet';
 import '../styles/animal-perfil.scss';
 
@@ -40,13 +41,16 @@ class AnimalPerfilPage extends Component {
           </Col>
           <Col lg={9} md={8} sm={6} xs={12}>
             <div className="perfil-div event-div">
-              <p>Proximamente Enventos</p>
+              <p>Proximamente Eventos</p>
             </div>
             <div className="perfil-div gallery-div">
-              <p className="center">Galería</p>
+              <div className="gallery-buttons">
+                <p className="center">Galería</p>
+                <AddGalleryButton animalId={this.props.routeParams.id}/>
+              </div>
               <Spinner active={this.state.loading_gallery}/>
               {animal.images && !this.state.loading_gallery &&
-                <ImagesGallery images={animal.images}/>
+                  <ImagesGallery images={animal.images}/>
               }
             </div>
           </Col>

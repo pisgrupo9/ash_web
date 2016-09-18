@@ -14,8 +14,8 @@ class AnimalApi {
     return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}`);
   }
 
-  static sendImage(image) {
-    return api.post(`${consts.APIARY_URL}/image`, image);
+  static uploadImage(image, id) {
+    return api.post(`${consts.API_STAGING_URL}/animals/${id}/images`, image);
   }
 
   static showAnimalImages(id_animal) {
@@ -32,7 +32,7 @@ export const parseAnimal = (animal) => {
   return parsedAnimal;
 };
 
-export const parseImage = (image) => {
-  let parsedImage = Object.assign({}, image);
+export const parseImage = (file) => {
+  let parsedImage = { image: { file: file } };
   return parsedImage;
 };

@@ -30,15 +30,20 @@ $grey: #E6E6E6;
 }
 
 .gallery-div{
-  height: 150px;
+  height: 175px;
 }
 
 .info-div{
-  height: 500px;
+  height: 525px;
 }
 
 .perfil-image {
   width: 100%;
   max-width: 400px;
   max-height: 400px;
+}
+
+.gallery-buttons {
+  position: relative;
+  margin-bottom: 24px;
 }

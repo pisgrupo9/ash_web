@@ -1,31 +1,16 @@
 import * as types from './actionTypes';
-import { toastr } from 'react-redux-toastr';
 import animalApi, { parseAnimal, parseImage } from '../api/animalApi';
 
-export const sendAnimalFormSuccess = (success) => {
+export const sendAnimalFormSuccess = (response) => {
   return {
     type: types.SEND_ANIMAL_FORM_SUCCESS,
-    success
+    response
   };
 };
 
 export const sendAnimalFormError = (errors) => {
   return {
     type: types.SEND_ANIMAL_FORM_ERROR,
-    errors
-  };
-};
-
-export const sendImageSuccess = (success) => {
-  return {
-    type: types.SEND_IMAGE_SUCCESS,
-    success
-  };
-};
-
-export const sendImageError = (errors) => {
-  return {
-    type: types.SEND_IMAGE_ERROR,
     errors
   };
 };
@@ -57,26 +42,37 @@ export const showAnimalPerfilImages = (response) => {
   };
 };
 
+export const uploadImageAnimalSuccess = () => {
+  return {
+    type: types.UPLOAD_IMAGE_ANIMAL_SUCCESS
+  };
+};
+
+export const uploadImageAnimalError = (errors) => {
+  return {
+    type: types.UPLOAD_IMAGE_ANIMAL_ERROR,
+    errors
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
-    return animalApi.sendForm(animalJson).then(() => {
-      toastr.success('', 'Nuevo animal creado con exito');
-      dispatch(sendAnimalFormSuccess());
+    return animalApi.sendForm(animalJson).then((response) => {
+      dispatch(sendAnimalFormSuccess(response));
     }).catch(err => {
       dispatch(sendAnimalFormError(err));
     });
   };
 };
 
-export const sendProfilePic = (image) => {
+export const uploadImageAnimal = (image, id) => {
   return (dispatch) => {
-    let imageSend = parseImage(image);
-    return animalApi.sendImage(imageSend).then(() => {
-      toastr.success('', 'Nuevo animal creado con exito');
-      dispatch(sendImageSuccess());
+    let imageJson = parseImage(image);
+    return animalApi.uploadImage(imageJson, id).then(() => {
+      dispatch(uploadImageAnimalSuccess());
     }).catch(err => {
-      dispatch(sendImageError(err));
+      dispatch(uploadImageAnimalError(err));
     });
   };
 };
