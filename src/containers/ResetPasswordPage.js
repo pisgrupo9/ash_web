@@ -24,6 +24,10 @@ class ResetPasswordPage extends Component {
     this.onChange = this.onChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.actions.loadPage();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.resetPass) {
       this.setState( { loading: false } );

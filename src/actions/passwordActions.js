@@ -8,6 +8,12 @@ export const sendPasswordRequestError = () => {
   };
 };
 
+export const loadPasswordPage = () => {
+  return {
+    type: types.LOAD_PASSWORD_PAGE
+  };
+};
+
 export const updatePassError = (response) => {
   return {
     type: types.SEND_USER_UPDATE_PASS_ERROR,
@@ -35,5 +41,11 @@ export const updatePass = (pass, history) => {
     }).catch(err => {
       dispatch(updatePassError(err));
     });
+  };
+};
+
+export const loadPage = () => {
+  return (dispatch) => {
+    dispatch(loadPasswordPage());
   };
 };
