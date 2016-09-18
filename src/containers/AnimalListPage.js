@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
 import AddAnimalButton from '../components/animals/AddAnimalButton';
-import { Link } from 'react-router';
 import AnimalList from '../components/animals/AnimalList';
 
 class AnimalListPage extends Component {
