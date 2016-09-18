@@ -12,5 +12,6 @@ export default {
     sended_images: 0,
     id: ''
   },
-  animal: {}
+  animal: {},
+  animals: []
 };
