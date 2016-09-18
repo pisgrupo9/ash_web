@@ -36,32 +36,46 @@ $white: #FFFFFF;
 .perfil-div{
   border: 2px solid $grey;
   background-color: white;
+  margin: 0 5px;
   margin-bottom: 5px;
   padding: 5px;
+  width: 340px;
 }
 
 .event-div{
-  @extend .perfil-div;
-  height: 345px;
+  border: 2px solid $grey;
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 5px;
+  height: 375px;
 }
 
 .gallery-div{
-  @extend .perfil-div;
+  border: 2px solid $grey;
+  background-color: white;
+  margin-bottom: 5px;
+  padding: 5px;
   height: 175px;
 }
 
 .perfil-box{
-  height: 525px;
-  font-size: 13px;
+  height: 650px;
+  font-size: 14px;
 }
 
 .tabel-div{
-  width : 100%;
+  width : 120%;
   max-width : 280px;
   margin: 0px;
   padding: 10px 30px;
   .table-borderless{
-    width: 100%;
+    width: 115%;
+  }
+  td{
+    height: 35px;
+  }
+  tr{
+    line-height: 10px; 
   }
 }
 
@@ -131,4 +145,8 @@ $white: #FFFFFF;
 
 .slick-container {
   width: 97%;
+}
+
+.edit-button {
+  margin-left: 270px;
 }

@@ -5,7 +5,7 @@ const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, 
 
   return (
     <div className={wrapperClass}>
-      <label className="input-label" htmlFor={name}>{label}</label>
+      {label && <label className="input-label" htmlFor={name}>{label}</label>}
       <div className="field">
         <select name={name}
                 onChange={onChange}
@@ -27,7 +27,7 @@ const { string, func, arrayOf, object } = PropTypes;
 SelectInput.propTypes = {
   styleClass: string,
   name: string.isRequired,
-  label: string.isRequired,
+  label: string,
   onChange: func.isRequired,
   defaultOption: string,
   value: string,

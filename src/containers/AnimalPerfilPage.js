@@ -46,6 +46,31 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal.error) {
       toastr.error('ERROR', nextProps.animal.error);
     }
+    let animal = Object.assign({}, this.state.animal, nextProps.animal);
+    this.setState({ animal: animal });
+  }
+
+  edit() {
+   this.setState({ edit: true });
+  }
+
+  onClose() {
+    let animal = Object.assign({}, this.state.animal, this.props.animal);
+    this.setState({ animal: animal, edit: false });
+  }
+
+  onSubmit() {
+    this.props.animalActions.editAnimal(this.props.routeParams.id, this.state.animal);
+    this.setState({ edit: false });
+  }
+
+  onChange(e) {
+    const field = e.target.name;
+    const booleanValue = field === 'vaccines' || field === 'castrated';
+    const value = booleanValue ? (e.target.value === 'true' ? true : false) : e.target.value;
+    let animal = this.state.animal;
+    animal[ field ] = value;
+    this.setState({ animal: animal });
   }
 
   editGallery() {
