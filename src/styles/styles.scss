@@ -173,3 +173,7 @@ html {
   height: 50%;
   max-height: 200px;
 }
+
+#app button, input[type=button] {
+  outline: none;
+}

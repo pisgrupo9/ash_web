@@ -22,6 +22,9 @@ class AnimalApi {
     return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/images`);
   }
 
+  static getAnimals() {
+    return api.get(`${consts.API_STAGING_URL}/animals`);
+  }
 }
 
 export default AnimalApi;

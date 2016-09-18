@@ -55,6 +55,13 @@ export const uploadImageAnimalError = (errors) => {
   };
 };
 
+export const loadAnimalsSuccess = (response) => {
+  return {
+    type: types.LOAD_ANIMALS_SUCCESS,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -102,6 +109,16 @@ export const showPerfilAnimalImages = (id_animal) => {
   return (dispatch) => {
     return animalApi.showAnimalImages(id_animal).then(animal => {
       dispatch(showAnimalPerfilImages(animal));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const loadAnimals = () => {
+  return (dispatch) => {
+    return animalApi.getAnimals().then(animals => {
+      dispatch(loadAnimalsSuccess(animals));
     }).catch(err => {
       throw (err);
     });
