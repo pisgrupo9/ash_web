@@ -18,6 +18,7 @@ class AnimalPerfilPage extends Component {
     };
   }
 
+
   componentDidMount() {
     this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
   }
@@ -34,12 +35,12 @@ class AnimalPerfilPage extends Component {
   render() {
     const { animal } = this.props;
     return (
-      <div className="p-relative">
-        <Row className="page">
-          <Col lg={3} md={4} sm={6} xs={12}>
+      <div className="p-relative"> 
+        <Row className="page page-row">
+          <Col lg={3} md={4} sm={6} xs={12} className="col">
             <InfoPerfil animal={animal} styleClass="perfil-div info-div"/>
           </Col>
-          <Col lg={9} md={8} sm={6} xs={12}>
+          <Col lg={9} md={8} sm={6} xs={12} className="col">
             <div className="perfil-div event-div">
               <p>Proximamente Eventos</p>
             </div>

@@ -26,15 +26,15 @@ $grey: #E6E6E6;
 }
 
 .event-div{
-  height: 345px;
+  height: 60%;
 }
 
 .gallery-div{
-  height: 175px;
+  height: 40%;
 }
 
 .info-div{
-  height: 525px;
+  height: 100%;
 }
 
 .perfil-image {
@@ -46,4 +46,8 @@ $grey: #E6E6E6;
 .gallery-buttons {
   position: relative;
   margin-bottom: 24px;
+}
+
+.page-row {
+  display: flex;
 }
