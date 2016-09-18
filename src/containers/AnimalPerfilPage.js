@@ -30,7 +30,6 @@ class AnimalPerfilPage extends Component {
       this.setState({ loading_gallery: false });
     }
     if (nextProps.animal.uplaodImages) {
-        this.props.animalActions.showPerfilAnimalImages(this.props.routeParams.id);
         this.setState({ loading_gallery: true });
     }
   }

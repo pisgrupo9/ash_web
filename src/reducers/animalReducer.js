@@ -8,7 +8,7 @@ const animalReducer = (state = initialState.animal, action) => {
       return action.animal;
     case types.SHOW_ANIMAL_PROFILE_IMAGES_SUCCES: {
       const { images } = action.response;
-      return Object.assign({}, state, { uplaodImages: false ,images });
+      return Object.assign({}, state, { uplaodImages: false, images });
     }
     case types.UPLOAD_IMAGE_ANIMAL_SUCCESS: {
       return Object.assign({}, state, { uplaodImages: true });
