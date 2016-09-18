@@ -29,6 +29,9 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal.images) {
       this.setState({ loading_gallery: false });
     }
+    if (nextProps.animal.uplaodImages) {
+        this.setState({ loading_gallery: true });
+    }
   }
 
   render() {
@@ -73,7 +76,9 @@ AnimalPerfilPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({ animal: state.animal });
+const mapState = (state) => ({
+  animal: state.animal
+});
 
 const mapDispatch = (dispatch) => {
   return {
