@@ -1,18 +1,32 @@
 import React, { PropTypes } from 'react';
-import SelectInput from '../common/SelectInput';
 import Input from '../common/Input';
+import SelectInput from '../common/SelectInput';
+import { Checkbox } from 'react-bootstrap';
 
-const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, styleClass }) => {
-  let imagen = animal.profile_image;
-  const genders = [ { id: "male", name: "Macho" },
+const EditAnimalForm = ({ animal, onSave, onChange, onCancel, errors }) => { 
+
+ const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
-  const yes_no = [ { id: "true", name: "SI" },
-                   { id: "false", name: "NO" } ];
-  let fecha_cumple = animal.birthdate;
+
+  const checkboxCastrated = (<Checkbox className="animal-input animal-checkbox"
+                                      name="castrated"
+                                      onChange={onChange}
+                                      checked={animal.castrated}>
+                              Castrado
+                            </Checkbox>);
+
+  const checkboxVaccines = (<Checkbox className="animal-input animal-checkbox"
+                                      name="vaccines"
+                                      onChange={onChange}
+                                      checked={animal.vaccines}>
+                              Vacunas
+                            </Checkbox>);
+
+  let showCheckboxes = (animal.species_id == "1" || animal.species_id == "2");
 
   return (
-    <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
-      <img className="perfil-image center" src={imagen} />
+    <div className="form-container">
+     <img className="perfil-image center" src={imagen} />
       <div className="center tabel-div" >
         <table className="table-borderless">
             <tbody>
@@ -30,111 +44,104 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               </tr>
               <tr>
                 <td>SEXO:</td>
-                <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                <td>
+                    <SelectInput styleClass="animal-input"
                           name="sex"
                           value={animal.sex}
                           onChange={onChange}
                           options={genders}/>
-                      : animal.sex)}
                 </td>
               </tr>
               <tr>
                 <td>RAZA:</td>
-                <td>{(editState.edit
-                      ? <Input styleClass="animal-input"
-                          name="race"
-                          type="text"
-                          value={animal.race}
-                          onChange={onChange}/>
-                      : animal.race)}
+                <td>
+                     <Input styleClass="animal-input"
+                        name="race"
+                        value={animal.race}
+                        onChange={onChange}/>
                 </td>
               </tr>
               <tr>
                 <td>FEC. DE NAC.:</td>
-                <td >{(editState.edit
-                        ? <Input styleClass="animal-input"
+                <td >
+                  <Input styleClass="animal-input"
                             name="birthdate"
                             type="month"
                             value={fecha_cumple.substring(0, fecha_cumple.length - 3)}
                             onChange={onChange}/>
-                        : animal.birthdate)}
                 </td>
               </tr>
               <tr>
                 <td>FEC. DE ING.:</td>
-                <td>{(editState.edit
-                    ? <Input styleClass="animal-input"
+                <td>
+                    <Input styleClass="animal-input"
                         name="admission_date"
                         type="date"
                         value={animal.admission_date}
                         onChange={onChange}/>
-                    : animal.admission_date)}
                 </td>
               </tr>
               <tr>
                 <td>FEC. DE MUERTE:</td>
-                <td>{(editState.edit
-                    ? <Input styleClass="animal-input"
+                <td>
+                    <Input styleClass="animal-input"
                         name="death_date"
                         type="date"
                         value={animal.death_date}
                         onChange={onChange}/>
-                    : animal.death_date)}
                 </td>
               </tr>
               <tr>
                 <td>VACUNADO:</td>
-                <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                <td>
+                    <SelectInput styleClass="animal-input"
                           name="vaccines"
                           value={animal.vaccines.toString()}
                           onChange={onChange}
                           options={yes_no}/>
-                      : animal.vaccines ? <font color="green"> SI </font> : <font color="red"> NO </font>)}
                 </td>
               </tr>
               <tr>
                 <td>CASTRADO:</td>
-                <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                <td>
+                    <SelectInput styleClass="animal-input"
                           name="castrated"
                           value={animal.castrated.toString()}
                           onChange={onChange}
                           options={yes_no}/>
-                      : animal.castrated ? <font color="green"> SI </font> : <font color="red"> NO </font>)}
                 </td>
               </tr>
             </tbody>
         </table>
-        { editState.edit
-          ? <div><input className="btn submit-button"
+         <div>
+              <input className="btn submit-button"
                       type="submit"
                       value="GUARDAR"
                       onClick={onSave} />
               <button className="btn cancel-button" onClick={onCancel}>
                 CANCELAR
-              </button></div>
-          : 
-           <button className="button-animal" onClick={edit}>
-             <i className="material-icons">mode_edit</i>
-           </button>
-        }
+              </button>
+          </div>
       </div>
+      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };
 
-const { object, func, string } = PropTypes;
+const { object, func, array } = PropTypes;
 
-InfoPerfil.propTypes = {
+EditAnimalForm.propTypes = {
   animal: object.isRequired,
-  edit: func.isRequired,
-  editState: object.isRequired,
+  species: array.isRequired,
+  images: array.isRequired,
+  profilePic: object.isRequired,
   onSave: func.isRequired,
   onChange: func.isRequired,
   onCancel: func.isRequired,
-  styleClass: string
+  onDrop: func.isRequired,
+  onDelete: func.isRequired,
+  onDropProfile: func.isRequired,
+  errors: object.isRequired
 };
 
-export default InfoPerfil;
+export default EditAnimalForm;

@@ -1,6 +1,6 @@
 $grey: #E6E6E6;
 
-.perfil-div{
+.perfil-div {
   border: 2px solid $grey;
   background-color: white;
   margin-bottom: 5px;
@@ -8,7 +8,7 @@ $grey: #E6E6E6;
   position: relative;
 }
 
-.perfil-box{
+.perfil-box {
   font-weight: normal;
   font-style: normal;
   height: 100%;
@@ -16,25 +16,40 @@ $grey: #E6E6E6;
   display: block;
 }
 
-.tabel-div{
+.tabel-div {
   width : 100%;
   max-width : 280px;
   padding: 10px 30px 10px 30px;
+
   .table-borderless{
     width: 100%;
+  }
+
+  tr{
+    height: 35px;
   }
 }
 
 .event-div{
-  height: 345px;
+  height: 545px;
 }
 
-.gallery-div{
+.gallery-div {
   height: 175px;
 }
 
-.info-div{
-  height: 525px;
+.info-div {
+  height: 725px;
+
+  .animal-input {
+  max-width: 100px;
+  max-height: 15px;
+
+    .form-control {
+      max-width: 150px;
+      margin-bottom: 3px;
+    }
+  }
 }
 
 .perfil-image {
