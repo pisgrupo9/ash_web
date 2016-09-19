@@ -5,7 +5,6 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
-import Spinner from '../components/common/SpinnerComponet';
 import '../styles/animal-perfil.scss';
 
 class AnimalPerfilPage extends Component {
@@ -32,7 +31,7 @@ class AnimalPerfilPage extends Component {
     this.onClose = this.onClose.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
   }
 
@@ -78,6 +77,7 @@ class AnimalPerfilPage extends Component {
     return (
       <div className="profile-page-flex">
        <InfoPerfil styleClass="perfil-div info-div profile-section"
+                      loading={this.state.loading}
                       animal={this.state.edit ? this.state.animal : this.props.animal}
                       edit={this.edit}
                       editState={this.state}
@@ -93,9 +93,10 @@ class AnimalPerfilPage extends Component {
               <p className="center">Galería</p>
               <AddGalleryButton animalId={this.props.routeParams.id}/>
             </div>
-            <Spinner active={this.state.loading_gallery}/>
-            {animal.images && !this.state.loading_gallery &&
-                <ImagesGallery images={animal.images}/>
+            { animal.images &&
+            <ImagesGallery images={animal.images}
+                            loading={this.state.loading_gallery}
+                            styleClass="slick-container"/>
             }
           </div>
         </div>

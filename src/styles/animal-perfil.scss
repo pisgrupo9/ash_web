@@ -11,6 +11,7 @@ $grey: #E6E6E6;
 
 .events-gallery-section {
   max-width: 70%;
+  width: 70%;
   min-width: 300px;
 }
 
@@ -39,7 +40,7 @@ $grey: #E6E6E6;
 }
 
 .perfil-box{
-  height: 610px;
+  height: 660px;
   font-size: 13px;
 }
 
@@ -67,4 +68,8 @@ $grey: #E6E6E6;
 .gallery-buttons {
   position: relative;
   margin-bottom: 24px;
+}
+
+.slick-container {
+  width: 97%;
 }

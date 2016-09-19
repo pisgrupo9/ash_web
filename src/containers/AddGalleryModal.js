@@ -63,6 +63,8 @@ class AddGalleryModal extends Component {
     this.setState({ uploading_images: true });
     if (this.state.images.length > 0) {
       this.sendImages();
+    } else {
+      this.onClose();
     }
   }
 

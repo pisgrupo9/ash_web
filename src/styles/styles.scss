@@ -154,19 +154,23 @@ html {
 }
 
 .spinner-div {
-  top: 0;
-  left: 0;
-  position: absolute;
   height: 100%;
   width: 100%;
   text-align: center;
-  background-color: rgba(0,0,0,0.3);
-  cursor:wait;
+  background-color: white;
+  cursor: wait;
   
   .spinner-icon {
     display: inline-block;
   }
+
+  .three-bounce > div{
+    background-color: $orange;
+    width: 20px;
+    height: 20px;
+  }
 }
+
 .spinner-div:before  {
   content: "";
   display: block;

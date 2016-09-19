@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
+import Spinner from '../common/SpinnerComponet';
 import SelectInput from '../common/SelectInput';
 import Input from '../common/Input';
 
-const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, styleClass }) => {
+const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, styleClass, loading }) => {
   let imagen = animal.profile_image;
   const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
@@ -13,9 +14,11 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
 
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
-      <img className="perfil-image center" src={imagen} />
-      <div className="center tabel-div" >
-        <table className="table-borderless">
+      { loading ? (<Spinner active={loading} />) : (
+      <div>
+        <img className={'perfil-image center'} src={imagen} />
+        <div className="center tabel-div" >
+          <table className="table-borderless">
             <tbody>
               <tr>
                 <th><b>NOMBRE:</b></th>
@@ -121,12 +124,14 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
              <i className="material-icons">mode_edit</i>
            </button>
         }
+        </div>
       </div>
-    </div>
+    )}
+  </div>
   );
 };
 
-const { object, func, string } = PropTypes;
+const { object, func, string, bool } = PropTypes;
 
 InfoPerfil.propTypes = {
   animal: object.isRequired,
@@ -135,6 +140,7 @@ InfoPerfil.propTypes = {
   onSave: func.isRequired,
   onChange: func.isRequired,
   onCancel: func.isRequired,
+  loading: bool.isRequired,
   styleClass: string
 };
 
