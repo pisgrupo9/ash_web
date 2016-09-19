@@ -5,7 +5,6 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
-import Spinner from '../components/common/SpinnerComponet';
 import '../styles/animal-perfil.scss';
 
 class AnimalPerfilPage extends Component {
@@ -17,7 +16,7 @@ class AnimalPerfilPage extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
   }
 
@@ -37,7 +36,9 @@ class AnimalPerfilPage extends Component {
     const { animal } = this.props;
     return (
       <div className="profile-page-flex">
-        <InfoPerfil animal={animal} styleClass="perfil-div info-div profile-section"/>
+        <InfoPerfil animal={animal}
+                    loading={this.state.loading}
+                    styleClass="perfil-div info-div profile-section"/>
         <div className="events-gallery-section">
           <div className="event-div">
             <p>Proximamente Eventos</p>
@@ -47,9 +48,10 @@ class AnimalPerfilPage extends Component {
               <p className="center">Galería</p>
               <AddGalleryButton animalId={this.props.routeParams.id}/>
             </div>
-            <Spinner active={this.state.loading_gallery}/>
-            {animal.images && !this.state.loading_gallery &&
-                <ImagesGallery images={animal.images}/>
+            { animal.images &&
+            <ImagesGallery images={animal.images}
+                            loading={this.state.loading_gallery}
+                            styleClass="slick-container"/>
             }
           </div>
         </div>

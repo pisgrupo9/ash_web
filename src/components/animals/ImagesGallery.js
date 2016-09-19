@@ -3,6 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 import '../../styles/img-galeria.scss';
+import Spinner from '../common/SpinnerComponet';
 
 class ImagesGallery extends Component {
   constructor(props, context) {
@@ -38,7 +39,7 @@ class ImagesGallery extends Component {
     let settings = {
         infinite: false,
         centerMode: false,
-        variableWidth: true,
+        variableWidth: false,
         lazyLoad: true,
         prevArrow: prevArrow,
         nextArrow: nextArrow,
@@ -47,11 +48,11 @@ class ImagesGallery extends Component {
         responsive: [
                        {
                         breakpoint: 400,
-                        settings: { slidesToShow: 3, slidesToScroll: 1 }
+                        settings: { slidesToShow: 2, slidesToScroll: 1 }
                        },
                       {
                         breakpoint: 768,
-                        settings: { slidesToShow: 4, slidesToScroll: 1 }
+                        settings: { slidesToShow: 2, slidesToScroll: 1 }
                        },
                        {
                         breakpoint: 992,
@@ -83,14 +84,19 @@ class ImagesGallery extends Component {
                         </div>
                         );
     }
+    const galleryView = () => {
+      if (!imageList.isEmpty) {
+        return (
+          <Slider {...settings}>
+            {imageList}
+          </Slider>
+        );
+      }
+    };
 
     return (
       <div className={styleClass}>
-        {!imageList.isEmpty &&
-        <Slider {...settings}>
-          {imageList}
-        </Slider>
-        }
+        { this.props.loading ? (<Spinner active={this.props.loading} />) : galleryView() }
       </div>
     );
   }
@@ -102,6 +108,7 @@ ImagesGallery.propTypes = {
   images: array.isRequired,
   styleClass: string,
   edit: bool,
+  loading: bool.isRequired,
   onChangeRemove: func
 };
 
