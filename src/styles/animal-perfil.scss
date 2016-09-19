@@ -26,6 +26,7 @@ $grey: #E6E6E6;
   background-color: white;
   margin-bottom: 5px;
   padding: 5px;
+  height: 300px;
 }
 
 .event-div{
@@ -39,16 +40,22 @@ $grey: #E6E6E6;
 }
 
 .perfil-box{
-  height: 525px;
+  height: 660px;
   font-size: 13px;
 }
 
 .tabel-div{
-  width : 100%;
+  width : 120%;
   max-width : 280px;
   padding: 10px 30px 10px 30px;
   .table-borderless{
-    width: 100%;
+    width: 115%;
+  }
+  td{
+    height: 35px;
+  }
+  tr{
+    line-height: 10px; 
   }
 }
 
