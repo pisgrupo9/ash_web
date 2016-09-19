@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Row, Col } from 'react-bootstrap';
 import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
@@ -44,6 +43,9 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal.images) {
       this.setState({ loading_gallery: false });
     }
+    if (nextProps.animal.uplaodImages) {
+        this.setState({ loading_gallery: true });
+    }
     let animal = Object.assign({}, this.state.animal, nextProps.animal);
     this.setState({ animal: animal });
   }
@@ -59,7 +61,7 @@ class AnimalPerfilPage extends Component {
 
   onSubmit() {
     this.props.animalActions.editAnimal(this.props.routeParams.id, this.state.animal);
-    this.setState({ edit: false })
+    this.setState({ edit: false });
   }
 
   onChange(e) {
@@ -74,43 +76,29 @@ class AnimalPerfilPage extends Component {
   render() {
     const { animal } = this.props;
     return (
-      <div className="p-relative">
-        <Row className="page">
-          <Col lg={3} md={4} sm={6} xs={12}>
-            {(this.state.edit ? <InfoPerfil styleClass="perfil-div info-div"
-                                animal={this.state.animal}
-                                edit={this.edit}
-                                editState={this.state}
-                                onSave={this.onSubmit}
-                                onChange={this.onChange}
-                                onCancel={this.onClose}/>
-
-                            : <InfoPerfil styleClass="perfil-div info-div"
-                                animal={this.props.animal}
-                                edit={this.edit}
-                                editState={this.state}
-                                onSave={this.onSubmit}
-                                onChange={this.onChange}
-                                onCancel={this.onClose}/>
-            )}
-          </Col>
-          <Col lg={9} md={8} sm={6} xs={12}>
-            <div className="perfil-div event-div">
-              <p>Proximamente Eventos</p>
+      <div className="profile-page-flex">
+       <InfoPerfil styleClass="perfil-div info-div profile-section"
+                      animal={this.state.edit ? this.state.animal : this.props.animal}
+                      edit={this.edit}
+                      editState={this.state}
+                      onSave={this.onSubmit}
+                      onChange={this.onChange}
+                      onCancel={this.onClose}/>
+        <div className="events-gallery-section">
+          <div className="event-div">
+            <p>Proximamente Eventos</p>
+          </div>
+          <div className="gallery-div">
+            <div className="gallery-buttons">
+              <p className="center">Galería</p>
+              <AddGalleryButton animalId={this.props.routeParams.id}/>
             </div>
-            <div className="perfil-div gallery-div">
-              <div className="gallery-buttons">
-                <p className="center">Galería</p>
-                <AddGalleryButton animalId={this.props.routeParams.id}/>
-              </div>
-              <Spinner active={this.state.loading_gallery}/>
-              {animal.images && !this.state.loading_gallery &&
-                  <ImagesGallery images={animal.images}/>
-              }
-            </div>
-          </Col>
-        </Row>
-        <Spinner active={this.state.loading}/>
+            <Spinner active={this.state.loading_gallery}/>
+            {animal.images && !this.state.loading_gallery &&
+                <ImagesGallery images={animal.images}/>
+            }
+          </div>
+        </div>
       </div>
     );
   }
@@ -128,7 +116,9 @@ AnimalPerfilPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({ animal: state.animal });
+const mapState = (state) => ({
+  animal: state.animal
+});
 
 const mapDispatch = (dispatch) => {
   return {

@@ -8,7 +8,8 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
                     { id: "female", name: "Hembra" } ];
   const yes_no = [ { id: "true", name: "SI" },
                    { id: "false", name: "NO" } ];
-  let fecha_cumple = animal.birthdate;
+
+  let fecha_cumple = animal.birthdate && animal.birthdate.length == 10 ? animal.birthdate.substring(0, animal.birthdate.length - 3) : animal.birthdate;
 
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
@@ -31,7 +32,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>SEXO:</td>
                 <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                      ? <SelectInput styleClass="profile-animal-input"
                           name="sex"
                           value={animal.sex}
                           onChange={onChange}
@@ -42,7 +43,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>RAZA:</td>
                 <td>{(editState.edit
-                      ? <Input styleClass="animal-input"
+                      ? <Input styleClass="profile-animal-input"
                           name="race"
                           type="text"
                           value={animal.race}
@@ -53,10 +54,10 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>FEC. DE NAC.:</td>
                 <td >{(editState.edit
-                        ? <Input styleClass="animal-input"
+                        ? <Input styleClass="profile-animal-input"
                             name="birthdate"
                             type="month"
-                            value={fecha_cumple.substring(0, fecha_cumple.length - 3)}
+                            value={fecha_cumple}
                             onChange={onChange}/>
                         : animal.birthdate)}
                 </td>
@@ -64,7 +65,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>FEC. DE ING.:</td>
                 <td>{(editState.edit
-                    ? <Input styleClass="animal-input"
+                    ? <Input styleClass="profile-animal-input"
                         name="admission_date"
                         type="date"
                         value={animal.admission_date}
@@ -75,7 +76,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>FEC. DE MUERTE:</td>
                 <td>{(editState.edit
-                    ? <Input styleClass="animal-input"
+                    ? <Input styleClass="profile-animal-input"
                         name="death_date"
                         type="date"
                         value={animal.death_date}
@@ -86,7 +87,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>VACUNADO:</td>
                 <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                      ? <SelectInput styleClass="profile-animal-input"
                           name="vaccines"
                           value={animal.vaccines.toString()}
                           onChange={onChange}
@@ -97,7 +98,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <tr>
                 <td>CASTRADO:</td>
                 <td>{(editState.edit
-                      ? <SelectInput styleClass="animal-input"
+                      ? <SelectInput styleClass="profile-animal-input"
                           name="castrated"
                           value={animal.castrated.toString()}
                           onChange={onChange}
@@ -115,7 +116,7 @@ const InfoPerfil = ({ animal, edit, editState, onChange, onSave, onCancel, style
               <button className="btn cancel-button" onClick={onCancel}>
                 CANCELAR
               </button></div>
-          : 
+          :
            <button className="button-animal" onClick={edit}>
              <i className="material-icons">mode_edit</i>
            </button>

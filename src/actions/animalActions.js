@@ -68,6 +68,13 @@ export const editAnimaError = (errors) => {
   };
 };
 
+export const loadAnimalsSuccess = (response) => {
+  return {
+    type: types.LOAD_ANIMALS_SUCCESS,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -129,6 +136,16 @@ export const editAnimal = (id_animal, animal) => {
       showPerfilAnimal(id_animal)(dispatch);
     }).catch(err => {
       dispatch(editAnimaError(err));
+          });
+  };
+};
+
+export const loadAnimals = () => {
+  return (dispatch) => {
+    return animalApi.getAnimals().then(animals => {
+      dispatch(loadAnimalsSuccess(animals));
+    }).catch(err => {
+      throw (err);
     });
   };
 };

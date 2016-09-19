@@ -1,61 +1,67 @@
 $grey: #E6E6E6;
 
-.perfil-div {
+.profile-page-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.events-gallery-section {
+  max-width: 70%;
+  min-width: 300px;
+}
+
+.profile-section {
+  max-width: 20%;
+  min-width: 300px;
+  margin: 0 10px;
+}
+
+.perfil-div{
   border: 2px solid $grey;
   background-color: white;
   margin-bottom: 5px;
   padding: 5px;
-  position: relative;
-}
-
-.perfil-box {
-  font-weight: normal;
-  font-style: normal;
-  height: 100%;
-  font-size: 13px;
-  display: block;
-}
-
-.tabel-div {
-  width : 100%;
-  max-width : 280px;
-  padding: 10px 30px 10px 30px;
-
-  .table-borderless{
-    width: 100%;
-  }
-
-  tr{
-    height: 35px;
-  }
+  height: 300px;
 }
 
 .event-div{
-  height: 545px;
+  @extend .perfil-div;
+  height: 345px;
 }
 
-.gallery-div {
+.gallery-div{
+  @extend .perfil-div;
   height: 175px;
 }
 
-.info-div {
-  height: 725px;
+.perfil-box{
+  height: 610px;
+  font-size: 13px;
+}
 
-  .animal-input {
-  max-width: 100px;
-  max-height: 15px;
-
-    .form-control {
-      max-width: 150px;
-      margin-bottom: 3px;
-    }
+.tabel-div{
+  width : 120%;
+  max-width : 280px;
+  padding: 10px 30px 10px 30px;
+  .table-borderless{
+    width: 115%;
+  }
+  td{
+    height: 35px;
+  }
+  tr{
+    line-height: 10px; 
   }
 }
 
 .perfil-image {
   width: 100%;
   max-width: 400px;
-  max-height: 400px;
+  max-height: 300px;
 }
 
 .gallery-buttons {

@@ -133,6 +133,14 @@ $dark-orange: #ff6600;
   }
 }
 
+.profile-animal-input {
+  order: 1;
+  flex: 1 1 0;
+  align-self: auto;
+  min-width: 120px;
+  min-height: auto;
+}
+
 .button-animal {
   background: none;
   border: none;
