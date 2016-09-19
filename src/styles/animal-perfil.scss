@@ -1,19 +1,45 @@
 $grey: #E6E6E6;
 
+.profile-page-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-self: flex-start;
+  margin-bottom: 20px;
+}
+
+.events-gallery-section {
+  max-width: 70%;
+  min-width: 300px;
+}
+
+.profile-section {
+  max-width: 20%;
+  min-width: 300px;
+  margin: 0 10px;
+}
+
 .perfil-div{
   border: 2px solid $grey;
   background-color: white;
   margin-bottom: 5px;
   padding: 5px;
-  position: relative;
+}
+
+.event-div{
+  @extend .perfil-div;
+  height: 345px;
+}
+
+.gallery-div{
+  @extend .perfil-div;
+  height: 175px;
 }
 
 .perfil-box{
-  font-weight: normal;
-  font-style: normal;
-  height: 100%;
+  height: 525px;
   font-size: 13px;
-  display: block;
 }
 
 .tabel-div{
@@ -23,18 +49,6 @@ $grey: #E6E6E6;
   .table-borderless{
     width: 100%;
   }
-}
-
-.event-div{
-  height: 345px;
-}
-
-.gallery-div{
-  height: 175px;
-}
-
-.info-div{
-  height: 525px;
 }
 
 .perfil-image {
