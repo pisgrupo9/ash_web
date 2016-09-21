@@ -1,17 +1,20 @@
 import React, { PropTypes } from 'react';
 import Spinner from '../common/SpinnerComponet';
+import ImageLightBox from '../common/ImageLightBox';
 
 const InfoPerfil = ({ animal, styleClass, loading }) => {
 
   let vaccines = animal.vaccines;
   let castrado = animal.castrated;
-  let imagen = animal.profile_image;
+  let image = animal.profile_image;
 
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
       { loading ? (<Spinner active={loading} />) : (
       <div>
-        <img className={'perfil-image center'} src={imagen} />
+        <ImageLightBox imageStyle={'perfil-image center'}
+                        imageSmall={image}
+                        imageFull={image}/>
         <div className="center tabel-div" >
           <table className="table-borderless">
             <tbody>

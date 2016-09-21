@@ -88,6 +88,7 @@ class AnimalPerfilPage extends Component {
               </button>
               }
             </div>
+            { animal.images &&
             <ImagesGallery images={animal.images}
                             styleClass="slick-container"
                             onMoreImages={this.onMoreImages}
@@ -96,6 +97,7 @@ class AnimalPerfilPage extends Component {
                             edit={edit_gallery}
                             onChangeRemove={this.onRemoveImage}
                             />
+            }
           </div>
         </div>
       </div>
