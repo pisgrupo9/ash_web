@@ -5,13 +5,17 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
+import { Modal, Button } from 'react-bootstrap';
+import EditAnimalModal from './EditAnimalModal';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
+import '../styles/animal-form.scss';
 
 class AnimalPerfilPage extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
+      showModal: false,
       loading: true,
       loading_gallery: true,
       image_page: 1,
@@ -50,18 +54,19 @@ class AnimalPerfilPage extends Component {
     this.setState({ animal: animal });
   }
 
-  edit() {
-   this.setState({ edit: true });
+  onOpen() {
+    this.setState({ showModal: true });
   }
 
   onClose() {
     let animal = Object.assign({}, this.state.animal, this.props.animal);
-    this.setState({ animal: animal, edit: false });
+    this.setState({ animal: animal, showModal: false });
   }
 
   onSubmit() {
     this.props.animalActions.editAnimal(this.props.routeParams.id, this.state.animal);
-    this.setState({ edit: false });
+    this.setState({ loading: true });
+    this.onClose();
   }
 
   onChange(e) {
@@ -90,15 +95,43 @@ class AnimalPerfilPage extends Component {
     this.setState({ image_page: newPage });
   }
 
+  onDropProfile(img) {
+    const reader = new FileReader();
+    const file = img[0];
+    this.setState({ profilePic: file });
+    reader.readAsDataURL(file);
+    reader.onload = (upload) => {
+      let animal = this.state.animal;
+      animal["profile_image"] = upload.target.result;
+      this.setState({ animal });
+    };
+  }
+
   render() {
     const showButton = this.props.user.permissions === 'animals_edit' || 'super_user';
     const { animal } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
     return (
       <div className="profile-page-flex">
-        <InfoPerfil animal={animal}
-                    loading={loading}
-                    styleClass="perfil-div info-div profile-section"/>
+        <div className="perfil-div">
+          <InfoPerfil styleClass="info-div profile-section"
+                        loading={this.state.loading}
+                        animal={this.props.animal}/>
+          <div className="edit-button">
+            <Button className="button-animal" onClick={this.onOpen}>
+              <i className="material-icons">mode_edit</i>
+            </Button>
+          </div>
+          <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
+            <EditAnimalModal animal={this.state.animal}
+                              onChange={this.onChange}
+                              onSave={this.onSubmit}
+                              onClose={this.onClose}
+                              showModal={this.state.showModal}
+                              onDrop={this.onDropProfile}
+                              profilePic={this.state.profilePic}/>
+          </Modal>
+        </div>
         <div className="events-gallery-section">
           <div className="event-div">
             <p className="title">EVENTOS</p>

@@ -133,6 +133,20 @@ $dark-orange: #ff6600;
   }
 }
 
+.profile-animal-input {
+  order: 1;
+  flex: 1 1 0;
+  align-self: auto;
+  min-width: 198px;
+  min-height: auto;
+  margin: 0 7px;
+
+  .input-label {
+    font-weight: 300;
+    color: $dark-grey;
+  }
+}
+
 .button-animal {
   background: none;
   border: none;

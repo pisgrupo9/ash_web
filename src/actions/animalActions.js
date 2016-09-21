@@ -59,7 +59,7 @@ export const loadAnimalsSuccess = (response) => {
   return {
     type: types.LOAD_ANIMALS_SUCCESS,
     response
-  }
+  };
 };
 
 export const editAnimaSucces = () => {

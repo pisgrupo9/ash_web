@@ -3,7 +3,7 @@ import EditAnimalModal from '../../containers/EditAnimalModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 
-class  EditAnimalButton extends Component {
+class EditAnimalButton extends Component {
   constructor(props, context) {
     super(props, context);
 
