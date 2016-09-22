@@ -5,7 +5,7 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import EditAnimalModal from './EditAnimalModal';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
@@ -30,6 +30,7 @@ class AnimalPerfilPage extends Component {
 
   componentWillMount() {
     this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
+    this.props.animalActions.loadSpecies();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -71,8 +72,8 @@ class AnimalPerfilPage extends Component {
 
   onChange(e) {
     const field = e.target.name;
-    const booleanValue = field === 'vaccines' || field === 'castrated';
-    const value = booleanValue ? (e.target.value === 'true' ? true : false) : e.target.value;
+    const checkbox = field === 'vaccines' || field === 'castrated';
+    const value = checkbox ? e.target.checked : e.target.value;
     let animal = this.state.animal;
     animal[ field ] = value;
     this.setState({ animal: animal });
@@ -117,11 +118,9 @@ class AnimalPerfilPage extends Component {
           <InfoPerfil styleClass="info-div profile-section"
                         loading={this.state.loading}
                         animal={this.props.animal}/>
-          <div className="edit-button">
-            <Button className="button-animal" onClick={this.onOpen}>
-              <i className="material-icons">mode_edit</i>
-            </Button>
-          </div>
+          <button type="button" className="btn-circle" onClick={this.onOpen}>
+            <i className="material-icons color">mode_edit</i>
+          </button>
           <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
             <EditAnimalModal animal={this.state.animal}
                               onChange={this.onChange}
@@ -129,7 +128,8 @@ class AnimalPerfilPage extends Component {
                               onClose={this.onClose}
                               showModal={this.state.showModal}
                               onDrop={this.onDropProfile}
-                              profilePic={this.state.profilePic}/>
+                              profilePic={this.state.profilePic}
+                              species={this.props.species}/>
           </Modal>
         </div>
         <div className="events-gallery-section">
@@ -163,12 +163,13 @@ class AnimalPerfilPage extends Component {
   }
 }
 
-const { object } = PropTypes;
+const { object, array } = PropTypes;
 
 AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
   user: object.isRequired,
   animalActions: object.isRequired,
+  species: array.isRequired,
   routeParams: object.isRequired
 };
 
@@ -176,10 +177,12 @@ AnimalPerfilPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({
-  animal: state.animal,
-  user: state.user
-});
+const mapState = (state) => {
+  return {
+    species: state.species,
+    animal: state.animal
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {

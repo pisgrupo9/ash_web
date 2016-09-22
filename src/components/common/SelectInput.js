@@ -11,7 +11,7 @@ const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, 
                 onChange={onChange}
                 className="form-control"
                 value={value}>
-          {edit ? "" : <option value="">{defaultOption}</option>}
+          {!edit && <option value="">{defaultOption}</option>}
           {options.map(option => {
             return <option key={option.id} value={option.id}>{option.name}</option>;
           })}
@@ -32,8 +32,8 @@ SelectInput.propTypes = {
   defaultOption: string,
   value: string,
   error: string,
-  options: arrayOf(object),
-  edit: bool.isRequired
+  edit: bool.isRequired,
+  options: arrayOf(object)
 };
 
 export default SelectInput;

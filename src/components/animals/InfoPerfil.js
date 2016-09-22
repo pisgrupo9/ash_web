@@ -4,14 +4,15 @@ import ImageLightBox from '../common/ImageLightBox';
 
 const InfoPerfil = ({ animal, loading, styleClass }) => {
   let imagen = animal.profile_image;
-  let EspecieOption = animal.species == "Perro" || animal.species == "Gato";
+  let especieOption = animal.species == "Perro" || animal.species == "Gato";
+  let macho = animal.sex == "male";
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
       { loading ? (<Spinner active={loading} />) : (
       <div>
         <ImageLightBox imageStyle={'perfil-image center'}
-                        imageSmall={image}
-                        imageFull={image}/>
+                        imageSmall={imagen}
+                        imageFull={imagen}/>
         <div className="center tabel-div" >
           <table className="table-borderless">
             <tbody>
@@ -29,7 +30,7 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>SEXO:</td>
-                <td>{animal.sex}</td>
+                <td>{macho ? "Macho" : "Hembra"}</td>
               </tr>
               <tr>
                 <td>RAZA:</td>
@@ -49,11 +50,17 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>VACUNADO:</td>
-                <td>{EspecieOption && (animal.vaccines ? <font color="green"> SI </font> : <font color="red"> NO </font>)}</td>
+                <td>{especieOption &&
+                      (animal.vaccines ? <font color="green"> SI </font>
+                                        : <font color="red"> NO </font>)}
+                </td>
               </tr>
               <tr>
                 <td>CASTRADO:</td>
-                <td>{EspecieOption && (animal.castrated ? <font color="green"> SI </font> : <font color="red"> NO </font>)}</td>
+                <td>{especieOption &&
+                      (animal.castrated ? <font color="green"> SI </font>
+                                        : <font color="red"> NO </font>)}
+                </td>
               </tr>
             </tbody>
         </table>
@@ -69,7 +76,7 @@ const { object, string, bool } = PropTypes;
 InfoPerfil.propTypes = {
   animal: object.isRequired,
   loading: bool.isRequired,
-  styleClass: string.isRequired
+  styleClass: string
 };
 
 export default InfoPerfil;

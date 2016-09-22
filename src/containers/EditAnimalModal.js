@@ -4,14 +4,29 @@ import Input from '../components/common/Input';
 import '../styles/animal-perfil.scss';
 import '../styles/animal-form.scss';
 import ProfileDropzone from '../components/animals/ProfileDropzone';
+import { Checkbox } from 'react-bootstrap';
 
-const EditAnimalModal = ({ animal, onChange, onSave, onClose, onDrop, profilePic }) => {
+const EditAnimalModal = ({ animal, onChange, onSave, onClose, onDrop, profilePic, species }) => {
   const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
-  const yes_no = [ { id: "true", name: "SI" },
-                   { id: "false", name: "NO" } ];
-  let fecha_cumple = animal.birthdate && animal.birthdate.length == 10 ? animal.birthdate.substring(0, animal.birthdate.length - 3) : animal.birthdate;
-  let EspecieOption = animal.species == "Perro" || animal.species == "Gato";
+  let fecha_cumple = animal.birthdate &&
+                                animal.birthdate.length == 10
+                                ? animal.birthdate.substring(0, animal.birthdate.length - 3)
+                                : animal.birthdate;
+  const checkboxCastrated = (<Checkbox className="animal-input animal-checkbox"
+                                      name="castrated"
+                                      onChange={onChange}
+                                      checked={animal.castrated}>
+                              Castrado
+                            </Checkbox>);
+
+  const checkboxVaccines = (<Checkbox className="animal-input animal-checkbox"
+                                      name="vaccines"
+                                      onChange={onChange}
+                                      checked={animal.vaccines}>
+                              Vacunas
+                            </Checkbox>);
+  let showCheckboxes = animal.species == "Perro" || animal.species == "Gato";
 
   return (
     <div className="animal-form-wrapper">
@@ -22,6 +37,25 @@ const EditAnimalModal = ({ animal, onChange, onSave, onClose, onDrop, profilePic
       </div>
       <div className="form-container">
         <div className="animal-form">
+          <Input styleClass="profile-animal-input"
+                          name="chip_num"
+                          label="Num. Chip"
+                          type="text"
+                          value={animal.chip_num}
+                          onChange={onChange}/>
+          <Input styleClass="profile-animal-input"
+                          name="name"
+                          label="Nombre"
+                          type="text"
+                          value={animal.name}
+                          onChange={onChange}/>
+          <SelectInput styleClass="profile-animal-input"
+                      name="species_id"
+                      label="Especie"
+                      value="1"
+                      onChange={onChange}
+                      options={species}
+                      edit={true}/>
           <SelectInput styleClass="profile-animal-input"
                           name="sex"
                           label="Sexo"
@@ -53,22 +87,8 @@ const EditAnimalModal = ({ animal, onChange, onSave, onClose, onDrop, profilePic
                         type="date"
                         value={animal.death_date != null ? animal.death_date : ""}
                         onChange={onChange}/>
-          {EspecieOption &&
-          <SelectInput styleClass="profile-animal-input"
-                          name="vaccines"
-                          label="Vacunado"
-                          value={animal.vaccines.toString()}
-                          onChange={onChange}
-                          options={yes_no}
-                          edit={true}/>}
-          {EspecieOption &&
-          <SelectInput styleClass="profile-animal-input"
-                          name="castrated"
-                          label="Castrado"
-                          value={animal.castrated.toString()}
-                          onChange={onChange}
-                          options={yes_no}
-                          edit={true}/>}
+        { showCheckboxes ? checkboxCastrated : ''}
+        { showCheckboxes ? checkboxVaccines : ''}
           </div>
           <div className="animal-buttons">
             <input className="btn submit-button"
@@ -84,12 +104,13 @@ const EditAnimalModal = ({ animal, onChange, onSave, onClose, onDrop, profilePic
    );
 };
 
-const { object, func } = PropTypes;
+const { object, func, array } = PropTypes;
 
 EditAnimalModal.propTypes = {
   animal: object.isRequired,
   profilePic: object.isRequired,
   onSave: func.isRequired,
+  species: array.isRequired,
   onChange: func.isRequired,
   onClose: func.isRequired,
   onDrop: func.isRequired

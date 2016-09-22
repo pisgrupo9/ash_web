@@ -131,6 +131,19 @@ $dark-orange: #ff6600;
     font-weight: 300;
     color: $dark-grey;
   }
+  
+  
+  .animal-checkbox {
+    margin: 7px;
+    font-weight: 300;
+    color: $dark-grey;
+    flex: 0 0 0;
+  }
+
+  .checkbox + .checkbox {
+    margin-top: 7px;
+  }
+
 }
 
 .profile-animal-input {
