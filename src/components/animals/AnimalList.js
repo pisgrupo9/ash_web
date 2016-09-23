@@ -1,24 +1,32 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import AnimalItem from "./AnimalItem";
+import '../../styles/animal-list.scss';
 
-const AnimalList = ({ animals }) => {
+const AnimalList = ({ animals, onClick, selectedAnimalId }) => {
   return (
-    <div>
+    <div className="m-right30">
+      <div className="titles-container">
+        <div className="title-inside">NOMBRE</div>
+        <div className="title-inside">ESPECIE</div>
+        <div className="title-inside">ESTADO</div>
+      </div>
       { animals.map(animal => {
         return (
-          <Link className="form-link" to={`/animales/${animal.id}`} key={animal.id}>
-            <p>{`${animal.name}, Id: ${animal.id}`}</p>
-          </Link>
+          <AnimalItem animal={animal} key={animal.id}
+                                      selectedAnimalId={selectedAnimalId}
+                                      onClick={onClick}/>
         );
       })}
     </div>
   );
 };
 
-const { array } = PropTypes;
+const { array, func, string } = PropTypes;
 
 AnimalList.propTypes = {
-  animals: array.isRequired
+  animals: array.isRequired,
+  onClick: func.isRequired,
+  selectedAnimalId: string.isRequired
 };
 
 export default AnimalList;

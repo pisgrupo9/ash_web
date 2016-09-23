@@ -15,7 +15,7 @@ $light-grey: #F7F7F7;
 }
 
 .light-red-color {
-  color: $light-red  
+  color: $light-red
 }
 
 .pink-color {
@@ -31,19 +31,23 @@ $light-grey: #F7F7F7;
 }
 
 .black-color {
-  color: $black 
+  color: $black
 }
 
 .dark-grey-color {
-  color: $dark-grey 
+  color: $dark-grey
 }
 
 .grey-color {
-  color: $grey 
+  color: $grey
+}
+
+.not-so-dark-grey-color {
+  color: #CCCCCC;
 }
 
 .light-grey-color {
-  color: $light-grey 
+  color: $light-grey
 }
 
 #app {
@@ -90,7 +94,7 @@ html {
 }
 
 .footer, .content:after {
-  height: 50px; 
+  height: 50px;
   text-align: center;
 }
 
@@ -100,6 +104,10 @@ html {
 
 .m-bot30 {
   margin-bottom: 30px;
+}
+
+.m-right30 {
+  margin-right: 30px;
 }
 
 .w-100 {
@@ -159,7 +167,7 @@ html {
   text-align: center;
   background-color: white;
   cursor: wait;
-  
+
   .spinner-icon {
     display: inline-block;
   }
