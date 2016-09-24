@@ -18,21 +18,22 @@ class AddGalleryButton extends Component {
   }
 
   onOpen() {
-    this.setState({ showModal: true });
+    if (!this.props.disabled)
+      this.setState({ showModal: true });
   }
 
   render() {
     const showButton = this.props.userPermission === 'animals_edit' || 'super_user';
     const button = (
-                      <div>
-                        <button className="button-add-images" onClick={this.onOpen}>
-                          <Icon className="add-button orange-color" name="plus-circle"/>
-                        </button>
-                        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-                          <AddGalleryModal id={this.props.animalId} onClose={this.onClose} />
-                        </Modal>
-                      </div>
-                    );
+                    <div>
+                      <button className="button-add-images" onClick={this.onOpen}>
+                        <Icon className={'add-button' + (this.props.disabled ? ' grey-color' : ' orange-color')} name="plus-circle"/>
+                      </button>
+                      <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
+                        <AddGalleryModal id={this.props.animalId} onClose={this.onClose} />
+                      </Modal>
+                    </div>
+                  );
 
     return (
       <div>
@@ -42,11 +43,12 @@ class AddGalleryButton extends Component {
   }
 }
 
-const { string } = PropTypes;
+const { string, bool } = PropTypes;
 
 AddGalleryButton.propTypes = {
   userPermission: string.isRequired,
-  animalId: string.isRequired
+  animalId: string.isRequired,
+  disabled: bool
 };
 
 const mapState = (state) => {

@@ -22,6 +22,10 @@ class AnimalApi {
     return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/images?row=15&page=${page}`);
   }
 
+  static removeAnimalImages(id_animal, id_image) {
+    return api.delete(`${consts.API_STAGING_URL}/animals/${id_animal}/images/${id_image}`);
+  }
+
   static getAnimals() {
     return api.get(`${consts.API_STAGING_URL}/animals`);
   }

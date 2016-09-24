@@ -6,6 +6,7 @@ import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
 import '../styles/animal-perfil.scss';
+import { toastr } from 'react-redux-toastr';
 
 class AnimalPerfilPage extends Component {
   constructor(props, context) {
@@ -14,10 +15,13 @@ class AnimalPerfilPage extends Component {
       loading: true,
       loading_gallery: true,
       image_page: 1,
-      more_page: true
+      more_page: true,
+      edit_gallery: false
     };
 
     this.onMoreImages = this.onMoreImages.bind(this);
+    this.onRemoveImage = this.onRemoveImage.bind(this);
+    this.editGallery = this.editGallery.bind(this);
   }
 
   componentWillMount() {
@@ -25,16 +29,33 @@ class AnimalPerfilPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const { edit_gallery, image_page } = this.state;
     if (nextProps.animal.name) {
       this.setState({ loading: false });
     }
     if (nextProps.animal.images) {
-      let moreImages = nextProps.animal.images.length >= (15 * this.state.image_page);
+      let moreImages = edit_gallery || (nextProps.animal.images.length >= (15 * image_page));
       this.setState({ loading_gallery: false, more_page: moreImages });
     }
     if (nextProps.animal.uplaodImages) {
       this.setState({ loading_gallery: true, image_page: 1 });
     }
+    if (nextProps.animal.removeImages) {
+      this.setState({ loading_gallery: false });
+    }
+    if (nextProps.animal.error) {
+      toastr.error('ERROR', nextProps.animal.error);
+    }
+  }
+
+  editGallery() {
+    const { edit_gallery } = this.state;
+    this.setState({ edit_gallery: !edit_gallery });
+  }
+
+  onRemoveImage(image) {
+    this.props.animalActions.removePerfilAnimalImages(this.props.animal.id, image.id);
+    this.setState({ loading_gallery: true });
   }
 
   onMoreImages() {
@@ -45,11 +66,13 @@ class AnimalPerfilPage extends Component {
   }
 
   render() {
+    const showButton = this.props.user.permissions === 'animals_edit' || 'super_user';
     const { animal } = this.props;
+    const { loading, loading_gallery, edit_gallery } = this.state;
     return (
       <div className="profile-page-flex">
         <InfoPerfil animal={animal}
-                    loading={this.state.loading}
+                    loading={loading}
                     styleClass="perfil-div info-div profile-section"/>
         <div className="events-gallery-section">
           <div className="event-div">
@@ -58,16 +81,21 @@ class AnimalPerfilPage extends Component {
           <div className="gallery-div">
             <div className="gallery-buttons">
               <p className="center">Galería</p>
-              <AddGalleryButton animalId={this.props.routeParams.id}/>
+              <AddGalleryButton animalId={this.props.routeParams.id} disabled={edit_gallery}/>
+              { showButton &&
+              <button className={edit_gallery ? 'button-edit-galery active' : 'button-edit-galery'} onClick={this.editGallery}>
+                <i className="material-icons">mode_edit</i>
+              </button>
+              }
             </div>
-            { animal.images &&
             <ImagesGallery images={animal.images}
-                            loading={this.state.loading_gallery}
                             styleClass="slick-container"
                             onMoreImages={this.onMoreImages}
                             moreImages={this.state.more_page}
+                            loading={loading_gallery}
+                            edit={edit_gallery}
+                            onChangeRemove={this.onRemoveImage}
                             />
-            }
           </div>
         </div>
       </div>
@@ -79,6 +107,7 @@ const { object } = PropTypes;
 
 AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
+  user: object.isRequired,
   animalActions: object.isRequired,
   routeParams: object.isRequired
 };
@@ -88,7 +117,8 @@ AnimalPerfilPage.contextTypes = {
 };
 
 const mapState = (state) => ({
-  animal: state.animal
+  animal: state.animal,
+  user: state.user
 });
 
 const mapDispatch = (dispatch) => {
