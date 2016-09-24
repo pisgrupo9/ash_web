@@ -12,8 +12,12 @@ class AnimalPerfilPage extends Component {
     super(props, context);
     this.state = {
       loading: true,
-      loading_gallery: true
+      loading_gallery: true,
+      image_page: 1,
+      more_page: true
     };
+
+    this.onMoreImages = this.onMoreImages.bind(this);
   }
 
   componentWillMount() {
@@ -25,11 +29,19 @@ class AnimalPerfilPage extends Component {
       this.setState({ loading: false });
     }
     if (nextProps.animal.images) {
-      this.setState({ loading_gallery: false });
+      let moreImages = nextProps.animal.images.length >= (15 * this.state.image_page);
+      this.setState({ loading_gallery: false, more_page: moreImages });
     }
     if (nextProps.animal.uplaodImages) {
-        this.setState({ loading_gallery: true });
+      this.setState({ loading_gallery: true, image_page: 1 });
     }
+  }
+
+  onMoreImages() {
+    const { image_page } = this.state;
+    let newPage = image_page+1;
+    this.props.animalActions.showPerfilAnimalImages(this.props.animal.id, newPage);
+    this.setState({ image_page: newPage });
   }
 
   render() {
@@ -51,7 +63,10 @@ class AnimalPerfilPage extends Component {
             { animal.images &&
             <ImagesGallery images={animal.images}
                             loading={this.state.loading_gallery}
-                            styleClass="slick-container"/>
+                            styleClass="slick-container"
+                            onMoreImages={this.onMoreImages}
+                            moreImages={this.state.more_page}
+                            />
             }
           </div>
         </div>

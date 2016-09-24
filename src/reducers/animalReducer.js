@@ -7,11 +7,13 @@ const animalReducer = (state = initialState.animal, action) => {
     case types.SHOW_ANIMAL_PROFILE:
       return action.animal;
     case types.SHOW_ANIMAL_PROFILE_IMAGES_SUCCES: {
+      let newImages = state.images ? state.images : [];
       const { images } = action.response;
-      return Object.assign({}, state, { uplaodImages: false, images });
+      newImages=newImages.concat(images);
+      return Object.assign({}, state, { uplaodImages: false, images: newImages });
     }
     case types.UPLOAD_IMAGE_ANIMAL_SUCCESS: {
-      return Object.assign({}, state, { uplaodImages: true });
+      return Object.assign({}, state, { uplaodImages: true, images: [] });
     }
     default:
       return state;

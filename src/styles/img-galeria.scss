@@ -18,13 +18,13 @@ $orange: #E8A948;
     display: none;
   }
 
-  .slick-slide{
-    max-width: 400px;
-    opacity: 0;
-    height: 0;
-    filter:alpha(opacity=0);
-    -webkit-transition: all 0.5s ease-in-out 0s;
-    transition: all 0.5s ease-in-out 0s;
+  .slick-slide{    
+    max-width: 400px;   
+    opacity: 0;   
+    height: 0;    
+    filter:alpha(opacity=0);    
+    -webkit-transition: all 0.5s ease-in-out 0s;    
+    transition: all 0.5s ease-in-out 0s;    
   }
 
   .slick-slide.slick-active{

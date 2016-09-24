@@ -105,9 +105,9 @@ export const showPerfilAnimal = (id_animal) => {
   };
 };
 
-export const showPerfilAnimalImages = (id_animal) => {
+export const showPerfilAnimalImages = (id_animal, page) => {
   return (dispatch) => {
-    return animalApi.showAnimalImages(id_animal).then(animal => {
+    return animalApi.showAnimalImages(id_animal, page).then(animal => {
       dispatch(showAnimalPerfilImages(animal));
     }).catch(err => {
       throw (err);
