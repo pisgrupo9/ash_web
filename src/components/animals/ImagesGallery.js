@@ -85,7 +85,7 @@ class ImagesGallery extends Component {
                         );
     }
     const galleryView = () => {
-      if (!imageList.isEmpty) {
+      if (imageList.legenth > 0) {
         return (
           <Slider {...settings}>
             {imageList}
