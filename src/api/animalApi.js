@@ -18,8 +18,8 @@ class AnimalApi {
     return api.post(`${consts.API_STAGING_URL}/animals/${id}/images`, image);
   }
 
-  static showAnimalImages(id_animal) {
-    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/images`);
+  static showAnimalImages(id_animal, page) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/images?row=15&page=${page}`);
   }
 
   static getAnimals() {

@@ -9,10 +9,12 @@ class ImagesGallery extends Component {
   constructor(props, context) {
     super(props, context);
     this.state ={
+        sliderPos: 0,
         removeImage: []
       };
 
     this.removeImage = this.removeImage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,10 +34,22 @@ class ImagesGallery extends Component {
     this.setState({ removeImage });
   }
 
+  nextPage(newSlide) {
+    const { images, moreImages, onMoreImages } = this.props;
+    const { sliderPos } = this.state;
+    if (((images.length-newSlide) < 10)
+      && (sliderPos < newSlide)
+      && moreImages) {
+      onMoreImages();
+    }
+    this.setState({ sliderPos: newSlide });
+  }
+
   render() {
     const prevArrow = (<button className="nav-button"><i className="material-icons">keyboard_arrow_left</i></button>);
-    const nextArrow = (<button className="nav-button"><i className="material-icons">keyboard_arrow_right</i></button>);
-    const { images, styleClass, edit } = this.props;
+    const nextArrow = (<button className="nav-button" onClick={this.nextPage}><i className="material-icons">keyboard_arrow_right</i></button>);
+    const { images, styleClass, edit, rest } = this.props;
+    let pos = rest ? 0 : undefined;
     let settings = {
         infinite: false,
         centerMode: false,
@@ -44,7 +58,9 @@ class ImagesGallery extends Component {
         prevArrow: prevArrow,
         nextArrow: nextArrow,
         className: 'carouselSlider',
-        speed: 700,
+        afterChange: this.nextPage,
+        speed: 800,
+        slickGoTo: pos,
         responsive: [
                        {
                         breakpoint: 400,
@@ -109,7 +125,10 @@ ImagesGallery.propTypes = {
   styleClass: string,
   edit: bool,
   loading: bool.isRequired,
-  onChangeRemove: func
+  onMoreImages: func,
+  onChangeRemove: func,
+  moreImages: bool.isRequired,
+  rest: bool
 };
 
 export default ImagesGallery;
