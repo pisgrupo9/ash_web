@@ -22,7 +22,7 @@ class AddGalleryButton extends Component {
   }
 
   render() {
-    const showButton = this.props.userPermission === 'animals_edit';
+    const showButton = this.props.userPermission === 'animals_edit' || 'super_user';
     const button = (
                       <div>
                         <button className="button-add-images" onClick={this.onOpen}>

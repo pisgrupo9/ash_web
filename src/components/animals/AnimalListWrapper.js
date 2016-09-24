@@ -20,7 +20,7 @@ class AnimalListWrapper extends Component {
   }
 
   onClick(animalId) {
-    const equalsId = this.state.selectedAnimalId === animalId.toString()
+    const equalsId = this.state.selectedAnimalId === animalId.toString();
     this.setState({ selectedAnimalId: equalsId ? '' : animalId.toString() });
   }
 

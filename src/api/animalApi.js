@@ -31,6 +31,11 @@ export default AnimalApi;
 
 export const parseAnimal = (animal) => {
   let parsedAnimal = Object.assign({}, animal);
+  for (let prop in parsedAnimal) {
+    if (parsedAnimal[prop] === '') {
+      delete parsedAnimal[prop];
+    }
+  }
   parsedAnimal.birthdate = `${parsedAnimal.birthdate}-1`;
   return parsedAnimal;
 };
