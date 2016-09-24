@@ -1,44 +1,20 @@
-import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as animalActions from '../actions/animalActions';
-import AddAnimalButton from '../components/animals/AddAnimalButton';
-import AnimalList from '../components/animals/AnimalList';
+import React from 'react';
+import AnimalListWrapper from '../components/animals/AnimalListWrapper';
+import '../styles/animal-list.scss';
 
-class AnimalListPage extends Component {
-  constructor(props, context) {
-    super(props, context);
-  }
-
-  componentWillMount() {
-    this.props.actions.loadAnimals();
-  }
-
-  render() {
-    const { animals } = this.props;
-
+const AnimalListPage = () => {
     return (
-      <div>
-        <AddAnimalButton />
-        <AnimalList animals={animals}/>
+      <div className="list-flex">
+        <div className="filter-section">
+          <div className="filter-div">
+            <p>Filtros coming soon</p>
+          </div>
+        </div>
+        <div className="wrapper-flex">
+          <AnimalListWrapper />
+        </div>
       </div>
     );
-  }
-}
-
-const { array, object } = PropTypes;
-
-AnimalListPage.propTypes = {
-  animals: array.isRequired,
-  actions: object.isRequired
 };
 
-const mapState = (state) => ({ animals: state.animals });
-
-const mapDispatch = (dispatch) => {
-  return {
-    actions: bindActionCreators(animalActions, dispatch)
-  };
-};
-
-export default connect(mapState, mapDispatch)(AnimalListPage);
+export default AnimalListPage;

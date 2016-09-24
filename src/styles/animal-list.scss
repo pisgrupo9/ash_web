@@ -1,0 +1,128 @@
+$grey: #E6E6E6;
+$light-grey: #F7F7F7;
+$dark-grey: #9B9B9B;
+$orange: #FF4444;
+
+.list-flex {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-self: flex-start;
+  margin: 0 20px 20px 20px;
+}
+
+.filter-section {
+  border: 2px solid $grey;
+  background-color: white;
+  margin-bottom: 5px;
+  flex: 1;
+  margin-right: 20px;
+  max-width: 200px;
+  min-width: 100px;
+}
+
+.wrapper-flex {
+  border: 2px solid $grey;
+  background-color: white;
+  margin-bottom: 5px;
+  flex: 4;
+  min-width: 400px;
+}
+
+.animal-item-container {
+  display: flex;
+  background-color: $light-grey;
+  margin-bottom: 3px;
+  margin-top: 4px;
+  height: 38px;
+  padding: 5px;
+}
+
+.animal-item-container:hover {
+    background-color: $grey;
+}
+
+.selected-item-container {
+  @extend .animal-item-container;
+  background-color: $grey;
+}
+
+
+.titles-container {
+  display: flex;
+  margin-left: 48px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.title-inside {
+  flex: 1;
+}
+
+.animal-header {
+  margin-bottom: 50px;
+  font-size: 20px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+}
+
+.general-list {
+  margin: 40px 10px 80px 40px;
+}
+
+.clear { clear:both; }
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.arrow-button {
+  margin-left: 5px;
+  margin-right: 5px;
+  color: $dark-grey;
+}
+
+.animal-name {
+  font-weight: 500;
+  font-size: 15px;
+  color: $dark-grey;
+  flex: 1;
+  padding: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.animal-state-species {
+  font-weight: 500;
+  font-size: 13px;
+  flex: 1;
+  padding: 5px;
+}
+
+.button-show {
+  border: none;
+  background: none;
+}
+
+.adopted-animal {
+  color: green;
+}
+
+.not-adopted-animal {
+  color: $orange;
+}
+
+.link-style {
+  color: inherit;
+}
+
+.link-style:hover {
+  color: inherit;
+}
