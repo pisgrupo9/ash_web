@@ -7,6 +7,10 @@ export const ERROR_PASS_SHORT = 'Contraseña muy corta(minimo 8 caracteres)';
 export const CARGANDO_IMAGEN = 'Cargando imágenes';
 export const SUCCES_CREATE_ANIMAL = 'Nuevo animal creado con exito';
 export const GALLERY_LOAD_ERROR = 'Ocurrio un error al agregar las imagenes';
-export const GALLRTY_ADD_IMAGEN = (cantImgs) => {
+export const GALLERY_ADD_IMAGEN = (cantImgs) => {
                                     return 'Se agregaron '+ cantImgs +' nuevas fotos a la galeria';
+                                  };
+export const ERROR_LESS_DATE = 'Debe ser menor a la fecha actual';
+export const ERROR_GREATER_DATE = (dateMsg) => {
+                                    return `Debe ser mayor a la fecha de ${dateMsg}`;
                                   };
