@@ -153,10 +153,10 @@ export const removePerfilAnimalImages = (id_animal, id_image) => {
   };
 };
 
-export const loadAnimals = () => {
+export const loadAnimals = (col, row) => {
   return (dispatch) => {
-    return animalApi.getAnimals().then(animals => {
-      dispatch(loadAnimalsSuccess(animals));
+    return animalApi.getAnimals(col, row).then(animals => {
+      dispatch(loadAnimalsSuccess(animals, col));
     }).catch(err => {
       throw (err);
     });

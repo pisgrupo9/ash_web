@@ -13,5 +13,7 @@ export default {
     id: ''
   },
   animal: {},
-  animals: []
+  animals: {
+    total_pages: 0,
+    animals: [] }
 };
