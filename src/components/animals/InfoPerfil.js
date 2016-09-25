@@ -5,7 +5,6 @@ import ImageLightBox from '../common/ImageLightBox';
 const InfoPerfil = ({ animal, loading, styleClass }) => {
   let imagen = animal.profile_image;
   let especieOption = animal.species == "Perro" || animal.species == "Gato";
-  let macho = animal.sex == "male";
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
       { loading ? (<Spinner active={loading} />) : (
@@ -30,7 +29,7 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>SEXO:</td>
-                <td>{macho ? "Macho" : "Hembra"}</td>
+                <td>{animal.sex}</td>
               </tr>
               <tr>
                 <td>RAZA:</td>

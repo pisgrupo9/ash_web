@@ -5,8 +5,7 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
-import { Modal } from 'react-bootstrap';
-import EditAnimalModal from './EditAnimalModal';
+import EditAnimalButton from '../components/animals/EditAnimalButton';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
 import '../styles/animal-form.scss';
@@ -15,7 +14,6 @@ class AnimalPerfilPage extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      showModal: false,
       loading: true,
       loading_gallery: true,
       image_page: 1,
@@ -23,6 +21,7 @@ class AnimalPerfilPage extends Component {
       edit_gallery: false
     };
 
+    this.loading = this.loading.bind(this);
     this.onMoreImages = this.onMoreImages.bind(this);
     this.onRemoveImage = this.onRemoveImage.bind(this);
     this.editGallery = this.editGallery.bind(this);
@@ -30,7 +29,6 @@ class AnimalPerfilPage extends Component {
 
   componentWillMount() {
     this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
-    this.props.animalActions.loadSpecies();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,22 +48,11 @@ class AnimalPerfilPage extends Component {
     }
     if (nextProps.animal.error) {
       toastr.error('ERROR', nextProps.animal.error);
+      this.setState({ loading_gallery: true });
     }
-    let animal = Object.assign({}, this.state.animal, nextProps.animal);
-    this.setState({ animal: animal });
   }
 
-  onOpen() {
-    this.setState({ showModal: true });
-  }
-
-  onClose() {
-    let animal = Object.assign({}, this.state.animal, this.props.animal);
-    this.setState({ animal: animal, showModal: false });
-  }
-
-  onSubmit() {
-    this.props.animalActions.editAnimal(this.props.routeParams.id, this.state.animal);
+  loading() {
     this.setState({ loading: true });
     this.onClose();
   }
@@ -118,19 +105,7 @@ class AnimalPerfilPage extends Component {
           <InfoPerfil styleClass="info-div profile-section"
                         loading={this.state.loading}
                         animal={this.props.animal}/>
-          <button type="button" className="btn-circle" onClick={this.onOpen}>
-            <i className="material-icons color">mode_edit</i>
-          </button>
-          <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-            <EditAnimalModal animal={this.state.animal}
-                              onChange={this.onChange}
-                              onSave={this.onSubmit}
-                              onClose={this.onClose}
-                              showModal={this.state.showModal}
-                              onDrop={this.onDropProfile}
-                              profilePic={this.state.profilePic}
-                              species={this.props.species}/>
-          </Modal>
+          <EditAnimalButton loading={this.loading} animal={this.props.animal} route_id={this.props.routeParams.id}/>
         </div>
         <div className="events-gallery-section">
           <div className="event-div">
@@ -163,13 +138,12 @@ class AnimalPerfilPage extends Component {
   }
 }
 
-const { object, array } = PropTypes;
+const { object } = PropTypes;
 
 AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
   user: object.isRequired,
   animalActions: object.isRequired,
-  species: array.isRequired,
   routeParams: object.isRequired
 };
 
@@ -179,7 +153,6 @@ AnimalPerfilPage.contextTypes = {
 
 const mapState = (state) => {
   return {
-    species: state.species,
     animal: state.animal
   };
 };
