@@ -62,14 +62,19 @@ $orange: #FF4444;
 }
 
 .animal-header {
-  margin-bottom: 50px;
+  overflow: hidden;
   font-size: 20px;
   margin-left: 20px;
   letter-spacing: 1px;
 }
 
+.animal-header-title {
+  float: left;
+  margin-bottom: 15px;
+}
+
 .general-list {
-  margin: 40px 10px 80px 40px;
+  margin: 30px 10px 80px 40px;
 }
 
 .clear { clear:both; }

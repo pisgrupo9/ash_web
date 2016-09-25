@@ -76,11 +76,11 @@ class AnimalPerfilPage extends Component {
                     styleClass="perfil-div info-div profile-section"/>
         <div className="events-gallery-section">
           <div className="event-div">
-            <p>Proximamente Eventos</p>
+            <p className="title">EVENTOS</p>
           </div>
           <div className="gallery-div">
             <div className="gallery-buttons">
-              <p className="center">Galería</p>
+              <p className="title center">GALERÍA</p>
               <AddGalleryButton animalId={this.props.routeParams.id} disabled={edit_gallery}/>
               { showButton &&
               <button className={edit_gallery ? 'button-edit-galery active' : 'button-edit-galery'} onClick={this.editGallery}>
