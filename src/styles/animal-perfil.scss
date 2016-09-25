@@ -12,6 +12,15 @@ $white: #FFFFFF;
   margin-bottom: 20px;
 }
 
+.mini-profile-flex {
+  display: flex;
+  flex-flow: row wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  algin-content: stretch; 
+  flex-wrap: wrap;
+}
+
 .events-gallery-section {
   max-width: 70%;
   width: 70%;
@@ -49,9 +58,25 @@ $white: #FFFFFF;
 .tabel-div{
   width : 100%;
   max-width : 280px;
+  margin: 0px;
   padding: 10px 30px 10px 30px;
   .table-borderless{
     width: 100%;
+  }
+}
+
+.mini-tabel-div{
+  background-color: white;
+  padding: 10px 30px 10px 30px;
+  border: 3px solid white;
+  text-align:center; 
+  tbody {
+    border: 2px solid $grey;
+  }
+  td{
+    border: 2px solid $grey;
+    width: 160px;
+    padding: 10px;
   }
 }
 
@@ -59,6 +84,12 @@ $white: #FFFFFF;
   width: 100%;
   max-width: 400px;
   max-height: 300px;
+}
+
+.mini-perfil-image {
+  width: 100%;
+  max-width: 100px;
+  max-height: 88px;
 }
 
 .gallery-buttons {
