@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as messages from '../constants/apiMessage';
 import * as animalActions from '../actions/animalActions';
 import '../styles/animal-form.scss';
+import UploadImageMessage from '../components/common/UploadImageMessage';
 import ImagesDropzone from '../components/common/ImagesDropzone';
 import ModalAnimalButtons from '../components/common/ModalAnimalButtons';
 import { toastr } from 'react-redux-toastr';
@@ -35,9 +37,9 @@ class AddGalleryModal extends Component {
       this.props.actions.showPerfilAnimalImages(this.props.id);
       if (success_upload) {
         let cantImgs = this.state.images.length;
-        toastr.info('Galeria', `Se agregaron ${cantImgs} nuevas fotos a la galeria`);
+        toastr.info('Galeria', messages.GALLRTY_ADD_IMAGEN(cantImgs));
       } else {
-        toastr.error('Galeria', 'Ocurrio un error al agregar las imagenes');
+        toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
       }
       this.onClose();
     }
@@ -90,12 +92,7 @@ class AddGalleryModal extends Component {
   }
 
   render() {
-    const loadingImagesView = (<div className="loading-container">
-                                <span className="loading-text">Cargando imagenes </span>
-                                <div className="loading-images">
-                                  <i className="material-icons loading-icon">pets</i>
-                                </div>
-                              </div>);
+    const loadingImagesView = (<UploadImageMessage />);
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> AGREGAR IMAGENES </h2>
                     <ImagesDropzone title="Galeria"

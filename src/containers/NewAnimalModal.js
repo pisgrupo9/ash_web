@@ -1,11 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import * as messages from '../constants/apiMessage';
 import * as animalActions from '../actions/animalActions';
 import AnimalForm from '../components/animals/AnimalForm';
 import '../styles/animal-form.scss';
 import * as valid from '../util/validateForm';
 import Spinner from 'react-spinkit';
+import UploadImageMessage from '../components/common/UploadImageMessage';
 import { toastr } from 'react-redux-toastr';
 
 class NewAnimalModal extends Component {
@@ -76,7 +78,7 @@ class NewAnimalModal extends Component {
     if (nextProps.success) {
       this.setState({ uploading_images: true });
       if (this.state.images.length === 0) {
-        toastr.success('', 'Nuevo animal creado con exito');
+        toastr.success('', messages.SUCCES_CREATE_ANIMAL);
         this.onClose();
       } else if (this.state.images_to_send) {
         let success_upload = this.state.success_uploading_images;
@@ -87,11 +89,11 @@ class NewAnimalModal extends Component {
         }
         if (noMoreImages) {
           if (success_upload) {
-            toastr.success('', 'Nuevo animal creado con exito');
+            toastr.success('', messages.SUCCES_CREATE_ANIMAL);
             let cantImgs = this.state.images.length;
-            toastr.info('Galeria', `Se agregaron ${cantImgs} nuevas fotos a la galeria`);
+            toastr.info('Galeria', messages.GALLRTY_ADD_IMAGEN(cantImgs));
           } else {
-            toastr.error('Galeria', 'Ocurrio un error al agregar las imagenes');
+            toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
           }
           this.onClose();
         }
@@ -189,12 +191,7 @@ class NewAnimalModal extends Component {
     const loadingView = (<div className="loading-container">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                         </div>);
-    const loadingImagesView = (<div className="loading-container">
-                                <span className="loading-text">Cargando imagenes </span>
-                                <div className="loading-images">
-                                  <i className="material-icons loading-icon">pets</i>
-                                </div>
-                              </div>);
+    const loadingImagesView = (<UploadImageMessage />);
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> INGRESO DE ANIMALES </h2>
                     <AnimalForm animal={this.state.animal}
