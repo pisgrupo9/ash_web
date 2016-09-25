@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import loginApi from '../api/loginApi';
 import * as session from './sessionActions';
+import * as userAction from './userActions';
 
 export const loginUser = (response) => {
   return {
@@ -22,6 +23,7 @@ export const login = (user, history) => {
         session.saveSession(response);
         history.push(`/`);
         dispatch(loginUser(response));
+        userAction.showLoginUser()(dispatch);
       },
       error => {
         dispatch(loginError(error));

@@ -8,30 +8,18 @@ import Spinner from '../common/SpinnerComponet';
 class ImagesGallery extends Component {
   constructor(props, context) {
     super(props, context);
+
     this.state ={
         sliderPos: 0,
-        removeImage: []
       };
 
     this.removeImage = this.removeImage.bind(this);
     this.nextPage = this.nextPage.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (!nextProps.edit) {
-      this.setState({
-            removeImage: []
-          });
-    }
-  }
-
-  removeImage(index, imgUrl) {
-    const { removeImage } = this.state;
-    removeImage[index] = true;
-    if (this.props.onChangeRemove) {
-      this.props.onChangeRemove(imgUrl, index);
-    }
-    this.setState({ removeImage });
+  removeImage(index, image) {
+    if (this.props.onChangeRemove)
+      this.props.onChangeRemove(image, index);
   }
 
   nextPage(newSlide) {
@@ -48,8 +36,7 @@ class ImagesGallery extends Component {
   render() {
     const prevArrow = (<button className="nav-button"><i className="material-icons">keyboard_arrow_left</i></button>);
     const nextArrow = (<button className="nav-button" onClick={this.nextPage}><i className="material-icons">keyboard_arrow_right</i></button>);
-    const { images, styleClass, edit, rest } = this.props;
-    let pos = rest ? 0 : undefined;
+    const { images, styleClass, edit, loading } = this.props;
     let settings = {
         infinite: false,
         centerMode: false,
@@ -57,10 +44,9 @@ class ImagesGallery extends Component {
         lazyLoad: true,
         prevArrow: prevArrow,
         nextArrow: nextArrow,
-        className: 'carouselSlider',
+        className: 'carouselSlider' + (loading ? ' hiden' : ''),
         afterChange: this.nextPage,
         speed: 800,
-        slickGoTo: pos,
         responsive: [
                        {
                         breakpoint: 400,
@@ -82,23 +68,22 @@ class ImagesGallery extends Component {
     };
     let imageList = [];
     for (let i = 0; images && i < images.length; i++) {
-      if (!this.state.removeImage[i])
-          imageList.push(
-                        <div key={'div'+i} className="img-container" >
-                          <img className="img-galery" src={images[i].thumb} />
-                            {edit &&
-                              <button
-                                className="btn-img-remove"
-                                onClick={() => {
-                                   this.removeImage(i, images[i]);
-                                  }
+        imageList.push(
+                      <div key={'div'+i} className="img-container" >
+                        <img className="img-galery" src={images[i].thumb} />
+                          {edit &&
+                            <button
+                              className="btn-img-remove"
+                              onClick={() => {
+                                 this.removeImage(i, images[i]);
                                 }
-                              >
-                              <i className="material-icons">clear</i>
-                              </button>
-                            }
-                        </div>
-                        );
+                              }
+                            >
+                            <i className="material-icons">clear</i>
+                            </button>
+                          }
+                      </div>
+                      );
     }
     const galleryView = () => {
       if (imageList.length > 0) {
@@ -112,7 +97,8 @@ class ImagesGallery extends Component {
 
     return (
       <div className={styleClass}>
-        { this.props.loading ? (<Spinner active={this.props.loading} />) : galleryView() }
+        { loading && (<Spinner active={loading} />) }
+        { galleryView() }
       </div>
     );
   }
@@ -121,14 +107,13 @@ class ImagesGallery extends Component {
 const { array, string, bool, func } = PropTypes;
 
 ImagesGallery.propTypes = {
-  images: array.isRequired,
+  images: array,
   styleClass: string,
   edit: bool,
   loading: bool.isRequired,
   onMoreImages: func,
   onChangeRemove: func,
-  moreImages: bool.isRequired,
-  rest: bool
+  moreImages: bool.isRequired
 };
 
 export default ImagesGallery;

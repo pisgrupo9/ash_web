@@ -1,4 +1,7 @@
 $grey: #E6E6E6;
+$orange: #E8A948;
+$orange-dark: #e0b36d;
+$white: #FFFFFF;
 
 .profile-page-flex {
   display: flex;
@@ -62,6 +65,36 @@ $grey: #E6E6E6;
   position: relative;
   margin-bottom: 24px;
 }
+
+.button-edit-galery{
+  background: $orange;
+  border: none;
+  position: absolute;
+  top: 3px;
+  right: 44px;
+  border-radius: 200px;
+  height: 31px;
+  width: 31px;
+  padding-top: 3px;
+  padding-right: 0px;
+  padding-left: 2px;
+  color: $white;
+  margin-right: 6px;
+  box-shadow: 1px 1px 1px #888888;
+  .edit-button {
+    padding-top: 5px;
+    text-shadow: 1px 1px 1px #ccc;
+    font-size: 30px;
+    margin: 0;
+    
+
+  }
+}
+
+.button-edit-galery.active{
+    background: $orange-dark;
+    box-shadow: inset 2px 3px 5px #777777;
+ }
 
 .slick-container {
   width: 97%;
