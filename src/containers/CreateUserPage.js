@@ -165,7 +165,11 @@ CreateUserPage.contextTypes = {
 const mapState = (state) => {
   const errors = {};
   for (let error in state.userForm.error) {
-    errors[error] = state.userForm.error[error][0];
+    if (error === 'first_name') {
+      errors.name = state.userForm.error[error][0];
+    } else {
+      errors[error] = state.userForm.error[error][0];
+    }
   }
 
   return {
