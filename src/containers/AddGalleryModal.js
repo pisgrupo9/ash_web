@@ -37,7 +37,7 @@ class AddGalleryModal extends Component {
       this.props.actions.showPerfilAnimalImages(this.props.id);
       if (success_upload) {
         let cantImgs = this.state.images.length;
-        toastr.info('Galeria', messages.GALLRTY_ADD_IMAGEN(cantImgs));
+        toastr.info('Galeria', messages.GALLERY_ADD_IMAGEN(cantImgs));
       } else {
         toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
       }

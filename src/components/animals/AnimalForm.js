@@ -56,6 +56,14 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                       error={errors.sex}
                        />
         <Input styleClass="animal-input"
+                name="weight"
+                label="Peso"
+                type="number"
+                value={animal.weight}
+                onChange={onChange}
+                error={errors.weight}
+                 />
+        <Input styleClass="animal-input"
                 name="admission_date"
                 label="Fecha de ingreso *"
                 type="date"

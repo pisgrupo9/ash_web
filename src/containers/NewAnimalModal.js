@@ -26,7 +26,8 @@ class NewAnimalModal extends Component {
         death_date: '',
         castrated: false,
         vaccines: false,
-        profile_image: ''
+        profile_image: '',
+        weight: ''
       },
       errors: {
         chip_num: '',
@@ -39,7 +40,8 @@ class NewAnimalModal extends Component {
         death_date: '',
         castrated: '',
         vaccines: '',
-        profile_image: ''
+        profile_image: '',
+        weight: ''
       },
       requiredFields: {
         chip_num: false,
@@ -52,7 +54,8 @@ class NewAnimalModal extends Component {
         death_date: false,
         castrated: false,
         vaccines: false,
-        profile_image: true
+        profile_image: true,
+        weight: false
       },
       loading: true,
       images_to_send: 0,
@@ -76,6 +79,7 @@ class NewAnimalModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.success) {
+      this.props.actions.loadAnimals();
       this.setState({ uploading_images: true });
       if (this.state.images.length === 0) {
         toastr.success('', messages.SUCCES_CREATE_ANIMAL);
@@ -91,7 +95,7 @@ class NewAnimalModal extends Component {
           if (success_upload) {
             toastr.success('', messages.SUCCES_CREATE_ANIMAL);
             let cantImgs = this.state.images.length;
-            toastr.info('Galeria', messages.GALLRTY_ADD_IMAGEN(cantImgs));
+            toastr.info('Galeria', messages.GALLERY_ADD_IMAGEN(cantImgs));
           } else {
             toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
           }
@@ -119,11 +123,25 @@ class NewAnimalModal extends Component {
     }
   }
 
+  isDateType(name) {
+    return name === 'death_date' || name === 'birthdate' || name === 'admission_date';
+  }
+
   validateForm(animal) {
     let errors = this.state.errors;
+    const death_or_addmission = (name) => {
+      return name === 'death_date' || name === 'admission_date';
+    };
+
     for (let name in animal) {
       if (this.state.requiredFields[name]) {
         errors[name] = valid.validateEmptyField(name, animal[name]);
+      }
+      if (animal[name] && this.isDateType(name)) {
+        errors[name] = valid.lessThanToday(animal[name]);
+        if (!errors.birthdate && !errors[name] && death_or_addmission(name)) {
+          errors[name] = valid.compareDates(animal[name], animal.birthdate, 'Nacimiento');
+        }
       }
     }
     this.setState({ errors });
