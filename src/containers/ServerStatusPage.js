@@ -10,6 +10,10 @@ class ServerStatusPage extends Component {
     super(props, context);
   }
 
+  componentWillMount() {
+    this.props.actions.loadServerStatus();
+  }
+
   render() {
     const { serverStatus } = this.props;
     let online = serverStatus.online ? 'Conectado' : 'No conectado';
