@@ -54,16 +54,6 @@ class AnimalPerfilPage extends Component {
 
   loading() {
     this.setState({ loading: true });
-    this.onClose();
-  }
-
-  onChange(e) {
-    const field = e.target.name;
-    const checkbox = field === 'vaccines' || field === 'castrated';
-    const value = checkbox ? e.target.checked : e.target.value;
-    let animal = this.state.animal;
-    animal[ field ] = value;
-    this.setState({ animal: animal });
   }
 
   editGallery() {
@@ -103,9 +93,9 @@ class AnimalPerfilPage extends Component {
       <div className="profile-page-flex">
         <div className="perfil-div">
           <InfoPerfil styleClass="info-div profile-section"
-                        loading={this.state.loading}
-                        animal={this.props.animal}/>
-          <EditAnimalButton loading={this.loading} animal={this.props.animal} route_id={this.props.routeParams.id}/>
+                        loading={loading}
+                        animal={animal}/>
+          <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
         </div>
         <div className="events-gallery-section">
           <div className="event-div">

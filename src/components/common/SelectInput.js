@@ -32,7 +32,6 @@ SelectInput.propTypes = {
   defaultOption: string,
   value: string,
   error: string,
-  edit: bool.isRequired,
   options: arrayOf(object)
 };
 

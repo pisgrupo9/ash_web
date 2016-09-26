@@ -6,7 +6,7 @@ import { Checkbox } from 'react-bootstrap';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
-const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile }) => {
+const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
   const genders = [ { id: "male", name: "Macho" },
                     { id: "female", name: "Hembra" } ];
   let fecha_cumple = animal.birthdate &&
@@ -40,51 +40,59 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           label="Num. Chip"
                           type="text"
                           value={animal.chip_num != null ? animal.chip_num : ""}
-                          onChange={onChange}/>
+                          onChange={onChange}
+                          error={errors.chip_num}/>
           <Input styleClass="profile-animal-input"
                           name="name"
                           label="Nombre"
                           type="text"
                           value={animal.name != null ? animal.name : ""}
-                          onChange={onChange}/>
+                          onChange={onChange}
+                          error={errors.name}/>
           <SelectInput styleClass="profile-animal-input"
                       name="species_id"
                       label="Especie"
                       value={animal.species_id.toString()}
                       onChange={onChange}
                       options={species}
-                      edit={true}/>
+                      edit={true}
+                      error={errors.species_id}/>
           <SelectInput styleClass="profile-animal-input"
                           name="sex"
                           label="Sexo"
                           value={animal.sex}
                           onChange={onChange}
                           options={genders}
-                          edit={false}/>
+                          edit={false}
+                          error={errors.sex}/>
           <Input styleClass="profile-animal-input"
                           name="race"
                           label="Raza"
                           type="text"
                           value={animal.race != null ? animal.race : ""}
-                          onChange={onChange}/>
+                          onChange={onChange}
+                          error={errors.race}/>
           <Input styleClass="profile-animal-input"
-                            name="birthdate"
-                            label="Fecha de Nacimiento"
-                            type="month"
-                            value={fecha_cumple}
-                            onChange={onChange}/>
+                          name="birthdate"
+                          label="Fecha de Nacimiento"
+                          type="month"
+                          value={fecha_cumple}
+                          onChange={onChange}
+                          error={errors.dates}/>
           <Input styleClass="profile-animal-input"
                         name="admission_date"
                         label="Fecha de Ingreso"
                         type="date"
                         value={animal.admission_date}
-                        onChange={onChange}/>
+                        onChange={onChange}
+                        error={errors.dates}/>
           <Input styleClass="profile-animal-input"
                         name="death_date"
                         label="Fecha de Muerte"
                         type="date"
                         value={animal.death_date != null ? animal.death_date : ""}
-                        onChange={onChange}/>
+                        onChange={onChange}
+                        error={errors.dates}/>
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
           </div>
@@ -111,7 +119,8 @@ AnimalEditForm.propTypes = {
   onSave: func.isRequired,
   onClose: func.isRequired,
   onChange: func.isRequired,
-  onDropProfile: func.isRequired
+  onDropProfile: func.isRequired,
+  errors: object.isRequired
 };
 
 export default AnimalEditForm;

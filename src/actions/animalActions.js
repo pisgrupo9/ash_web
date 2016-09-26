@@ -62,9 +62,10 @@ export const loadAnimalsSuccess = (response) => {
   };
 };
 
-export const editAnimalSucces = () => {
+export const editAnimalSucces = (response) => {
   return {
     type: types.EDIT_ANIMAL_SUCCESS,
+    response
   };
 };
 
@@ -165,8 +166,8 @@ export const loadAnimals = () => {
 export const editAnimal = (id_animal, animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
-    return animalApi.editAnimal(id_animal, animalJson).then(() => {
-      dispatch(editAnimalSucces());
+    return animalApi.editAnimal(id_animal, animalJson).then(response => {
+      dispatch(editAnimalSucces(response));
       showPerfilAnimal(id_animal)(dispatch);
     }).catch(err => {
       dispatch(editAnimalError(err));

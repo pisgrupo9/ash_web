@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
 import AnimalEditForm from '../components/animals/AnimalEditForm';
+import * as valid from '../util/validateForm';
 import '../styles/animal-perfil.scss';
 import '../styles/animal-form.scss';
 
@@ -36,7 +37,20 @@ class EditAnimalModal extends Component {
         death_date: false,
         race: false,
         castrated: false,
-        vaccines: false,
+        vaccines: false
+      },
+      errors: {
+        chip_num: '',
+        species_id: '',
+        name: '',
+        profile_image: '',
+        sex: '',
+        admission_date: '',
+        birthdate: '',
+        death_date: '',
+        race: '',
+        castrated: '',
+        vaccines: ''
       }
     };
 
@@ -50,25 +64,43 @@ class EditAnimalModal extends Component {
     this.props.animalActions.loadSpecies();
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.success) {
+      this.props.loading();
+      this.onClose();
+    }
     let animal = Object.assign({}, this.state.animal, this.props.animal);
     this.setState({ animal: animal });
   }
 
   onClose() {
+    this.props.animalActions.cancelAnimalForm();
     this.props.onClose();
-    this.props.loading();
   }
 
-  onSubmit() {
-    let animal = {};
-    for (let name in this.state.animal) {
-      if (this.state.modifiedFields[name]) {
-        animal[name] = this.state.animal[name];
+  onSubmit(e) {
+    e.preventDefault();
+    if ((this.state.modifiedFields[ "name" ]) && (this.state.animal[ "name" ] == "")) {
+      let errors = this.state.errors;
+      errors["name"] = 'Nombre no puede ser vacio';
+      this.setState({ errors: errors });
+    } else if ((this.state.modifiedFields[ "sex" ]) && (this.state.animal[ "sex" ] == "")) {
+      let errors = this.state.errors;
+      errors["sex"] = 'Sexo no puede ser vacio';
+      this.setState({ errors: errors });
+    } else {
+      let animal = {};
+      for (let name in this.state.animal) {
+        if (this.state.modifiedFields[name]) {
+          animal[name] = this.state.animal[name];
+        }
+      }
+      if (JSON.stringify(animal) != "{}") {
+        this.props.animalActions.editAnimal(this.props.route_id, { animal });
+      } else {
+        this.onClose();
       }
     }
-    this.props.animalActions.editAnimal(this.props.route_id, { animal });
-    this.onClose();
   }
 
   onChange(e) {
@@ -78,7 +110,7 @@ class EditAnimalModal extends Component {
     const isBirthdate = field == 'birthdate';
     const value = isBirthdate ? e.target.value.concat('-01') : (checkbox ? e.target.checked : e.target.value);
     animal[ field ] = value;
-    modifiedFields[field] =true;
+    modifiedFields[field] = true;
     this.setState({ animal, modifiedFields });
   }
 
@@ -98,6 +130,7 @@ class EditAnimalModal extends Component {
   }
 
   render () {
+    const localErrors = !valid.notErrors(this.state.errors);
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> EDITAR ANIMALES </h2>
                     <AnimalEditForm animal={this.state.animal}
@@ -107,7 +140,7 @@ class EditAnimalModal extends Component {
                                     onClose={this.onClose}
                                     onChange={this.onChange}
                                     onDropProfile={this.onDropProfile}
-                                    />
+                                    errors={localErrors ? this.state.errors : this.props.errors}/>
                   </div>);
     return (
       <div>
@@ -120,6 +153,7 @@ class EditAnimalModal extends Component {
 const { object, func, array, string } = PropTypes;
 
 EditAnimalModal.propTypes = {
+  errors: object.isRequired,
   species: array.isRequired,
   onClose: func.isRequired,
   animalActions: object.isRequired,
@@ -129,8 +163,15 @@ EditAnimalModal.propTypes = {
 };
 
 const mapState = (state) => {
+  const errors = {};
+  for (let error in state.animalForm.errors) {
+    errors[error] = state.animalForm.errors[error][0];
+  }
+
   return {
-    species: state.species
+    species: state.species,
+    errors: errors,
+    success: state.animalForm.success
   };
 };
 
