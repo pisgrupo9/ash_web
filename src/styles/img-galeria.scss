@@ -1,4 +1,6 @@
 $orange: #E8A948;
+$grey: #E6E6E6;
+$dark-grey: #9B9B9B;
 
 #app .carouselSlider{
   max-height: 100px;
@@ -38,8 +40,8 @@ $orange: #E8A948;
   .img-container{
     position: relative;
     .img-galery{
-      padding-left: 5px;
-      padding-right: 5px;
+      border: solid 1px $dark-grey;
+      margin: 0 5px;
       max-height: 100px;
     }
 
