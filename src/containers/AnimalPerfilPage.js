@@ -143,7 +143,8 @@ AnimalPerfilPage.contextTypes = {
 
 const mapState = (state) => {
   return {
-    animal: state.animal
+    animal: state.animal,
+    user: state.user
   };
 };
 

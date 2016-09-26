@@ -7,8 +7,8 @@ import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
 const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
-  const genders = [ { id: "male", name: "Macho" },
-                    { id: "female", name: "Hembra" } ];
+  const genders = [ { id: "Macho", name: "Macho" },
+                    { id: "Hembra", name: "Hembra" } ];
   let fecha_cumple = animal.birthdate &&
                                 animal.birthdate.length == 10
                                 ? animal.birthdate.substring(0, animal.birthdate.length - 3)
@@ -26,7 +26,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                                       checked={animal.vaccines}>
                               Vacunas
                             </Checkbox>);
-  let showCheckboxes = animal.species_id == "1" || animal.species_id == "2";
+  let showCheckboxes = animal.species_id.toString() === "1" || animal.species_id.toString() === "2";
   return (
     <div>
       <div className="dropzones-container">
@@ -78,21 +78,31 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           type="month"
                           value={fecha_cumple}
                           onChange={onChange}
-                          error={errors.dates}/>
+                          error={errors.birthdate}/>
           <Input styleClass="profile-animal-input"
                         name="admission_date"
                         label="Fecha de Ingreso"
                         type="date"
                         value={animal.admission_date}
                         onChange={onChange}
-                        error={errors.dates}/>
+                        error={errors.admission_date}/>
           <Input styleClass="profile-animal-input"
                         name="death_date"
                         label="Fecha de Muerte"
                         type="date"
                         value={animal.death_date != null ? animal.death_date : ""}
                         onChange={onChange}
-                        error={errors.dates}/>
+                        error={errors.death_date}/>
+          <Input styleClass="profile-animal-input"
+                          name="weight"
+                          label="Peso"
+                          type="text"
+                          value={animal.weight != null ? animal.weight.toString() : ""}
+                          onChange={onChange}
+                          error={errors.weight}/>
+
+          </div>
+          <div>
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
           </div>

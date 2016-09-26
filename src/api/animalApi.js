@@ -44,9 +44,6 @@ export const parseAnimal = (animal) => {
       delete parsedAnimal[prop];
     }
   }
-  if (parseAnimal.birthdate != undefined) {
-    parsedAnimal.birthdate = `${parsedAnimal.birthdate}-1`;
-  }
   return parsedAnimal;
 };
 

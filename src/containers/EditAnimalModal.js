@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
 import AnimalEditForm from '../components/animals/AnimalEditForm';
 import * as valid from '../util/validateForm';
+import Spinner from 'react-spinkit';
 import '../styles/animal-perfil.scss';
 import '../styles/animal-form.scss';
 
@@ -13,6 +14,7 @@ class EditAnimalModal extends Component {
 
     this.state = {
       profilePic: {},
+      loading: false,
       animal: {
         chip_num: '',
         species_id: '',
@@ -24,7 +26,8 @@ class EditAnimalModal extends Component {
         death_date: '',
         race: '',
         castrated: false,
-        vaccines: false
+        vaccines: false,
+        weight: '',
       },
       modifiedFields: {
         chip_num: false,
@@ -37,7 +40,8 @@ class EditAnimalModal extends Component {
         death_date: false,
         race: false,
         castrated: false,
-        vaccines: false
+        vaccines: false,
+        weight: ''
       },
       errors: {
         chip_num: '',
@@ -53,7 +57,7 @@ class EditAnimalModal extends Component {
         vaccines: ''
       }
     };
-
+    this.validateForm = this.validateForm.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onClose = this.onClose.bind(this);
@@ -69,6 +73,7 @@ class EditAnimalModal extends Component {
       this.props.loading();
       this.onClose();
     }
+    this.setState({ loading: false });
     let animal = Object.assign({}, this.state.animal, this.props.animal);
     this.setState({ animal: animal });
   }
@@ -78,8 +83,29 @@ class EditAnimalModal extends Component {
     this.props.onClose();
   }
 
+  isDateType(name) {
+    return name === 'death_date' || name === 'birthdate' || name === 'admission_date';
+  }
+
+  validateForm(animal) {
+    let errors = this.state.errors;
+    const death_or_addmission = (name) => {
+      return name === 'death_date' || name === 'admission_date';
+    };
+    for (let name in animal) {
+      if (animal[name] && this.isDateType(name)) {
+        errors[name] = valid.lessThanToday(animal[name]);
+        if (!errors.birthdate && !errors[name] && death_or_addmission(name)) {
+          errors[name] = valid.compareDates(animal[name], animal.birthdate, 'Nacimiento');
+        }
+      }
+    }
+    this.setState({ errors });
+  }
+
   onSubmit(e) {
     e.preventDefault();
+    this.validateForm(this.state.animal);
     if ((this.state.modifiedFields[ "name" ]) && (this.state.animal[ "name" ] == "")) {
       let errors = this.state.errors;
       errors["name"] = 'Nombre no puede ser vacio';
@@ -92,11 +118,17 @@ class EditAnimalModal extends Component {
       let animal = {};
       for (let name in this.state.animal) {
         if (this.state.modifiedFields[name]) {
-          animal[name] = this.state.animal[name];
+          if (name == "sex") {
+            const value = (this.state.animal[name] == "Macho" ? "male" : "female");
+            animal[name] = value;
+          } else {
+            animal[name] = this.state.animal[name];
+          }
         }
       }
       if (JSON.stringify(animal) != "{}") {
         this.props.animalActions.editAnimal(this.props.route_id, { animal });
+        this.setState({ loading: true });
       } else {
         this.onClose();
       }
@@ -131,6 +163,9 @@ class EditAnimalModal extends Component {
 
   render () {
     const localErrors = !valid.notErrors(this.state.errors);
+    const loadingView = (<div className="loading-container">
+                          <Spinner spinnerName="three-bounce" noFadeIn />
+                        </div>);
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> EDITAR ANIMALES </h2>
                     <AnimalEditForm animal={this.state.animal}
@@ -142,9 +177,16 @@ class EditAnimalModal extends Component {
                                     onDropProfile={this.onDropProfile}
                                     errors={localErrors ? this.state.errors : this.props.errors}/>
                   </div>);
+    const getView = () => {
+      if (this.state.loading) {
+        return loadingView;
+      } else {
+        return body;
+      }
+    };
     return (
       <div>
-        { body };
+        { getView() };
       </div>
     );
   }

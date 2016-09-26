@@ -36,6 +36,12 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
                 <td>{animal.race}</td>
               </tr>
               <tr>
+                <td>PESO:</td>
+                <td>{animal.weight ? animal.weight.toString().concat(' KG')
+                                    : '' }
+                </td>
+              </tr>
+              <tr>
                 <td>FEC. DE NAC.:</td>
                 <td >{animal.birthdate}</td>
               </tr>
