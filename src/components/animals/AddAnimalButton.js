@@ -22,7 +22,8 @@ class AddAnimalButton extends Component {
   }
 
   render() {
-    const showButton = this.props.userPermission === 'animals_edit' || 'super_user';
+    let { userPermission } = this.props;
+    const showButton = userPermission === 'animals_edit' || userPermission === 'super_user';
     const button = (
                       <div>
                         <button className="button-animal" onClick={this.onOpen}>
