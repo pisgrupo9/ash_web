@@ -16,8 +16,9 @@ const AnimalList = ({ animals, onClick, selectedAnimalId }) => {
                                       selectedAnimalId={selectedAnimalId}
                                       onClick={onClick}/>
         );
-      })}
-    </div>
+        }
+      )}
+      </div>
   );
 };
 

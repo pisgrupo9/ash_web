@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Collapse } from 'react-bootstrap';
 import { Link } from 'react-router';
+import MiniInfoPerfil from './MiniInfoPerfil';
+import '../../styles/animal-perfil.scss';
 
 const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
 
@@ -25,7 +27,9 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
         <div className="animal-state-species"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
       </div>
       <Collapse in={showAnimal}>
-        <p>Llego el sabor</p>
+        <div>
+            <MiniInfoPerfil animal={animal} />
+        </div>
       </Collapse>
     </div>
   );
