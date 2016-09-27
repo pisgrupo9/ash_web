@@ -62,6 +62,13 @@ export const loadAnimalsSuccess = (response) => {
   };
 };
 
+export const loadMoreAnimalsSuccess = (response) => {
+  return {
+    type: types.LOAD_MORE_ANIMALS_SUCCESS,
+    response
+  };
+};
+
 export const editAnimalSucces = (response) => {
   return {
     type: types.EDIT_ANIMAL_SUCCESS,
@@ -157,6 +164,16 @@ export const loadAnimals = (col, row) => {
   return (dispatch) => {
     return animalApi.getAnimals(col, row).then(animals => {
       dispatch(loadAnimalsSuccess(animals, col));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const loadMoreAnimals = (col, row) => {
+  return (dispatch) => {
+    return animalApi.getAnimals(col, row).then(animals => {
+      dispatch(loadMoreAnimalsSuccess(animals, col));
     }).catch(err => {
       throw (err);
     });

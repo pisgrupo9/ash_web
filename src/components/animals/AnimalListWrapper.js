@@ -10,9 +10,11 @@ class AnimalListWrapper extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { selectedAnimalId: '',
-                    loading: true,
-                    currPage: 1
+    this.state = {
+      selectedAnimalId: '',
+      loading: true,
+      currPage: 1,
+      rows: 15
    };
 
     this.onClick = this.onClick.bind(this);
@@ -20,11 +22,15 @@ class AnimalListWrapper extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.loadAnimals(3, 1);
+    let { rows, currPage } = this.state;
+    this.props.actions.loadAnimals(rows, currPage);
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     this.setState({ loading: false });
+    if (nextProps.animals.first_page) {
+      this.setState({ currPage: 1 });
+    }
   }
 
   onClick(animalId) {
@@ -33,10 +39,11 @@ class AnimalListWrapper extends Component {
   }
 
   onClickViewMore() {
-    let nextPage = this.state.currPage + 1;
+    let { rows, currPage } = this.state;
+    let nextPage = currPage + 1;
     this.setState({ currPage: nextPage });
     this.setState({ loading: true });
-    this.props.actions.loadAnimals(3, nextPage);
+    this.props.actions.loadMoreAnimals(rows, nextPage);
   }
 
   render() {
@@ -56,16 +63,16 @@ class AnimalListWrapper extends Component {
   }
 }
 
-const { array, object } = PropTypes;
+const { object } = PropTypes;
 
 AnimalListWrapper.propTypes = {
-  animals: array.isRequired,
+  animals: object.isRequired,
   actions: object.isRequired
 };
 
 const mapState = (state) => ({
-   animals: state.animals
- });
+  animals: state.animals
+});
 
 const mapDispatch = (dispatch) => {
   return {
