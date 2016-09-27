@@ -193,18 +193,21 @@ html {
   outline: none;
 }
 
-.title {
+.section-title {
   color: $black;
   font-size: 19px;
 }
 
 .btn-circle {
   border: 1px solid transparent;
-  float: right;
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
   width: 40px;
   height: 40px;
   padding: 5px 0;
   line-height: 1.428571429;
   border-radius: 30px;
   background-color: $orange;
+  box-shadow: 1px 1px 1px #888888;
 }

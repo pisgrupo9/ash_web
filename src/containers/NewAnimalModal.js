@@ -79,9 +79,9 @@ class NewAnimalModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.success) {
-      this.props.actions.loadAnimals();
       this.setState({ uploading_images: true });
       if (this.state.images.length === 0) {
+        this.props.actions.loadAnimals(15, 1);
         toastr.success('', messages.SUCCES_CREATE_ANIMAL);
         this.onClose();
       } else if (this.state.images_to_send) {
@@ -92,6 +92,7 @@ class NewAnimalModal extends Component {
           this.setState({ success_uploading_images: false });
         }
         if (noMoreImages) {
+          this.props.actions.loadAnimals(15, 1);
           if (success_upload) {
             toastr.success('', messages.SUCCES_CREATE_ANIMAL);
             let cantImgs = this.state.images.length;

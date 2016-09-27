@@ -38,7 +38,8 @@ class ImageLightBox extends Component {
         <Lightbox images={lightboxImage}
                   isOpen={this.state.lightboxIsOpen}
                   onClose={this.closeLightbox}
-                  showImageCount={false} />
+                  showImageCount={false}
+                  backdropClosesModal={true} />
       </div>
     );
   }

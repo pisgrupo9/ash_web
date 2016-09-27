@@ -2,6 +2,7 @@ $grey: #E6E6E6;
 $orange: #E8A948;
 $orange-dark: #c39145;
 $white: #FFFFFF;
+$dark-grey: #9B9B9B;
 
 .profile-page-flex {
   display: flex;
@@ -38,6 +39,7 @@ $white: #FFFFFF;
   margin-bottom: 5px;
   padding: 5px;
   background-color: white;
+  position: relative;
 }
 
 .perfil-div{
@@ -69,11 +71,13 @@ $white: #FFFFFF;
   .table-borderless{
     width: 100%;
   }
+
   td{
-    height: 35px;
+    height: 33px;
   }
+
   tr{
-    line-height: 10px; 
+    line-height: 17px;
   }
 }
 
@@ -96,9 +100,11 @@ $white: #FFFFFF;
 }
 
 .perfil-image {
-  width: 100%;
-  max-width: 330px;
+  width: auto;
+  max-width: 100%;
   max-height: 200px;
+  box-shadow: 2px 2px 11px $dark-grey;
+  border: 1px solid $dark-grey;
 }
 
 .mini-perfil-image {

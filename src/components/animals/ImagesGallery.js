@@ -163,6 +163,7 @@ class ImagesGallery extends Component {
           onClickPrev={this.gotoPrevious}
           onClose={this.closeLightbox}
           showImageCount={false}
+          backdropClosesModal={true}
         />
       </div>
     );
