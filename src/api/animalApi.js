@@ -29,6 +29,10 @@ class AnimalApi {
   static getAnimals() {
     return api.get(`${consts.API_STAGING_URL}/animals`);
   }
+
+  static editAnimal(id_animal, animal) {
+    return api.put(`${consts.API_STAGING_URL}/animals/${id_animal}`, animal);
+  }
 }
 
 export default AnimalApi;
@@ -40,7 +44,6 @@ export const parseAnimal = (animal) => {
       delete parsedAnimal[prop];
     }
   }
-  parsedAnimal.birthdate = `${parsedAnimal.birthdate}-1`;
   return parsedAnimal;
 };
 

@@ -5,8 +5,10 @@ import * as animalActions from '../actions/animalActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
+import EditAnimalButton from '../components/animals/EditAnimalButton';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
+import '../styles/animal-form.scss';
 
 class AnimalPerfilPage extends Component {
   constructor(props, context) {
@@ -19,6 +21,7 @@ class AnimalPerfilPage extends Component {
       edit_gallery: false
     };
 
+    this.loading = this.loading.bind(this);
     this.onMoreImages = this.onMoreImages.bind(this);
     this.onRemoveImage = this.onRemoveImage.bind(this);
     this.editGallery = this.editGallery.bind(this);
@@ -45,7 +48,12 @@ class AnimalPerfilPage extends Component {
     }
     if (nextProps.animal.error) {
       toastr.error('ERROR', nextProps.animal.error);
+      this.setState({ loading_gallery: true });
     }
+  }
+
+  loading() {
+    this.setState({ loading: true });
   }
 
   editGallery() {
@@ -65,15 +73,30 @@ class AnimalPerfilPage extends Component {
     this.setState({ image_page: newPage });
   }
 
+  onDropProfile(img) {
+    const reader = new FileReader();
+    const file = img[0];
+    this.setState({ profilePic: file });
+    reader.readAsDataURL(file);
+    reader.onload = (upload) => {
+      let animal = this.state.animal;
+      animal["profile_image"] = upload.target.result;
+      this.setState({ animal });
+    };
+  }
+
   render() {
     const showButton = this.props.user.permissions === 'animals_edit' || 'super_user';
     const { animal } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
     return (
       <div className="profile-page-flex">
-        <InfoPerfil animal={animal}
-                    loading={loading}
-                    styleClass="perfil-div info-div profile-section"/>
+        <div className="perfil-div">
+          <InfoPerfil styleClass="info-div profile-section"
+                        loading={loading}
+                        animal={animal}/>
+          <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
+        </div>
         <div className="events-gallery-section">
           <div className="event-div">
             <p className="title">EVENTOS</p>
@@ -118,10 +141,12 @@ AnimalPerfilPage.contextTypes = {
   router: object
 };
 
-const mapState = (state) => ({
-  animal: state.animal,
-  user: state.user
-});
+const mapState = (state) => {
+  return {
+    animal: state.animal,
+    user: state.user
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {

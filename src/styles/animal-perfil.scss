@@ -33,26 +33,32 @@ $white: #FFFFFF;
   margin: 0 10px;
 }
 
-.perfil-div{
+.section-div{
   border: 2px solid $grey;
-  background-color: white;
   margin-bottom: 5px;
   padding: 5px;
+  background-color: white;
+}
+
+.perfil-div{
+  @extend .section-div;
+  margin: 0 5px;
+  width: 340px;
 }
 
 .event-div{
-  @extend .perfil-div;
-  height: 345px;
+  @extend .section-div;
+  height: 450px;
 }
 
 .gallery-div{
-  @extend .perfil-div;
+  @extend .section-div;
   height: 175px;
 }
 
 .perfil-box{
-  height: 525px;
-  font-size: 13px;
+  height: 580px;
+  font-size: 14px;
 }
 
 .tabel-div{
@@ -62,6 +68,12 @@ $white: #FFFFFF;
   padding: 10px 30px;
   .table-borderless{
     width: 100%;
+  }
+  td{
+    height: 35px;
+  }
+  tr{
+    line-height: 10px; 
   }
 }
 
@@ -85,8 +97,8 @@ $white: #FFFFFF;
 
 .perfil-image {
   width: 100%;
-  max-width: 400px;
-  max-height: 300px;
+  max-width: 330px;
+  max-height: 200px;
 }
 
 .mini-perfil-image {

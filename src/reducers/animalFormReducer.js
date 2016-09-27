@@ -18,6 +18,13 @@ const animalFormReducer = (state = initialState.animalForm, action) => {
       animalForm.success = true;
       animalForm.id = action.response.id;
       return animalForm;
+    case types.EDIT_ANIMAL_SUCCESS:
+      animalForm.success = true;
+      animalForm.id = action.response.id;
+      return animalForm;
+    case types.EDIT_ANIMAL_ERROR:
+      animalForm.errors = action.errors.error;
+      return animalForm;
     case types.CANCEL_ANIMAL_FORM:
       return animalForm;
     case types.UPLOAD_IMAGE_ANIMAL_SUCCESS: {

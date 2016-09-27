@@ -62,6 +62,20 @@ export const loadAnimalsSuccess = (response) => {
   };
 };
 
+export const editAnimalSucces = (response) => {
+  return {
+    type: types.EDIT_ANIMAL_SUCCESS,
+    response
+  };
+};
+
+export const editAnimalError = (errors) => {
+  return {
+    type: types.EDIT_ANIMAL_ERROR,
+    errors
+  };
+};
+
 export const removeAnimalImageSucces = (response, id_image) => {
   return {
     type: types.REMOVE_IMAGE_ANIMAL_SUCCESS,
@@ -145,6 +159,18 @@ export const loadAnimals = () => {
       dispatch(loadAnimalsSuccess(animals));
     }).catch(err => {
       throw (err);
+    });
+  };
+};
+
+export const editAnimal = (id_animal, animal) => {
+  return (dispatch) => {
+    let animalJson = parseAnimal(animal);
+    return animalApi.editAnimal(id_animal, animalJson).then(response => {
+      dispatch(editAnimalSucces(response));
+      showPerfilAnimal(id_animal)(dispatch);
+    }).catch(err => {
+      dispatch(editAnimalError(err));
     });
   };
 };
