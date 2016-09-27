@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import Spinner from 'react-spinkit';
 import AnimalItem from "./AnimalItem";
 import '../../styles/animal-list.scss';
+import SpinnerComponet from '../common/SpinnerComponet';
 
 const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickViewMore, loading }) => {
-  const spinner = (<div className="spinner"> <Spinner spinnerName="three-bounce" noFadeIn /> </div>);
+  const spinner = (<SpinnerComponet active={loading} />);
   return (
     <div className="m-right30">
       <div className="titles-container">
@@ -31,7 +31,7 @@ const { array, func, string, bool } = PropTypes;
 
 AnimalList.propTypes = {
   animals: array.isRequired,
-  onClick: func.isReqzuired,
+  onClick: func.isRequired,
   onClickViewMore: func.isRequired,
   selectedAnimalId: string.isRequired,
   showViewMore: bool.isRequired,

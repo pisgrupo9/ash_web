@@ -2,6 +2,7 @@ $grey: #E6E6E6;
 $orange: #E8A948;
 $orange-dark: #c39145;
 $white: #FFFFFF;
+$dark-grey: #9B9B9B;
 
 .profile-page-flex {
   display: flex;
@@ -25,6 +26,8 @@ $white: #FFFFFF;
   max-width: 70%;
   width: 70%;
   min-width: 300px;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .profile-section {
@@ -38,17 +41,18 @@ $white: #FFFFFF;
   margin-bottom: 5px;
   padding: 5px;
   background-color: white;
+  position: relative;
 }
 
 .perfil-div{
   @extend .section-div;
-  margin: 0 5px;
+  margin: 0 5px 5px 5px;
   width: 340px;
 }
 
 .event-div{
   @extend .section-div;
-  height: 450px;
+  flex: 1 0 auto;
 }
 
 .gallery-div{
@@ -57,7 +61,8 @@ $white: #FFFFFF;
 }
 
 .perfil-box{
-  height: 580px;
+  height: auto;
+  max-height: 810px;
   font-size: 14px;
 }
 
@@ -69,11 +74,13 @@ $white: #FFFFFF;
   .table-borderless{
     width: 100%;
   }
+
   td{
-    height: 35px;
+    height: 33px;
   }
+
   tr{
-    line-height: 10px; 
+    line-height: 17px;
   }
 }
 
@@ -97,8 +104,8 @@ $white: #FFFFFF;
 
 .perfil-image {
   width: 100%;
-  max-width: 330px;
-  max-height: 200px;
+  max-height: 440px;
+  border: 1px solid $dark-grey;
 }
 
 .mini-perfil-image {

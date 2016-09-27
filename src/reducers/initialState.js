@@ -15,5 +15,7 @@ export default {
   animal: {},
   animals: {
     total_pages: 0,
-    animals: [] }
+    animals: [],
+    first_page: false
+  }
 };
