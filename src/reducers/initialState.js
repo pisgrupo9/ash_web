@@ -19,5 +19,12 @@ export default {
     first_page: false,
     filterParam: '',
     searchReady: false
+  },
+  eventForm: {
+    errors: '',
+    success: false,
+    success_image: false,
+    sended_images: 0,
+    id: ''
   }
 };

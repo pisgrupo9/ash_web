@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as animalActions from '../../actions/animalActions';
 import AnimalList from './AnimalList';
 import AnimalListHeader from './AnimalListHeader';
-import SpinnerComponet from '../common/SpinnerComponet';
+import SpinnerComponent from '../common/SpinnerComponent';
 import * as consts from '../../constants/apiConstants.js';
 import '../../styles/animal-list.scss';
 
@@ -56,7 +56,7 @@ class AnimalListWrapper extends Component {
       <div className="general-list">
         <AnimalListHeader />
         {animals.searchReady ?
-         <SpinnerComponet active={animals.searchReady} />
+         <SpinnerComponent active={animals.searchReady} />
           :
          <AnimalList animals={animals.animals}
                     onClick={this.onClick}

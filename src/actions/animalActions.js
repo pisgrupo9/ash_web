@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
-import animalApi, { parseAnimal, parseImage, parseFilter } from '../api/animalApi';
+import animalApi, { parseAnimal, parseFilter } from '../api/animalApi';
+import { parseImage } from '../api/imagesApi';
 
 export const sendAnimalFormSuccess = (response) => {
   return {
