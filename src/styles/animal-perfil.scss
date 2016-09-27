@@ -59,7 +59,7 @@ $white: #FFFFFF;
   width : 100%;
   max-width : 280px;
   margin: 0px;
-  padding: 10px 30px 10px 30px;
+  padding: 10px 30px;
   .table-borderless{
     width: 100%;
   }
@@ -68,13 +68,16 @@ $white: #FFFFFF;
 .mini-tabel-div{
   background-color: white;
   padding: 10px 30px 10px 30px;
-  border: 3px solid white;
-  text-align:center; 
-  tbody {
-    border: 2px solid $grey;
+  text-align : center;
+  th{
+    text-align : center;
+    border-left: 2px solid $grey;
+    border-bottom: 2px solid $grey;
+    width: 160px;
+    padding: 10px;
   }
   td{
-    border: 2px solid $grey;
+    border-left: 2px solid $grey;
     width: 160px;
     padding: 10px;
   }
