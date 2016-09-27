@@ -131,3 +131,21 @@ $orange: #FF4444;
 .link-style:hover {
   color: inherit;
 }
+
+.view-more-container {
+  text-align: center;
+  margin: 16px auto;
+  width: 88%;
+}
+
+.view-more-button {
+  color: grey;
+}
+
+.view-more-button:hover {
+  text-decoration: underline;
+}
+
+.spinner-style {
+  color: grey !important;
+}

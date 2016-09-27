@@ -10,13 +10,21 @@ class AnimalListWrapper extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { selectedAnimalId: '' };
+    this.state = { selectedAnimalId: '',
+                    loading: true,
+                    currPage: 1
+   };
 
     this.onClick = this.onClick.bind(this);
+    this.onClickViewMore = this.onClickViewMore.bind(this);
   }
 
   componentWillMount() {
-    this.props.actions.loadAnimals();
+    this.props.actions.loadAnimals(3, 1);
+  }
+
+  componentWillReceiveProps() {
+    this.setState({ loading: false });
   }
 
   onClick(animalId) {
@@ -24,14 +32,25 @@ class AnimalListWrapper extends Component {
     this.setState({ selectedAnimalId: equalsId ? '' : animalId.toString() });
   }
 
+  onClickViewMore() {
+    let nextPage = this.state.currPage + 1;
+    this.setState({ currPage: nextPage });
+    this.setState({ loading: true });
+    this.props.actions.loadAnimals(3, nextPage);
+  }
+
   render() {
     const { animals } = this.props;
+    const showViewMore = this.state.currPage < animals.total_pages;
     return (
       <div className="general-list">
         <AnimalListHeader />
-        <AnimalList animals={animals}
+        <AnimalList animals={animals.animals}
                     onClick={this.onClick}
-                    selectedAnimalId={this.state.selectedAnimalId}/>
+                    selectedAnimalId={this.state.selectedAnimalId}
+                    showViewMore={showViewMore}
+                    onClickViewMore={this.onClickViewMore}
+                    loading={this.state.loading}/>
       </div>
     );
   }
