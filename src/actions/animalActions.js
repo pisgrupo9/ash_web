@@ -121,6 +121,13 @@ export const removeAnimalImageError = (response) => {
   };
 };
 
+export const loadEventsSucces = (response) => {
+  return {
+    type: types.LOAD_EVENTS_SUCCES,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -231,6 +238,16 @@ export const serchAnimal = (filter) => {
       dispatch(serchAnimalsSuccess(response, filterParam));
     }).catch(err => {
       dispatch(serchAnimalsError(err));
+    });
+  };
+};
+
+export const loadEvents = (animal_id) => {
+  return (dispatch) => {
+    return animalApi.getEvents(animal_id).then(events => {
+      dispatch(loadEventsSucces(events));
+    }).catch(err => {
+      throw (err);
     });
   };
 };

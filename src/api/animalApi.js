@@ -37,6 +37,10 @@ class AnimalApi {
   static editAnimal(id_animal, animal) {
     return api.put(`${consts.API_STAGING_URL}/animals/${id_animal}`, animal);
   }
+
+  static getEvents(id_animal) {
+    return api.get(`${consts.APIARY_URL}/animals/${id_animal}/events`);
+  }
 }
 
 export default AnimalApi;
