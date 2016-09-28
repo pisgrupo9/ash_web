@@ -98,6 +98,13 @@ export const removeAnimalImageError = (response) => {
   };
 };
 
+export const loadEventsSucces = (response) => {
+  return {
+    type: types.LOAD_EVENTS_SUCCES,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -135,7 +142,6 @@ export const showPerfilAnimal = (id_animal) => {
     return animalApi.showAnimal(id_animal).then(animal => {
       dispatch(showAnimalPerfil(animal));
       showPerfilAnimalImages(id_animal)(dispatch);
-
     });
   };
 };
@@ -188,6 +194,16 @@ export const editAnimal = (id_animal, animal) => {
       showPerfilAnimal(id_animal)(dispatch);
     }).catch(err => {
       dispatch(editAnimalError(err));
+    });
+  };
+};
+
+export const loadEvents = (animal_id) => {
+  return (dispatch) => {
+    return animalApi.getEvents(animal_id).then(events => {
+      dispatch(loadEventsSucces(events));
+    }).catch(err => {
+      throw (err);
     });
   };
 };
