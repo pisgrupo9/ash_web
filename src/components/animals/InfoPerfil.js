@@ -21,7 +21,7 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>NÚM. DE CHIP:</td>
-                <td>{animal.chip_num}</td>
+                <td>{animal.chip_num ? animal.chip_num : '-'}</td>
               </tr>
               <tr>
                 <td>ESPECIE:</td>
@@ -33,12 +33,12 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>RAZA:</td>
-                <td>{animal.race}</td>
+                <td>{animal.race ? animal.race : '-'}</td>
               </tr>
               <tr>
                 <td>PESO:</td>
                 <td>{animal.weight ? animal.weight.toString().concat(' KG')
-                                    : '' }
+                                    : '-' }
                 </td>
               </tr>
               <tr>
@@ -51,7 +51,7 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
               </tr>
               <tr>
                 <td>FEC. DE MUERTE:</td>
-                <td>{animal.death_date}</td>
+                <td>{animal.death_date ? animal.death_date : '-'}</td>
               </tr>
               <tr>
                 <td>VACUNADO:</td>

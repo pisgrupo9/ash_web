@@ -186,7 +186,7 @@ class EditAnimalModal extends Component {
     };
     return (
       <div>
-        { getView() };
+        { getView() }
       </div>
     );
   }

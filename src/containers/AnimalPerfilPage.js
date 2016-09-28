@@ -95,7 +95,9 @@ class AnimalPerfilPage extends Component {
           <InfoPerfil styleClass="info-div profile-section"
                         loading={loading}
                         animal={animal}/>
-          <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
+          <div className="edit-button">
+            <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
+          </div>
         </div>
         <div className="events-gallery-section">
           <div className="event-div">
