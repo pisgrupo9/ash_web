@@ -26,6 +26,8 @@ $dark-grey: #9B9B9B;
   max-width: 70%;
   width: 70%;
   min-width: 300px;
+  display: flex;
+  flex-flow: column wrap;
 }
 
 .profile-section {
@@ -44,13 +46,13 @@ $dark-grey: #9B9B9B;
 
 .perfil-div{
   @extend .section-div;
-  margin: 0 5px;
+  margin: 0 5px 5px 5px;
   width: 340px;
 }
 
 .event-div{
   @extend .section-div;
-  height: 450px;
+  flex: 1 0 auto;
 }
 
 .gallery-div{
@@ -59,7 +61,8 @@ $dark-grey: #9B9B9B;
 }
 
 .perfil-box{
-  height: 580px;
+  height: auto;
+  max-height: 810px;
   font-size: 14px;
 }
 
@@ -100,10 +103,8 @@ $dark-grey: #9B9B9B;
 }
 
 .perfil-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 200px;
-  box-shadow: 2px 2px 11px $dark-grey;
+  width: 100%;
+  max-height: 440px;
   border: 1px solid $dark-grey;
 }
 
