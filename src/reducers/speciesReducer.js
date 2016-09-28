@@ -6,7 +6,9 @@ const speciesReducer = (state = initialState.species, action) => {
     case types.LOAD_SPECIES_SUCCESS: {
       let sortSpecies = action.response.species.sort(
         (a, b) => {
-          return (a.name =='Otros') ? 1 :(b.name=='Otros')? -1 : (a.name > b.name);
+          return (a.name =='Otros' || a.name =='Otro')
+              ? 1 :(b.name=='Otros' || b.name =='Otro')
+              ? -1 : (a.name > b.name);
         }
       );
       return sortSpecies;

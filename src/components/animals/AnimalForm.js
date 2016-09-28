@@ -5,11 +5,9 @@ import { Checkbox } from 'react-bootstrap';
 import ImagesDropzone from '../common/ImagesDropzone';
 import ProfileDropzone from './ProfileDropzone';
 import ModalAnimalButtons from '../common/ModalAnimalButtons';
+import * as consts from '../../constants/apiConstants.js';
 
 const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
-
-  const genders = [ { id: "male", name: "Macho" },
-                    { id: "female", name: "Hembra" } ];
 
   const checkboxCastrated = (<Checkbox className="animal-input animal-checkbox"
                                       name="castrated"
@@ -52,7 +50,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                       label="Sexo *"
                       value={animal.sex}
                       onChange={onChange}
-                      options={genders}
+                      options={consts.GENEDERS}
                       error={errors.sex}
                        />
         <Input styleClass="animal-input"
