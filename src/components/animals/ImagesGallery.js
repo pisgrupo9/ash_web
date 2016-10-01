@@ -93,7 +93,7 @@ class ImagesGallery extends Component {
     let settings = {
         infinite: false,
         centerMode: false,
-        variableWidth: false,
+        variableWidth: true,
         lazyLoad: true,
         prevArrow: prevArrow,
         nextArrow: nextArrow,
@@ -102,13 +102,17 @@ class ImagesGallery extends Component {
         speed: 800,
         responsive: [
                        {
-                        breakpoint: 400,
+                        breakpoint: 450,
                         settings: { slidesToShow: 2, slidesToScroll: 1 }
                        },
                       {
-                        breakpoint: 768,
-                        settings: { slidesToShow: 2, slidesToScroll: 1 }
+                        breakpoint: 600,
+                        settings: { slidesToShow: 3, slidesToScroll: 1 }
                        },
+                        {
+                        breakpoint: 780,
+                          settings: { slidesToShow: 4, slidesToScroll: 2 }
+                        },
                        {
                         breakpoint: 992,
                           settings: { slidesToShow: 5, slidesToScroll: 2 }
