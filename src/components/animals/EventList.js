@@ -11,9 +11,9 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
         <div className="title-inside">EVENTO</div>
         <div className="title-inside">FECHA</div>
       </div>
-      { events.map(event => {
+      { events.events.map(event => {
         return (
-          <EventItem animal={event} key={event.id}
+          <EventItem event={event} key={event.id}
                                       selectedEventId={selectedEventId}
                                       onClick={onClick}/>
         );
@@ -26,11 +26,11 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
   );
 };
 
-const { array, func, string, bool } = PropTypes;
+const { object, func, string, bool } = PropTypes;
 
 EventList.propTypes = {
-  events: array.isRequired,
-  onClick: func.isReqzuired,
+  events: object.isRequired,
+  onClick: func.isRequired,
   onClickViewMore: func,
   selectedEventId: string.isRequired,
   showViewMore: bool,

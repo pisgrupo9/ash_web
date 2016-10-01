@@ -17,5 +17,8 @@ export default {
     total_pages: 0,
     animals: [],
     first_page: false
+  },
+  events: {
+    events: []
   }
 };

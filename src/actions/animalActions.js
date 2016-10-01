@@ -100,7 +100,7 @@ export const removeAnimalImageError = (response) => {
 
 export const loadEventsSucces = (response) => {
   return {
-    type: types.LOAD_EVENTS_SUCCES,
+    type: types.LOAD_EVENTS_SUCCESS,
     response
   };
 };
