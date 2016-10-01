@@ -29,5 +29,8 @@ export default {
     sended_images: 0,
     id: ''
   },
-  confirm: {}
+  confirm: {},
+  events: {
+    events: []
+  }
 };

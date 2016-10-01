@@ -45,10 +45,10 @@ class AnimalEventWrapper extends Component {
   }
 }
 
-const { array, object, string } = PropTypes;
+const { object, string } = PropTypes;
 
 AnimalEventWrapper.propTypes = {
-  events: array.isRequired,
+  events: object.isRequired,
   actions: object.isRequired,
   route_id: string.isRequired
 };

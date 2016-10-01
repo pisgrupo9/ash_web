@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Collapse } from 'react-bootstrap';
+import MiniEvent from './MiniEvent';
 import '../../styles/animal-perfil.scss';
+import '../../styles/animal-list.scss';
 
 const EventItem = ({ event, selectedEventId, onClick }) => {
 
@@ -18,7 +20,9 @@ const EventItem = ({ event, selectedEventId, onClick }) => {
         <div className="animal-state-species"> {event.date} </div>
       </div>
       <Collapse in={showEvent}>
-            <p>Descripciones...</p>
+        <div>
+          <MiniEvent event={event} />
+        </div>
       </Collapse>
     </div>
   );
