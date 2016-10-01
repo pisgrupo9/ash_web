@@ -1,0 +1,52 @@
+$grey: #E6E6E6;
+$dark-grey: #9B9B9B;
+
+
+.big-flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: flex-start;
+  align-self: flex-start;
+  margin-right: 10px;
+}
+
+.image-flex {
+  min-width: 150px;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.flex-items {
+  flex: 1;
+  min-width: 70px;
+}
+
+.vertical-flex-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  resize: vertical;
+  height: 100%;
+  text-align: center;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-color: $grey;
+  border-width: 1px;
+}
+
+.vertical-flex {
+  flex: 1;
+  margin-top: 23px;
+  height: 47px;
+}
+
+.bottom-border {
+  border-bottom-style: solid;
+  border-color: $grey;
+  border-width: 2px;
+}
+
+.titles-font {
+  font-weight: 500;
+}
