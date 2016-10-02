@@ -7,7 +7,6 @@ import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
 import EditAnimalButton from '../components/animals/EditAnimalButton';
-import AddEventButton from '../components/animals/events/AddEventButton';
 import AnimalEventWrapper from '../components/animals/AnimalEventWrapper';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
@@ -113,7 +112,6 @@ class AnimalPerfilPage extends Component {
         <div className="events-gallery-section">
           <div className="event-div">
             <p className="section-title">EVENTOS</p>
-            <AddEventButton animalId={this.props.routeParams.id} />
             <AnimalEventWrapper route_id={this.props.routeParams.id} />
           </div>
           <div className="gallery-div">

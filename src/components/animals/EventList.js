@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import EventItem from "./EventItem";
 import '../../styles/animal-list.scss';
-import Infinite from 'react-infinite';
 import SpinnerComponent from '../common/SpinnerComponent';
 
 const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickViewMore, loading }) => {
@@ -12,7 +11,7 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
         <div className="title-inside">EVENTO</div>
         <div className="event-title-inside">FECHA</div>
       </div>
-      <Infinite containerHeight={350} elementHeight={50} >
+      <div className="events-container">
       { events.map(event => {
         return (
           <EventItem event={event} key={event.id}
@@ -24,7 +23,7 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
         {loading ? spinner : showViewMore ?
         <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
       </div>
-      </Infinite>
+      </div>
     </div>
   );
 };

@@ -304,3 +304,9 @@ $plaseHolder-grey: #b29c99;
 .center-me {
   margin: 0 auto;
 }
+
+.events-container {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: 400px;
+}

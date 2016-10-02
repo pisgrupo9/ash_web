@@ -47,7 +47,7 @@ class AnimalEventWrapper extends Component {
     const showViewMore = this.state.currPage < events.total_pages;
     return (
       <div className="general-event-list">
-        <AnimalEventHeader />
+        <AnimalEventHeader id_route={this.props.route_id} />
         <EventList events={events.events}
                     onClick={this.onClick}
                     selectedEventId={this.state.selectedEventId}
