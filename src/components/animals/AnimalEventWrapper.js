@@ -16,10 +16,11 @@ class AnimalEventWrapper extends Component {
    };
 
     this.onClick = this.onClick.bind(this);
+    this.onClickViewMore = this.onClickViewMore.bind(this);
   }
 
   componentWillMount() {
-    this.props.actions.loadEvents(this.props.route_id);
+    this.props.actions.loadEvents(this.props.route_id, 4, 1);
   }
 
   componentWillReceiveProps() {
@@ -29,17 +30,28 @@ class AnimalEventWrapper extends Component {
   onClick(eventId) {
     const equalsId = this.state.selectedEventId === eventId.toString();
     this.setState({ selectedEventId: equalsId ? '' : eventId.toString() });
+    this.props.actions.showEvent(this.props.route_id, eventId.toString());
+  }
+
+  onClickViewMore() {
+    let nextPage = this.state.currPage + 1;
+    this.setState({ currPage: nextPage });
+    this.setState({ loading: true });
+    this.props.actions.loadEvents(this.props.route_id, 3, nextPage);
   }
 
   render() {
     const { events } = this.props;
+    const showViewMore = this.state.currPage < events.total_pages;
     return (
-      <div className="general-list">
+      <div className="general-event-list">
         <AnimalEventHeader />
-        <EventList events={events}
+        <EventList events={events.events}
                     onClick={this.onClick}
                     selectedEventId={this.state.selectedEventId}
-                    loading={this.state.loading}/>
+                    loading={this.state.loading}
+                    onClickViewMore={this.onClickViewMore}
+                    showViewMore={showViewMore} />
       </div>
     );
   }

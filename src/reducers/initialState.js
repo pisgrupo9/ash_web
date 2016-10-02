@@ -32,5 +32,6 @@ export default {
   confirm: {},
   events: {
     events: []
-  }
+  },
+  event: {}
 };
