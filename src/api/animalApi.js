@@ -30,8 +30,8 @@ class AnimalApi {
     return api.get(`${consts.API_STAGING_URL}/animals?page=${col}&row=${row}`);
   }
 
-   static getSerchAnimals(filterParam) {
-    return api.get(`${consts.API_STAGING_URL}/animals/search?${filterParam}`);
+   static getSerchAnimals(row, col, filterParam) {
+    return api.get(`${consts.API_STAGING_URL}/animals/search?page=${col}&row=${row}${filterParam}`);
   }
 
   static editAnimal(id_animal, animal) {

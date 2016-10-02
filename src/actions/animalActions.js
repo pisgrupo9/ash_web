@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import animalApi, { parseAnimal, parseFilter } from '../api/animalApi';
 import { parseImage } from '../api/imagesApi';
+import * as consts from '../constants/apiConstants.js';
 
 export const sendAnimalFormSuccess = (response) => {
   return {
@@ -193,11 +194,20 @@ export const loadAnimals = (col, row) => {
 
 export const loadMoreAnimals = (col, row, filterParam) => {
   return (dispatch) => {
-    return animalApi.getAnimals(col, row, filterParam).then(animals => {
-      dispatch(loadMoreAnimalsSuccess(animals, col));
-    }).catch(err => {
-      throw (err);
-    });
+    if (!filterParam || filterParam == '') {
+      return animalApi.getAnimals(col, row).then(animals => {
+        dispatch(loadMoreAnimalsSuccess(animals, col));
+      }).catch(err => {
+        throw (err);
+      });
+    } else {
+        return animalApi.getSerchAnimals(col, row, filterParam).then(animals => {
+        dispatch(loadMoreAnimalsSuccess(animals, col));
+      }).catch(err => {
+        throw (err);
+      });
+    }
+
   };
 };
 
@@ -217,7 +227,7 @@ export const serchAnimal = (filter) => {
   return (dispatch) => {
     dispatch(serchAnimalsStart());
     let filterParam = parseFilter(filter);
-    return animalApi.getSerchAnimals(filterParam).then(response => {
+    return animalApi.getSerchAnimals(consts.ANIMAL_PAGE_SIZE, 1, filterParam).then(response => {
       dispatch(serchAnimalsSuccess(response, filterParam));
     }).catch(err => {
       dispatch(serchAnimalsError(err));

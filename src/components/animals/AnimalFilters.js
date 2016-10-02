@@ -14,14 +14,11 @@ class AnimalFilters extends Component {
                     chip_num: '',
                     species_id: '',
                     sex: '',
-                    admission_date_min: '',
-                    admission_date_max: '',
+                    admission_date: '',
                     name: '',
-                    birthdate_min: '',
-                    birthdate_max: '',
+                    birth_date: '',
                     race: '',
-                    death_date_min: '',
-                    death_date_max: '',
+                    death_date: '',
                     castrated: "",
                     vaccines: "",
                     state: ""
@@ -177,51 +174,15 @@ class AnimalFilters extends Component {
             }
             {activeField &&
             <div className="filter-componet">
-            <div className="filter-date">
-              <p className="filter-text">Fec. Nacimiento:</p>
-              <Input styleClass="filter-field"
-                    name="birthdate"
-                    type="date"
-                    value={filter.birthdate_min}
-                    onChange={this.onChange}
-                   />
+              <div className="filter-date">
+                <p className="filter-text">Fec. Admisión:</p>
                 <Input styleClass="filter-field"
-                    name="birthdate_max"
-                    type="date"
-                    value={filter.birthdate_max}
-                    onChange={this.onChange}
-                 />
-            </div>
-            <div className="filter-date">
-              <p className="filter-text">Fec. Admision:</p>
-              <Input styleClass="filter-field"
-                    name="admission_date"
-                    type="date"
-                    value={filter.admission_date_min}
-                    onChange={this.onChange}
-                   />
-                <Input styleClass="filter-field"
-                    name="admission_date_max"
-                    type="date"
-                    value={filter.admission_date_max}
-                    onChange={this.onChange}
-                 />
-            </div>
-            <div className="filter-date">
-              <p className="filter-text">Fec. Muerte:</p>
-              <Input styleClass="filter-field"
-                    name="death_date"
-                    type="date"
-                    value={filter.death_date_min}
-                    onChange={this.onChange}
-                   />
-                <Input styleClass="filter-field"
-                    name="death_date_max"
-                    type="date"
-                    value={filter.death_date_max}
-                    onChange={this.onChange}
-                 />
-            </div>
+                      name="admission_date"
+                      type="date"
+                      value={filter.admission_date}
+                      onChange={this.onChange}
+                     />
+              </div>
           </div>
           }
           {windowWidth > 694 && buttonFind}
