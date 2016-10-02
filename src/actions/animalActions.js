@@ -98,9 +98,15 @@ export const removeAnimalImageError = (response) => {
   };
 };
 
-export const loadEventsSucces = (response) => {
+export const loadEventsSuccess = (response) => {
   return {
     type: types.LOAD_EVENTS_SUCCESS,
+    response
+  };
+};
+export const showEventSucess = (response) => {
+  return {
+    type: types.SHOW_EVENT_SUCCESS,
     response
   };
 };
@@ -198,10 +204,20 @@ export const editAnimal = (id_animal, animal) => {
   };
 };
 
-export const loadEvents = (animal_id) => {
+export const loadEvents = (animal_id, row, col) => {
   return (dispatch) => {
-    return animalApi.getEvents(animal_id).then(events => {
-      dispatch(loadEventsSucces(events));
+    return animalApi.getEvents(animal_id, row, col).then(events => {
+      dispatch(loadEventsSuccess(events));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const showEvent = (animal_id, event_id) => {
+  return (dispatch) => {
+    return animalApi.getAnimalEvent(animal_id, event_id).then(event => {
+      dispatch(showEventSucess(event));
     }).catch(err => {
       throw (err);
     });

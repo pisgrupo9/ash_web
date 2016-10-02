@@ -10,6 +10,7 @@ import animalForm from './animalFormReducer';
 import animal from './animalReducer';
 import animals from './animalsReducer';
 import events from './eventsReducer';
+import event from './eventReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   animal,
   animals,
   events,
+  event,
   toastr: toastrReducer,
   routing: routerReducer
 });

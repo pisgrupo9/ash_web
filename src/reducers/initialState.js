@@ -20,5 +20,6 @@ export default {
   },
   events: {
     events: []
-  }
+  },
+  event: {}
 };

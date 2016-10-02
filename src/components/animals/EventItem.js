@@ -9,7 +9,6 @@ const EventItem = ({ event, selectedEventId, onClick }) => {
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
   const showEvent = selectedEventId === event.id.toString();
-
   return (
     <div>
       <div className={showEvent ? 'selected-item-container' :'animal-item-container'}>

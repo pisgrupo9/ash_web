@@ -5,13 +5,14 @@ import '../../styles/animal-list.scss';
 
 const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickViewMore, loading }) => {
   const spinner = (<div className="spinner"> <Spinner spinnerName="three-bounce" noFadeIn /> </div>);
+
   return (
     <div className="m-right30">
       <div className="titles-container">
         <div className="title-inside">EVENTO</div>
         <div className="title-inside">FECHA</div>
       </div>
-      { events.events.map(event => {
+      { events.map(event => {
         return (
           <EventItem event={event} key={event.id}
                                       selectedEventId={selectedEventId}
@@ -26,14 +27,14 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
   );
 };
 
-const { object, func, string, bool } = PropTypes;
+const { array, func, string, bool } = PropTypes;
 
 EventList.propTypes = {
-  events: object.isRequired,
+  events: array.isRequired,
   onClick: func.isRequired,
-  onClickViewMore: func,
+  onClickViewMore: func.isRequired,
   selectedEventId: string.isRequired,
-  showViewMore: bool,
+  showViewMore: bool.isRequired,
   loading: bool.isRequired
 };
 

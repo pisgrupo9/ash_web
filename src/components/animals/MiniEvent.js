@@ -8,11 +8,12 @@ const MiniEvent = ({ event }) => {
   return (
       <div className="event-container">
         {event.description};
-        <ImagesGallery images={event.images}
+        {event.images ? <ImagesGallery images={event.images}
                             styleClass="slick-container"
                             loading={false}
                             moreImages={false}
                             />
+                      : ''}
       </div>
   );
 };
