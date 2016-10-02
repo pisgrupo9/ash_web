@@ -3,6 +3,7 @@ $orange: #E8A948;
 $orange-dark: #c39145;
 $white: #FFFFFF;
 $dark-grey: #9B9B9B;
+$dark: #4A4A4A;
 
 .profile-page-flex {
   display: flex;
@@ -64,6 +65,8 @@ $dark-grey: #9B9B9B;
   height: auto;
   max-height: 810px;
   font-size: 14px;
+  color: $dark;
+  letter-spacing: 1px;
 }
 
 .tabel-div{
@@ -76,7 +79,7 @@ $dark-grey: #9B9B9B;
   }
 
   td{
-    height: 33px;
+    height: 27px;
   }
 
   tr{
@@ -150,4 +153,8 @@ $dark-grey: #9B9B9B;
 
 .slick-container {
   width: 97%;
+}
+
+.edit-button{
+  margin-top: 30px;
 }
