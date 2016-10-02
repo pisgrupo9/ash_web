@@ -38,6 +38,10 @@ $light-grey: #F7F7F7;
   color: $dark-grey
 }
 
+#app .bg-dark-grey-color {
+  background-color: $dark-grey
+}
+
 .grey-color {
   color: $grey
 }
@@ -143,8 +147,10 @@ html {
   font-feature-settings: 'liga';
 }
 
-.material-icons.color { color: white; 
-                        font-size: 25px;}
+.material-icons.color { 
+  color: white; 
+  font-size: 25px;
+}
 
 .not-border {
   border: none;

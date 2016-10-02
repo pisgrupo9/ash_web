@@ -16,6 +16,8 @@ export default {
   animals: {
     total_pages: 0,
     animals: [],
-    first_page: false
+    first_page: false,
+    filterParam: '',
+    searchReady: false
   }
 };

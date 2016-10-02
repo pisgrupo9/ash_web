@@ -30,6 +30,10 @@ class AnimalApi {
     return api.get(`${consts.API_STAGING_URL}/animals?page=${col}&row=${row}`);
   }
 
+   static getSerchAnimals(filterParam) {
+    return api.get(`${consts.API_STAGING_URL}/animals/search?${filterParam}`);
+  }
+
   static editAnimal(id_animal, animal) {
     return api.put(`${consts.API_STAGING_URL}/animals/${id_animal}`, animal);
   }
@@ -51,4 +55,12 @@ export const parseAnimal = (animal) => {
 export const parseImage = (file) => {
   let parsedImage = { image: { file: file } };
   return parsedImage;
+};
+
+export const parseFilter = (filter) => {
+  let parse = '';
+  for (let name in filter) {
+    parse += '&'+name+'='+filter[name];
+  }
+  return parse;
 };

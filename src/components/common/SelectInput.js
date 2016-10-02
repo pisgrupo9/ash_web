@@ -5,13 +5,13 @@ const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, 
 
   return (
     <div className={wrapperClass}>
-      <label className="input-label" htmlFor={name}>{label}</label>
+      {label && <label className="input-label" htmlFor={name}>{label}</label>}
       <div className="field">
         <select name={name}
                 onChange={onChange}
                 className="form-control"
                 value={value}>
-          {!edit && <option value="">{defaultOption}</option>}
+          {!edit && <option value="" className="default">{defaultOption}</option>}
           {options.map(option => {
             return <option key={option.id} value={option.id}>{option.name}</option>;
           })}
@@ -27,7 +27,7 @@ const { string, func, arrayOf, object, bool } = PropTypes;
 SelectInput.propTypes = {
   styleClass: string,
   name: string.isRequired,
-  label: string.isRequired,
+  label: string,
   onChange: func.isRequired,
   defaultOption: string,
   value: string,

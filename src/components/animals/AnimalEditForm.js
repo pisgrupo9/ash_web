@@ -5,10 +5,10 @@ import ProfileDropzone from './ProfileDropzone';
 import { Checkbox } from 'react-bootstrap';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
+import * as consts from '../../constants/apiConstants.js';
 
 const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
-  const genders = [ { id: "Macho", name: "Macho" },
-                    { id: "Hembra", name: "Hembra" } ];
+
   let fecha_cumple = animal.birthdate &&
                                 animal.birthdate.length == 10
                                 ? animal.birthdate.substring(0, animal.birthdate.length - 3)
@@ -62,7 +62,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           label="Sexo"
                           value={animal.sex}
                           onChange={onChange}
-                          options={genders}
+                          options={consts.GENEDERS}
                           edit={false}
                           error={errors.sex}/>
           <Input styleClass="profile-animal-input"

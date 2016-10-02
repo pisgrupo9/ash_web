@@ -2,13 +2,19 @@ $grey: #E6E6E6;
 $light-grey: #F7F7F7;
 $dark-grey: #9B9B9B;
 $orange: #FF4444;
+$plaseHolder-grey: #b29c99;
 
-.list-flex {
+
+.flex-title{
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-content: flex-start;
   align-self: flex-start;
+}
+
+.list-flex {
+  @extend .flex-title;
   margin: 0 20px 20px 20px;
 }
 
@@ -17,15 +23,92 @@ $orange: #FF4444;
   background-color: white;
   margin-bottom: 5px;
   flex: 1;
-  margin-right: 20px;
-  max-width: 200px;
-  min-width: 100px;
+  margin-right: 10px;
+  margin-left: 10px;
+  min-width: 200px;
+
+  .filter-title{
+    text-align: center;  
+  }
+
+  .filter-text{
+    color: $dark-grey;  
+  }
+
+  .filter-componet {
+    @extend .flex-title;
+    padding: 0 10px;
+  
+    .filter-field {
+       flex: 1;
+       min-width: 120px;
+       padding: 1px;
+       margin: 5px 0 5px 0;
+
+       option.default {
+        color: rgba(0,0,0,0);
+       }
+    }
+
+    .btn-small-div {
+      @extend .flex-title;
+      flex: 2;
+      min-width: 280px;
+    }
+
+    .filter-field.default {
+      select {
+        color: $plaseHolder-grey;
+        text-align-last:center;
+        option{
+          text-align: right; 
+          color: #000000;
+        }
+
+        option.default {
+        color: rgba(0,0,0,0);
+       }
+      }
+    }
+
+    .form-control:focus{
+      border-color: #CCC;
+      box-shadow: none;
+    }
+
+    .filter-date{
+      flex: 1;
+      min-width: 150px;
+      padding: 1px;
+      margin: 5px 0 5px 0;
+
+      input[type="date"][value=""]{
+        color: #b29c99;
+      }
+    }
+  }
+}
+  
+.btn-find-div{
+  text-align: center;
+  flex: 1;
+  margin: 5px 0 5px 0;
+
+  .btn-find{
+    color: white;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    border-radius: 1px;
+
+    min-width: 100px;
+    margin: 0 10px 10px 10px;
+  }
 }
 
 .wrapper-flex {
   border: 2px solid $grey;
   background-color: white;
-  margin-bottom: 5px;
+  margin: 0 10px 5px 10px;
   flex: 4;
   min-width: 400px;
 }
@@ -47,7 +130,6 @@ $orange: #FF4444;
   @extend .animal-item-container;
   background-color: $grey;
 }
-
 
 .titles-container {
   display: flex;
@@ -148,4 +230,20 @@ $orange: #FF4444;
 
 .spinner-style {
   color: grey !important;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  text-align: center;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  text-align: center;  
+}
+
+:-ms-input-placeholder {  
+  text-align: center; 
 }

@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import * as animalActions from '../../actions/animalActions';
 import AnimalList from './AnimalList';
 import AnimalListHeader from './AnimalListHeader';
+import SpinnerComponet from '../common/SpinnerComponet';
+import * as consts from '../../constants/apiConstants.js';
 import '../../styles/animal-list.scss';
 
 class AnimalListWrapper extends Component {
@@ -14,7 +16,7 @@ class AnimalListWrapper extends Component {
       selectedAnimalId: '',
       loading: true,
       currPage: 1,
-      rows: 15
+      rows: consts.ANIMAL_PAGE_SIZE
    };
 
     this.onClick = this.onClick.bind(this);
@@ -41,9 +43,10 @@ class AnimalListWrapper extends Component {
   onClickViewMore() {
     let { rows, currPage } = this.state;
     let nextPage = currPage + 1;
+    const { animals } = this.props;
     this.setState({ currPage: nextPage });
     this.setState({ loading: true });
-    this.props.actions.loadMoreAnimals(rows, nextPage);
+    this.props.actions.loadMoreAnimals(rows, nextPage, animals.filterParam);
   }
 
   render() {
@@ -52,12 +55,16 @@ class AnimalListWrapper extends Component {
     return (
       <div className="general-list">
         <AnimalListHeader />
-        <AnimalList animals={animals.animals}
+        {animals.searchReady ?
+         <SpinnerComponet active={animals.searchReady} />
+          :
+         <AnimalList animals={animals.animals}
                     onClick={this.onClick}
                     selectedAnimalId={this.state.selectedAnimalId}
                     showViewMore={showViewMore}
                     onClickViewMore={this.onClickViewMore}
                     loading={this.state.loading}/>
+        }
       </div>
     );
   }
