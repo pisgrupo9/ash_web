@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const Input = ({ styleClass, name, label, type, onChange, onBlur, placeholder, value, error }) => {
+const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, value, error }) => {
   let wrapperClass = `form-group ${styleClass}`;
 
   if (error && error.length > 0) {
@@ -11,15 +11,15 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, placeholder, v
 
   const input = (<input type={type}
                        name={name}
-                       placeholder={placeholder}
                        value={value}
                        onChange={onChange}
                        onBlur={onBlur}
-                       className="form-control" />);
+                       onKeyPress={onKeyPress}
+                       className="form-control"
+                        />);
 
   const textArea = (<textarea type={type}
                              name={name}
-                             placeholder={placeholder}
                              value={value}
                              onChange={onChange}
                              onBlur={onBlur}
@@ -45,7 +45,7 @@ Input.propTypes = {
   type: string.isRequired,
   onChange: func.isRequired,
   onBlur: func,
-  placeholder: string,
+  onKeyPress: func,
   value: string,
   error: string
 };

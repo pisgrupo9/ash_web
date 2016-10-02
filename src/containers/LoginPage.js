@@ -26,6 +26,7 @@ class LoginPage extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -72,6 +73,12 @@ class LoginPage extends Component {
     return this.setState({ form });
   }
 
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.onSubmit();
+    }
+  }
+
   render() {
     const login = this.props.login;
     let error = login ? login.errorLogin : null;
@@ -82,7 +89,8 @@ class LoginPage extends Component {
                     error={error}
                     onChange={this.onChange}
                     loading={this.state.loading}
-                    onSubmit={this.onSubmit}/>
+                    onSubmit={this.onSubmit}
+                    onKeyPress={this.onKeyPress}/>
         <div className="link-wrapper">
           <Link to="solicitud-registro" className="form-link">
             Crear Cuenta

@@ -4,7 +4,7 @@ import Spinner from 'react-spinkit';
 import Input from '../common/Input';
 import '../../styles/login.scss';
 
-const UserForm = ({ user, loading, onSave, onChange, onBlur, errors }) => {
+const UserForm = ({ user, loading, onSave, onChange, onBlur, onKeyPress, errors }) => {
   const submitButton = (<input className="btn user-submit-btn"
                                 type="submit"
                                 value="ENVIAR"
@@ -57,6 +57,7 @@ const UserForm = ({ user, loading, onSave, onChange, onBlur, errors }) => {
                   value={user.confirmedPasswordValue}
                   onChange={onChange}
                   onBlur={onBlur}
+                  onKeyPress={onKeyPress}
                   error={errors.password_confirmation} />
           { loading ? loadingButton : submitButton}
         </div>
@@ -73,6 +74,7 @@ UserForm.propTypes = {
   onSave: func.isRequired,
   onChange: func.isRequired,
   onBlur: func.isRequired,
+  onKeyPress: func.isRequired,
   errors: object
 };
 
