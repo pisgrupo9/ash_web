@@ -7,17 +7,29 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, placeholder, v
     wrapperClass += " " + 'has-error';
   }
 
+  const textAreaInput = type === "textarea";
+
+  const input = (<input type={type}
+                       name={name}
+                       placeholder={placeholder}
+                       value={value}
+                       onChange={onChange}
+                       onBlur={onBlur}
+                       className="form-control" />);
+
+  const textArea = (<textarea type={type}
+                             name={name}
+                             placeholder={placeholder}
+                             value={value}
+                             onChange={onChange}
+                             onBlur={onBlur}
+                             className="form-control" />);
+
   return (
     <div className={wrapperClass}>
       {label && <label className="input-label" htmlFor={name}>{label}</label>}
       <div className="field">
-        <input type={type}
-               name={name}
-               placeholder={placeholder}
-               value={value}
-               onChange={onChange}
-               onBlur={onBlur}
-               className="form-control" />
+        {textAreaInput ? textArea : input}
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>

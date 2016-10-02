@@ -136,7 +136,7 @@ class NewAnimalModal extends Component {
 
     for (let name in animal) {
       if (this.state.requiredFields[name]) {
-        errors[name] = valid.validateEmptyField(name, animal[name]);
+        errors[name] = valid.validateEmptyField(animal[name]);
       }
       if (animal[name] && this.isDateType(name)) {
         errors[name] = valid.lessThanToday(animal[name]);
@@ -166,7 +166,7 @@ class NewAnimalModal extends Component {
     this.setState({ animal });
     if (this.state.requiredFields[ field ]) {
       let errors = this.state.errors;
-      errors[field] = valid.validateEmptyField(field, value);
+      errors[field] = valid.validateEmptyField(value);
       this.setState({ errors: errors });
     }
   }

@@ -57,6 +57,10 @@ $dark-orange: #ff6600;
   align-content: flex-start;
   align-items: flex-start;
 
+  .react-datepicker__input-container {
+    width: 100%;
+  }
+
   .animal-checkbox {
     margin: 7px;
     font-weight: 300;

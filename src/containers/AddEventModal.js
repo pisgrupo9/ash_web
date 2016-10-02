@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as eventActions from '../actions/eventActions';
+import * as animalActions from '../actions/animalActions';
 import * as valid from '../util/validateForm';
 import Spinner from 'react-spinkit';
 import UploadImageMessage from '../components/common/UploadImageMessage';
@@ -9,6 +10,7 @@ import '../styles/animal-form.scss';
 import EventForm from '../components/animals/events/EventForm';
 import { toastr } from 'react-redux-toastr';
 import * as messages from '../constants/apiMessage';
+import moment from 'moment';
 
 class AddEventModal extends Component {
   constructor(props, context) {
@@ -18,7 +20,7 @@ class AddEventModal extends Component {
       event: {
         name: '',
         description: '',
-        date: ''
+        date: moment()
       },
       errors: {
         name: '',
@@ -34,7 +36,8 @@ class AddEventModal extends Component {
       imagesToSend: 0,
       uploadingImages: false,
       successUploadingImages: true,
-      images: []
+      images: [],
+      windowWidth: window.innerWidth
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -42,6 +45,7 @@ class AddEventModal extends Component {
     this.onClose = this.onClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onDeleteImage = this.onDeleteImage.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -58,6 +62,7 @@ class AddEventModal extends Component {
           this.setState({ successUploadingImages: false });
         }
         if (noMoreImages) {
+          this.props.animalActions.showPerfilAnimalImages(this.props.animalId, 1);
           if (successUpload) {
             toastr.success('', messages.SUCCES_CREATE_EVENT);
             let cantImgs = this.state.images.length;
@@ -73,6 +78,10 @@ class AddEventModal extends Component {
     } else if (!this.state.uploadingImages) {
       this.setState({ loading: false });
     }
+  }
+
+  handleResize() {
+    this.setState({ windowWidth: window.innerWidth });
   }
 
   sendImages() {
@@ -110,10 +119,7 @@ class AddEventModal extends Component {
     let errors = this.state.errors;
     for (let name in event) {
       if (this.state.requiredFields[name]) {
-        errors[name] = valid.validateEmptyField(name, event[name]);
-      }
-      if (event[name] && name === 'date') {
-        errors[name] = valid.lessThanToday(event[name]);
+        errors[name] = valid.validateEmptyField(event[name]);
       }
     }
     this.setState({ errors });
@@ -137,9 +143,18 @@ class AddEventModal extends Component {
     this.setState({ event });
     if (requiredFields[ name ]) {
       let errors = this.state.errors;
-      errors[ name ] = valid.validateEmptyField(name, value);
+      errors[ name ] = valid.validateEmptyField(value);
       this.setState({ errors: errors });
     }
+  }
+
+  handleDateChange(date) {
+    let { event } = this.state;
+    event.date = date;
+    this.setState({ event: event });
+    let errors = this.state.errors;
+    errors.date = valid.validateEmptyField(date);
+    this.setState({ errors: errors });
   }
 
   onClose() {
@@ -148,7 +163,7 @@ class AddEventModal extends Component {
   }
 
   render() {
-    let { event, images, errors } = this.state;
+    let { event, images, errors, windowWidth } = this.state;
     const localErrors = !valid.notErrors(this.state.errors);
     const loadingView = (<div className="loading-container">
                           <Spinner spinnerName="three-bounce" noFadeIn />
@@ -163,7 +178,9 @@ class AddEventModal extends Component {
                                   onCancel={this.onClose}
                                   onDrop={this.onDrop}
                                   onDelete={this.onDeleteImage}
+                                  onChangeDate={this.handleDateChange}
                                   errors={localErrors ? errors : this.props.errors}
+                                  mobile={windowWidth < 450}
                                   />
                   </div>);
 
@@ -195,7 +212,8 @@ AddEventModal.propTypes = {
   sendedImages: number.isRequired,
   successImage: bool.isRequired,
   animalId: string.isRequired,
-  actions: object.isRequired
+  actions: object.isRequired,
+  animalActions: object.isRequired
 };
 
 const mapState = (state) => {
@@ -215,7 +233,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(eventActions, dispatch)
+    actions: bindActionCreators(eventActions, dispatch),
+    animalActions: bindActionCreators(animalActions, dispatch)
   };
 };
 

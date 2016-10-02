@@ -217,3 +217,41 @@ html {
   background-color: $orange;
   box-shadow: 1px 1px 1px #888888;
 }
+
+.react-datepicker {
+  border: 1px solid $dark-grey !important;
+  border-radius: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  width: 230px;
+
+  .react-datepicker__triangle {
+    border-bottom-color: $orange;
+  }
+
+  .react-datepicker__triangle:before {
+    border-bottom-color: $dark-grey;
+  }
+
+  .react-datepicker__header {
+    background-color: $orange;
+    border-radius: 0;
+  }
+
+  .react-datepicker__navigation--previous {
+    border-right-color: white;
+  }
+
+  .react-datepicker__navigation--next {
+    border-left-color: white;
+  }
+
+  .react-datepicker__current-month, .react-datepicker__day-name {
+    color: white;
+  }
+
+  .react-datepicker__day--selected {
+    background-color: #fdc181;
+  }
+}

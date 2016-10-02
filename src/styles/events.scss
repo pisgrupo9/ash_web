@@ -1,0 +1,16 @@
+.title-input {
+  flex: 2 1 0;
+}
+
+.date-input {
+  margin-bottom: 15px;
+}
+
+.description-input {
+  flex: 0 1 100%;
+
+  .form-control {
+    resize: none;
+    height: 100px;
+  }
+}

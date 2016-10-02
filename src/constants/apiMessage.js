@@ -6,7 +6,7 @@ export const ERROR_PASS_NOT_EQUAL = 'Las contraseñas no coinciden';
 export const ERROR_PASS_SHORT = 'Contraseña muy corta(minimo 8 caracteres)';
 export const CARGANDO_IMAGEN = 'Cargando imágenes';
 export const SUCCES_CREATE_ANIMAL = 'Nuevo animal creado con exito';
-export const GALLERY_LOAD_ERROR = 'Ocurrio un error las imagenes, puede que no todas las imagenes hayan sido agregadas a la galeria';
+export const GALLERY_LOAD_ERROR = 'Ocurrio un error con las imagenes, puede que no todas las imagenes hayan sido agregadas a la galeria';
 export const GALLERY_ADD_IMAGEN = (cantImgs) => {
                                     return 'Se agregaron '+ cantImgs +' nuevas fotos a la galeria';
                                   };

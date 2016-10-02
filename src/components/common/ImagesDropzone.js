@@ -3,10 +3,10 @@ import Dropzone from 'react-dropzone';
 import ImagesPreview from './ImagesPreview';
 import '../../styles/images-dropzone.scss';
 
-const ImagesDropzone = ({ images, onDrop, onDelete }) => {
+const ImagesDropzone = ({ images, title, onDrop, onDelete }) => {
   return (
     <div className="dropzone-container">
-      <p>Galería</p>
+      <p>{title}</p>
       <Dropzone className="dropzone"
                 activeClassName="dropzone-active"
                 accept="image/*"
@@ -20,9 +20,10 @@ const ImagesDropzone = ({ images, onDrop, onDelete }) => {
   );
 };
 
-const { array, func } = PropTypes;
+const { array, func, string } = PropTypes;
 
 ImagesDropzone.propTypes = {
+  title: string,
   images: array.isRequired,
   onDrop: func.isRequired,
   onDelete: func.isRequired
