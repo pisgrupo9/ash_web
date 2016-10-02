@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import Spinner from 'react-spinkit';
 
-const SpinnerComponet = ({ active }) => {
+const SpinnerComponent = ({ active }) => {
     return (
         <div className={active ? 'spinner-div' : 'hide'}>
           <div className="spinner-icon">
@@ -13,8 +13,8 @@ const SpinnerComponet = ({ active }) => {
 
 const { bool } = PropTypes;
 
-SpinnerComponet.propTypes = {
+SpinnerComponent.propTypes = {
   active: bool
 };
 
-export default SpinnerComponet;
+export default SpinnerComponent;

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import AnimalItem from "./AnimalItem";
 import '../../styles/animal-list.scss';
-import SpinnerComponet from '../common/SpinnerComponet';
+import SpinnerComponent from '../common/SpinnerComponent';
 
 const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickViewMore, loading }) => {
-  const spinner = (<SpinnerComponet active={loading} />);
+  const spinner = (<SpinnerComponent active={loading} />);
   return (
     <div className="m-right30">
       <div className="titles-container">

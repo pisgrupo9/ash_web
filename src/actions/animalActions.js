@@ -1,5 +1,6 @@
 import * as types from './actionTypes';
-import animalApi, { parseAnimal, parseImage, parseFilter } from '../api/animalApi';
+import animalApi, { parseAnimal, parseFilter } from '../api/animalApi';
+import { parseImage } from '../api/imagesApi';
 
 export const sendAnimalFormSuccess = (response) => {
   return {
@@ -156,7 +157,6 @@ export const showPerfilAnimal = (id_animal) => {
     return animalApi.showAnimal(id_animal).then(animal => {
       dispatch(showAnimalPerfil(animal));
       showPerfilAnimalImages(id_animal)(dispatch);
-
     });
   };
 };

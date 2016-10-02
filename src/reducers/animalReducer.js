@@ -15,6 +15,9 @@ const animalReducer = (state = initialState.animal, action) => {
     case types.UPLOAD_IMAGE_ANIMAL_SUCCESS: {
       return Object.assign({}, state, { uplaodImages: true, images: [] });
     }
+    case types.UPLOAD_IMAGE_EVENT_SUCCESS: {
+      return Object.assign({}, state, { uplaodImages: true, images: [] });
+    }
     case types.REMOVE_IMAGE_ANIMAL_SUCCESS: {
       let images =[];
       state.images.forEach( function (image) {

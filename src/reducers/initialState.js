@@ -12,12 +12,21 @@ export default {
     sended_images: 0,
     id: ''
   },
-  animal: {},
+  animal: {
+    images: []
+  },
   animals: {
     total_pages: 0,
     animals: [],
     first_page: false,
     filterParam: '',
     searchReady: false
+  },
+  eventForm: {
+    errors: '',
+    success: false,
+    success_image: false,
+    sended_images: 0,
+    id: ''
   }
 };

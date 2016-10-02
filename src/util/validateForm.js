@@ -1,6 +1,6 @@
 import * as messages from '../constants/apiMessage';
 
-export const validateEmptyField = (name, value) => {
+export const validateEmptyField = (value) => {
   return value ? '' : messages.ERROR_REQUIRED_FIELD;
 };
 

@@ -3,7 +3,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.scss';
 import 'slick-carousel/slick/slick-theme.scss';
 import '../../styles/img-galeria.scss';
-import Spinner from '../common/SpinnerComponet';
+import Spinner from '../common/SpinnerComponent';
 import Lightbox from 'react-images';
 
 class ImagesGallery extends Component {

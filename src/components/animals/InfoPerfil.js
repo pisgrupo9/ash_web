@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Spinner from '../common/SpinnerComponet';
+import Spinner from '../common/SpinnerComponent';
 import ImageLightBox from '../common/ImageLightBox';
 
 const InfoPerfil = ({ animal, loading, styleClass }) => {
