@@ -11,6 +11,7 @@ const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickV
         <div className="title-inside">NOMBRE</div>
         <div className="title-inside">ESPECIE</div>
         <div className="title-inside">ESTADO</div>
+        <div className="title-ficha">FICHA</div>
       </div>
       { animals.map(animal => {
         return (

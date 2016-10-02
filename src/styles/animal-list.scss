@@ -28,17 +28,17 @@ $plaseHolder-grey: #b29c99;
   min-width: 200px;
 
   .filter-title{
-    text-align: center;  
+    text-align: center;
   }
 
   .filter-text{
-    color: $dark-grey;  
+    color: $dark-grey;
   }
 
   .filter-componet {
     @extend .flex-title;
     padding: 0 10px;
-  
+
     .filter-field {
        flex: 1;
        min-width: 120px;
@@ -61,7 +61,7 @@ $plaseHolder-grey: #b29c99;
         color: $plaseHolder-grey;
         text-align-last:center;
         option{
-          text-align: right; 
+          text-align: right;
           color: #000000;
         }
 
@@ -88,7 +88,7 @@ $plaseHolder-grey: #b29c99;
     }
   }
 }
-  
+
 .btn-find-div{
   text-align: center;
   flex: 1;
@@ -140,6 +140,10 @@ $plaseHolder-grey: #b29c99;
 }
 
 .title-inside {
+  flex: 5;
+}
+
+.title-ficha {
   flex: 1;
 }
 
@@ -179,7 +183,7 @@ $plaseHolder-grey: #b29c99;
   font-weight: 500;
   font-size: 15px;
   color: $dark-grey;
-  flex: 1;
+  flex: 5;
   padding: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -189,8 +193,13 @@ $plaseHolder-grey: #b29c99;
 .animal-state-species {
   font-weight: 500;
   font-size: 13px;
-  flex: 1;
+  flex: 5;
   padding: 5px;
+}
+
+.view-info-icon {
+  flex: 1;
+  text-align: center;
 }
 
 .button-show {
@@ -208,10 +217,14 @@ $plaseHolder-grey: #b29c99;
 
 .link-style {
   color: inherit;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 .link-style:hover {
   color: inherit;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
 }
 
 .view-more-container {
@@ -237,13 +250,17 @@ $plaseHolder-grey: #b29c99;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-  text-align: center;  
+  text-align: center;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-  text-align: center;  
+  text-align: center;
 }
 
-:-ms-input-placeholder {  
-  text-align: center; 
+:-ms-input-placeholder {
+  text-align: center;
+}
+
+.center-me {
+  margin: 0 auto;
 }

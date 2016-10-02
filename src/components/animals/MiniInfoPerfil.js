@@ -1,39 +1,45 @@
 import React, { PropTypes } from 'react';
-import '../../styles/animal-perfil.scss';
-import '../../styles/animal-form.scss';
-import '../../styles/animal-list.scss';
+import '../../styles/mini-view.scss';
 
 const MiniInfoPerfil = ({ animal }) => {
   let imagen = animal.profile_image_thumb;
+  let catDog = (animal.species_id == "1" || animal.species_id == "2");
+  let tick = (<i className="material-icons green-color">done</i>);
+  let cross = (<i className="material-icons red-color">clear</i>);
+  let castrated = (<div className="flex-items">
+          <div className="vertical-flex-container left-border ">
+            <div className="vertical-flex bottom-border titles-font">Castrado</div>
+            <div className="vertical-flex">{animal.castrated ? tick : cross}</div>
+          </div>
+        </div>);
   return (
-    <div className="mini-profile-flex" >
-      <img className="mini-perfil-image" src={imagen} />
-      <table className="mini-tabel-div table-responsive">
-        <tbody>
-          <tr>
-            <th><b>Num. Chip</b></th>
-            <th><b>Raza</b></th>
-            <th><b>Sexo</b></th>
-          </tr>
-          <tr>
-            <td>{animal.chip_num}</td>
-            <td>{animal.race}</td>
-            <td>{animal.sex}</td>
-          </tr>
-        </tbody>
-      </table>
-      <table className="mini-tabel-div table-responsive">
-        <tbody>
-          <tr>
-            <th><b>Peso</b></th>
-            <th><b>Castrado</b></th>
-          </tr>
-          <tr>
-            <td>{animal.weight == null ? '' : animal.weight.toString().concat(" KG")}</td>
-            <td>{(animal.castrado ? <font color="green"> SI </font> : <font color="red"> NO </font>)}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="big-flex-container" >
+      <div className="image-flex"> <img src={imagen} /> </div>
+      <div className="flex-items">
+        <div className="vertical-flex-container">
+          <div className="vertical-flex bottom-border titles-font">Edad</div>
+          <div className="vertical-flex dark-grey-color">14 años</div>
+        </div>
+      </div>
+      <div className="flex-items">
+        <div className="vertical-flex-container">
+          <div className="vertical-flex bottom-border titles-font">Raza</div>
+          <div className="vertical-flex dark-grey-color">{animal.race ? animal.race : 'N/A'}</div>
+        </div>
+      </div>
+      <div className="flex-items">
+        <div className="vertical-flex-container">
+          <div className="vertical-flex bottom-border titles-font">Sexo</div>
+          <div className="vertical-flex dark-grey-color">{animal.sex}</div>
+        </div>
+      </div>
+      <div className="flex-items">
+        <div className="vertical-flex-container">
+          <div className="vertical-flex bottom-border titles-font">Peso</div>
+          <div className="vertical-flex dark-grey-color">{animal.weight ? animal.weight : 'N/A'}</div>
+        </div>
+      </div>
+      {catDog ? castrated : ''}
     </div>
   );
 };
