@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import { Col, Row } from 'react-bootstrap';
 import Spinner from 'react-spinkit';
 
-const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
+const LoginForm = ({ form, error, onChange, loading, onSubmit, onKeyPress }) => {
   const submitButton = (<input type="button" className="btn user-submit-btn" value="INGRESAR" onClick={onSubmit}/>);
 
   const loadingButton = (<div className="btn user-submit-btn">
@@ -22,6 +22,7 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
                   name="email"
                   value={form.email.value}
                   onChange={onChange}
+                  onKeyPress={onKeyPress}
                   error={form.email.error}/>
           <Input styleClass="user-input"
                   label="Contraseña"
@@ -29,6 +30,7 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit }) => {
                   name="pass"
                   value={form.pass.value}
                   onChange={onChange}
+                  onKeyPress={onKeyPress}
                   error={form.pass.error}/>
           { loading ? loadingButton : submitButton}
           <p className="remLink"><Link to="reset" className="dark-grey-color">Olvide mi Contraseña</Link></p>
@@ -45,6 +47,7 @@ LoginForm.propTypes = {
   onChange: func.isRequired,
   loading: bool.isRequired,
   onSubmit: func.isRequired,
+  onKeyPress: func,
   error: string
 };
 

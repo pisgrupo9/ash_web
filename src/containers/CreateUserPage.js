@@ -34,6 +34,7 @@ class CreateUserPage extends Component {
     this.updateUserState = this.updateUserState.bind(this);
     this.submitUserForm = this.submitUserForm.bind(this);
     this.updateValidField = this.updateValidField.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -132,6 +133,12 @@ class CreateUserPage extends Component {
     }
   }
 
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.submitUserForm(e);
+    }
+  }
+
   render() {
     const erorsFromServer = this.state.form.valid && Object.keys(this.props.errors).length !== 0;
     return (
@@ -142,6 +149,7 @@ class CreateUserPage extends Component {
                   onSave={this.submitUserForm}
                   onChange={this.updateUserState}
                   onBlur={this.updateValidField}
+                  onKeyPress={this.onKeyPress}
                   errors={erorsFromServer ? this.props.errors : this.state.errors} />
         <div className="link-wrapper">
           <Link to="login" className="form-link">Ingresar</Link>
