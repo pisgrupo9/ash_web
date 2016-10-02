@@ -142,6 +142,20 @@ $plaseHolder-grey: #b29c99;
   margin-bottom: 20px;
 }
 
+.event-titles-container {
+  display: flex;
+  margin-left: 60px;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+
+.event-title-inside {
+  flex: 1;
+  float: right;
+  text-align: right;
+  margin-right: 85px;
+}
+
 .title-inside {
   flex: 5;
 }
@@ -167,7 +181,7 @@ $plaseHolder-grey: #b29c99;
 }
 
 .general-event-list {
-  margin: 30px 10px 80px 40px;
+  margin: 10px;
 }
 
 .clear { clear:both; }
@@ -207,6 +221,25 @@ $plaseHolder-grey: #b29c99;
 .view-info-icon {
   flex: 1;
   text-align: center;
+}
+
+.event-name{
+  font-weight: 500;
+  font-size: 16px;
+  color: $dark-grey;
+  flex: 1;
+  padding: 5px;
+  flex: 1;
+}
+
+.event-date{
+  font-weight: 450;
+  text-align: right;
+  margin-right: 50px;
+  color: $dark-grey;
+  font-size: 15px;
+  padding: 5px;
+  flex:1;
 }
 
 .button-show {

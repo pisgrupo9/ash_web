@@ -9,14 +9,15 @@ const EventItem = ({ event, selectedEventId, onClick }) => {
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
   const showEvent = selectedEventId === event.id.toString();
+  const tokens = event.date.split("-");
   return (
     <div>
       <div className={showEvent ? 'selected-item-container' :'animal-item-container'}>
         <button className="button-show" onClick={() => onClick(event.id)}>
           {showEvent ? focusedbutton : unfocusedbutton}
         </button>
-        <div className="animal-state-species"> {event.name} </div>
-        <div className="animal-state-species"> {event.date} </div>
+        <div className="event-name"> {event.name} </div>
+        <div className="event-date"> {tokens[2]}/{tokens[1]}/{tokens[0]} </div>
       </div>
       <Collapse in={showEvent}>
         <div>

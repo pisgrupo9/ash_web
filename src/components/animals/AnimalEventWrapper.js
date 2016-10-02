@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as animalActions from '../../actions/animalActions';
 import EventList from './EventList';
 import AnimalEventHeader from './AnimalEventHeader';
+import * as consts from '../../constants/apiConstants.js';
 import '../../styles/animal-list.scss';
 
 class AnimalEventWrapper extends Component {
@@ -12,7 +13,8 @@ class AnimalEventWrapper extends Component {
 
     this.state = { selectedEventId: '',
                     loading: true,
-                    currPage: 1
+                    currPage: 1,
+                    rows: consts.EVENT_PAGE_SIZE
    };
 
     this.onClick = this.onClick.bind(this);
@@ -20,7 +22,8 @@ class AnimalEventWrapper extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.loadEvents(this.props.route_id, 4, 1);
+    let { rows, currPage } = this.state;
+    this.props.actions.loadEvents(this.props.route_id, rows, currPage);
   }
 
   componentWillReceiveProps() {
@@ -35,9 +38,8 @@ class AnimalEventWrapper extends Component {
 
   onClickViewMore() {
     let nextPage = this.state.currPage + 1;
-    this.setState({ currPage: nextPage });
-    this.setState({ loading: true });
-    this.props.actions.loadEvents(this.props.route_id, 3, nextPage);
+    this.setState({ loading: true, currPage: nextPage });
+    this.props.actions.loadEvents(this.props.route_id, this.state.rows, nextPage);
   }
 
   render() {

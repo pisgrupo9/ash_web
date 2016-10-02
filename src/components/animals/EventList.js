@@ -1,17 +1,18 @@
 import React, { PropTypes } from 'react';
-import Spinner from 'react-spinkit';
 import EventItem from "./EventItem";
 import '../../styles/animal-list.scss';
+import Infinite from 'react-infinite';
+import SpinnerComponent from '../common/SpinnerComponent';
 
 const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickViewMore, loading }) => {
-  const spinner = (<div className="spinner"> <Spinner spinnerName="three-bounce" noFadeIn /> </div>);
-
+  const spinner = (<SpinnerComponent active={loading} />);
   return (
-    <div className="m-right30">
-      <div className="titles-container">
+    <div>
+      <div className="event-titles-container">
         <div className="title-inside">EVENTO</div>
-        <div className="title-inside">FECHA</div>
+        <div className="event-title-inside">FECHA</div>
       </div>
+      <Infinite containerHeight={350} elementHeight={50} >
       { events.map(event => {
         return (
           <EventItem event={event} key={event.id}
@@ -23,6 +24,7 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
         {loading ? spinner : showViewMore ?
         <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
       </div>
+      </Infinite>
     </div>
   );
 };
