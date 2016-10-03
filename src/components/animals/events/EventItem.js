@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Collapse } from 'react-bootstrap';
 import MiniEvent from './MiniEvent';
-import '../../styles/animal-perfil.scss';
-import '../../styles/animal-list.scss';
+import '../../../styles/animal-perfil.scss';
+import '../../../styles/animal-list.scss';
 
-const EventItem = ({ event, selectedEventId, onClick }) => {
+const EventItem = ({ event, infoEvent, selectedEventId, onClick, loading }) => {
 
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
@@ -21,19 +21,21 @@ const EventItem = ({ event, selectedEventId, onClick }) => {
       </div>
       <Collapse in={showEvent}>
         <div>
-          <MiniEvent event={event} />
+          <MiniEvent event={infoEvent} loading={loading} />
         </div>
       </Collapse>
     </div>
   );
 };
 
-const { object, string, func } = PropTypes;
+const { object, string, func, bool } = PropTypes;
 
 EventItem.propTypes = {
   event: object.isRequired,
   selectedEventId: string.isRequired,
-  onClick: func.isRequired
+  onClick: func.isRequired,
+  infoEvent: object.isRequired,
+  loading: bool.isRequired
 };
 
 export default EventItem;

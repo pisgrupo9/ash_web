@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import EventItem from "./EventItem";
-import '../../styles/animal-list.scss';
-import SpinnerComponent from '../common/SpinnerComponent';
+import '../../../styles/animal-list.scss';
+import SpinnerComponent from '../../common/SpinnerComponent';
 
-const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickViewMore, loading }) => {
+const EventList = ({ events, infoEvent, onClick, selectedEventId, showViewMore, onClickViewMore, loading, loadingEvent }) => {
   const spinner = (<SpinnerComponent active={loading} />);
+
   return (
     <div>
       <div className="event-titles-container">
@@ -14,9 +15,12 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
       <div className="events-container">
       { events.map(event => {
         return (
-          <EventItem event={event} key={event.id}
-                                      selectedEventId={selectedEventId}
-                                      onClick={onClick}/>
+          <EventItem event={event}
+                      infoEvent={infoEvent}
+                      key={event.id}
+                      selectedEventId={selectedEventId}
+                      onClick={onClick}
+                      loading={loadingEvent} />
         );
       })}
       <div className="view-more-container">
@@ -28,7 +32,7 @@ const EventList = ({ events, onClick, selectedEventId, showViewMore, onClickView
   );
 };
 
-const { array, func, string, bool } = PropTypes;
+const { array, object, func, string, bool } = PropTypes;
 
 EventList.propTypes = {
   events: array.isRequired,
@@ -36,7 +40,9 @@ EventList.propTypes = {
   onClickViewMore: func.isRequired,
   selectedEventId: string.isRequired,
   showViewMore: bool.isRequired,
-  loading: bool.isRequired
+  loading: bool.isRequired,
+  infoEvent: object.isRequired,
+  loadingEvent: bool.isRequired
 };
 
 export default EventList;

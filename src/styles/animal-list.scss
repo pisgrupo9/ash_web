@@ -233,7 +233,6 @@ $plaseHolder-grey: #b29c99;
 }
 
 .event-date{
-  font-weight: 450;
   text-align: right;
   margin-right: 50px;
   color: $dark-grey;
@@ -306,7 +305,16 @@ $plaseHolder-grey: #b29c99;
 }
 
 .events-container {
-  overflow: scroll;
+  overflow: auto;
   overflow-x: hidden;
-  max-height: 400px;
+  max-height: 350px;
+}
+
+.event-description {
+  margin: 10px 20px;
+}
+
+.event-gallery {
+  width: 97%;
+  margin: 10px;
 }

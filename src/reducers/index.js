@@ -12,7 +12,6 @@ import animals from './animalsReducer';
 import eventForm from './eventFormReducer';
 import confirm from './confirmReducer';
 import events from './eventsReducer';
-import events from './eventsReducer';
 import event from './eventReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 

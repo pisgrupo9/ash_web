@@ -7,7 +7,7 @@ import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
 import EditAnimalButton from '../components/animals/EditAnimalButton';
-import AnimalEventWrapper from '../components/animals/AnimalEventWrapper';
+import AnimalEventWrapper from '../components/animals/events/AnimalEventWrapper';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
 import '../styles/animal-form.scss';

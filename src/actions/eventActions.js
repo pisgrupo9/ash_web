@@ -36,6 +36,20 @@ export const uploadImageEventError = (errors) => {
   };
 };
 
+export const loadEventsSuccess = (response) => {
+  return {
+    type: types.LOAD_EVENTS_SUCCESS,
+    response
+  };
+};
+
+export const showEventSucess = (response) => {
+  return {
+    type: types.SHOW_EVENT_SUCCESS,
+    response
+  };
+};
+
 export const sendEventForm = (event, animalId) => {
   return (dispatch) => {
     let eventJson = parseEvent(event);
@@ -54,6 +68,26 @@ export const uploadImageEvent = (image, eventId, animalId) => {
       dispatch(uploadImageEventSuccess());
     }).catch(err => {
       dispatch(uploadImageEventError(err));
+    });
+  };
+};
+
+export const loadEvents = (animal_id, row, col) => {
+  return (dispatch) => {
+    return eventApi.getEvents(animal_id, row, col).then(events => {
+      dispatch(loadEventsSuccess(events));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const showEvent = (animal_id, event_id) => {
+  return (dispatch) => {
+    return eventApi.getAnimalEvent(animal_id, event_id).then(event => {
+      dispatch(showEventSucess(event));
+    }).catch(err => {
+      throw (err);
     });
   };
 };

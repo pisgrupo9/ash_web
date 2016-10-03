@@ -37,14 +37,6 @@ class AnimalApi {
   static editAnimal(id_animal, animal) {
     return api.put(`${consts.API_STAGING_URL}/animals/${id_animal}`, animal);
   }
-
-  static getEvents(id_animal, row, col) {
-    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events?page=${col}&row=${row}`);
-  }
-
-  static getAnimalEvent(id_animal, id_event) {
-    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events/${id_event}`);
-  }
 }
 
 export default AnimalApi;

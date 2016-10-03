@@ -5,10 +5,8 @@ const eventReducer = (state = initialState.event, action) => {
 
   switch (action.type) {
     case types.SHOW_EVENT_SUCCESS: {
-      let newEvent = state.event ? state.event : [];
-      const { event } = action.response;
-      newEvent = newEvent.concat(event);
-      return Object.assign({}, state, { event: newEvent });
+      const event = action.response;
+      return Object.assign({}, state, { event });
     }
     default:
       return state;
