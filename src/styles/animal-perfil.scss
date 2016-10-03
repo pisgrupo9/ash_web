@@ -11,7 +11,7 @@ $dark: #4A4A4A;
   justify-content: center;
   align-content: flex-start;
   align-self: flex-start;
-  margin-bottom: 20px;
+  margin: 0 15px 20px 15px;
 }
 
 .mini-profile-flex {
@@ -24,15 +24,18 @@ $dark: #4A4A4A;
 }
 
 .events-gallery-section {
-  max-width: 70%;
-  width: 70%;
+  -webkit-flex: 1 0 70%;
+  flex: 1 0 60%;
   min-width: 300px;
   display: flex;
+  -webkit-flex-flow: column wrap;
   flex-flow: column wrap;
+  max-width: 100%;
 }
 
 .profile-section {
-  max-width: 20%;
+  -webkit-flex: 1 0 20%;
+  flex: 1 0 auto;
   min-width: 300px;
   margin: 0 10px;
 }
@@ -59,10 +62,11 @@ $dark: #4A4A4A;
 .gallery-div{
   @extend .section-div;
   height: 175px;
+  width: 100%;
 }
 
 .perfil-box{
-  height: auto;
+  height: 100%;
   max-height: 810px;
   font-size: 14px;
   color: $dark;
