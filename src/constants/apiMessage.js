@@ -15,3 +15,5 @@ export const ERROR_GREATER_DATE = (dateMsg) => {
                                     return `Debe ser mayor a la fecha de ${dateMsg}`;
                                   };
 export const SUCCES_CREATE_EVENT = 'Nuevo evento creado con exito';
+export const REMOVE_IMAGE_MESSAGE = 'Estás seguro que desea borrar esta imagen?';
+export const REMOVE_IMAGE_TITLE = 'BORRAR IMAGEN';

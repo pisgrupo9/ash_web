@@ -2,11 +2,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Footer from './common/Footer.js';
+import ConfirmModalBox from './common/ConfirmModalBox';
 import Header from '../components/common/Header';
 
 const { object } = PropTypes;
 
 class App extends Component {
+  constructor(props, context) {
+    super(props, context);
+  }
+
   render() {
     const footerText = 'Animales Sin Hogar - Asociación Civil sin fines de lucro. - Personería Jurídica 9985';
     const { pathname } = this.props.location;
@@ -22,6 +27,7 @@ class App extends Component {
         <div className="content">
           {this.props.children}
         </div>
+        <ConfirmModalBox/>
         <Footer text={footerText} />
       </div>
     );

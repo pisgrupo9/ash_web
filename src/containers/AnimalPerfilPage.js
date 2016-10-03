@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
+import * as confirmActions from '../actions/confirmActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
@@ -10,6 +11,7 @@ import AddEventButton from '../components/animals/events/AddEventButton';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
 import '../styles/animal-form.scss';
+import * as message from '../constants/apiMessage';
 
 class AnimalPerfilPage extends Component {
   constructor(props, context) {
@@ -63,8 +65,15 @@ class AnimalPerfilPage extends Component {
   }
 
   onRemoveImage(image) {
-    this.props.animalActions.removePerfilAnimalImages(this.props.animal.id, image.id);
-    this.setState({ loading_gallery: true });
+    const confirmf = () => {
+      this.props.animalActions.removePerfilAnimalImages(this.props.animal.id, image.id);
+      this.setState({ loading_gallery: true });
+    };
+    this.props.confirmActions.confirmDialog({
+                  title: message.REMOVE_IMAGE_TITLE,
+                  message: message.REMOVE_IMAGE_MESSAGE,
+                  confirmF: confirmf
+                });
   }
 
   onMoreImages() {
@@ -138,6 +147,7 @@ AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
   user: object.isRequired,
   animalActions: object.isRequired,
+  confirmActions: object.isRequired,
   routeParams: object.isRequired
 };
 
@@ -154,7 +164,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    animalActions: bindActionCreators(animalActions, dispatch)
+    animalActions: bindActionCreators(animalActions, dispatch),
+    confirmActions: bindActionCreators(confirmActions, dispatch)
   };
 };
 

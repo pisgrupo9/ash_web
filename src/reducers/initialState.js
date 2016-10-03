@@ -28,5 +28,6 @@ export default {
     success_image: false,
     sended_images: 0,
     id: ''
-  }
+  },
+  confirm: {}
 };
