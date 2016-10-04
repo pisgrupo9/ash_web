@@ -5,7 +5,6 @@ import ProfileDropzone from './ProfileDropzone';
 import { Checkbox } from 'react-bootstrap';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
-import * as consts from '../../constants/apiConstants.js';
 
 const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
 
@@ -27,6 +26,9 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                               Vacunas
                             </Checkbox>);
   let showCheckboxes = animal.species_id.toString() === "1" || animal.species_id.toString() === "2";
+  const genders = [ { id: "Macho", name: "Macho" },
+                   { id: "Hembra", name: "Hembra" } ];
+
   return (
     <div>
       <div className="dropzones-container">
@@ -34,6 +36,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                          onDrop={onDropProfile} />
       </div>
       <div className="form-container">
+        <p> * campos necesarios </p>
         <div className="animal-form">
           <Input styleClass="profile-animal-input"
                           name="chip_num"
@@ -44,14 +47,14 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           error={errors.chip_num}/>
           <Input styleClass="profile-animal-input"
                           name="name"
-                          label="Nombre"
+                          label="Nombre *"
                           type="text"
                           value={animal.name != null ? animal.name : ""}
                           onChange={onChange}
                           error={errors.name}/>
           <SelectInput styleClass="profile-animal-input"
                       name="species_id"
-                      label="Especie"
+                      label="Especie *"
                       value={animal.species_id.toString()}
                       onChange={onChange}
                       options={species}
@@ -59,11 +62,11 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                       error={errors.species_id}/>
           <SelectInput styleClass="profile-animal-input"
                           name="sex"
-                          label="Sexo"
+                          label="Sexo *"
                           value={animal.sex}
                           onChange={onChange}
-                          options={consts.GENEDERS}
-                          edit={false}
+                          options={genders}
+                          edit={true}
                           error={errors.sex}/>
           <Input styleClass="profile-animal-input"
                           name="race"
@@ -74,14 +77,14 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           error={errors.race}/>
           <Input styleClass="profile-animal-input"
                           name="birthdate"
-                          label="Fecha de Nacimiento"
+                          label="Fecha de Nacimiento *"
                           type="month"
                           value={fecha_cumple}
                           onChange={onChange}
                           error={errors.birthdate}/>
           <Input styleClass="profile-animal-input"
                         name="admission_date"
-                        label="Fecha de Ingreso"
+                        label="Fecha de Ingreso *"
                         type="date"
                         value={animal.admission_date}
                         onChange={onChange}
