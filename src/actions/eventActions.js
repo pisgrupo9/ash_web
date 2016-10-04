@@ -43,10 +43,16 @@ export const loadEventsSuccess = (response) => {
   };
 };
 
-export const showEventSucess = (response) => {
+export const showEventSuccess = (response) => {
   return {
     type: types.SHOW_EVENT_SUCCESS,
     response
+  };
+};
+
+export const cleanEventsSuccess = () => {
+  return {
+    type: types.CLEAN_EVENTS_SUCCESS
   };
 };
 
@@ -85,9 +91,15 @@ export const loadEvents = (animal_id, row, col) => {
 export const showEvent = (animal_id, event_id) => {
   return (dispatch) => {
     return eventApi.getAnimalEvent(animal_id, event_id).then(event => {
-      dispatch(showEventSucess(event));
+      dispatch(showEventSuccess(event));
     }).catch(err => {
       throw (err);
     });
+  };
+};
+
+export const cleanEvents = () => {
+  return (dispatch) => {
+    dispatch(cleanEventsSuccess());
   };
 };

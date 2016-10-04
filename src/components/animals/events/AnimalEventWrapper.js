@@ -13,8 +13,9 @@ class AnimalEventWrapper extends Component {
 
     this.state = {
                     selectedEventId: '',
-                    loading: true,
+                    loadingMore: true,
                     loadingEvent: true,
+                    loading: true,
                     currPage: 1,
                     rows: consts.EVENT_PAGE_SIZE
    };
@@ -29,7 +30,11 @@ class AnimalEventWrapper extends Component {
   }
 
   componentWillReceiveProps() {
-    this.setState({ loading: false, loadingEvent: false });
+    this.setState({ loadingMore: false, loadingEvent: false, loading: false });
+  }
+
+  componentWillUnmount() {
+    this.props.actions.cleanEvents();
   }
 
   onClick(eventId) {
@@ -40,7 +45,7 @@ class AnimalEventWrapper extends Component {
 
   onClickViewMore() {
     let nextPage = this.state.currPage + 1;
-    this.setState({ loading: true, currPage: nextPage });
+    this.setState({ loadingMore: true, currPage: nextPage });
     this.props.actions.loadEvents(this.props.route_id, this.state.rows, nextPage);
   }
 
@@ -54,6 +59,7 @@ class AnimalEventWrapper extends Component {
                     infoEvent={event.event ? event.event : {}}
                     onClick={this.onClick}
                     selectedEventId={this.state.selectedEventId}
+                    loadingMore={this.state.loadingMore}
                     loading={this.state.loading}
                     loadingEvent={this.state.loadingEvent}
                     onClickViewMore={this.onClickViewMore}
