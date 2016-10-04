@@ -14,11 +14,9 @@ class AnimalFilters extends Component {
                     chip_num: '',
                     species_id: '',
                     sex: '',
-                    admission_date: '',
+                    admission_date: null,
                     name: '',
-                    birth_date: '',
                     race: '',
-                    death_date: '',
                     castrated: "",
                     vaccines: "",
                     state: ""
@@ -54,7 +52,7 @@ class AnimalFilters extends Component {
   onSubmit() {
     let filter = {};
     for (let name in this.state.filter) {
-      if (this.state.filter[name] != "") {
+      if (this.state.filter[name]) {
             filter[name] = this.state.filter[name];
         }
     }
@@ -71,13 +69,14 @@ class AnimalFilters extends Component {
 
   render() {
     const { filter, windowWidth, allField } = this.state;
-    const boolean = [ { id: 1, name: "SI" },
-                    { id: 0, name: "NO" } ];
-    const states = [ { id: 1, name: "ADOPTADO" },
-                    { id: 0, name: "NO ADOPTADO" } ];
-    const sex = [ { id: 1, name: "MACHO" },
-                    { id: 0, name: "HEMBRA" } ];
-    let activeField = (windowWidth > 694 || allField);
+    const boolean = [ { id: true, name: "SI" },
+                    { id: false, name: "NO" } ];
+    const states = [ { id: true, name: "ADOPTADO" },
+                    { id: false, name: "NO ADOPTADO" } ];
+    const sex = [ { id: 0, name: "MACHO" },
+                    { id: 1, name: "HEMBRA" } ];
+    let smallWindows = (windowWidth <= 694);
+    let activeField = (!smallWindows || allField);
     let extraFilter = (filter.species_id == "") || (filter.species_id <= 2);
     let buttonFind = (<div className="btn-find-div">
                         <button
@@ -95,7 +94,7 @@ class AnimalFilters extends Component {
     return (
       <div>
           <p className="filter-title">FILTROS</p>
-            <div className="filter-componet">
+            <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
             <Input styleClass="filter-field grey-color"
                     name="name"
                     placeholder="Nombre"
@@ -110,7 +109,7 @@ class AnimalFilters extends Component {
                     value={filter.chip_num}
                     onChange={this.onChange}
                      />
-            {windowWidth <= 694 &&
+            {smallWindows &&
               <div className="btn-small-div">
                 {buttonFind}
                 {buttonMore}
@@ -118,7 +117,7 @@ class AnimalFilters extends Component {
             }
             </div>
             {activeField &&
-              <div className="filter-componet">
+              <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
                 <SelectInput styleClass={'filter-field'+(
                                 filter.species_id == "" ? ' default' : '')}
                       name="species_id"
@@ -144,8 +143,8 @@ class AnimalFilters extends Component {
                    />
                 </div>
               }
-              {activeField && extraFilter &&
-              <div className="filter-componet">
+              {(activeField && extraFilter) &&
+              <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
                 <SelectInput styleClass={'filter-field'+(
                                 filter.castrated == "" ? ' default' : '')}
                   name="castrated"
@@ -173,19 +172,19 @@ class AnimalFilters extends Component {
               </div>
             }
             {activeField &&
-            <div className="filter-componet">
+            <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
               <div className="filter-date">
                 <p className="filter-text">Fec. Admisión:</p>
                 <Input styleClass="filter-field"
-                      name="admission_date"
-                      type="date"
-                      value={filter.admission_date}
-                      onChange={this.onChange}
-                     />
+                name="admission_date"
+                type="date"
+                value={filter.admission_date}
+                onChange={this.onChange}
+                />
               </div>
           </div>
           }
-          {windowWidth > 694 && buttonFind}
+          {!smallWindows && buttonFind}
       </div>
       );
   }
