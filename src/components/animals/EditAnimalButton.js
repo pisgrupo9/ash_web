@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import EditAnimalModal from '../../containers/EditAnimalModal';
+import * as util from '../../util/validateForm';
 
 class EditAnimalButton extends Component {
   constructor(props, context) {
@@ -21,7 +22,7 @@ class EditAnimalButton extends Component {
   }
 
   render() {
-    const showButton = this.props.userPermission === 'animals_edit';
+    const showButton = util.editAnimalPerfil(this.props.userPermission);
     const button = (
                       <div>
                         <button type="button" className="btn-circle" onClick={this.onOpen}>

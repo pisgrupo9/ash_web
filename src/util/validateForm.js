@@ -25,3 +25,11 @@ export const compareDates = (date1, date2, dateName) => {
   const lessDate = newDate2 < newDate1;
   return lessDate ? '' : messages.ERROR_GREATER_DATE(dateName);
 };
+
+export const editAnimalPerfil = (perfil) => {
+ return (perfil === 'animals_edit') || (perfil === 'super_user');
+};
+
+export const editAdopterPerfil = (perfil) => {
+ return (perfil === 'adopters_edit') || (perfil === 'super_user');
+};
