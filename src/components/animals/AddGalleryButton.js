@@ -3,6 +3,7 @@ import AddGalleryModal from '../../containers/AddGalleryModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import * as util from '../../util/validateForm';
 
 class AddGalleryButton extends Component {
   constructor(props, context) {
@@ -23,7 +24,8 @@ class AddGalleryButton extends Component {
   }
 
   render() {
-    const showButton = this.props.userPermission === 'animals_edit' || 'super_user';
+    const { userPermission } = this.props;
+    const showButton = util.editAnimalPerfil(userPermission);
     const button = (
                     <div>
                       <button className="button-add-images" onClick={this.onOpen}>

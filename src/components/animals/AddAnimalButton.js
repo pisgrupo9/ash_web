@@ -3,6 +3,7 @@ import NewAnimalModal from '../../containers/NewAnimalModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import * as util from '../../util/validateForm';
 
 class AddAnimalButton extends Component {
   constructor(props, context) {
@@ -23,7 +24,7 @@ class AddAnimalButton extends Component {
 
   render() {
     let { userPermission } = this.props;
-    const showButton = userPermission === 'animals_edit' || userPermission === 'super_user';
+    const showButton = util.editAnimalPerfil(userPermission);
     const button = (
                       <div>
                         <button className="button-animal" onClick={this.onOpen}>

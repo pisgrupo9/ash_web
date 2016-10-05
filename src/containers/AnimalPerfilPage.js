@@ -11,6 +11,7 @@ import AddEventButton from '../components/animals/events/AddEventButton';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
 import '../styles/animal-form.scss';
+import * as util from '../util/validateForm';
 import * as message from '../constants/apiMessage';
 
 class AnimalPerfilPage extends Component {
@@ -96,7 +97,8 @@ class AnimalPerfilPage extends Component {
   }
 
   render() {
-    const showButton = this.props.user.permissions === 'animals_edit' || 'super_user';
+    const { permissions } =this.props.user;
+    const showButton = util.editAnimalPerfil(permissions);
     const { animal } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
     return (
