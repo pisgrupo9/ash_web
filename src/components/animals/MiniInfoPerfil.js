@@ -14,7 +14,9 @@ const MiniInfoPerfil = ({ animal }) => {
         </div>);
   return (
     <div className="big-flex-container" >
-      <div className="image-flex"> <img src={imagen} /> </div>
+      <div className="image-flex">
+        <img className="image-animal" src={imagen} />
+      </div>
       <div className="flex-items">
         <div className="vertical-flex-container">
           <div className="vertical-flex bottom-border titles-font">Raza</div>
