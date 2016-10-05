@@ -213,8 +213,7 @@ export const loadMoreAnimals = (col, row, filterParam) => {
 
 export const editAnimal = (id_animal, animal) => {
   return (dispatch) => {
-    let animalJson = parseAnimal(animal);
-    return animalApi.editAnimal(id_animal, animalJson).then(response => {
+    return animalApi.editAnimal(id_animal, animal).then(response => {
       dispatch(editAnimalSucces(response));
       showPerfilAnimal(id_animal)(dispatch);
     }).catch(err => {

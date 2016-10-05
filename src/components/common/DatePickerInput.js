@@ -7,8 +7,8 @@ class DatePickerInput extends Component {
     super(props, context);
 
     this.state = {
-         windowWidth: window.innerWidth
-        };
+      windowWidth: window.innerWidth
+    };
 
     this.onChange = this.onChange.bind(this);
     this.handleResize = this.handleResize.bind(this);
@@ -26,24 +26,28 @@ class DatePickerInput extends Component {
     this.setState({ windowWidth: window.innerWidth });
   }
 
-   onChange(date) {
-    const { onChange, name } = this.props;
+  onChange(date) {
+    const { onChange, name, type } = this.props;
+    const isMonthType = type === 'month';
+    const dateFormatValue = isMonthType ? 'YYYY-MM' : 'YYYY-MM-DD';
     let target = {
-        name: name,
-        value: date ? date.format('YYYY-MM-DD') : ''
+      name: name,
+      value: date ? date.format(dateFormatValue) : ''
     };
     onChange({ target });
-   }
+  }
 
   render() {
-    const { value, name, onChange } = this.props;
-    let dateValue = null;
-    if (value && value != '') {
-      dateValue = moment(value, 'YYYY-MM-DD');
-    }
-    let mobileSize= (this.state.windowWidth < 450);
+    const { value, name, onChange, type } = this.props;
+    const isMonthType = type === 'month';
+    const dateFormat = isMonthType ? 'MM/YYYY' : 'DD/MM/YYYY' ;
+    const dateFormatValue = isMonthType ? 'YYYY-MM' : 'YYYY-MM-DD';
+    let dateValue = value ? moment(value, dateFormatValue) : null;
+
+    let mobileSize = (this.state.windowWidth < 450);
+
     const mobileView = (<input
-                          type="date"
+                          type={type}
                           className="form-control date-picker"
                           name={name}
                           value={value}
@@ -52,6 +56,7 @@ class DatePickerInput extends Component {
 
     const webView = (<DatePicker
                       className="form-control date-picker"
+                      dateFormat={dateFormat}
                       locale="es"
                       selected={dateValue}
                       onChange={this.onChange} />);
@@ -66,6 +71,7 @@ DatePickerInput.propTypes = {
   styleClass: string,
   name: string.isRequired,
   value: string,
+  type: string,
   onChange: func.isRequired
 };
 
