@@ -1,5 +1,14 @@
+$dark-grey: #9B9B9B;
+
 .title-input {
   flex: 2 1 0;
+}
+
+.empty-events-container{
+  color: $dark-grey;
+  text-align: center;
+  font-size: 18px;
+  margin: 10px;
 }
 
 .date-input {

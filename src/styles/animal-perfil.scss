@@ -69,6 +69,7 @@ $dark: #4A4A4A;
   height: 100%;
   max-height: 810px;
   font-size: 14px;
+  font: Roboto;
   color: $dark;
   letter-spacing: 1px;
 }
@@ -161,4 +162,8 @@ $dark: #4A4A4A;
 
 .edit-button{
   margin-top: 30px;
+}
+
+.event-container{
+  border: 2px solid $grey;
 }

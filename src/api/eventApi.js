@@ -5,6 +5,14 @@ class EventApi {
   static sendForm(event, animalId) {
     return api.post(`${consts.API_STAGING_URL}/animals/${animalId}/events`, event);
   }
+
+  static getEvents(id_animal, row, col) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events?page=${col}&row=${row}`);
+  }
+
+  static getAnimalEvent(id_animal, id_event) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events/${id_event}`);
+  }
 }
 
 export default EventApi;
