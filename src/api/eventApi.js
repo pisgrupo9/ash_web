@@ -26,6 +26,6 @@ export const parseEvent = (event) => {
       delete parsedEvent.event[prop];
     }
   }
-  parsedEvent.event.date = parsedEvent.event.date.format();
+  parsedEvent.event.date = parsedEvent.event.date;
   return parsedEvent;
 };

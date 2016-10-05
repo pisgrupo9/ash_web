@@ -2,8 +2,6 @@ $grey: #E6E6E6;
 $light-grey: #F7F7F7;
 $dark-grey: #9B9B9B;
 $orange: #FF4444;
-$plaseHolder-grey: #b29c99;
-
 
 .flex-title{
   display: flex;
@@ -36,12 +34,15 @@ $plaseHolder-grey: #b29c99;
 
   .filter-text{
     color: $dark-grey;
+    text-align: center;
   }
 
-  .filter-componet {
-    @extend .flex-title;
-    padding: 0 10px;
+  .filter-component-flex{
+     @extend .flex-title;
+  }
 
+  .filter-component-flex, .filter-component {
+    padding: 0 10px;
     .filter-field {
        flex: 1;
        min-width: 120px;
@@ -61,7 +62,7 @@ $plaseHolder-grey: #b29c99;
 
     .filter-field.default {
       select {
-        color: $plaseHolder-grey;
+        color: $dark-grey;
         text-align-last:center;
         option{
           text-align: right;

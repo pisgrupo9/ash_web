@@ -2,11 +2,10 @@ import React, { PropTypes } from 'react';
 import Input from '../../common/Input';
 import ImagesDropzone from '../../common/ImagesDropzone';
 import ModalAnimalButtons from '../../common/ModalAnimalButtons';
-import DatePickerInput from '../../common/DatePickerInput';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../../styles/events.scss';
 
-const EventForm = ({ event, images, mobile, onSave, onChange, onChangeDate, onCancel, onDrop, onDelete, errors }) => {
+const EventForm = ({ event, images, onSave, onChange, onChangeDate, onCancel, onDrop, onDelete, errors }) => {
 
   return (
     <div className="form-container">
@@ -20,12 +19,11 @@ const EventForm = ({ event, images, mobile, onSave, onChange, onChangeDate, onCa
                 onChange={onChange}
                 error={errors.name}
                  />
-        <DatePickerInput styleClass="animal-input date-input"
+        <Input styleClass="animal-input date-input"
                           name="date"
+                          type="date"
                           label="FECHA *"
-                          selected={event.date}
-                          locale="es"
-                          mobile={mobile}
+                          value={event.date}
                           onChange={onChangeDate}
                           error={errors.date} />
         <Input styleClass="animal-input description-input"
@@ -47,12 +45,11 @@ const EventForm = ({ event, images, mobile, onSave, onChange, onChangeDate, onCa
   );
 };
 
-const { object, func, array, bool } = PropTypes;
+const { object, func, array } = PropTypes;
 
 EventForm.propTypes = {
   event: object.isRequired,
   images: array.isRequired,
-  mobile: bool,
   onSave: func.isRequired,
   onChange: func.isRequired,
   onChangeDate: func.isRequired,

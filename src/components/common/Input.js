@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import DatePickerInput from './DatePickerInput';
 
 const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, placeholder, value, error }) => {
   let wrapperClass = `form-group ${styleClass}`;
@@ -8,6 +9,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
   }
 
   const textAreaInput = type === "textarea";
+  const dateInput = type === "date";
 
   const input = (<input type={type}
                         name={name}
@@ -26,11 +28,16 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
                               onBlur={onBlur}
                               className="form-control" />);
 
+  const date = (<DatePickerInput
+                          name={name}
+                          value={value}
+                          onChange={onChange}/>);
+
   return (
     <div className={wrapperClass}>
       {label && <label className="input-label" htmlFor={name}>{label}</label>}
       <div className="field">
-        {textAreaInput ? textArea : input}
+        {textAreaInput ? textArea : dateInput ? date : input}
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>

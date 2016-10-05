@@ -20,7 +20,7 @@ class AddEventModal extends Component {
       event: {
         name: '',
         description: '',
-        date: moment()
+        date: moment().format('YYYY-MM-DD')
       },
       errors: {
         name: '',
@@ -148,12 +148,12 @@ class AddEventModal extends Component {
     }
   }
 
-  handleDateChange(date) {
+  handleDateChange(e) {
     let { event } = this.state;
-    event.date = date;
+    event.date = e.target.value;
     this.setState({ event: event });
     let errors = this.state.errors;
-    errors.date = valid.validateEmptyField(date);
+    errors.date = valid.validateEmptyField(event.date);
     this.setState({ errors: errors });
   }
 

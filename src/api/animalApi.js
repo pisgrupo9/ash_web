@@ -60,7 +60,7 @@ export const parseImage = (file) => {
 export const parseFilter = (filter) => {
   let parse = '';
   for (let name in filter) {
-    parse += '&'+name+'='+filter[name];
+     parse += `&${name}=${filter[name]}`;
   }
   return parse;
 };
