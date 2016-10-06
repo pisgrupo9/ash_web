@@ -7,7 +7,7 @@ const AnimalListPage = () => {
     return (
       <div className="list-flex">
         <div className="filter-section">
-            <AnimalFilters/>
+          <AnimalFilters/>
         </div>
         <div className="wrapper-flex">
           <AnimalListWrapper />

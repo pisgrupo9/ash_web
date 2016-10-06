@@ -13,17 +13,15 @@ $orange: #FF4444;
 
 .list-flex {
   @extend .flex-title;
-  margin: 0 20px 20px 20px;
 }
 
 .filter-section {
   border: 2px solid $grey;
   background-color: white;
-  margin-bottom: 5px;
-  flex: 1;
-  margin-right: 10px;
-  margin-left: 10px;
+  flex: 1 1 auto;
+  margin: 0 1% 10px 1%;
   min-width: 200px;
+  max-width: 100%;
 
   .filter-title{
     margin-top: 5px;
@@ -43,8 +41,9 @@ $orange: #FF4444;
 
   .filter-component-flex, .filter-component {
     padding: 0 10px;
+
     .filter-field {
-       flex: 1;
+       flex: 1 0 auto;
        min-width: 120px;
        padding: 1px;
        margin: 5px 0 5px 0;
@@ -56,7 +55,7 @@ $orange: #FF4444;
 
     .btn-small-div {
       @extend .flex-title;
-      flex: 2;
+      flex: 2 0 auto;
       min-width: 280px;
     }
 
@@ -112,9 +111,9 @@ $orange: #FF4444;
 .wrapper-flex {
   border: 2px solid $grey;
   background-color: white;
-  margin: 0 10px 5px 10px;
-  flex: 4;
-  min-width: 400px;
+  margin: 0 1% 5px 1%;
+  flex: 10 0 auto;
+  min-width: 250px;
 }
 
 .animal-item-container {
@@ -122,7 +121,7 @@ $orange: #FF4444;
   background-color: $light-grey;
   margin-bottom: 3px;
   margin-top: 4px;
-  height: 38px;
+  height: auto;
   padding: 5px;
 }
 
@@ -137,7 +136,7 @@ $orange: #FF4444;
 
 .titles-container {
   display: flex;
-  margin-left: 48px;
+  margin-left: 41px;
   letter-spacing: 1px;
   font-weight: 600;
   margin-bottom: 20px;
@@ -161,12 +160,9 @@ $orange: #FF4444;
   flex: 5;
 }
 
-.title-estado {
-  flex: 2;
-}
-
 .title-ficha {
   flex: 1;
+  min-width: 45px;
 }
 
 .animal-header {
@@ -182,7 +178,7 @@ $orange: #FF4444;
 }
 
 .general-list {
-  margin: 30px 10px 80px 40px;
+  margin: 30px 3% 80px 3%;
 }
 
 .general-event-list {
@@ -214,6 +210,7 @@ $orange: #FF4444;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  align-self: center;
 }
 
 .animal-state {
@@ -221,21 +218,15 @@ $orange: #FF4444;
   font-size: 14px;
   padding: 5px;
   letter-spacing: 1px;
-}
-
-.animal-state-species {
-  @extend .animal-state;
   flex: 5;
-}
-
-.animal-state-state {
-  @extend .animal-state;
-  flex: 2;
+  align-self: center;
 }
 
 .view-info-icon {
   flex: 1;
   text-align: center;
+  min-width: 45px;
+  align-self: center;
 }
 
 .event-name{
@@ -259,6 +250,7 @@ $orange: #FF4444;
 .button-show {
   border: none;
   background: none;
+  padding: 0;
 }
 
 .adopted-animal {

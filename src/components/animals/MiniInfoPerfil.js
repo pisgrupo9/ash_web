@@ -7,7 +7,7 @@ const MiniInfoPerfil = ({ animal }) => {
   let tick = (<i className="material-icons green-color">done</i>);
   let cross = (<i className="material-icons red-color">clear</i>);
   let castrated = (<div className="flex-items">
-          <div className="vertical-flex-container left-border ">
+          <div className="vertical-flex-container left-border">
             <div className="vertical-flex bottom-border titles-font">Castrado</div>
             <div className="vertical-flex">{animal.castrated ? tick : cross}</div>
           </div>
