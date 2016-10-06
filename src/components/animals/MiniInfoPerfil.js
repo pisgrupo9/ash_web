@@ -17,12 +17,6 @@ const MiniInfoPerfil = ({ animal }) => {
       <div className="image-flex"> <img src={imagen} /> </div>
       <div className="flex-items">
         <div className="vertical-flex-container">
-          <div className="vertical-flex bottom-border titles-font">Edad</div>
-          <div className="vertical-flex dark-grey-color">14 años</div>
-        </div>
-      </div>
-      <div className="flex-items">
-        <div className="vertical-flex-container">
           <div className="vertical-flex bottom-border titles-font">Raza</div>
           <div className="vertical-flex dark-grey-color">{animal.race ? animal.race : 'N/A'}</div>
         </div>

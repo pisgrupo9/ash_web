@@ -10,7 +10,7 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
   const showAnimal = selectedAnimalId === animal.id.toString();
   const adopt = (<div className="adopted-animal"> ADOPTADO </div>);
-  const notAdopt = (<div className="not-adopted-animal"> NO ADOPT. </div>);
+  const notAdopt = (<div className="not-adopted-animal"> EN ADOPCIÓN </div>);
 
   return (
     <div>
@@ -20,7 +20,7 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
         </button>
         <div className="animal-name">{animal.name}</div>
         <div className="animal-state-species not-so-dark-grey-color"> {animal.species} </div>
-        <div className="animal-state-species"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
+        <div className="animal-state-state"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
         <div className="view-info-icon">
           <Link className="link-style" to={`/animales/${animal.id}`}>
             <i className="material-icons dark-grey-color">description</i>

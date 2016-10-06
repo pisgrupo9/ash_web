@@ -161,6 +161,10 @@ $orange: #FF4444;
   flex: 5;
 }
 
+.title-estado {
+  flex: 2;
+}
+
 .title-ficha {
   flex: 1;
 }
@@ -212,11 +216,21 @@ $orange: #FF4444;
   text-overflow: ellipsis;
 }
 
-.animal-state-species {
+.animal-state {
   font-weight: 500;
-  font-size: 13px;
-  flex: 5;
+  font-size: 14px;
   padding: 5px;
+  letter-spacing: 1px;
+}
+
+.animal-state-species {
+  @extend .animal-state;
+  flex: 5;
+}
+
+.animal-state-state {
+  @extend .animal-state;
+  flex: 2;
 }
 
 .view-info-icon {

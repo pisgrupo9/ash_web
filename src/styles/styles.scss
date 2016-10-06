@@ -149,7 +149,7 @@ html {
 
 .material-icons.color { 
   color: white; 
-  font-size: 25px;
+  font-size: 24px;
 }
 
 .not-border {
@@ -211,9 +211,11 @@ html {
   right: 15px;
   line-height: 1.428571429;
   float: right;
-  width: 33px;
-  height: 33px;
-  padding: 2px 0;
+  width: 30px;
+  height: 30px;
+  padding-top: 2px;
+  padding-right: 0px;
+  padding-left: 2px;
   border-radius: 30px;
   background-color: $orange;
   box-shadow: 1px 1px 1px #888888;
