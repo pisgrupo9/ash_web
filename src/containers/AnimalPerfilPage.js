@@ -104,19 +104,17 @@ class AnimalPerfilPage extends Component {
     return (
       <div className="profile-page-flex">
         <div className="perfil-div">
-          <InfoPerfil styleClass="info-div profile-section"
-                        loading={loading}
-                        animal={animal}/>
-          <div className="edit-button">
-            <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
+          <div className="position-relative">
+            <InfoPerfil styleClass="info-div profile-section"
+                          loading={loading}
+                          animal={animal}/>
+            <div className="edit-button">
+              <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
+            </div>
           </div>
         </div>
         <div className="events-gallery-section">
-          <div className="event-div">
-            <p className="section-title">EVENTOS</p>
-            <AnimalEventWrapper route_id={this.props.routeParams.id} />
-          </div>
-          <div className="gallery-div">
+        <div className="gallery-div">
             <div className="gallery-buttons">
               <p className="section-title center">GALERÍA</p>
               <AddGalleryButton animalId={this.props.routeParams.id} disabled={edit_gallery}/>
@@ -136,6 +134,10 @@ class AnimalPerfilPage extends Component {
                             onChangeRemove={this.onRemoveImage}
                             />
             }
+          </div>
+          <div className="event-div">
+            <p className="section-title">EVENTOS</p>
+            <AnimalEventWrapper route_id={this.props.routeParams.id} />
           </div>
         </div>
       </div>
