@@ -41,7 +41,7 @@ class EditAnimalModal extends Component {
         race: false,
         castrated: false,
         vaccines: false,
-        weight: ''
+        weight: false
       },
       errors: {
         chip_num: '',
@@ -73,9 +73,15 @@ class EditAnimalModal extends Component {
       this.props.loading();
       this.onClose();
     }
+    if (Object.keys(nextProps.errors).length === 0) {
+      let animal = Object.assign({}, this.state.animal, this.props.animal);
+      this.setState({ animal: animal });
+    }
     this.setState({ loading: false });
-    let animal = Object.assign({}, this.state.animal, this.props.animal);
-    this.setState({ animal: animal });
+  }
+
+  componentWillUnmount() {
+    this.props.animalActions.cancelAnimalForm();
   }
 
   onClose() {

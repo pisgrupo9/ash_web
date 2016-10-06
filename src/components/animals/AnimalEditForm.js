@@ -28,7 +28,6 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
   let showCheckboxes = animal.species_id.toString() === "1" || animal.species_id.toString() === "2";
   const genders = [ { id: "Macho", name: "Macho" },
                    { id: "Hembra", name: "Hembra" } ];
-
   return (
     <div>
       <div className="dropzones-container">
