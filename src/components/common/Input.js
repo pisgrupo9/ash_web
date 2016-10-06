@@ -8,8 +8,8 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
     wrapperClass += " " + 'has-error';
   }
 
-  const textAreaInput = type === "textarea";
-  const dateInput = type === "date";
+  const textAreaInput = type === 'textarea';
+  const dateInput = type === 'date' || type === 'month' ;
 
   const input = (<input type={type}
                         name={name}
@@ -31,13 +31,24 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
   const date = (<DatePickerInput
                           name={name}
                           value={value}
-                          onChange={onChange}/>);
+                          onChange={onChange}
+                          type={type} />);
+
+  const getInput = () => {
+    if (textAreaInput) {
+      return textArea;
+    } else if (dateInput) {
+      return date;
+    } else {
+      return input;
+    }
+  };
 
   return (
     <div className={wrapperClass}>
       {label && <label className="input-label" htmlFor={name}>{label}</label>}
       <div className="field">
-        {textAreaInput ? textArea : dateInput ? date : input}
+        { getInput() }
         {error && <div className="alert alert-danger">{error}</div>}
       </div>
     </div>

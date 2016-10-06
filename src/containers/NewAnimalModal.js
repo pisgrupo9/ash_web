@@ -129,13 +129,13 @@ class NewAnimalModal extends Component {
   }
 
   validateForm(animal) {
-    let errors = this.state.errors;
+    let { errors, requiredFields } = this.state;
     const death_or_addmission = (name) => {
       return name === 'death_date' || name === 'admission_date';
     };
 
     for (let name in animal) {
-      if (this.state.requiredFields[name]) {
+      if (requiredFields[name]) {
         errors[name] = valid.validateEmptyField(animal[name]);
       }
       if (animal[name] && this.isDateType(name)) {
@@ -143,6 +143,8 @@ class NewAnimalModal extends Component {
         if (!errors.birthdate && !errors[name] && death_or_addmission(name)) {
           errors[name] = valid.compareDates(animal[name], animal.birthdate, 'Nacimiento');
         }
+      } else if (!animal[name] && !requiredFields[name]) {
+        errors[name] = '';
       }
     }
     this.setState({ errors });

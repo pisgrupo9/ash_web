@@ -48,7 +48,7 @@ export const parseAnimal = (animal) => {
       delete parsedAnimal[prop];
     }
   }
-  parsedAnimal.birthdate = `${parsedAnimal.birthdate}-1`;
+  parsedAnimal.birthdate = `${parsedAnimal.birthdate}-01`;
   return parsedAnimal;
 };
 
