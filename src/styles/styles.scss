@@ -207,7 +207,7 @@ html {
 .btn-circle {
   border: 1px solid transparent;
   position: absolute;
-  bottom: 15px;
+  bottom: -13px;
   right: 15px;
   line-height: 1.428571429;
   float: right;
@@ -286,4 +286,8 @@ html {
 
 .field .react-datepicker__input-container{
   width: 100%
+}
+
+.position-relative {
+  position: relative;
 }
