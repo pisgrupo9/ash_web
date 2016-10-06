@@ -18,7 +18,11 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
         <button className="button-show" onClick={() => onClick(animal.id)}>
           {showAnimal ? focusedbutton : unfocusedbutton}
         </button>
-        <div className="animal-name">{animal.name}</div>
+        <div className="animal-name">
+          <Link className="link-style" to={`/animales/${animal.id}`}>
+            {animal.name}
+          </Link>
+        </div>
         <div className="animal-state not-so-dark-grey-color"> {animal.species} </div>
         <div className="animal-state"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
         <div className="view-info-icon">
@@ -29,7 +33,7 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
       </div>
       <Collapse in={showAnimal}>
         <div className="center-me">
-            <MiniInfoPerfil animal={animal} />
+          <MiniInfoPerfil animal={animal} />
         </div>
       </Collapse>
     </div>

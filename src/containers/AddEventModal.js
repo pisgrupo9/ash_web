@@ -10,6 +10,7 @@ import '../styles/animal-form.scss';
 import EventForm from '../components/animals/events/EventForm';
 import { toastr } from 'react-redux-toastr';
 import * as messages from '../constants/apiMessage';
+import * as constants from '../constants/apiConstants';
 import moment from 'moment';
 
 class AddEventModal extends Component {
@@ -53,6 +54,7 @@ class AddEventModal extends Component {
       this.setState({ uploadingImages: true });
       if (this.state.images.length === 0) {
         toastr.success('', messages.SUCCES_CREATE_EVENT);
+        this.props.actions.loadEvents(this.props.animalId, constants.EVENT_PAGE_SIZE, 1);
         this.onClose();
       } else if (this.state.imagesToSend) {
         let successUpload = this.state.successUploadingImages;
@@ -70,6 +72,7 @@ class AddEventModal extends Component {
           } else {
             toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
           }
+          this.props.actions.loadEvents(this.props.animalId, constants.EVENT_PAGE_SIZE, 1);
           this.onClose();
         }
       } else {

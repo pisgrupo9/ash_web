@@ -9,6 +9,9 @@ const eventsReducer = (state = initialState.events, action) => {
       newEvents = newEvents.concat(events);
       return Object.assign({}, state, { total_pages: total_pages, events: newEvents });
     }
+    case types.SEND_EVENT_FORM_SUCCESS: {
+      return Object.assign({}, state, { events: [] });
+    }
     case types.CLEAN_EVENTS_SUCCESS: {
       return Object.assign({}, state, { events: [] });
     }

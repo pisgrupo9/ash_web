@@ -5,14 +5,14 @@ $light-grey: #F7F7F7;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 15px 10px;
+  margin: 0 10px 15px 10px;
 }
 
 .dropzone-profile-container {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   color: #9B9B9B;
-  margin-right: 15px;
+  margin: 10px 15px 0 0;
   flex: 1 1 auto;
 }
 
