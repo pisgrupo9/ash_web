@@ -6,7 +6,6 @@ const ProfileDropzone = ({ profilePic, onDrop, error }) => {
   const image = (<img className="profile-image" src={profilePic.preview} />);
   const no_image = (<i className="material-icons">add_a_photo</i> );
   const picture = Object.keys(profilePic).length === 0 ? no_image : image;
-
   return (
     <div className="dropzone-profile-container">
       <p>Foto de perfil *</p>
