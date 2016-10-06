@@ -13,13 +13,14 @@ $light-grey: #F7F7F7;
   font-weight: 300;
   color: #9B9B9B;
   margin-right: 15px;
+  flex: 1 1 auto;
 }
 
 .dropzone-container {
   @extend .dropzone-profile-container;
-  flex: 1 1 0;
+  flex: 1 1 auto;
   min-width: 270px;
-  margin-right: 0;
+  margin: 10px 0;
 }
 
 .dropzone {

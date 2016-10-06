@@ -125,7 +125,7 @@ $dark-orange: #ff6600;
 
 .animal-input {
   order: 1;
-  flex: 1 1 0;
+  flex: 1 1 auto;
   align-self: auto;
   min-width: 230px;
   min-height: auto;
@@ -170,7 +170,7 @@ $dark-orange: #ff6600;
   .add-button {
     font-size: 42px;
     text-shadow: 1px 1px 1px #888888;
-    margin: 0 30px;
+    margin: 0;
     float: right;
   }
 }

@@ -19,8 +19,8 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
           {showAnimal ? focusedbutton : unfocusedbutton}
         </button>
         <div className="animal-name">{animal.name}</div>
-        <div className="animal-state-species not-so-dark-grey-color"> {animal.species} </div>
-        <div className="animal-state-state"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
+        <div className="animal-state not-so-dark-grey-color"> {animal.species} </div>
+        <div className="animal-state"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
         <div className="view-info-icon">
           <Link className="link-style" to={`/animales/${animal.id}`}>
             <i className="material-icons dark-grey-color">description</i>

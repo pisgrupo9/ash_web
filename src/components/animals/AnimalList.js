@@ -6,11 +6,11 @@ import SpinnerComponent from '../common/SpinnerComponent';
 const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickViewMore, loading }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   return (
-    <div className="m-right30">
+    <div>
       <div className="titles-container">
         <div className="title-inside">NOMBRE</div>
         <div className="title-inside">ESPECIE</div>
-        <div className="title-estado">ESTADO</div>
+        <div className="title-inside">ESTADO</div>
         <div className="title-ficha">FICHA</div>
       </div>
       { animals.map(animal => {
