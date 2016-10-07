@@ -116,6 +116,11 @@ class EditAnimalModal extends Component {
       let errors = this.state.errors;
       errors["name"] = 'Nombre no puede ser vacio';
       this.setState({ errors: errors });
+    } else if ((this.props.animal.species_id == "1" || this.props.animal.species_id == "2" || this.props.animal.species_id == "5" )
+                && this.state.animal.race == "") {
+      let errors = this.state.errors;
+      errors["race"] = 'Raza no puede ser vacio';
+      this.setState({ errors: errors });
     } else {
       let animal = {};
       for (let name in this.state.animal) {
