@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import animalApi, { parseAnimal, parseFilter } from '../api/animalApi';
+import animalApi, { parseAnimal, parseFilter, parseEditAnimal } from '../api/animalApi';
 import { parseImage } from '../api/imagesApi';
 import * as consts from '../constants/apiConstants.js';
 
@@ -213,7 +213,8 @@ export const loadMoreAnimals = (col, row, filterParam) => {
 
 export const editAnimal = (id_animal, animal) => {
   return (dispatch) => {
-    return animalApi.editAnimal(id_animal, animal).then(response => {
+    let animalJson = parseEditAnimal(animal.animal);
+    return animalApi.editAnimal(id_animal, animalJson).then(response => {
       dispatch(editAnimalSucces(response));
       showPerfilAnimal(id_animal)(dispatch);
     }).catch(err => {

@@ -102,10 +102,10 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                 error={errors.death_date}
                  />
       </div>
-        <div>
-          { showCheckboxes ? checkboxCastrated : ''}
-          { showCheckboxes ? checkboxVaccines : ''}
-        </div>
+      <div>
+        { showCheckboxes ? checkboxCastrated : ''}
+        { showCheckboxes ? checkboxVaccines : ''}
+      </div>
       <div className="dropzones-container">
         <ProfileDropzone profilePic={profilePic}
                          onDrop={onDropProfile}
