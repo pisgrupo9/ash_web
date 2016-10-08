@@ -2,16 +2,21 @@ import api from './apiService.js';
 import * as consts from '../constants/apiConstants.js';
 
 class EventApi {
+
   static sendForm(event, animalId) {
     return api.post(`${consts.API_STAGING_URL}/animals/${animalId}/events`, event);
   }
 
-  static getEvents(id_animal, row, col) {
-    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events?page=${col}&row=${row}`);
+  static getEvents(animalId, row, col) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/events?page=${col}&row=${row}`);
   }
 
-  static getAnimalEvent(id_animal, id_event) {
-    return api.get(`${consts.API_STAGING_URL}/animals/${id_animal}/events/${id_event}`);
+  static getAnimalEvent(animalId, eventId) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/events/${eventId}`);
+  }
+
+  static getSearchEvents(animalId, filter, row, col) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/events/search?page=${col}&row=${row}${filter}`);
   }
 }
 
@@ -28,4 +33,8 @@ export const parseEvent = (event) => {
   }
   parsedEvent.event.date = parsedEvent.event.date;
   return parsedEvent;
+};
+
+export const parseFilter = (filter) => {
+  return `&text=${filter}`;
 };

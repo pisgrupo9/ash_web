@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
 import AddEventButton from '../events/AddEventButton';
+import EventSearch from '../events/EventSearch';
 
-const AnimalEventHeader = ({ id_route }) => {
+const AnimalEventHeader = ({ animalId }) => {
   return (
     <div>
-      <div className="animal-header">
-        <div className="animal-header-title title">BUSQUEDA EVENTOS</div>
-        <div className="float-right">
-            <AddEventButton animalId={id_route} />
-        </div>
+      <div className="section-title-events">
+        <p>EVENTOS</p>
+        <AddEventButton animalId={animalId} />
       </div>
+      <EventSearch animalId={animalId}/>
     </div>
   );
 };
@@ -17,7 +17,7 @@ const AnimalEventHeader = ({ id_route }) => {
 const { string } = PropTypes;
 
 AnimalEventHeader.propTypes = {
-  id_route: string.isRequired
+  animalId: string.isRequired
 };
 
 export default AnimalEventHeader;

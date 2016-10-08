@@ -31,6 +31,10 @@ export default {
   },
   confirm: {},
   events: {
+    totalPages: 0,
+    firstPage: true,
+    filter: '',
+    searchReady: false,
     events: []
   },
   event: {}

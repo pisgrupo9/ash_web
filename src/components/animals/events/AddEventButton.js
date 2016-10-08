@@ -27,7 +27,7 @@ class AddEventButton extends Component {
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
                       <div>
-                        <button className="button-animal" onClick={this.onOpen}>
+                        <button className="button-add-images" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
