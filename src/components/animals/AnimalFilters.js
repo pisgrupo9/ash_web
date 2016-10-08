@@ -53,8 +53,8 @@ class AnimalFilters extends Component {
     let filter = {};
     for (let name in this.state.filter) {
       if (this.state.filter[name]) {
-            filter[name] = this.state.filter[name];
-        }
+        filter[name] = this.state.filter[name];
+      }
     }
     this.props.actions.serchAnimal(filter);
   }

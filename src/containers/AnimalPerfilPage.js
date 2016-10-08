@@ -97,10 +97,12 @@ class AnimalPerfilPage extends Component {
   }
 
   render() {
-    const { permissions } =this.props.user;
+    const { permissions } = this.props.user;
+    const { id } = this.props.routeParams;
     const showButton = util.editAnimalPerfil(permissions);
     const { animal } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
+
     return (
       <div className="profile-page-flex">
         <div className="perfil-div">
@@ -136,8 +138,7 @@ class AnimalPerfilPage extends Component {
             }
           </div>
           <div className="event-div">
-            <p className="section-title">EVENTOS</p>
-            <AnimalEventWrapper route_id={this.props.routeParams.id} />
+            <AnimalEventWrapper animalId={id} />
           </div>
         </div>
       </div>

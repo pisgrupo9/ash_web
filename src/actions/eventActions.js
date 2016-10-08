@@ -1,7 +1,8 @@
 import * as types from './actionTypes';
-import eventApi, { parseEvent } from '../api/eventApi';
+import eventApi, { parseEvent, parseFilter } from '../api/eventApi';
 import animalApi from '../api/animalApi';
 import { parseEventImage } from '../api/imagesApi';
+import * as consts from '../constants/apiConstants.js';
 
 export const sendEventFormSuccess = (response) => {
   return {
@@ -43,6 +44,27 @@ export const loadEventsSuccess = (response) => {
   };
 };
 
+export const serchEventsStart = () => {
+  return {
+    type: types.SEARCH_EVENTS_START
+  };
+};
+
+export const serchEventsSuccess = (response, filter) => {
+  return {
+    type: types.SEARCH_EVENTS_SUCCESS,
+    filter: filter,
+    response
+  };
+};
+
+export const serchEventsError = (response) => {
+  return {
+    type: types.SEARCH_EVENTS_ERROR,
+    response
+  };
+};
+
 export const showEventSuccess = (response) => {
   return {
     type: types.SHOW_EVENT_SUCCESS,
@@ -78,19 +100,27 @@ export const uploadImageEvent = (image, eventId, animalId) => {
   };
 };
 
-export const loadEvents = (animal_id, row, col) => {
+export const loadEvents = (animalId, filter, row, col) => {
   return (dispatch) => {
-    return eventApi.getEvents(animal_id, row, col).then(events => {
-      dispatch(loadEventsSuccess(events));
-    }).catch(err => {
-      throw (err);
-    });
+    if (!filter) {
+      return eventApi.getEvents(animalId, row, col).then(events => {
+        dispatch(loadEventsSuccess(events));
+      }).catch(err => {
+        throw (err);
+      });
+    } else {
+      return eventApi.getSearchEvents(animalId, filter, row, col).then(events => {
+        dispatch(loadEventsSuccess(events));
+      }).catch(err => {
+        throw (err);
+      });
+    }
   };
 };
 
-export const showEvent = (animal_id, event_id) => {
+export const showEvent = (animalId, eventId) => {
   return (dispatch) => {
-    return eventApi.getAnimalEvent(animal_id, event_id).then(event => {
+    return eventApi.getAnimalEvent(animalId, eventId).then(event => {
       dispatch(showEventSuccess(event));
     }).catch(err => {
       throw (err);
@@ -101,5 +131,18 @@ export const showEvent = (animal_id, event_id) => {
 export const cleanEvents = () => {
   return (dispatch) => {
     dispatch(cleanEventsSuccess());
+  };
+};
+
+export const searchEvent = (animalId, filter) => {
+  return (dispatch) => {
+    dispatch(serchEventsStart());
+    let filterParams = parseFilter(filter);
+    return eventApi.getSearchEvents(animalId, filterParams, consts.EVENT_PAGE_SIZE, 1)
+    .then(response => {
+      dispatch(serchEventsSuccess(response, filterParams));
+    }).catch(err => {
+      dispatch(serchEventsError(err));
+    });
   };
 };
