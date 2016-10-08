@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import Spinner from '../common/SpinnerComponent';
 import ImageLightBox from '../common/ImageLightBox';
+import * as valid from '../../util/validateForm';
 
 const InfoPerfil = ({ animal, loading, styleClass }) => {
   let imagen = animal.profile_image;
@@ -40,6 +41,10 @@ const InfoPerfil = ({ animal, loading, styleClass }) => {
                 <td>{animal.weight ? animal.weight.toString().concat(' KG')
                                     : '-' }
                 </td>
+              </tr>
+              <tr>
+                <td>EDAD:</td>
+                <td >{valid.getAge(animal.birthdate).concat(' Años')}</td>
               </tr>
               <tr>
                 <td>FEC. DE NAC.:</td>
