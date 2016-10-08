@@ -133,7 +133,7 @@ class NewAnimalModal extends Component {
     const death_or_addmission = (name) => {
       return name === 'death_date' || name === 'admission_date';
     };
-
+    requiredFields.race = valid.requiredRace(animal.species_id);
     for (let name in animal) {
       if (requiredFields[name]) {
         errors[name] = valid.validateEmptyField(animal[name]);

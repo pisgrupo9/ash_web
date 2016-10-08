@@ -33,3 +33,7 @@ export const editAnimalPerfil = (perfil) => {
 export const editAdopterPerfil = (perfil) => {
  return (perfil === 'adopters_edit') || (perfil === 'super_user');
 };
+
+export const requiredRace = (id) => {
+  return id == '1' || id == '2' || id == '3';
+};

@@ -101,6 +101,8 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                 onChange={onChange}
                 error={errors.death_date}
                  />
+      </div>
+      <div>
         { showCheckboxes ? checkboxCastrated : ''}
         { showCheckboxes ? checkboxVaccines : ''}
       </div>

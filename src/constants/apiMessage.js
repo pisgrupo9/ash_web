@@ -17,3 +17,5 @@ export const ERROR_GREATER_DATE = (dateMsg) => {
 export const SUCCES_CREATE_EVENT = 'Nuevo evento creado con exito';
 export const REMOVE_IMAGE_MESSAGE = 'Estás seguro que desea borrar esta imagen?';
 export const REMOVE_IMAGE_TITLE = 'BORRAR IMAGEN';
+export const ERROR_EMPTY_RACE = 'Raza no puede ser vacio';
+export const ERROR_EMPTY_NAME = 'Nombre no puede ser vacio';

@@ -64,3 +64,13 @@ export const parseFilter = (filter) => {
   }
   return parse;
 };
+
+export const parseEditAnimal = (animal) => {
+  if (animal.chip_num == "") {
+    animal.chip_num = null;
+  }
+  if (animal.birthdate) {
+    animal.birthdate = animal.birthdate.concat('-01');
+  }
+  return animal;
+};

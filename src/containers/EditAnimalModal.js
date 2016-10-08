@@ -5,6 +5,7 @@ import * as animalActions from '../actions/animalActions';
 import AnimalEditForm from '../components/animals/AnimalEditForm';
 import * as valid from '../util/validateForm';
 import Spinner from 'react-spinkit';
+import * as messages from '../constants/apiMessage';
 import '../styles/animal-perfil.scss';
 import '../styles/animal-form.scss';
 
@@ -112,9 +113,14 @@ class EditAnimalModal extends Component {
   onSubmit(e) {
     e.preventDefault();
     this.validateForm(this.state.animal);
+    let { species_id } = this.state.animal;
+    let errors = this.state.errors;
+    let { race } = this.state.animal;
     if ((this.state.modifiedFields[ "name" ]) && (this.state.animal[ "name" ] == "")) {
-      let errors = this.state.errors;
-      errors["name"] = 'Nombre no puede ser vacio';
+      errors.name = messages.ERROR_EMPTY_NAME;
+      this.setState({ errors: errors });
+    } else if (valid.requiredRace(species_id) && (!race)) {
+      errors.race = messages.ERROR_EMPTY_RACE;
       this.setState({ errors: errors });
     } else {
       let animal = {};
@@ -141,8 +147,7 @@ class EditAnimalModal extends Component {
     const { modifiedFields, animal } = this.state;
     const field = e.target.name;
     const checkbox = field === 'vaccines' || field === 'castrated';
-    const isBirthdate = field == 'birthdate';
-    const value = isBirthdate ? e.target.value.concat('-01') : (checkbox ? e.target.checked : e.target.value);
+    const value = checkbox ? e.target.checked : e.target.value;
     animal[ field ] = value;
     modifiedFields[field] = true;
     this.setState({ animal, modifiedFields });
