@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import * as valid from '../../util/validateForm';
 import '../../styles/mini-view.scss';
 
 const MiniInfoPerfil = ({ animal }) => {
@@ -21,6 +22,12 @@ const MiniInfoPerfil = ({ animal }) => {
         <div className="vertical-flex-container">
           <div className="vertical-flex bottom-border titles-font">Raza</div>
           <div className="vertical-flex dark-grey-color">{animal.race ? animal.race : 'N/A'}</div>
+        </div>
+      </div>
+      <div className="flex-items">
+        <div className="vertical-flex-container">
+          <div className="vertical-flex bottom-border titles-font">Edad</div>
+          <div className="vertical-flex dark-grey-color">{valid.getAge(animal.birthdate).concat(' Años')}</div>
         </div>
       </div>
       <div className="flex-items">

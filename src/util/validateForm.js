@@ -37,3 +37,10 @@ export const editAdopterPerfil = (perfil) => {
 export const requiredRace = (id) => {
   return id == '1' || id == '2' || id == '3';
 };
+
+export const getAge = (date) => {
+  let today = new Date();
+  const tokens = date.split("-");
+  const age = today.getFullYear() - parseInt(tokens[0]);
+  return age.toString();
+};
