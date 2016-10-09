@@ -2,6 +2,7 @@ $grey: #E6E6E6;
 $light-grey: #F7F7F7;
 $dark-grey: #9B9B9B;
 $orange: #FF4444;
+$dark-orange: #ff6600;
 
 .flex-title{
   display: flex;
@@ -18,7 +19,7 @@ $orange: #FF4444;
 .filter-section {
   border: 2px solid $grey;
   background-color: white;
-  flex: 1 1 auto;
+  flex: 1 1 18%;
   margin: 0 1% 10px 1%;
   min-width: 200px;
   max-width: 100%;
@@ -99,12 +100,32 @@ $orange: #FF4444;
 
   .btn-find{
     color: white;
+    background-color: #E8A948;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     border-radius: 1px;
 
     min-width: 100px;
     margin: 0 10px 10px 10px;
+  }
+
+  .btn-find:hover {
+    color: white;
+    background: $dark-orange;
+  }
+
+  .btn-find:focus {
+    color: white;
+  }
+
+  .cancel-more-button {
+    @extend .btn-find;
+    background: $dark-grey;
+  }
+
+  .cancel-more-button:hover {
+    color: white;
+    background: #5d5d5d;
   }
 }
 
