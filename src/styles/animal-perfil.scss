@@ -37,7 +37,7 @@ $dark: #4A4A4A;
   -webkit-flex: 1 0 20%;
   flex: 1 0 auto;
   min-width: 300px;
-  margin: 0 10px;
+  margin: 0 10px 40px 10px;
 }
 
 .section-div{
@@ -79,6 +79,8 @@ $dark: #4A4A4A;
   max-width : 280px;
   margin: 0px;
   padding: 10px 30px;
+  position: relative;
+
   .table-borderless{
     width: 100%;
   }
@@ -160,10 +162,12 @@ $dark: #4A4A4A;
   width: 97%;
 }
 
-.edit-button{
-  margin-top: 30px;
-}
-
 .event-container{
   border: 2px solid $grey;
+}
+
+.edit-button {
+  position: absolute;
+  right: 0;
+  bottom: 10px;
 }

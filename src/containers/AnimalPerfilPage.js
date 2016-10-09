@@ -6,13 +6,13 @@ import * as confirmActions from '../actions/confirmActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
-import EditAnimalButton from '../components/animals/EditAnimalButton';
 import AnimalEventWrapper from '../components/animals/events/AnimalEventWrapper';
 import '../styles/animal-perfil.scss';
 import { toastr } from 'react-redux-toastr';
 import '../styles/animal-form.scss';
 import * as util from '../util/validateForm';
 import * as message from '../constants/apiMessage';
+import { StickyContainer } from 'react-sticky';
 
 class AnimalPerfilPage extends Component {
   constructor(props, context) {
@@ -113,16 +113,15 @@ class AnimalPerfilPage extends Component {
 
     return (
       <div className="profile-page-flex">
-        <div className="perfil-div">
-          <div className="position-relative">
+        <StickyContainer className="perfil-div">
+          <div className="h-100">
             <InfoPerfil styleClass="info-div profile-section"
                           loading={loading}
-                          animal={animal}/>
-            <div className="edit-button">
-              <EditAnimalButton loading={this.loading} animal={animal} route_id={this.props.routeParams.id}/>
-            </div>
+                          animal={animal}
+                          animalId={id}
+                          loadingfunc={this.loading}/>
           </div>
-        </div>
+        </StickyContainer>
         <div className="events-gallery-section">
         <div className="gallery-div">
             <div className="gallery-buttons">
