@@ -43,6 +43,9 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal.images) {
       let moreImages = edit_gallery || (nextProps.animal.images.length >= (15 * image_page));
       this.setState({ loading_gallery: false, more_page: moreImages });
+      if (!nextProps.animal.images.length) {
+        this.setState({ edit_gallery: false });
+      }
     }
     if (nextProps.animal.uplaodImages) {
       this.setState({ loading_gallery: true, image_page: 1 });
@@ -62,7 +65,12 @@ class AnimalPerfilPage extends Component {
 
   editGallery() {
     const { edit_gallery } = this.state;
-    this.setState({ edit_gallery: !edit_gallery });
+    const { images } = this.props.animal;
+    if (images.length) {
+      this.setState({ edit_gallery: !edit_gallery });
+    } else {
+      this.setState({ edit_gallery: false });
+    }
   }
 
   onRemoveImage(image) {
