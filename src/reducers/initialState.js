@@ -37,5 +37,9 @@ export default {
     searchReady: false,
     events: []
   },
-  event: {}
+  event: {},
+  exportUrl: {},
+  download: {
+    url: ''
+  }
 };

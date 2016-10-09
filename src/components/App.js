@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Footer from './common/Footer.js';
+import Download from './common/Download';
 import ConfirmModalBox from './common/ConfirmModalBox';
 import Header from '../components/common/Header';
 
@@ -28,6 +29,7 @@ class App extends Component {
           {this.props.children}
         </div>
         <ConfirmModalBox/>
+        <Download />
         <Footer text={footerText} />
       </div>
     );

@@ -53,6 +53,13 @@ $dark: #4a4a4a;
 
   margin: 0 5px 5px;
   width: 340px;
+
+  .export-perfil {
+    position: absolute;
+    right: 50px;
+    font-size: 15px;
+    bottom: 7px;
+  }
 }
 
 .event-div {
@@ -77,11 +84,11 @@ $dark: #4a4a4a;
   letter-spacing: 1px;
 }
 
-.tabel-div {
-  width: 100%;
-  max-width: 280px;
-  margin: 0;
-  padding: 10px 30px;
+.tabel-div{
+  width : 100%;
+  max-width : 280px;
+  margin: 0px 0px 10px 0px;
+  padding: 10px 30px 30px;
   position: relative;
 
   .table-borderless {
@@ -176,4 +183,21 @@ $dark: #4a4a4a;
   position: absolute;
   right: 0;
   bottom: 10px;
+}
+
+.btn-circle {
+  border: 1px solid transparent;
+  position: absolute;
+  bottom: -4px;
+  right: 15px;
+  line-height: 1.428571429;
+  float: right;
+  width: 30px;
+  height: 30px;
+  padding-top: 2px;
+  padding-right: 0px;
+  padding-left: 2px;
+  border-radius: 30px;
+  background-color: $orange;
+  box-shadow: 1px 1px 1px #888888;
 }

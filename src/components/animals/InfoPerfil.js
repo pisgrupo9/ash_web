@@ -5,7 +5,7 @@ import * as valid from '../../util/validateForm';
 import StickyResponsive from '../common/StickyResponsive';
 import EditAnimalButton from './EditAnimalButton';
 
-const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc }) => {
+const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {
   let imagen = animal.profile_image;
   let especieOption = animal.species == "Perro" || animal.species == "Gato";
   return (
@@ -77,6 +77,10 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc }) => {
                 </tr>
               </tbody>
             </table>
+            <button
+              className="btn btn-export export-perfil bg-orange-color"
+              onClick={exportPerfil}>PDF
+            </button>
             <div className="edit-button">
               <EditAnimalButton loading={loadingfunc} animal={animal} route_id={animalId}/>
             </div>
@@ -95,7 +99,8 @@ InfoPerfil.propTypes = {
   loading: bool.isRequired,
   styleClass: string,
   animalId: string.isRequired,
-  loadingfunc: func.isRequired
+  loadingfunc: func.isRequired,
+  exportPerfil: func.isRequired
 };
 
 export default InfoPerfil;

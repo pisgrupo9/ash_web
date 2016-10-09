@@ -20,3 +20,6 @@ export const REMOVE_IMAGE_MESSAGE = '¿Está seguro que desea borrar esta imagen
 export const REMOVE_IMAGE_TITLE = 'BORRAR IMAGEN';
 export const ERROR_EMPTY_RACE = 'Raza no puede ser vacío';
 export const ERROR_EMPTY_NAME = 'Nombre no puede ser vacío';
+export const ERROR_EMPTY_RACE = 'Raza no puede ser vacio';
+export const ERROR_EMPTY_NAME = 'Nombre no puede ser vacio';
+export const SELECIONE_UN_ANIMAL = 'Debe selecionar un animal para poder descargar su ficha';

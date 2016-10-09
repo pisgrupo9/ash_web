@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
 import * as confirmActions from '../actions/confirmActions';
+import * as exportActions from '../actions/exportActions';
+import * as downloadActions from '../actions/downloadActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
@@ -22,13 +24,16 @@ class AnimalPerfilPage extends Component {
       loading_gallery: true,
       image_page: 1,
       more_page: true,
-      edit_gallery: false
+      edit_gallery: false,
+      pdfUrl: null,
+      pdfStart: true
     };
 
     this.loading = this.loading.bind(this);
     this.onMoreImages = this.onMoreImages.bind(this);
     this.onRemoveImage = this.onRemoveImage.bind(this);
     this.editGallery = this.editGallery.bind(this);
+    this.exportPerfil = this.exportPerfil.bind(this);
   }
 
   componentWillMount() {
@@ -37,8 +42,12 @@ class AnimalPerfilPage extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { edit_gallery, image_page } = this.state;
+    const { animal } = this.props;
     if (nextProps.animal.name) {
       this.setState({ loading: false });
+    }
+    if (nextProps.animal != animal) {
+      this.setState({ pdfUrl: null, pdfStart: true });
     }
     if (nextProps.animal.images) {
       let moreImages = edit_gallery || (nextProps.animal.images.length >= (15 * image_page));
@@ -56,6 +65,9 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal.error) {
       toastr.error('ERROR', nextProps.animal.error);
       this.setState({ loading_gallery: true });
+    }
+    if (nextProps.exportUrl.urlPdf) {
+      this.setState({ pdfUrl: nextProps.exportUrl.urlPdf });
     }
   }
 
@@ -92,6 +104,16 @@ class AnimalPerfilPage extends Component {
     this.setState({ image_page: newPage });
   }
 
+  exportPerfil() {
+    let { pdfUrl, pdfStart } = this.state;
+    if ( pdfUrl ) {
+      this.props.downloadActions.downloadPdf(pdfUrl);
+    } else if (pdfStart) {
+      this.props.exportActions.exportAnimal(this.props.routeParams.id);
+      this.setState({ pdfStart: false });
+    }
+  }
+
   onDropProfile(img) {
     const reader = new FileReader();
     const file = img[0];
@@ -110,7 +132,6 @@ class AnimalPerfilPage extends Component {
     const showButton = util.editAnimalPerfil(permissions);
     const { animal } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
-
     return (
       <div className="profile-page-flex">
         <StickyContainer className="perfil-div">
@@ -119,7 +140,8 @@ class AnimalPerfilPage extends Component {
                           loading={loading}
                           animal={animal}
                           animalId={id}
-                          loadingfunc={this.loading}/>
+                          loadingfunc={this.loading}
+                          exportPerfil={this.exportPerfil}/>
           </div>
         </StickyContainer>
         <div className="events-gallery-section">
@@ -160,6 +182,8 @@ AnimalPerfilPage.propTypes = {
   user: object.isRequired,
   animalActions: object.isRequired,
   confirmActions: object.isRequired,
+  exportActions: object.isRequired,
+  downloadActions: object.isRequired,
   routeParams: object.isRequired
 };
 
@@ -170,14 +194,17 @@ AnimalPerfilPage.contextTypes = {
 const mapState = (state) => {
   return {
     animal: state.animal,
-    user: state.user
+    user: state.user,
+    exportUrl: state.exportUrl
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     animalActions: bindActionCreators(animalActions, dispatch),
-    confirmActions: bindActionCreators(confirmActions, dispatch)
+    confirmActions: bindActionCreators(confirmActions, dispatch),
+    exportActions: bindActionCreators(exportActions, dispatch),
+    downloadActions: bindActionCreators(downloadActions, dispatch)
   };
 };
 

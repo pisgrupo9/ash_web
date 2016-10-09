@@ -5,6 +5,7 @@ $black: #4a4a4a;
 $dark-grey: #9b9b9b;
 $grey: #e6e6e6;
 $light-grey: #f7f7f7;
+$white: #FFFFFF;
 
 .red-color {
   color: red;
@@ -209,6 +210,7 @@ input[type=button] {
   font-size: 19px;
 }
 
+<<<<<<< HEAD
 .btn-circle {
   border: 1px solid transparent;
   position: absolute;
@@ -296,4 +298,17 @@ input[type=button] {
 
 .position-relative {
   position: relative;
+}
+
+#app .btn-export{
+  font-size: 10px;
+  padding: 0px 7px;
+  font-weight: bolder;
+  color: $white;
+  letter-spacing: 1px;
+  margin: 2px;
+}
+
+#app .btn-export:hover{
+  color: $white;
 }
