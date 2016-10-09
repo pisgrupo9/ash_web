@@ -82,18 +82,18 @@ class AnimalFilters extends Component {
                     { id: false, name: "NO ADOPTADO" } ];
     const sex = [ { id: 0, name: "MACHO" },
                     { id: 1, name: "HEMBRA" } ];
-    let smallWindows = (windowWidth <= 694);
+    let smallWindows = (windowWidth <= 541);
     let activeField = (!smallWindows || allField);
     let extraFilter = (filter.species_id == "") || (filter.species_id <= 2);
     let buttonFind = (<div className="btn-find-div">
                         <button
-                          className="btn btn-find bg-orange-color"
+                          className="btn btn-find"
                           onClick={this.onSubmit}>
                           BUSCAR
                         </button>
                       </div>);
      let buttonMore = (<div className="btn-find-div">
-                        <button className={'btn btn-find' + (allField ? ' bg-dark-grey-color' :' bg-orange-color')}
+                        <button className={'btn btn-find' + (allField ? ' cancel-more-button' :'')}
                             onClick={this.moreFilter}>
                           {allField ? 'MENOS' : 'MAS'} FILTROS
                         </button>
