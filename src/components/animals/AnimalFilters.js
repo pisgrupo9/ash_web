@@ -27,6 +27,7 @@ class AnimalFilters extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onKeyPress = this.onKeyPress.bind(this);
     this.moreFilter = this.moreFilter.bind(this);
     this.handleResize = this.handleResize.bind(this);
   }
@@ -57,6 +58,12 @@ class AnimalFilters extends Component {
       }
     }
     this.props.actions.serchAnimal(filter);
+  }
+
+  onKeyPress(e) {
+    if (e.key === 'Enter') {
+      this.onSubmit();
+    }
   }
 
   onChange(e) {
@@ -101,6 +108,7 @@ class AnimalFilters extends Component {
                     type="text"
                     value={filter.name}
                     onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
                      />
             <Input styleClass="filter-field grey-color"
                     name="chip_num"
@@ -108,6 +116,7 @@ class AnimalFilters extends Component {
                     type="text"
                     value={filter.chip_num}
                     onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
                      />
             {smallWindows &&
               <div className="btn-small-div">
@@ -132,6 +141,7 @@ class AnimalFilters extends Component {
                       type="text"
                       value={filter.race}
                       onChange={this.onChange}
+                      onKeyPress={this.onKeyPress}
                        />
                 <SelectInput styleClass={'filter-field'+(
                                 filter.sex == "" ? ' default' : '')}
@@ -180,6 +190,7 @@ class AnimalFilters extends Component {
                 type="date"
                 value={filter.admission_date}
                 onChange={this.onChange}
+                onKeyPress={this.onKeyPress}
                 />
               </div>
           </div>

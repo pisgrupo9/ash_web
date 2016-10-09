@@ -118,8 +118,24 @@ class ImagesGallery extends Component {
                           settings: { slidesToShow: 5, slidesToScroll: 2 }
                         },
                         {
-                          breakpoint: 10000,
+                          breakpoint: 1200,
                           settings: { slidesToShow: 7, slidesToScroll: 3 }
+                        },
+                        {
+                          breakpoint: 1400,
+                          settings: { slidesToShow: 8, slidesToScroll: 3 }
+                        },
+                        {
+                          breakpoint: 1600,
+                          settings: { slidesToShow: 9, slidesToScroll: 3 }
+                        },
+                        {
+                          breakpoint: 1800,
+                          settings: { slidesToShow: 10, slidesToScroll: 3 }
+                        },
+                        {
+                          breakpoint: 10000,
+                          settings: { slidesToShow: 11, slidesToScroll: 3 }
                         }
                     ]
     };
