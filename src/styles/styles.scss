@@ -5,6 +5,7 @@ $black: #4a4a4a;
 $dark-grey: #9b9b9b;
 $grey: #e6e6e6;
 $light-grey: #f7f7f7;
+$grey-shadow: #888;
 $white: #fff;
 
 .red-color {
@@ -216,6 +217,37 @@ input[type=button] {
 .section-title {
   color: $black;
   font-size: 19px;
+}
+
+.btn-circle {
+  border: 1px solid transparent;
+  position: absolute;
+  bottom: -13px;
+  right: 15px;
+  line-height: 1.428571429;
+  float: right;
+  width: 30px;
+  height: 30px;
+  padding-top: 2px;
+  padding-left: 2px;
+  border-radius: 30px;
+  background-color: $orange;
+  box-shadow: 1px 1px 1px $grey-shadow;
+}
+
+.btn-circle-edit {
+  border: 1px solid transparent;
+  line-height: 1.428571429;
+  width: 30px;
+  height: 30px;
+  padding-top: 2px;
+  padding-left: 2px;
+  border-radius: 30px;
+  background-color: $orange;
+  box-shadow: 1px 1px 1px $grey-shadow;
+  position: relative;
+  bottom: -60px;
+  right: -7px;
 }
 
 .react-datepicker {

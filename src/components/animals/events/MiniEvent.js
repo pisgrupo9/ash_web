@@ -13,7 +13,7 @@ const MiniEvent = ({ event, loading }) => {
       {loading ? spinner :
         <div>
           <div className="event-description">{event.description}</div>
-          {event.images && event.images.length ?
+            {event.images && event.images.length ?
             <ImagesGallery images={event.images}
               styleClass="event-gallery"
               loading={false}

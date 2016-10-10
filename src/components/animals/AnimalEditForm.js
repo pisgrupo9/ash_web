@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react';
 import SelectInput from '../common/SelectInput';
 import Input from '../common/Input';
 import ProfileDropzone from './ProfileDropzone';
-import { Checkbox } from 'react-bootstrap';
+import { Checkbox, Image } from 'react-bootstrap';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
-const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
+const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors, editImage, onClickEdit }) => {
 
   let fecha_cumple = animal.birthdate &&
                                 animal.birthdate.length == 10
@@ -31,8 +31,14 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
   return (
     <div>
       <div className="dropzones-container">
-        <ProfileDropzone profilePic={profilePic}
-                         onDrop={onDropProfile} />
+      {editImage ? <ProfileDropzone profilePic={profilePic} onDrop={onDropProfile} />
+                  : <div className="edit-image-container">
+                      <p>Foto de perfil</p>
+                      <Image className="edit-profile-image" src={animal.profile_image} rounded />
+                      <button type="button" className="btn-circle-edit" onClick={onClickEdit}>
+                        <i className="material-icons color">mode_edit</i>
+                      </button>
+                    </div>}
       </div>
       <div className="form-container">
         <p> * campos necesarios </p>
@@ -122,7 +128,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
   );
 };
 
-const { object, array, func } = PropTypes;
+const { object, array, func, bool } = PropTypes;
 
 AnimalEditForm.propTypes = {
   animal: object.isRequired,
@@ -132,7 +138,9 @@ AnimalEditForm.propTypes = {
   onClose: func.isRequired,
   onChange: func.isRequired,
   onDropProfile: func.isRequired,
-  errors: object.isRequired
+  errors: object.isRequired,
+  editImage: bool.isRequired,
+  onClickEdit: func.isRequired
 };
 
 export default AnimalEditForm;
