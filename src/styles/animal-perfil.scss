@@ -199,3 +199,25 @@ $shadow: #888;
   background-color: $orange;
   box-shadow: 1px 1px 1px $shadow;
 }
+
+.event-container {
+  border: 2px solid $grey;
+  overflow: scroll;
+  max-height: 500px;
+  overflow-x: hidden;
+  word-break: break-all;
+}
+
+.edit-profile-image {
+  width: 140px;
+  height: 140px;
+}
+
+.edit-image-container {
+  flex: 1 1 auto;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: $dark-grey;
+  margin: 10px 15px 0 0;
+  position: relative;
+}

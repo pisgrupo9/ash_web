@@ -12,7 +12,7 @@ const MiniEvent = ({ event, loading }) => {
       <div className="event-container">
         {loading ? spinner
                   : <div>
-                          <div className="event-description">{event.description}</div>
+                          <div className="event-description"><p>{event.description}</p></div>
                           {event.images ? <ImagesGallery images={event.images}
                           styleClass="event-gallery"
                           loading={false}
