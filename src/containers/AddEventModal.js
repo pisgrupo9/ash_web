@@ -54,7 +54,8 @@ class AddEventModal extends Component {
       this.setState({ uploadingImages: true });
       if (this.state.images.length === 0) {
         toastr.success('', messages.SUCCES_CREATE_EVENT);
-        this.props.actions.loadEvents(this.props.animalId, constants.EVENT_PAGE_SIZE, 1);
+        let { animalId, filter } = this.props;
+        this.props.actions.loadEvents(animalId, filter, constants.EVENT_PAGE_SIZE, 1);
         this.onClose();
       } else if (this.state.imagesToSend) {
         let successUpload = this.state.successUploadingImages;
@@ -72,7 +73,8 @@ class AddEventModal extends Component {
           } else {
             toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
           }
-          this.props.actions.loadEvents(this.props.animalId, constants.EVENT_PAGE_SIZE, 1);
+          let { animalId, filter } = this.props;
+          this.props.actions.loadEvents(animalId, filter, constants.EVENT_PAGE_SIZE, 1);
           this.onClose();
         }
       } else {
@@ -230,7 +232,8 @@ const mapState = (state) => {
     success: state.eventForm.success,
     successImage: state.eventForm.success_image,
     sendedImages: state.eventForm.sended_images,
-    eventId: state.eventForm.id.toString()
+    eventId: state.eventForm.id.toString(),
+    filter: state.events.filter
   };
 };
 
