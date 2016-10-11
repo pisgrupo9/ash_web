@@ -64,6 +64,13 @@ $dark-grey: #9B9B9B;
   }
 }
 
+.empty-gallery-container {
+  color: $dark-grey;
+  text-align: center;
+  font-size: 18px;
+  margin-left: 4%;
+}
+
 .hiden {
   opacity: 0;
 }
