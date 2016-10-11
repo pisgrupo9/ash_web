@@ -39,7 +39,7 @@ class AnimalListWrapper extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { pdfAnimals, selectedAnimalId, pdfStart } = this.state;
+    let { pdfAnimals, pdfStart } = this.state;
     let { urlXls, urlPdf, filterParam } = this.props.exportUrl;
     this.setState({ loading: false });
     if (nextProps.animals.first_page) {
@@ -76,16 +76,14 @@ class AnimalListWrapper extends Component {
     let { selectedAnimalId, pdfAnimals, pdfStart } = this.state;
     if (selectedAnimalId) {
       if (pdfAnimals[selectedAnimalId]) {
-        toastr.warning('', messages.FICHA_YA_CREADO);
-      } else {
-        if (!pdfStart[selectedAnimalId]) {
-          pdfStart[selectedAnimalId] = true;
-          this.setState({ pdfStart });
-          this.props.exportActions.exportAnimal(selectedAnimalId);
-        }
+        toastr.warning('', messages.FICHA_YA_CREADA);
+      } else if (!pdfStart[selectedAnimalId]) {
+        pdfStart[selectedAnimalId] = true;
+        this.setState({ pdfStart });
+        this.props.exportActions.exportAnimal(selectedAnimalId);
       }
     } else {
-      toastr.warning('', messages.SELECIONE_UN_ANIMAL);
+      toastr.warning('', messages.SELECCIONE_UN_ANIMAL);
     }
   }
 

@@ -1,0 +1,48 @@
+$white: #fff;
+$grey: #f7f7f7;
+
+.report-page {
+  display: flex;
+  min-height: 200px;
+  justify-content: center;
+  margin: 0 10px;
+  padding: 5px;
+  background-color: $white;
+
+  .report-table {
+    width: 100%;
+    flex: 17 1 auto;
+  }
+}
+
+.report-titles-container {
+  display: flex;
+}
+
+.report-titles-container-header {
+  @extend .report-titles-container;
+
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.report-titles-container-item {
+  @extend .report-titles-container;
+
+  background-color: $grey;
+  margin-bottom: 3px;
+  margin-top: 4px;
+  height: auto;
+  padding: 5px;
+}
+
+.report-title-inside {
+  padding: 0 3px;
+  flex: 5 1 10%;
+}
+
+.report-title-inside-type {
+  padding: 0 3px;
+  flex: 2 1 auto;
+}

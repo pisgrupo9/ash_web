@@ -38,5 +38,6 @@ export default {
     events: []
   },
   event: {},
-  exportUrl: {}
+  exportUrl: {},
+  reports: []
 };

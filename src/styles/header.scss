@@ -2,7 +2,7 @@
   min-height: 72px;
 
   .imageheader {
-    margin-right: 72px;
+    margin: 0 20px;
     padding: 0 0 10px;
     height: 70px;
 
@@ -14,7 +14,7 @@
 
 #app .nav-Options {
   .nav {
-    margin: 30px 8% 10px 0;
+    margin: 30px 1% 10px 2%;
     color: white;
 
     a {
@@ -30,7 +30,6 @@
 
   .nav.navbar-right {
     margin-top: 26px;
-    margin-right: 3%;
   }
 }
 
@@ -87,4 +86,31 @@
   border: none;
   vertical-align: super;
   padding: 0;
+}
+
+@media (min-width: 768px) {
+  #app .container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 850px) {
+  #app {
+    .nav-Options {
+      padding-right: 0;
+
+      .navbar-right {
+        margin-right: 0;
+        margin-left: 0;
+      }
+
+      .item {
+        margin: 30px 0 10px 2%;
+      }
+    }
+
+    .navbar .imageheader {
+      margin-right: 5px;
+    }
+  }
 }

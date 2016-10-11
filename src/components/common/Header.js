@@ -45,7 +45,7 @@ class Header extends Component {
       <Navbar className="bg-orange-color" expanded={this.state.toggleMenu} onToggle={this.onToggle}>
         <Navbar.Header>
           <Navbar.Brand>
-            <Link to="/" className="imageheader">
+            <Link to="/animales" className="imageheader">
                <Image src="https://s3-sa-east-1.amazonaws.com/ash-assets/ASH-white.png"/>
             </Link>
           </Navbar.Brand>
@@ -74,6 +74,14 @@ class Header extends Component {
                   to="/estadisticas"
                   onClick={this.onClickLink}>
               ESTADISTICAS
+            </Link>
+          </ul>
+           <ul className="nav navbar-nav item">
+            <Link activeClassName="active-link"
+                  className="header-link"
+                  to="/reportes"
+                  onClick={this.onClickLink}>
+              REPORTES
             </Link>
           </ul>
           <ul className="nav navbar-nav navbar-right">

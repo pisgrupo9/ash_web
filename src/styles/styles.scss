@@ -5,7 +5,7 @@ $black: #4a4a4a;
 $dark-grey: #9b9b9b;
 $grey: #e6e6e6;
 $light-grey: #f7f7f7;
-$white: #FFFFFF;
+$white: #fff;
 
 .red-color {
   color: red;
@@ -210,24 +210,6 @@ input[type=button] {
   font-size: 19px;
 }
 
-<<<<<<< HEAD
-.btn-circle {
-  border: 1px solid transparent;
-  position: absolute;
-  bottom: -13px;
-  right: 15px;
-  line-height: 1.428571429;
-  float: right;
-  width: 30px;
-  height: 30px;
-  padding-top: 2px;
-  padding-right: 0;
-  padding-left: 2px;
-  border-radius: 30px;
-  background-color: $orange;
-  box-shadow: 1px 1px 1px #888;
-}
-
 .react-datepicker {
   border: 1px solid $dark-grey !important;
   border-radius: 0;
@@ -300,15 +282,15 @@ input[type=button] {
   position: relative;
 }
 
-#app .btn-export{
+#app .btn-export {
   font-size: 10px;
-  padding: 0px 7px;
+  padding: 0 7px;
   font-weight: bolder;
   color: $white;
   letter-spacing: 1px;
   margin: 2px;
 }
 
-#app .btn-export:hover{
+#app .btn-export:hover {
   color: $white;
 }

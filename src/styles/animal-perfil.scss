@@ -4,6 +4,7 @@ $orange-dark: #c39145;
 $white: #fff;
 $dark-grey: #9b9b9b;
 $dark: #4a4a4a;
+$shadow: #888;
 
 .profile-page-flex {
   display: flex;
@@ -84,10 +85,10 @@ $dark: #4a4a4a;
   letter-spacing: 1px;
 }
 
-.tabel-div{
-  width : 100%;
-  max-width : 280px;
-  margin: 0px 0px 10px 0px;
+.tabel-div {
+  width: 100%;
+  max-width: 280px;
+  margin: 0 0 10px;
   padding: 10px 30px 30px;
   position: relative;
 
@@ -155,7 +156,7 @@ $dark: #4a4a4a;
   padding-left: 2px;
   color: $white;
   margin-right: 6px;
-  box-shadow: 1px 1px 1px #888;
+  box-shadow: 1px 1px 1px $shadow;
 
   .edit-button {
     padding-top: 5px;
@@ -167,7 +168,7 @@ $dark: #4a4a4a;
 
 .button-edit-galery.active {
   background: $orange-dark;
-  box-shadow: inset 1px 1px 5px #888;
+  box-shadow: inset 1px 1px 5px $shadow;
   transform: translate(2px, 2px);
 }
 
@@ -191,13 +192,10 @@ $dark: #4a4a4a;
   bottom: -4px;
   right: 15px;
   line-height: 1.428571429;
-  float: right;
   width: 30px;
   height: 30px;
-  padding-top: 2px;
-  padding-right: 0px;
-  padding-left: 2px;
+  padding: 2px 0 0 2px;
   border-radius: 30px;
   background-color: $orange;
-  box-shadow: 1px 1px 1px #888888;
+  box-shadow: 1px 1px 1px $shadow;
 }

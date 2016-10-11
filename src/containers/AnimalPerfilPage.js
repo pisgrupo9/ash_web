@@ -109,7 +109,7 @@ class AnimalPerfilPage extends Component {
   exportPerfil() {
     let { pdfUrl, pdfStart, animalId } = this.state;
     if ( pdfUrl ) {
-      toastr.warning('', message.FICHA_YA_CREADO);
+      toastr.warning('', message.FICHA_YA_CREADA);
     } else if (pdfStart) {
       this.props.exportActions.exportAnimal(animalId);
       this.setState({ pdfStart: false });

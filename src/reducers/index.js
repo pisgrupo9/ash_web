@@ -14,6 +14,7 @@ import confirm from './confirmReducer';
 import events from './eventsReducer';
 import event from './eventReducer';
 import exportUrl from './exportReducer';
+import reports from './reportReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   events,
   event,
   exportUrl,
+  reports,
   toastr: toastrReducer,
   routing: routerReducer
 });
