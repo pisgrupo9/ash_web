@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import * as animalActions from '../actions/animalActions';
 import * as confirmActions from '../actions/confirmActions';
 import * as exportActions from '../actions/exportActions';
-import * as downloadActions from '../actions/downloadActions';
 import InfoPerfil from '../components/animals/InfoPerfil';
 import ImagesGallery from '../components/animals/ImagesGallery';
 import AddGalleryButton from '../components/animals/AddGalleryButton';
@@ -26,7 +25,8 @@ class AnimalPerfilPage extends Component {
       more_page: true,
       edit_gallery: false,
       pdfUrl: null,
-      pdfStart: true
+      pdfStart: true,
+      animalId: null
     };
 
     this.loading = this.loading.bind(this);
@@ -37,12 +37,14 @@ class AnimalPerfilPage extends Component {
   }
 
   componentWillMount() {
-    this.props.animalActions.showPerfilAnimal(this.props.routeParams.id);
+    let animalId = this.props.routeParams.id;
+    this.props.animalActions.showPerfilAnimal(animalId);
+    this.setState({ pdfUrl: null, animalId: animalId });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { edit_gallery, image_page } = this.state;
-    const { animal } = this.props;
+    const { edit_gallery, image_page, animalId } = this.state;
+    const { animal, exportUrl } = this.props;
     if (nextProps.animal.name) {
       this.setState({ loading: false });
     }
@@ -66,7 +68,7 @@ class AnimalPerfilPage extends Component {
       toastr.error('ERROR', nextProps.animal.error);
       this.setState({ loading_gallery: true });
     }
-    if (nextProps.exportUrl.urlPdf) {
+    if (nextProps.exportUrl.urlPdf != exportUrl.urlPdf & nextProps.exportUrl.animalId == animalId) {
       this.setState({ pdfUrl: nextProps.exportUrl.urlPdf });
     }
   }
@@ -105,11 +107,11 @@ class AnimalPerfilPage extends Component {
   }
 
   exportPerfil() {
-    let { pdfUrl, pdfStart } = this.state;
+    let { pdfUrl, pdfStart, animalId } = this.state;
     if ( pdfUrl ) {
-      this.props.downloadActions.downloadPdf(pdfUrl);
+      toastr.warning('', message.FICHA_YA_CREADO);
     } else if (pdfStart) {
-      this.props.exportActions.exportAnimal(this.props.routeParams.id);
+      this.props.exportActions.exportAnimal(animalId);
       this.setState({ pdfStart: false });
     }
   }
@@ -180,10 +182,10 @@ const { object } = PropTypes;
 AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
   user: object.isRequired,
+  exportUrl: object.isRequired,
   animalActions: object.isRequired,
   confirmActions: object.isRequired,
   exportActions: object.isRequired,
-  downloadActions: object.isRequired,
   routeParams: object.isRequired
 };
 
@@ -203,8 +205,7 @@ const mapDispatch = (dispatch) => {
   return {
     animalActions: bindActionCreators(animalActions, dispatch),
     confirmActions: bindActionCreators(confirmActions, dispatch),
-    exportActions: bindActionCreators(exportActions, dispatch),
-    downloadActions: bindActionCreators(downloadActions, dispatch)
+    exportActions: bindActionCreators(exportActions, dispatch)
   };
 };
 

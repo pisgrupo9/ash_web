@@ -38,8 +38,5 @@ export default {
     events: []
   },
   event: {},
-  exportUrl: {},
-  download: {
-    url: ''
-  }
+  exportUrl: {}
 };

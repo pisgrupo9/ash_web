@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { toastr } from 'react-redux-toastr';
 import * as animalActions from '../../actions/animalActions';
 import * as exportActions from '../../actions/exportActions';
-import * as downloadActions from '../../actions/downloadActions';
 import AnimalList from './AnimalList';
 import AnimalListHeader from './AnimalListHeader';
 import SpinnerComponent from '../common/SpinnerComponent';
@@ -24,7 +23,7 @@ class AnimalListWrapper extends Component {
       pdfAnimals: {},
       xlsAnimals: null,
       xlsStart: true,
-      pdfStart: true
+      pdfStart: {}
    };
 
     this.onClick = this.onClick.bind(this);
@@ -40,7 +39,7 @@ class AnimalListWrapper extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let { pdfAnimals, selectedAnimalId } = this.state;
+    let { pdfAnimals, selectedAnimalId, pdfStart } = this.state;
     let { urlXls, urlPdf, filterParam } = this.props.exportUrl;
     this.setState({ loading: false });
     if (nextProps.animals.first_page) {
@@ -50,8 +49,9 @@ class AnimalListWrapper extends Component {
       this.setState({ xlsAnimals: '', xlsStart: true });
     }
     if (nextProps.exportUrl.urlPdf != urlPdf) {
-      pdfAnimals[selectedAnimalId] = nextProps.exportUrl.urlPdf;
-      this.setState({ pdfAnimals, pdfStart: true });
+      pdfAnimals[nextProps.exportUrl.animalId] = nextProps.exportUrl.urlPdf;
+      pdfStart[nextProps.exportUrl.animalId] = true;
+      this.setState({ pdfAnimals, pdfStart });
     }
     if (nextProps.exportUrl.urlXls != urlXls) {
       this.setState({ xlsAnimals: nextProps.exportUrl.urlXls, xlsStart: true });
@@ -76,10 +76,11 @@ class AnimalListWrapper extends Component {
     let { selectedAnimalId, pdfAnimals, pdfStart } = this.state;
     if (selectedAnimalId) {
       if (pdfAnimals[selectedAnimalId]) {
-        this.props.downloadActions.downloadPdf(pdfAnimals[selectedAnimalId]);
+        toastr.warning('', messages.FICHA_YA_CREADO);
       } else {
-        if (pdfStart) {
-          this.setState({ pdfStart: false });
+        if (!pdfStart[selectedAnimalId]) {
+          pdfStart[selectedAnimalId] = true;
+          this.setState({ pdfStart });
           this.props.exportActions.exportAnimal(selectedAnimalId);
         }
       }
@@ -92,7 +93,7 @@ class AnimalListWrapper extends Component {
     let { filterParam } =this.props.animals;
     let { xlsAnimals, xlsStart } = this.state;
     if (xlsAnimals) {
-      this.props.downloadActions.downloadXls(xlsAnimals);
+      toastr.warning('', messages.REPORTE_YA_CREADO);
     } else if (xlsStart) {
       this.setState({ xlsStart: false });
       this.props.exportActions.exportAnimals(filterParam);
@@ -129,8 +130,7 @@ AnimalListWrapper.propTypes = {
   animals: object.isRequired,
   actions: object.isRequired,
   exportActions: object.isRequired,
-  exportUrl: object.isRequired,
-  downloadActions: object.isRequired
+  exportUrl: object.isRequired
 };
 
 const mapState = (state) => ({
@@ -141,8 +141,7 @@ const mapState = (state) => ({
 const mapDispatch = (dispatch) => {
   return {
     actions: bindActionCreators(animalActions, dispatch),
-    exportActions: bindActionCreators(exportActions, dispatch),
-    downloadActions: bindActionCreators(downloadActions, dispatch)
+    exportActions: bindActionCreators(exportActions, dispatch)
   };
 };
 
