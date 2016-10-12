@@ -161,7 +161,13 @@ class ImagesGallery extends Component {
                       );
     }
     const galleryView = () => {
-      if (imageList.length > 0) {
+      if (!imageList.lengt) {
+        return (
+          <div className="empty-gallery-container">
+            <p> No hay fotos para mostrar </p>
+          </div>
+        );
+      } else {
         return (
           <Slider {...settings}>
             {imageList}
