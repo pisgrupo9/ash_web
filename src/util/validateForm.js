@@ -1,4 +1,5 @@
 import * as messages from '../constants/apiMessage';
+import * as stringValid from './StringValidate';
 
 export const validateEmptyField = (value) => {
   return value ? '' : messages.ERROR_REQUIRED_FIELD;
@@ -43,4 +44,22 @@ export const getAge = (date) => {
   const tokens = date.split("-");
   const age = today.getFullYear() - parseInt(tokens[0]);
   return age.toString();
+};
+
+export const validateCi = (ci) => {
+  return stringValid.isCi(ci) ? '' : messages.ERROR_CI;
+};
+
+export const validateFullName = (fullName) => {
+  const splitFullName = fullName.split(' ');
+  const valid = splitFullName[0] && splitFullName[1] && splitFullName.length === 2;
+  return valid ? '' : messages.ERROR_EMPTY_FULLNAME;
+};
+
+export const validateEmail = (email) => {
+  return stringValid.isEmail(email) ? '' : messages.ERROR_EMAIL;
+};
+
+export const validatePhone = (phone) => {
+  return stringValid.onlyNumbers(phone) ? '' : messages.ERROR_PHONE;
 };

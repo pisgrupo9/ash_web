@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AddAdopterButton from '../components/adopters/AddAdopterButton';
 
 class AdoptantesPage extends Component {
   constructor(props, context) {
@@ -10,6 +11,7 @@ class AdoptantesPage extends Component {
     return (
       <div>
         <p>Proximamente Adoptantes</p>
+        <AddAdopterButton />
       </div>
     );
   }

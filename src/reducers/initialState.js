@@ -39,5 +39,9 @@ export default {
   },
   event: {},
   exportUrl: {},
-  reports: []
+  reports: [],
+  adopterForm: {
+    errors: '',
+    success: false
+  }
 };
