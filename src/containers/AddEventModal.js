@@ -217,6 +217,7 @@ AddEventModal.propTypes = {
   sendedImages: number.isRequired,
   successImage: bool.isRequired,
   animalId: string.isRequired,
+  filter: string.isRequired,
   actions: object.isRequired,
   animalActions: object.isRequired
 };

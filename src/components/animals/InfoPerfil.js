@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import Spinner from '../common/SpinnerComponent';
 import ImageLightBox from '../common/ImageLightBox';
 import * as valid from '../../util/validateForm';
-import { Sticky } from 'react-sticky';
+import StickyResponsive from '../common/StickyResponsive';
 import EditAnimalButton from './EditAnimalButton';
 
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc }) => {
@@ -15,7 +15,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc }) => {
         <ImageLightBox imageStyle={'perfil-image center'}
                         imageSmall={imagen}
                         imageFull={imagen}/>
-        <Sticky>
+        <StickyResponsive>
           <div className="center tabel-div">
             <table className="table-borderless">
               <tbody>
@@ -81,7 +81,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc }) => {
               <EditAnimalButton loading={loadingfunc} animal={animal} route_id={animalId}/>
             </div>
           </div>
-        </Sticky>
+        </StickyResponsive>
       </div>
       )}
     </div>
