@@ -1,10 +1,10 @@
-$light-red: #FF6F59;
-$pink: #F67787;
-$orange: #E8A948;
-$black: #4A4A4A;
-$dark-grey: #9B9B9B;
-$grey: #E6E6E6;
-$light-grey: #F7F7F7;
+$light-red: #ff6f59;
+$pink: #f67787;
+$orange: #e8a948;
+$black: #4a4a4a;
+$dark-grey: #9b9b9b;
+$grey: #e6e6e6;
+$light-grey: #f7f7f7;
 
 .red-color {
   color: red;
@@ -15,52 +15,55 @@ $light-grey: #F7F7F7;
 }
 
 .light-red-color {
-  color: $light-red
+  color: $light-red;
 }
 
 .pink-color {
-  color: $pink
+  color: $pink;
 }
 
 #app .orange-color {
-  color: $orange
+  color: $orange;
 }
 
-#app .bg-orange-color, .bg-orange-color{
-  background-color: $orange
+#app .bg-orange-color,
+.bg-orange-color {
+  background-color: $orange;
 }
 
 .black-color {
-  color: $black
+  color: $black;
 }
 
 .dark-grey-color {
-  color: $dark-grey
+  color: $dark-grey;
 }
 
-#app .bg-dark-grey-color, .bg-dark-grey-color  {
-  background-color: $dark-grey
+#app .bg-dark-grey-color,
+.bg-dark-grey-color {
+  background-color: $dark-grey;
 }
 
 .grey-color {
-  color: $grey
+  color: $grey;
 }
 
 .not-so-dark-grey-color {
-  color: #CCCCCC;
+  color: #ccc;
 }
 
 .light-grey-color {
-  color: $light-grey
+  color: $light-grey;
 }
 
 #app {
   font-family: 'Roboto', sans-serif;
-  .alert-danger{
+  height: 100%;
+
+  .alert-danger {
     padding: 5px;
     font-size: x-small;
   }
-  height: 100%;
 }
 
 #app > div {
@@ -79,7 +82,6 @@ html {
 
 .login-box {
   display: block;
-  margin: 0 auto;
   background-color: white;
   box-shadow: 4px 4px 10px $grey;
   border: 1px solid $grey;
@@ -92,12 +94,13 @@ html {
   margin-bottom: -50px;
 }
 
-.content:after {
+.content::after {
   content: "";
   display: block;
 }
 
-.footer, .content:after {
+.footer,
+.content::after {
   height: 50px;
   text-align: center;
 }
@@ -137,6 +140,7 @@ html {
 
   /* Support for all WebKit browsers. */
   -webkit-font-smoothing: antialiased;
+
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
 
@@ -147,8 +151,8 @@ html {
   font-feature-settings: 'liga';
 }
 
-.material-icons.color { 
-  color: white; 
+.material-icons.color {
+  color: white;
   font-size: 24px;
 }
 
@@ -181,21 +185,22 @@ html {
     display: inline-block;
   }
 
-  .three-bounce > div{
+  .three-bounce > div {
     background-color: $orange;
     width: 20px;
     height: 20px;
   }
 }
 
-.spinner-div:before  {
+.spinner-div::before {
   content: "";
   display: block;
   height: 50%;
   max-height: 200px;
 }
 
-#app button, input[type=button] {
+#app button,
+input[type=button] {
   outline: none;
 }
 
@@ -214,11 +219,11 @@ html {
   width: 30px;
   height: 30px;
   padding-top: 2px;
-  padding-right: 0px;
+  padding-right: 0;
   padding-left: 2px;
   border-radius: 30px;
   background-color: $orange;
-  box-shadow: 1px 1px 1px #888888;
+  box-shadow: 1px 1px 1px #888;
 }
 
 .react-datepicker {
@@ -233,7 +238,7 @@ html {
     border-bottom-color: $orange;
   }
 
-  .react-datepicker__triangle:before {
+  .react-datepicker__triangle::before {
     border-bottom-color: $dark-grey;
   }
 
@@ -250,7 +255,8 @@ html {
     border-left-color: white;
   }
 
-  .react-datepicker__current-month, .react-datepicker__day-name {
+  .react-datepicker__current-month,
+  .react-datepicker__day-name {
     color: white;
   }
 
@@ -274,18 +280,18 @@ html {
   }
 
   .btn-div {
-   text-align: right;
+    text-align: right;
   }
 
   .btn {
     font-size: 10px;
     margin: 10px 5px;
-    color: #FFFFFF;
+    color: #fff;
   }
 }
 
-.field .react-datepicker__input-container{
-  width: 100%
+.field .react-datepicker__input-container {
+  width: 100%;
 }
 
 .position-relative {

@@ -2,12 +2,13 @@
   min-height: 72px;
 
   .imageheader {
-      margin-right: 72px;
-      padding: 0 0 10px;
-      height: 70px;
-      img {
-        height: 100%;
-      }
+    margin-right: 72px;
+    padding: 0 0 10px;
+    height: 70px;
+
+    img {
+      height: 100%;
+    }
   }
 }
 
@@ -17,11 +18,12 @@
     color: white;
 
     a {
-      color: #FFFFFF;
+      color: #fff;
       padding-bottom: 5px;
     }
 
-    a:hover, a:focus  {
+    a:hover,
+    a:focus {
       text-decoration: none;
     }
   }
@@ -42,7 +44,7 @@
   color: white;
 }
 
-.header-link:before {
+.header-link::before {
   content: "";
   position: absolute;
   width: 100%;
@@ -57,7 +59,7 @@
   transition: all 0.3s ease-in-out 0s;
 }
 
-.header-link:hover:before {
+.header-link:hover::before {
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
@@ -67,8 +69,9 @@
   font-weight: 600;
 }
 
-.active-link:before {
-  @extend .header-link:before;
+.active-link::before {
+  @extend .header-link::before;
+
   visibility: visible;
   -webkit-transform: scaleX(1);
   transform: scaleX(1);

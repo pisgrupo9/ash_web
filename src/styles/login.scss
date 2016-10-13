@@ -1,15 +1,15 @@
-$dark-grey: #9B9B9B;
-$dark-orange: #ff6600;
-$orange: #E8A948;
+$dark-grey: #9b9b9b;
+$dark-orange: #f60;
+$orange: #e8a948;
 
-.remLink{
+.remLink {
   text-align: center;
   width: 100%;
   margin: 10px auto;
   text-decoration: none;
   font-size: 10px;
 
-  a:hover{
+  a:hover {
     text-decoration: none;
   }
 }
@@ -22,7 +22,7 @@ $orange: #E8A948;
     width: 100%;
     background: $orange;
 
-    .three-bounce > div{
+    .three-bounce > div {
       background-color: white;
       width: 16px;
       height: 16px;

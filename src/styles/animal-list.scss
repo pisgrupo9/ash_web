@@ -1,10 +1,10 @@
-$grey: #E6E6E6;
-$light-grey: #F7F7F7;
-$dark-grey: #9B9B9B;
-$orange: #FF4444;
-$dark-orange: #ff6600;
+$grey: #e6e6e6;
+$light-grey: #f7f7f7;
+$dark-grey: #9b9b9b;
+$orange: #f44;
+$dark-orange: #f60;
 
-.flex-title{
+.flex-title {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -20,42 +20,44 @@ $dark-orange: #ff6600;
   border: 2px solid $grey;
   background-color: white;
   flex: 1 1 25rem;
-  margin: 0 1% 10px 1%;
+  margin: 0 1% 10px;
   min-width: 200px;
   max-width: 100%;
 
-  .filter-title{
+  .filter-title {
     margin-top: 5px;
     text-align: center;
-    color: #4A4A4A;
-    font-size: 19px; 
+    color: #4a4a4a;
+    font-size: 19px;
   }
 
-  .filter-text{
+  .filter-text {
     color: $dark-grey;
     text-align: center;
   }
 
-  .filter-component-flex{
-     @extend .flex-title;
+  .filter-component-flex {
+    @extend .flex-title;
   }
 
-  .filter-component-flex, .filter-component {
+  .filter-component-flex,
+  .filter-component {
     padding: 0 10px;
 
     .filter-field {
-       flex: 1 0 auto;
-       min-width: 120px;
-       padding: 1px;
-       margin: 5px 0 5px 0;
+      flex: 1 0 auto;
+      min-width: 120px;
+      padding: 1px;
+      margin: 5px 0;
 
-       option.default {
-        color: rgba(0,0,0,0);
-       }
+      option.default {
+        color: rgba(0, 0, 0, 0);
+      }
     }
 
     .btn-small-div {
       @extend .flex-title;
+
       flex: 2 0 auto;
       min-width: 280px;
     }
@@ -63,50 +65,50 @@ $dark-orange: #ff6600;
     .filter-field.default {
       select {
         color: $dark-grey;
-        text-align-last:center;
-        option{
+        text-align-last: center;
+
+        option {
           text-align: right;
-          color: #000000;
+          color: #000;
         }
 
         option.default {
-        color: rgba(0,0,0,0);
-       }
+          color: rgba(0, 0, 0, 0);
+        }
       }
     }
 
-    .form-control:focus{
-      border-color: #CCC;
+    .form-control:focus {
+      border-color: #ccc;
       box-shadow: none;
     }
 
-    .filter-date{
+    .filter-date {
       flex: 1;
       min-width: 150px;
       padding: 1px;
-      margin: 5px 0 5px 0;
+      margin: 5px 0;
 
-      input[type="date"][value=""]{
+      input[type="date"][value=""] {
         color: #b29c99;
       }
     }
   }
 }
 
-.btn-find-div{
+.btn-find-div {
   text-align: center;
   flex: 1;
-  margin: 5px 0 5px 0;
+  margin: 5px 0;
 
-  .btn-find{
+  .btn-find {
     color: white;
-    background-color: #E8A948;
+    background-color: #e8a948;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     border-radius: 1px;
-
     min-width: 100px;
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 10px;
   }
 
   .btn-find:hover {
@@ -120,6 +122,7 @@ $dark-orange: #ff6600;
 
   .cancel-more-button {
     @extend .btn-find;
+
     background: $dark-grey;
   }
 
@@ -132,7 +135,7 @@ $dark-orange: #ff6600;
 .wrapper-flex {
   border: 2px solid $grey;
   background-color: white;
-  margin: 0 1% 10px 1%;
+  margin: 0 1% 10px;
   flex: 10 1 58%;
   min-width: 250px;
 }
@@ -147,11 +150,12 @@ $dark-orange: #ff6600;
 }
 
 .animal-item-container:hover {
-    background-color: $grey;
+  background-color: $grey;
 }
 
 .selected-item-container {
   @extend .animal-item-container;
+
   background-color: $grey;
 }
 
@@ -199,14 +203,14 @@ $dark-orange: #ff6600;
 }
 
 .general-list {
-  margin: 30px 3% 80px 3%;
+  margin: 30px 3% 80px;
 }
 
 .general-event-list {
   margin: 10px;
 }
 
-.clear { clear:both; }
+.clear { clear: both; }
 
 .float-left {
   float: left;
@@ -250,22 +254,21 @@ $dark-orange: #ff6600;
   align-self: center;
 }
 
-.event-name{
+.event-name {
   font-weight: 500;
   font-size: 16px;
   color: $dark-grey;
   flex: 1;
   padding: 5px;
-  flex: 1;
 }
 
-.event-date{
+.event-date {
   text-align: right;
   margin-right: 50px;
   color: $dark-grey;
   font-size: 15px;
   padding: 5px;
-  flex:1;
+  flex: 1;
 }
 
 .button-show {
