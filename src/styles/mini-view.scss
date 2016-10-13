@@ -1,5 +1,6 @@
 $grey: #e6e6e6;
 $dark-grey: #9b9b9b;
+$black: #4a4a4a;
 
 .big-flex-container {
   display: flex;
@@ -7,6 +8,8 @@ $dark-grey: #9b9b9b;
   justify-content: center;
   align-content: flex-start;
   align-self: flex-start;
+  margin-bottom: 7px;
+  margin-top: 3px;
 }
 
 .image-flex {
@@ -37,8 +40,8 @@ $dark-grey: #9b9b9b;
 
 .vertical-flex {
   flex: 1;
-  margin-top: 23px;
   height: 47px;
+  padding-top: 10px;
 }
 
 .bottom-border {
@@ -49,4 +52,13 @@ $dark-grey: #9b9b9b;
 
 .titles-font {
   font-weight: 500;
+}
+
+.description-container {
+  border-top-style: solid;
+  border-color: $black;
+  border-width: 1px;
+  padding: 10px;
+  font-size: 15px;
+  color: $dark-grey;
 }

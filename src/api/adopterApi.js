@@ -3,13 +3,15 @@ import * as consts from '../constants/apiConstants.js';
 import _ from 'lodash';
 
 class AdopterApi {
-
   static sendForm(adopter) {
     return api.post(`${consts.API_STAGING_URL}/adopters`, adopter);
   }
+
+  static getAdopters(row, col) {
+    return api.get(`${consts.APIARY_URL}/adopters`);
+  }
 }
 
-export default AdopterApi;
 
 export const parseAdopter = (adopter) => {
   let parsedAdopter = {};
@@ -37,3 +39,5 @@ export const parseErrors = (errors) => {
   }
   return parsedErrors;
 };
+
+export default AdopterApi;

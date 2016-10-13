@@ -8,6 +8,13 @@ export const sendAdopterFormSuccess = (response) => {
   };
 };
 
+export const loadAdoptersSuccess = (response) => {
+  return {
+    type: types.LOAD_ADOPTERS_SUCCESS,
+    response
+  };
+};
+
 export const sendAdopterFormError = (errors) => {
   return {
     type: types.SEND_ADOPTER_FORM_ERROR,
@@ -21,6 +28,13 @@ export const cancelAdopterForm = () => {
   };
 };
 
+export const loadMoreAdoptersSuccess = (response) => {
+  return {
+    type: types.LOAD_MORE_ADOPTERS_SUCCESS,
+    response
+  };
+};
+
 export const sendAdopterForm = (adopter) => {
   return (dispatch) => {
     let adopterJson = parseAdopter(adopter);
@@ -28,6 +42,26 @@ export const sendAdopterForm = (adopter) => {
       dispatch(sendAdopterFormSuccess(response));
     }).catch(err => {
       dispatch(sendAdopterFormError(err));
+    });
+  };
+};
+
+export const loadAdopters = (col, row) => {
+  return (dispatch) => {
+    return adopterApi.getAdopters(col, row).then(adopters => {
+      dispatch(loadAdoptersSuccess(adopters, col));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const loadMoreAdopters = (col, row) => {
+  return (dispatch) => {
+    return adopterApi.getAdopters(col, row).then(adopters => {
+      dispatch(loadMoreAdoptersSuccess(adopters, col));
+    }).catch(err => {
+      throw (err);
     });
   };
 };

@@ -43,5 +43,10 @@ export default {
   adopterForm: {
     errors: '',
     success: false
+  },
+  adopters: {
+    total_pages: 0,
+    adopters: [],
+    first_page: false
   }
 };
