@@ -106,7 +106,7 @@ class AnimalFilters extends Component {
                     name="name"
                     placeholder="Nombre"
                     type="text"
-                    value={filter.name}
+                    value={filter.name ? filter.name : ''}
                     onChange={this.onChange}
                     onKeyPress={this.onKeyPress}
                      />
@@ -114,7 +114,7 @@ class AnimalFilters extends Component {
                     name="chip_num"
                     placeholder="Número de chip"
                     type="text"
-                    value={filter.chip_num}
+                    value={filter.chip_num ? filter.chip_num : ''}
                     onChange={this.onChange}
                     onKeyPress={this.onKeyPress}
                      />
@@ -131,7 +131,7 @@ class AnimalFilters extends Component {
                                 filter.species_id == "" ? ' default' : '')}
                       name="species_id"
                       defaultOption="Especie"
-                      value={filter.species_id}
+                      value={filter.species_id ? filter.species_id : ''}
                       onChange={this.onChange}
                       options={this.props.species}
                       />
@@ -139,7 +139,7 @@ class AnimalFilters extends Component {
                       name="race"
                       placeholder="Raza"
                       type="text"
-                      value={filter.race}
+                      value={filter.race ? filter.race : ''}
                       onChange={this.onChange}
                       onKeyPress={this.onKeyPress}
                        />
@@ -147,7 +147,7 @@ class AnimalFilters extends Component {
                                 filter.sex == "" ? ' default' : '')}
                   name="sex"
                   defaultOption="Sexo"
-                  value={filter.sex}
+                  value={filter.sex ? filter.sex : ''}
                   onChange={this.onChange}
                   options={sex}
                    />
@@ -159,7 +159,7 @@ class AnimalFilters extends Component {
                                 filter.castrated == "" ? ' default' : '')}
                   name="castrated"
                   defaultOption="Castrado"
-                  value={filter.castrated}
+                  value={filter.castrated ? filter.castrated : ''}
                   onChange={this.onChange}
                   options={boolean}
                    />
@@ -167,7 +167,7 @@ class AnimalFilters extends Component {
                                 filter.vaccines == "" ? ' default' : '')}
                   name="vaccines"
                   defaultOption="Vacuna"
-                  value={filter.vaccines}
+                  value={filter.vaccines ? filter.vaccines : ''}
                   onChange={this.onChange}
                   options={boolean}
                  />
@@ -175,7 +175,7 @@ class AnimalFilters extends Component {
                                 filter.state == "" ? ' default' : '')}
                   name="state"
                   defaultOption="Estado"
-                  value={filter.state}
+                  value={filter.state ? filter.state : ''}
                   onChange={this.onChange}
                   options={states}
                  />
@@ -188,7 +188,7 @@ class AnimalFilters extends Component {
                 <Input styleClass="filter-field"
                 name="admission_date"
                 type="date"
-                value={filter.admission_date}
+                value={filter.admission_date ? filter.admission_date : ''}
                 onChange={this.onChange}
                 onKeyPress={this.onKeyPress}
                 />
