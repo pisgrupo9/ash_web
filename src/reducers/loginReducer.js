@@ -1,5 +1,6 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
+import * as message from '../constants/apiMessage';
 
 export default function loginReducer(state = initialState.login, action) {
 
@@ -8,9 +9,11 @@ export default function loginReducer(state = initialState.login, action) {
         return { token: action.response['user-token'] };
       }
       case types.LOGIN_USER_ERROR: {
-        if (action.response.error)
+        if (action.response.error === 'authentication error') {
+          return { errorLogin: message.ERROR_AUTHENTICATION };
+        } else if (action.response.error) {
           return { errorLogin: action.response.error };
-        else if (action.response.errors)
+        } else if (action.response.errors)
           return { errorLogin: action.response.errors.join('<br/>') };
         return { errorLogin: 'Server Error' };
       }
