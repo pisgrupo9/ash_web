@@ -1,9 +1,9 @@
-$grey: #E6E6E6;
-$orange: #E8A948;
+$grey: #e6e6e6;
+$orange: #e8a948;
 $orange-dark: #c39145;
-$white: #FFFFFF;
-$dark-grey: #9B9B9B;
-$dark: #4A4A4A;
+$white: #fff;
+$dark-grey: #9b9b9b;
+$dark: #4a4a4a;
 
 .profile-page-flex {
   display: flex;
@@ -11,7 +11,7 @@ $dark: #4A4A4A;
   justify-content: center;
   align-content: flex-start;
   align-self: flex-start;
-  margin: 0 15px 20px 15px;
+  margin: 0 15px 20px;
 }
 
 .mini-profile-flex {
@@ -19,7 +19,7 @@ $dark: #4A4A4A;
   flex-flow: row wrap;
   flex-direction: row;
   justify-content: flex-start;
-  align-content: stretch; 
+  align-content: stretch;
   flex-wrap: wrap;
 }
 
@@ -37,10 +37,10 @@ $dark: #4A4A4A;
   -webkit-flex: 1 0 20%;
   flex: 1 0 auto;
   min-width: 300px;
-  margin: 0 10px 40px 10px;
+  margin: 0 10px 40px;
 }
 
-.section-div{
+.section-div {
   border: 2px solid $grey;
   margin-bottom: 5px;
   padding: 5px;
@@ -48,64 +48,69 @@ $dark: #4A4A4A;
   position: relative;
 }
 
-.perfil-div{
+.perfil-div {
   @extend .section-div;
-  margin: 0 5px 5px 5px;
+
+  margin: 0 5px 5px;
   width: 340px;
 }
 
-.event-div{
+.event-div {
   @extend .section-div;
+
   flex: 1 0 auto;
 }
 
-.gallery-div{
+.gallery-div {
   @extend .section-div;
+
   height: 175px;
   width: 100%;
 }
 
-.perfil-box{
+.perfil-box {
   height: 100%;
   max-height: 810px;
   font-size: 14px;
-  font: Roboto;
+  font-family: Roboto;
   color: $dark;
   letter-spacing: 1px;
 }
 
-.tabel-div{
-  width : 100%;
-  max-width : 280px;
-  margin: 0px;
+.tabel-div {
+  width: 100%;
+  max-width: 280px;
+  margin: 0;
   padding: 10px 30px;
   position: relative;
 
-  .table-borderless{
+  .table-borderless {
     width: 100%;
   }
 
-  td{
+  td {
     height: 27px;
   }
 
-  tr{
+  tr {
     line-height: 17px;
   }
 }
 
-.mini-tabel-div{
+.mini-tabel-div {
   background-color: white;
-  padding: 10px 30px 10px 30px;
-  text-align : center;
-  th{
-    text-align : center;
+  padding: 10px 30px;
+  text-align: center;
+
+  th {
+    text-align: center;
     border-left: 2px solid $grey;
     border-bottom: 2px solid $grey;
     width: 160px;
     padding: 10px;
   }
-  td{
+
+  td {
     border-left: 2px solid $grey;
     width: 160px;
     padding: 10px;
@@ -129,7 +134,7 @@ $dark: #4A4A4A;
   margin-bottom: 24px;
 }
 
-.button-edit-galery{
+.button-edit-galery {
   background: $orange;
   border: none;
   position: absolute;
@@ -139,11 +144,12 @@ $dark: #4A4A4A;
   height: 30px;
   width: 30px;
   padding-top: 3px;
-  padding-right: 0px;
+  padding-right: 0;
   padding-left: 2px;
   color: $white;
   margin-right: 6px;
-  box-shadow: 1px 1px 1px #888888;
+  box-shadow: 1px 1px 1px #888;
+
   .edit-button {
     padding-top: 5px;
     text-shadow: 1px 1px 1px #ccc;
@@ -152,17 +158,17 @@ $dark: #4A4A4A;
   }
 }
 
-.button-edit-galery.active{
+.button-edit-galery.active {
   background: $orange-dark;
-  box-shadow: inset 1px 1px 5px #888888;
+  box-shadow: inset 1px 1px 5px #888;
   transform: translate(2px, 2px);
- }
+}
 
 .slick-container {
   width: 97%;
 }
 
-.event-container{
+.event-container {
   border: 2px solid $grey;
 }
 

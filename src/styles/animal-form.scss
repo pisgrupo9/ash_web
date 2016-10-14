@@ -1,6 +1,6 @@
-$dark-grey: #9B9B9B;
-$orange: #E8A948;
-$dark-orange: #ff6600;
+$dark-grey: #9b9b9b;
+$orange: #e8a948;
+$dark-orange: #f60;
 
 .loading-container {
   display: flex;
@@ -10,7 +10,7 @@ $dark-orange: #ff6600;
   color: $orange;
   font-family: 'Roboto', sans-serif;
 
-  .three-bounce > div{
+  .three-bounce > div {
     background-color: $orange;
     width: 20px;
     height: 20px;
@@ -22,7 +22,7 @@ $dark-orange: #ff6600;
     transform: rotate(30deg);
 
     .loading-icon {
-      font-size: 49px; 
+      font-size: 49px;
     }
   }
 
@@ -79,7 +79,7 @@ $dark-orange: #ff6600;
   }
 }
 
-.animal-buttons{
+.animal-buttons {
   display: flex;
   flex-flow: row-reverse wrap;
   justify-content: flex-start;
@@ -91,7 +91,7 @@ $dark-orange: #ff6600;
     transition-duration: 0.4s;
     border-radius: 1px;
     width: 125px;
-    margin: 0 10px 10px 10px;
+    margin: 0 10px 10px;
   }
 
   .submit-button:hover {
@@ -110,6 +110,7 @@ $dark-orange: #ff6600;
 
   .cancel-button {
     @extend .submit-button;
+
     background: $dark-grey;
   }
 
@@ -135,7 +136,7 @@ $dark-orange: #ff6600;
     font-weight: 300;
     color: $dark-grey;
   }
-  
+
   .animal-checkbox {
     margin: 7px;
     font-weight: 300;
@@ -146,7 +147,6 @@ $dark-orange: #ff6600;
   .checkbox + .checkbox {
     margin-top: 7px;
   }
-
 }
 
 .profile-animal-input {
@@ -169,7 +169,7 @@ $dark-orange: #ff6600;
 
   .add-button {
     font-size: 42px;
-    text-shadow: 1px 1px 1px #888888;
+    text-shadow: 1px 1px 1px #888;
     margin: 0;
     float: right;
   }
@@ -181,6 +181,7 @@ $dark-orange: #ff6600;
 
 .button-add-images {
   @extend .button-animal;
+
   position: absolute;
   top: 0;
   right: 0;
@@ -195,6 +196,7 @@ $dark-orange: #ff6600;
   0% {
     transform: rotate(0);
   }
+
   100% {
     transform: rotate(360deg);
   }

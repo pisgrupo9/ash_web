@@ -1,13 +1,13 @@
-$dark-grey: #9B9B9B;
-$black: #4A4A4A;
-$dark-orange: #ff6600;
-$orange: #E8A948;
+$dark-grey: #9b9b9b;
+$black: #4a4a4a;
+$dark-orange: #f60;
+$orange: #e8a948;
 
 .title-input {
   flex: 2 1 auto;
 }
 
-.empty-events-container{
+.empty-events-container {
   color: $dark-grey;
   text-align: center;
   font-size: 18px;

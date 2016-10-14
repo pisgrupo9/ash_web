@@ -1,23 +1,24 @@
-$dark-grey: #9B9B9B;
-$light-grey: #F7F7F7;
+$dark-grey: #9b9b9b;
+$light-grey: #f7f7f7;
 
 .dropzones-container {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  margin: 0 10px 15px 10px;
+  margin: 0 10px 15px;
 }
 
 .dropzone-profile-container {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  color: #9B9B9B;
+  color: $dark-grey;
   margin: 10px 15px 0 0;
   flex: 1 1 auto;
 }
 
 .dropzone-container {
   @extend .dropzone-profile-container;
+
   flex: 1 1 auto;
   min-width: 270px;
   margin: 10px 0;
@@ -36,12 +37,12 @@ $light-grey: #F7F7F7;
 
 .dropzone-active {
   border-style: solid;
-  background-color: #F7F7F7;
+  background-color: $light-grey;
 }
 
 .dropzone-text {
   font-weight: 300;
-  color: #9B9B9B;
+  color: $dark-grey;
   font-size: 17px;
   margin: 20px;
 }
@@ -97,6 +98,7 @@ $light-grey: #F7F7F7;
 
 .profile-dropzone {
   @extend .dropzone;
+
   width: 140px;
   height: 140px;
   overflow: hidden;
