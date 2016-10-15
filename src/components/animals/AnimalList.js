@@ -6,13 +6,14 @@ import SpinnerComponent from '../common/SpinnerComponent';
 const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickViewMore, loading }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   let animalsList;
-  if(animals.length) {
+  if (animals.length) {
     animalsList = animals.map(animal => {
       return (
         <AnimalItem animal={animal} key={animal.id}
                                     selectedAnimalId={selectedAnimalId}
                                     onClick={onClick}/>
-      );});
+      );
+    });
   } else {
     animalsList = (<div className="no-result-search">NO SE ENCONTRARON ANIMALES</div>);
   }
@@ -24,7 +25,7 @@ const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickV
         <div className="title-inside">ESTADO</div>
         <div className="title-ficha">FICHA</div>
       </div>
-      { (animals.length || !loading) && animalsList }
+      { (!loading) && animalsList }
       <div className="view-more-container">
         {loading ? spinner : showViewMore ?
         <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
