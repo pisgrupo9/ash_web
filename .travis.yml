@@ -5,7 +5,7 @@ node_js:
   - '4'
 script:
   - npm run lint
-  - babel-node tools/build.js
+  - npm run just-build
 after_success:
   - npm run test:cover:travis
 deploy:
