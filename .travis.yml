@@ -10,9 +10,10 @@ after_success:
   - npm run test:cover:travis
 deploy:
   on:
-    branch: travis
+    branch: develop
   provider: s3
   bucket: "test-ash-web"
+  skip_cleanup: true
   region: sa-east-1
   local_dir: dist
   secret_access_key:
