@@ -14,6 +14,7 @@ import PerfilPage from './containers/PerfilPage';
 import AdoptantesPage from './containers/AdoptantesPage';
 import EstadisticasPage from './containers/EstadisticasPage';
 import AnimalPerfilPage from './containers/AnimalPerfilPage';
+import ReportePage from './containers/ReportePage';
 
 export default (
   <Route path="/" component={App}>
@@ -29,5 +30,6 @@ export default (
     <Route path="animales/:id" onEnter={auth.CheckAuth} component={AnimalPerfilPage}/>
     <Route path="adoptantes" onEnter={auth.CheckAuth} component={AdoptantesPage}/>
     <Route path="estadisticas" onEnter={auth.CheckAuth} component={EstadisticasPage}/>
+    <Route path="reportes" onEnter={auth.CheckAuth} component={ReportePage}/>
   </Route>
 );

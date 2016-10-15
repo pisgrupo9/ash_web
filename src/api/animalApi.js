@@ -37,6 +37,15 @@ class AnimalApi {
   static editAnimal(id_animal, animal) {
     return api.put(`${consts.API_STAGING_URL}/animals/${id_animal}`, animal);
   }
+
+  static getExportAnimalsList(filterParam) {
+    return api.get(`${consts.API_STAGING_URL}/animals/export_search?${filterParam}`);
+  }
+
+  static getExportAnimal(animalId) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/export_pdf`);
+  }
+
 }
 
 export default AnimalApi;
