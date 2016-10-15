@@ -10,7 +10,7 @@ after_success:
   - npm run test:cover:travis
 deploy:
   on:
-    branch: develop
+    branch: travis
   provider: s3
   bucket: test-ash-web
   local_dir: dist
