@@ -1,10 +1,22 @@
 language: node_js
 node_js:
-  - "6"
-  - "5"
-  - "4"
+  - '6'
+  - '5'
+  - '4'
 script:
   - npm run lint
+  - npm run just-build
 after_success:
-  # Send coverage data to coveralls.
   - npm run test:cover:travis
+deploy:
+  on:
+    branch: develop
+  provider: s3
+  bucket: "test-ash-web"
+  skip_cleanup: true
+  region: sa-east-1
+  local_dir: dist
+  secret_access_key:
+    secure: dCqkwJBZ9BwLDVBpRwiS/8RSKpS9KdV+06x0Pn35Wt11I347fr91/WCUZWSeSEHnTqwVlyleSLj5DwNxVKQIV8JydKVOcrIjQo8HAjNuYzOA2Q/DJO2inuR7/s/U6GNWVZw6CTOCsn/EUXeJm9NT8rlY/F7h5UACTyWE4uvph3ccVR+1uaZuee/e5w+JYIG9N4m1SYJxdUnvJK+pkeydLVLjI5YIommkuIEVUCK3n+cIfpQl8h1mBKxeqY5CK1Jgzs/Z+dbCOqV7lno1wRrG6Ycoe3wr+WNBfWMs3x45//hh+VmL6B+f2sZRUBX/y74VIB1my6V2+Rv2JXEjfUW7HdeRO6wG7RUDC8R99lrZnfNIwc1WrTh8EDGkg2al6g08sD+CeoLQXmaPfeYsvStJ4A+sz2INbPFEayq9ZavneFr21puSsX+b1cKXAMqIoYFH5xz3K8NDkRQvF0q6xKFI69CqV5qVn6hYTJEb4rmygyDEcpd3C+t7tJumqzRLllEorvB4TphR85lZcvdFZN7enjbUQYIKDymox3zVZiRmFEmpHzeVNGlMr1Ii9uGBCTEkJS9hHSyjiBm1grLhdoMsJz3wWttToLvRJMrZ8D/I0c50MfPEEzt6pSipJmGC/NtIttgtkm74Yxw1wrutGRjqLQ97SH+V6u6fQ26NPpATyM0=
+  access_key_id:
+    secure: GDPky+/SrspOd9KF6JP6k/P1vSogctbFC5tX6ZLgS2KkRGrzkiCqlhW29mA1KSPnGlJ679TJ9TaonifihG9V4RgDDKojJacu76guOpM20Gg+UOmbNJ3gxSczv+BAavwvV9LkYF1eebWrhwd6LSmiGx9/r6uerxk4I7fP4L6z9MxzuzY/xMSB2GOVh0/TItaNljY8YwYZPW1FojP3E8Ech23MzO8KC4VZWFA+xCBiYYh0N7X5EncXeTjXKsn1+kqf84Ujqb82v6RSUAA9DGoHNciG/BXyJVHkJqOR3Og3MEnSLdOPWmZmQsJwFSF4vL0RsyE+5e1By/kS1mfJTjrUiVe9NIXbFglRyMSrsXZglja8FjptMzul9Yt/cQSTFtu4lBYZCfOmfzsY4vVy14422yqyT/NvN+unAQssTr5NfRWY+ouxVnzxlmA4WzRpbX0Nsk0Wu9EQdwKt/3jOEDDYFddpCzk9APi+Q5QeJ5yCNgvoGZ9XqJDN1vIr4tiRuky26QVDxWbDIL/vYQB4uXfgqYMzOk+siWR5SDUH8MyuE0Lh2eE2qozFwINzsCIvaRQBLeRtO9dGBiQ2kQG6P5tg16Z91ASvwGfZcoUzhqR/+7VaNRyzv3Eke9yrw9RAlSQiOFkO7+8xWXau6QnJYeG+6PZsGtwa3A17Yr/2VoypBnM=
