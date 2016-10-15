@@ -31,10 +31,10 @@ class StickyResponsive extends Component {
   }
 }
 
-const { array } = PropTypes;
+const { object } = PropTypes;
 
 StickyResponsive.propTypes = {
-  children: array.isRequired
+  children: object.isRequired
 };
 
 export default StickyResponsive;
