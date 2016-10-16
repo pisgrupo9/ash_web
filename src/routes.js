@@ -8,7 +8,6 @@ import CreateUserPage from './containers/CreateUserPage';
 import LogoutPage from './containers/LogoutPage';
 import ResetPasswordPage from './containers/ResetPasswordPage';
 import UpdatePassPage from './containers/UpdatePassPage';
-import HomePage from './containers/HomePage';
 import AnimalListPage from './containers/AnimalListPage';
 import PerfilPage from './containers/PerfilPage';
 import AdoptantesPage from './containers/AdoptantesPage';
@@ -18,7 +17,7 @@ import ReportePage from './containers/ReportePage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute onEnter={auth.CheckAuth} component={HomePage}/>
+    <IndexRoute path="animales" onEnter={auth.CheckAuth} component={AnimalListPage} />
     <Route path="serverStatus" component={ServerStatusPage}/>
     <Route path="login" onEnter={auth.CheckIfUnlogged} component={LoginPage}/>
     <Route path="solicitud-registro" onEnter={auth.CheckIfUnlogged} component={CreateUserPage}/>
