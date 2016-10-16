@@ -199,3 +199,9 @@ $shadow: #888;
   background-color: $orange;
   box-shadow: 1px 1px 1px $shadow;
 }
+
+#app .section-title-events {
+  .exportEvent {
+    margin-left: 15px;
+  }
+}
