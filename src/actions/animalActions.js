@@ -157,7 +157,6 @@ export const showPerfilAnimal = (id_animal) => {
   return (dispatch) => {
     return animalApi.showAnimal(id_animal).then(animal => {
       dispatch(showAnimalPerfil(animal));
-      showPerfilAnimalImages(id_animal)(dispatch);
     });
   };
 };

@@ -94,6 +94,7 @@ class ImagesGallery extends Component {
         infinite: false,
         centerMode: false,
         variableWidth: true,
+        accessibility: false,
         lazyLoad: true,
         prevArrow: prevArrow,
         nextArrow: nextArrow,
@@ -140,6 +141,7 @@ class ImagesGallery extends Component {
                     ]
     };
     let imageList = [];
+
     for (let i = 0; images && i < images.length; i++) {
         imageList.push(
                       <div key={'div'+i} className="img-container" >
@@ -160,8 +162,9 @@ class ImagesGallery extends Component {
                       </div>
                       );
     }
-    const galleryView = () => {
-      if (!imageList.lengt) {
+
+    let galleryView = () => {
+      if (!imageList.length) {
         return (
           <div className="empty-gallery-container">
             <p> No hay fotos para mostrar </p>
@@ -178,8 +181,7 @@ class ImagesGallery extends Component {
 
     return (
       <div className={styleClass}>
-        { loading && (<Spinner active={loading} />) }
-        { galleryView() }
+        { loading ? (<Spinner active={loading} />) : galleryView() }
         <Lightbox
           currentImage={this.state.currentImage}
           images={lightboxImages}

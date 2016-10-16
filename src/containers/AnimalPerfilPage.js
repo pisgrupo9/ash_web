@@ -39,7 +39,8 @@ class AnimalPerfilPage extends Component {
   componentWillMount() {
     let animalId = this.props.routeParams.id;
     this.props.animalActions.showPerfilAnimal(animalId);
-    this.setState({ pdfUrl: null, animalId: animalId });
+    this.props.animalActions.showPerfilAnimalImages(animalId, 1);
+    this.setState({ pdfUrl: null, animalId: animalId, image_page: 1 });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,7 +52,7 @@ class AnimalPerfilPage extends Component {
     if (nextProps.animal != animal) {
       this.setState({ pdfUrl: null, pdfStart: true });
     }
-    if (nextProps.animal.images) {
+    if (nextProps.animal.images != animal.images) {
       let moreImages = edit_gallery || (nextProps.animal.images.length >= (15 * image_page));
       this.setState({ loading_gallery: false, more_page: moreImages });
       if (!nextProps.animal.images.length) {
