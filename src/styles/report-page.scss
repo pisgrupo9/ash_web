@@ -1,5 +1,8 @@
 $white: #fff;
 $grey: #f7f7f7;
+$dark-grey: #9b9b9b;
+$reddish: #e63900;
+$middle-grey: #e6e6e6;
 
 .report-page {
   display: flex;
@@ -8,10 +11,12 @@ $grey: #f7f7f7;
   margin: 0 10px;
   padding: 5px;
   background-color: $white;
+  border: 2px solid $middle-grey;
 
   .report-table {
     width: 100%;
     flex: 17 1 auto;
+    margin: 10px 20px;
   }
 }
 
@@ -37,12 +42,33 @@ $grey: #f7f7f7;
   padding: 5px;
 }
 
-.report-title-inside {
+.report-inside {
   padding: 0 3px;
   flex: 5 1 10%;
+  text-align: center;
 }
 
-.report-title-inside-type {
+.title {
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin: 0 10px 10px 15px;
+}
+
+.report-inside-type {
   padding: 0 3px;
   flex: 2 1 auto;
+}
+
+.report-item {
+  font-weight: 500;
+  font-size: 15px;
+  color: $dark-grey;
+}
+
+.report-type-pdf {
+  color: $reddish;
+}
+
+.report-type-xls {
+  color: green;
 }

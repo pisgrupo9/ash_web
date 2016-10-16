@@ -10,13 +10,15 @@ const ReportItem = ({ report }) => {
             {report.state}
             </a>);
   }
+  let pdf = <div className="report-type-pdf"> PDF </div>
+  let xls = <div className="report-type-xls"> XLS </div>
 
   return (
-      <div className="report-titles-container-item">
-        <div className="report-title-inside">{report.dateTime}</div>
-        <div className="report-title-inside">{report.name}</div>
-        <div className="report-title-inside-type">{report.type}</div>
-        <div className="report-title-inside">{estado}</div>
+      <div className="report-titles-container-item report-item">
+        <div className="report-inside">{report.dateTime}</div>
+        <div className="report-inside">{report.name}</div>
+        <div className="report-inside-type">{report.type === 'pdf' ? pdf : xls }</div>
+        <div className="report-inside">{estado}</div>
       </div>
   );
 };
