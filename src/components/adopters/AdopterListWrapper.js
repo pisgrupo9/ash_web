@@ -23,8 +23,7 @@ class AdopterListWrapper extends Component {
 
     this.onClick = this.onClick.bind(this);
     this.onClickViewMore = this.onClickViewMore.bind(this);
-    this.onClickBlacklist = this.onClickBlacklist.bind(this);
-    this.onClickShowAll = this.onClickShowAll.bind(this);
+    this.onToggleSearch = this.onToggleSearch.bind(this);
   }
 
   componentWillMount() {
@@ -34,9 +33,13 @@ class AdopterListWrapper extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ loading: false, loadingList: false });
-    if (nextProps.adopters.first_page) {
+    if (nextProps.adopters.firstPage) {
       this.setState({ currPage: 1 });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.actions.cleanAdopters();
   }
 
   onClick(adopterId) {
@@ -45,34 +48,26 @@ class AdopterListWrapper extends Component {
   }
 
   onClickViewMore() {
-    let { rows, currPage } = this.state;
+    let { rows, currPage, showBlacklist } = this.state;
     let nextPage = currPage + 1;
-    const { adopters } = this.props;
-    this.setState({ currPage: nextPage });
-    this.setState({ loading: true });
-    this.props.actions.loadMoreAdopters(rows, nextPage);
+    this.setState({ currPage: nextPage, loading: true });
+    this.props.actions.loadAdopters(rows, nextPage, showBlacklist);
   }
 
-  onClickBlacklist() {
-    let { rows, currPage } = this.state;
-    this.setState({ showBlacklist: true, loadingList: true });
-    this.props.actions.loadBlacklisted(rows, 1);
-  }
-
-  onClickShowAll() {
-    let { rows, currPage } = this.state;
-    this.setState({ showBlacklist: false, loadingList: true });
-    this.props.actions.loadAdopters(rows, 1);
+  onToggleSearch() {
+    let { rows, showBlacklist } = this.state;
+    let onBlacklist = !showBlacklist;
+    this.setState({ showBlacklist: onBlacklist, loadingList: true, currPage: 1 });
+    this.props.actions.loadAdopters(rows, 1, onBlacklist);
   }
 
   render() {
     const { adopters } = this.props;
-    const showViewMore = this.state.currPage < adopters.total_pages;
+    const showViewMore = this.state.currPage < adopters.totalPages;
     return (
       <div className="general-list">
-        <AdopterListHeader onClickBlacklist={this.onClickBlacklist}
-                            showBlacklist={this.state.showBlacklist}
-                            onClickShowAll={this.onClickShowAll} />
+        <AdopterListHeader onToggleSearch={this.onToggleSearch}
+                            showBlacklist={this.state.showBlacklist}/>
         {adopters.searchReady ?
          <SpinnerComponent active={adopters.searchReady} />
           :
@@ -82,7 +77,6 @@ class AdopterListWrapper extends Component {
                     showViewMore={showViewMore}
                     onClickViewMore={this.onClickViewMore}
                     loading={this.state.loading}
-                    showBlacklist={this.state.showBlacklist}
                     loadingList={this.state.loadingList}/>
         }
       </div>

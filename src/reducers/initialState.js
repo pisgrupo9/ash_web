@@ -45,8 +45,8 @@ export default {
     success: false
   },
   adopters: {
-    total_pages: 0,
+    totalPages: 0,
     adopters: [],
-    first_page: false
+    firstPage: false
   }
 };

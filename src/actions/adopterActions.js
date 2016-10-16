@@ -8,9 +8,10 @@ export const sendAdopterFormSuccess = (response) => {
   };
 };
 
-export const loadAdoptersSuccess = (response) => {
+export const loadAdoptersSuccess = (response, row) => {
   return {
     type: types.LOAD_ADOPTERS_SUCCESS,
+    row: row,
     response
   };
 };
@@ -28,24 +29,17 @@ export const cancelAdopterForm = () => {
   };
 };
 
-export const loadMoreAdoptersSuccess = (response) => {
+export const loadSerchSuccess = (response, row) => {
   return {
-    type: types.LOAD_MORE_ADOPTERS_SUCCESS,
+    type: types.LOAD_ADOPTERS_SUCCESS,
+    row: row,
     response
   };
 };
 
-export const loadBlacklistedSuccess = (response) => {
+export const cleanAdoptersSuccess = () => {
   return {
-    type: types.LOAD_BLACKLISTED_SUCCESS,
-    response
-  };
-};
-
-export const loadMoreBlacklistedSuccess = (response) => {
-  return {
-    type: types.LOAD_MORE_BLACKLISTED_SUCCESS,
-    response
+    type: types.CLEAN_ADOPTERS_SUCCESS
   };
 };
 
@@ -60,42 +54,26 @@ export const sendAdopterForm = (adopter) => {
   };
 };
 
-export const loadAdopters = (col, row) => {
+export const loadAdopters = (col, row, filterParam) => {
   return (dispatch) => {
+  if (!filterParam || filterParam == '') {
     return adopterApi.getAdopters(col, row).then(adopters => {
-      dispatch(loadAdoptersSuccess(adopters, col));
+      dispatch(loadAdoptersSuccess(adopters, row));
     }).catch(err => {
       throw (err);
     });
+  } else {
+    return adopterApi.getSerchAdopters(col, row, filterParam).then(adopters => {
+      dispatch(loadSerchSuccess(adopters, row, filterParam));
+    }).catch(err => {
+      throw (err);
+    });
+  }
   };
 };
 
-export const loadMoreAdopters = (col, row) => {
+export const cleanAdopters = () => {
   return (dispatch) => {
-    return adopterApi.getAdopters(col, row).then(adopters => {
-      dispatch(loadMoreAdoptersSuccess(adopters, col));
-    }).catch(err => {
-      throw (err);
-    });
-  };
-};
-
-export const loadBlacklisted = (col, row) => {
-  return (dispatch) => {
-    return adopterApi.getBlacklisted(col, row).then(adopters => {
-      dispatch(loadBlacklistedSuccess(adopters, col));
-    }).catch(err => {
-      throw (err);
-    });
-  };
-};
-
-export const loadMoreBlacklisted = (col, row) => {
-  return (dispatch) => {
-    return adopterApi.getAdopters(col, row).then(adopters => {
-      dispatch(loadMoreBlacklistedSuccess(adopters, col));
-    }).catch(err => {
-      throw (err);
-    });
+    dispatch(cleanAdoptersSuccess());
   };
 };

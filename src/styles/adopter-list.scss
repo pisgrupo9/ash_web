@@ -12,11 +12,11 @@ $orange: #e8a948;
 }
 
 .title-inside {
-  flex: 5;
+  flex: 5 0 auto;
 }
 
 .title-status {
-  flex: 0;
+  flex: 0 0 0;
   min-width: 45px;
   margin-right: 20px;
 }
@@ -25,7 +25,7 @@ $orange: #e8a948;
   font-weight: 500;
   font-size: 15px;
   color: $dark-grey;
-  flex: 5;
+  flex: 5 0 auto;
   padding: 5px;
   white-space: nowrap;
   overflow: hidden;
@@ -35,7 +35,7 @@ $orange: #e8a948;
 }
 
 .view-interested-icon {
-  flex: 0;
+  flex: 0 0 auto;
   text-align: center;
   min-width: 45px;
   align-self: center;

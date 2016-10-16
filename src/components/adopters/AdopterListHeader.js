@@ -1,33 +1,32 @@
 import React, { PropTypes } from 'react';
+import AddAdopterButton from './AddAdopterButton';
 import '../../styles/animal-list.scss';
 
-const AdopterListHeader = ({ onClickBlacklist, showBlacklist, onClickShowAll }) => {
-  const buttonBlacklist = (<button className="button-list" onClick={onClickBlacklist}>
+const AdopterListHeader = ({ showBlacklist, onToggleSearch }) => {
+  const buttonBlacklist = (<button className="button-list" onClick={onToggleSearch}>
                               <p> Ver Blacklisted </p>
                             </button>);
-  const buttonShowAll = (<button className="button-list" onClick={onClickShowAll}>
+  const buttonShowAll = (<button className="button-list" onClick={onToggleSearch}>
                               <p> Ver Todos </p>
                             </button>);
   return (
-    <div>
       <div className="animal-header">
         <div className="animal-header-title section-title">
           LISTADO
+          <AddAdopterButton />
           <div className="list-button-container">
             {showBlacklist ? buttonShowAll : buttonBlacklist}
           </div>
         </div>
       </div>
-    </div>
   );
 };
 
 const { func, bool } = PropTypes;
 
 AdopterListHeader.propTypes = {
-  onClickBlacklist: func.isRequired,
   showBlacklist: bool.isRequired,
-  onClickShowAll: func.isRequired
+  onToggleSearch: func.isRequired
 };
 
 export default AdopterListHeader;

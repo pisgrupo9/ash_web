@@ -4,39 +4,31 @@ import '../../styles/animal-list.scss';
 import '../../styles/adopter-list.scss';
 import SpinnerComponent from '../common/SpinnerComponent';
 
-const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList, showBlacklist }) => {
+const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   const spinnerList = (<SpinnerComponent active={loadingList} />);
+  let adopterShowList = adopters.map(adopter => {
+          return (
+            <AdopterItem adopter={adopter}
+                          key={adopter.id}
+                          selectedAdopterId={selectedAdopterId}
+                          onClick={onClick}/>
+            );
+        });
   return (
     <div>
       <div className="titles-container">
         <div className="title-inside">NOMBRE</div>
         <div className="title-status">STATUS</div>
       </div>
-      { loadingList ? spinnerList : showBlacklist
-        ?
-        adopters.map(adopter => {
-          return (
-            adopter.blacklisted ?
-            <AdopterItem adopter={adopter} key={adopter.id}
-                                      selectedAdopterId={selectedAdopterId}
-                                      onClick={onClick}/>
-                                      : ''
-            );
-        })
-        :
-        adopters.map(adopter => {
-          return (
-            <AdopterItem adopter={adopter} key={adopter.id}
-                                      selectedAdopterId={selectedAdopterId}
-                                      onClick={onClick}/>
-            );
-        })
-      }
-      <div className="view-more-container">
-        {loading ? spinner : showViewMore ?
-        <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
-      </div>
+      { loadingList ? spinnerList :
+        <div>
+          {adopterShowList}
+          <div className="view-more-container">
+            {loading ? spinner : showViewMore ?
+            <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
+          </div>
+        </div>}
     </div>
   );
 };
@@ -50,8 +42,7 @@ AdopterList.propTypes = {
   selectedAdopterId: string.isRequired,
   showViewMore: bool.isRequired,
   loading: bool.isRequired,
-  loadingList: bool.isRequired,
-  showBlacklist: bool.isRequired
+  loadingList: bool.isRequired
 };
 
 export default AdopterList;

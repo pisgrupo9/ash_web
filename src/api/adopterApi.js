@@ -11,11 +11,12 @@ class AdopterApi {
     return api.get(`${consts.API_STAGING_URL}/adopters?page=${col}&row=${row}`);
   }
 
-  static getBlacklisted(row, col) {
-    return api.get(`${consts.API_STAGING_URL}/adopters/search?blacklisted=true&page=${col}&row=${row}`);
+  static getSerchAdopters(row, col, filterParam) {
+    return api.get(`${consts.API_STAGING_URL}/adopters/search?blacklisted=${filterParam}&page=${col}&row=${row}`);
   }
 }
 
+export default AdopterApi;
 
 export const parseAdopter = (adopter) => {
   let parsedAdopter = {};
@@ -43,5 +44,3 @@ export const parseErrors = (errors) => {
   }
   return parsedErrors;
 };
-
-export default AdopterApi;
