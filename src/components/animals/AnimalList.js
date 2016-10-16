@@ -15,7 +15,7 @@ const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickV
       );
     });
   } else {
-    animalsList = (<div className="no-result-search">NO SE ENCONTRARON ANIMALES</div>);
+    animalsList = !loading && (<div className="no-result-search">NO SE ENCONTRARON ANIMALES</div>);
   }
   return (
     <div>
@@ -25,7 +25,7 @@ const AnimalList = ({ animals, onClick, selectedAnimalId, showViewMore, onClickV
         <div className="title-inside">ESTADO</div>
         <div className="title-ficha">FICHA</div>
       </div>
-      { (!loading) && animalsList }
+      { animalsList }
       <div className="view-more-container">
         {loading ? spinner : showViewMore ?
         <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
