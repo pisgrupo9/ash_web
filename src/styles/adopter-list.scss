@@ -1,7 +1,7 @@
-$grey: #E6E6E6;
-$light-grey: #F7F7F7;
-$dark-grey: #9B9B9B;
-$orange: #E8A948;
+$grey: #e6e6e6;
+$light-grey: #f7f7f7;
+$dark-grey: #9b9b9b;
+$orange: #e8a948;
 
 .titles-container {
   display: flex;
@@ -42,7 +42,7 @@ $orange: #E8A948;
 }
 
 .orange-color {
-  color: $orange
+  color: $orange;
 }
 
 .button-list {
@@ -55,5 +55,5 @@ $orange: #E8A948;
 }
 
 .list-button-container {
-  margin: 0px;
+  margin: 1px;
 }

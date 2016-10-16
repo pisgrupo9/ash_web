@@ -35,6 +35,20 @@ export const loadMoreAdoptersSuccess = (response) => {
   };
 };
 
+export const loadBlacklistedSuccess = (response) => {
+  return {
+    type: types.LOAD_BLACKLISTED_SUCCESS,
+    response
+  };
+};
+
+export const loadMoreBlacklistedSuccess = (response) => {
+  return {
+    type: types.LOAD_MORE_BLACKLISTED_SUCCESS,
+    response
+  };
+};
+
 export const sendAdopterForm = (adopter) => {
   return (dispatch) => {
     let adopterJson = parseAdopter(adopter);
@@ -60,6 +74,26 @@ export const loadMoreAdopters = (col, row) => {
   return (dispatch) => {
     return adopterApi.getAdopters(col, row).then(adopters => {
       dispatch(loadMoreAdoptersSuccess(adopters, col));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const loadBlacklisted = (col, row) => {
+  return (dispatch) => {
+    return adopterApi.getBlacklisted(col, row).then(adopters => {
+      dispatch(loadBlacklistedSuccess(adopters, col));
+    }).catch(err => {
+      throw (err);
+    });
+  };
+};
+
+export const loadMoreBlacklisted = (col, row) => {
+  return (dispatch) => {
+    return adopterApi.getAdopters(col, row).then(adopters => {
+      dispatch(loadMoreBlacklistedSuccess(adopters, col));
     }).catch(err => {
       throw (err);
     });

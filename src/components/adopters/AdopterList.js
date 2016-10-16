@@ -4,15 +4,16 @@ import '../../styles/animal-list.scss';
 import '../../styles/adopter-list.scss';
 import SpinnerComponent from '../common/SpinnerComponent';
 
-const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, showBlacklist }) => {
+const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList, showBlacklist }) => {
   const spinner = (<SpinnerComponent active={loading} />);
+  const spinnerList = (<SpinnerComponent active={loadingList} />);
   return (
     <div>
       <div className="titles-container">
         <div className="title-inside">NOMBRE</div>
         <div className="title-status">STATUS</div>
       </div>
-      { showBlacklist
+      { loadingList ? spinnerList : showBlacklist
         ?
         adopters.map(adopter => {
           return (
@@ -49,6 +50,7 @@ AdopterList.propTypes = {
   selectedAdopterId: string.isRequired,
   showViewMore: bool.isRequired,
   loading: bool.isRequired,
+  loadingList: bool.isRequired,
   showBlacklist: bool.isRequired
 };
 

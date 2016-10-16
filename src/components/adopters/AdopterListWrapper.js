@@ -15,6 +15,7 @@ class AdopterListWrapper extends Component {
     this.state = {
       selectedAdopterId: '',
       loading: true,
+      loadingList: true,
       currPage: 1,
       showBlacklist: false,
       rows: consts.ADOPTER_PAGE_SIZE
@@ -32,7 +33,7 @@ class AdopterListWrapper extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ loading: false });
+    this.setState({ loading: false, loadingList: false });
     if (nextProps.adopters.first_page) {
       this.setState({ currPage: 1 });
     }
@@ -49,15 +50,19 @@ class AdopterListWrapper extends Component {
     const { adopters } = this.props;
     this.setState({ currPage: nextPage });
     this.setState({ loading: true });
-    this.props.actions.loadMoreAdopters(rows, nextPage, adopters.filterParam);
+    this.props.actions.loadMoreAdopters(rows, nextPage);
   }
 
   onClickBlacklist() {
-    this.setState({ showBlacklist: true });
+    let { rows, currPage } = this.state;
+    this.setState({ showBlacklist: true, loadingList: true });
+    this.props.actions.loadBlacklisted(rows, 1);
   }
 
   onClickShowAll() {
-    this.setState({ showBlacklist: false });
+    let { rows, currPage } = this.state;
+    this.setState({ showBlacklist: false, loadingList: true });
+    this.props.actions.loadAdopters(rows, 1);
   }
 
   render() {
@@ -77,7 +82,8 @@ class AdopterListWrapper extends Component {
                     showViewMore={showViewMore}
                     onClickViewMore={this.onClickViewMore}
                     loading={this.state.loading}
-                    showBlacklist={this.state.showBlacklist}/>
+                    showBlacklist={this.state.showBlacklist}
+                    loadingList={this.state.loadingList}/>
         }
       </div>
     );

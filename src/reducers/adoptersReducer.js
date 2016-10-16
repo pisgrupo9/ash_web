@@ -13,6 +13,16 @@ const adoptersReducer = (state = initialState.adopters, action) => {
       newAdopters = newAdopters.concat(adopters);
       return Object.assign({}, state, { adopters: newAdopters, first_page: false });
     }
+    case types.LOAD_BLACKLISTED_SUCCESS: {
+      const { adopters, total_pages } = action.response;
+      return { total_pages: total_pages, adopters: adopters, first_page: true };
+    }
+    case types.LOAD_MORE_BLACKLISTED_SUCCESS: {
+      let newBlacklisted = state.adopters ? state.adopters : [];
+      const { adopters } = action.response;
+      newBlacklisted = newBlacklisted.concat(adopters);
+      return Object.assign({}, state, { adopters: newBlacklisted, first_page: false });
+    }
     default:
       return state;
   }

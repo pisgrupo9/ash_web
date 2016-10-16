@@ -10,6 +10,10 @@ class AdopterApi {
   static getAdopters(row, col) {
     return api.get(`${consts.API_STAGING_URL}/adopters?page=${col}&row=${row}`);
   }
+
+  static getBlacklisted(row, col) {
+    return api.get(`${consts.API_STAGING_URL}/adopters/search?blacklisted=true&page=${col}&row=${row}`);
+  }
 }
 
 
