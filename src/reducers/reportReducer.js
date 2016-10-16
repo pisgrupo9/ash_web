@@ -16,7 +16,8 @@ const createReport = (action, name, type) => {
 export default function reportReducer(state = initialState.reports, action) {
   switch (action.type) {
     case types.EXPORT_ANIMAL_PDF:
-    case types.EXPORT_ANIMALS_XLS: {
+    case types.EXPORT_ANIMALS_XLS:
+    case types.EXPORT_ANIMAL_EVENT: {
       let reports = [];
       state.forEach( function (report) {
         if (!(report.id === action.id)) {
@@ -37,7 +38,12 @@ export default function reportReducer(state = initialState.reports, action) {
     }
     case types.EXPORT_ANIMALS_XLS_START: {
       return [
-          createReport(action, 'Reporte', 'xls'),
+          createReport(action, 'Reporte Animals', 'xls'),
+            ...state ];
+    }
+    case types.EXPORT_ANIMAL_EVENT_START: {
+      return [
+          createReport(action, 'Reporte Eventos: '+ action.animalId, 'xls'),
             ...state ];
     }
     default: {

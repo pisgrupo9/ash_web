@@ -18,6 +18,10 @@ class EventApi {
   static getSearchEvents(animalId, filter, row, col) {
     return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/events/search?page=${col}&row=${row}${filter}`);
   }
+
+  static getExportAnimalEvent(animalId) {
+    return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/events/export_events`);
+  }
 }
 
 export default EventApi;

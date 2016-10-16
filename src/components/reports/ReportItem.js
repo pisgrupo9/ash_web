@@ -10,8 +10,8 @@ const ReportItem = ({ report }) => {
             {report.state}
             </a>);
   }
-  let pdf = <div className="report-type-pdf"> PDF </div>
-  let xls = <div className="report-type-xls"> XLS </div>
+  let pdf = <div className="report-type-pdf"> PDF </div>;
+  let xls = <div className="report-type-xls"> XLS </div>;
 
   return (
       <div className="report-titles-container-item report-item">

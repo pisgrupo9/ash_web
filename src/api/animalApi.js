@@ -45,7 +45,6 @@ class AnimalApi {
   static getExportAnimal(animalId) {
     return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/export_pdf`);
   }
-
 }
 
 export default AnimalApi;
