@@ -27,12 +27,12 @@ const MiniAdopterPerfil = ({ adopter }) => {
           <div className="vertical-flex-container">
             <div className="vertical-flex bottom-border titles-font">Adoptados</div>
               <div className="vertical-flex dark-grey-color">
-                <p> animal1, animal2 </p>
+                <p> N/A </p>
               </div>
           </div>
         </div>
       </div>
-      <div className="description-container">{adopter.house_description ? adopter.house_description : 'N/A'}</div>
+      <div className="description-container">{adopter.house_description ? adopter.house_description : ''}</div>
     </div>
   );
 };

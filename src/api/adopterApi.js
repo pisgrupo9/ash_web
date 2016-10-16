@@ -8,7 +8,7 @@ class AdopterApi {
   }
 
   static getAdopters(row, col) {
-    return api.get(`${consts.APIARY_URL}/adopters`);
+    return api.get(`${consts.API_STAGING_URL}/adopters?page=${col}&row=${row}`);
   }
 }
 
