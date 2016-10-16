@@ -1,10 +1,11 @@
 import React, { Component, PropTypes } from 'react';
+import AddAdopterModal from '../../containers/AddAdopterModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
-import EditAnimalModal from '../../containers/EditAnimalModal';
+import { Icon } from 'react-fa';
 import * as util from '../../util/validateForm';
 
-class EditAnimalButton extends Component {
+class AddAdopterButton extends Component {
   constructor(props, context) {
     super(props, context);
 
@@ -22,14 +23,15 @@ class EditAnimalButton extends Component {
   }
 
   render() {
-    const showButton = util.editAnimalPerfil(this.props.userPermission);
+    let { userPermission } = this.props;
+    const showButton = util.editAdopterPerfil(userPermission);
     const button = (
                       <div>
-                        <button className="btn-circle" onClick={this.onOpen}>
-                          <i className="material-icons color">mode_edit</i>
+                        <button className="button-animal" onClick={this.onOpen}>
+                          <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-                          <EditAnimalModal loading={this.props.loading} onClose={this.onClose} animal={this.props.animal} route_id={this.props.route_id}/>
+                          <AddAdopterModal onClose={this.onClose} />
                         </Modal>
                       </div>
                     );
@@ -42,13 +44,10 @@ class EditAnimalButton extends Component {
   }
 }
 
-const { string, object, func } = PropTypes;
+const { string } = PropTypes;
 
-EditAnimalButton.propTypes = {
-  userPermission: string.isRequired,
-  animal: object.isRequired,
-  route_id: string.isRequired,
-  loading: func.isRequired
+AddAdopterButton.propTypes = {
+  userPermission: string.isRequired
 };
 
 const mapState = (state) => {
@@ -57,4 +56,4 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(EditAnimalButton);
+export default connect(mapState)(AddAdopterButton);
