@@ -3,9 +3,16 @@ import * as consts from '../constants/apiConstants.js';
 import _ from 'lodash';
 
 class AdopterApi {
-
   static sendForm(adopter) {
     return api.post(`${consts.API_STAGING_URL}/adopters`, adopter);
+  }
+
+  static getAdopters(row, col) {
+    return api.get(`${consts.API_STAGING_URL}/adopters?page=${col}&row=${row}`);
+  }
+
+  static getSerchAdopters(row, col, filterParam) {
+    return api.get(`${consts.API_STAGING_URL}/adopters/search?blacklisted=${filterParam}&page=${col}&row=${row}`);
   }
 }
 
