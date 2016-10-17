@@ -8,6 +8,7 @@ import resetPass from './passwordReducer';
 import species from './speciesReducer';
 import animalForm from './animalFormReducer';
 import animal from './animalReducer';
+import animalImages from './animalImagensReducer';
 import animals from './animalsReducer';
 import eventForm from './eventFormReducer';
 import confirm from './confirmReducer';
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   species,
   animalForm,
   animal,
+  animalImages,
   animals,
   eventForm,
   confirm,

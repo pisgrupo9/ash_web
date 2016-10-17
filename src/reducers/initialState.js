@@ -13,7 +13,6 @@ export default {
     id: ''
   },
   animal: {
-    images: []
   },
   animals: {
     total_pages: 0,
@@ -36,6 +35,9 @@ export default {
     filter: '',
     searchReady: false,
     events: []
+  },
+  animalImages: {
+    images: []
   },
   event: {},
   exportUrl: {},

@@ -37,10 +37,11 @@ export const showAnimalPerfil = (animal) => {
   };
 };
 
-export const showAnimalPerfilImages = (response) => {
+export const showAnimalPerfilImages = (response, page) => {
   return {
-    type: types.SHOW_ANIMAL_PROFILE_IMAGES_SUCCES,
-    response
+    type: types.SHOW_ANIMAL_PROFILE_IMAGES_SUCCESS,
+    response,
+    page
   };
 };
 
@@ -164,7 +165,7 @@ export const showPerfilAnimal = (id_animal) => {
 export const showPerfilAnimalImages = (id_animal, page) => {
   return (dispatch) => {
     return animalApi.showAnimalImages(id_animal, page).then(animal => {
-      dispatch(showAnimalPerfilImages(animal));
+      dispatch(showAnimalPerfilImages(animal, page));
     }).catch(err => {
       throw (err);
     });

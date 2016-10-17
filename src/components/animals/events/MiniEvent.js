@@ -9,18 +9,18 @@ const MiniEvent = ({ event, loading }) => {
   const spinner = (<SpinnerComponent active={loading} />);
 
   return (
-      <div className="event-container">
-        {loading ? spinner
-                  : <div>
-                          <div className="event-description">{event.description}</div>
-                          {event.images ? <ImagesGallery images={event.images}
-                          styleClass="event-gallery"
-                          loading={false}
-                          moreImages={false}
-                          />
-                                      : ''}
-                      </div>}
-      </div>
+    <div className="event-container">
+      {loading ? spinner :
+        <div>
+          <div className="event-description">{event.description}</div>
+          {event.images.length ?
+            <ImagesGallery images={event.images}
+              styleClass="event-gallery"
+              loading={false}
+              moreImages={false}/>
+            : ''}
+        </div>}
+    </div>
   );
 };
 
