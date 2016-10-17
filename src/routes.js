@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRedirect } from 'react-router';
 import App from './components/App';
 import * as auth from './api/redirectLoginApi';
 import ServerStatusPage from './containers/ServerStatusPage';
@@ -17,7 +17,7 @@ import ReportePage from './containers/ReportePage';
 
 export default (
   <Route path="/" component={App}>
-    <IndexRoute path="animales" onEnter={auth.CheckAuth} component={AnimalListPage} />
+    <IndexRedirect to="animales"/>
     <Route path="serverStatus" component={ServerStatusPage}/>
     <Route path="login" onEnter={auth.CheckIfUnlogged} component={LoginPage}/>
     <Route path="solicitud-registro" onEnter={auth.CheckIfUnlogged} component={CreateUserPage}/>
