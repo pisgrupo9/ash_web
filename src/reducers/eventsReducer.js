@@ -27,11 +27,8 @@ const eventsReducer = (state = initialState.events, action) => {
                 searchReady: false
               });
     }
-    case types.SEARCH_ANIMALS_ERROR: {
-      return Object.assign({}, state, {
-                searchReady: false,
-                error: 'ERROR'
-              });
+    case types.SEARCH_EVENTS_ERROR: {
+      return Object.assign({}, state, { searchReady: false, error: 'ERROR' });
     }
     default:
       return state;

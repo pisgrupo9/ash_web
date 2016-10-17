@@ -48,17 +48,24 @@ class AdopterListWrapper extends Component {
   }
 
   onClickViewMore() {
-    let { rows, currPage, showBlacklist } = this.state;
+    let { rows, currPage } = this.state;
+    let { adopters } = this.props;
     let nextPage = currPage + 1;
     this.setState({ currPage: nextPage, loading: true });
-    this.props.actions.loadAdopters(rows, nextPage, showBlacklist);
+    this.props.actions.loadAdopters(rows, nextPage, adopters.filterParam);
   }
 
   onToggleSearch() {
     let { rows, showBlacklist } = this.state;
-    let onBlacklist = !showBlacklist;
-    this.setState({ showBlacklist: onBlacklist, loadingList: true, currPage: 1 });
-    this.props.actions.loadAdopters(rows, 1, onBlacklist);
+    let { filterParam } = this.props.adopters;
+    let filter = Object.assign({}, filterParam, {});
+    if (!showBlacklist) {
+      filter.blacklisted = true;
+    } else {
+      delete filter.blacklisted;
+    }
+    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1 });
+    this.props.actions.loadAdopters(rows, 1, filter);
   }
 
   render() {

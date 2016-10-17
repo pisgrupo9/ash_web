@@ -49,6 +49,7 @@ export default {
   adopters: {
     totalPages: 0,
     adopters: [],
-    firstPage: false
+    firstPage: false,
+    filterParam: {}
   }
 };

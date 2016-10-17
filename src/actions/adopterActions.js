@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import adopterApi, { parseAdopter, parseErrors } from '../api/adopterApi';
+import adopterApi, { parseAdopter, parseErrors, parseFilter } from '../api/adopterApi';
 
 export const sendAdopterFormSuccess = (response) => {
   return {
@@ -11,7 +11,7 @@ export const sendAdopterFormSuccess = (response) => {
 export const loadAdoptersSuccess = (response, row) => {
   return {
     type: types.LOAD_ADOPTERS_SUCCESS,
-    row: row,
+    row,
     response
   };
 };
@@ -29,10 +29,11 @@ export const cancelAdopterForm = () => {
   };
 };
 
-export const loadSerchSuccess = (response, row) => {
+export const loadSerchSuccess = (response, row, filterParam) => {
   return {
     type: types.LOAD_ADOPTERS_SUCCESS,
-    row: row,
+    row,
+    filterParam,
     response
   };
 };
@@ -56,14 +57,15 @@ export const sendAdopterForm = (adopter) => {
 
 export const loadAdopters = (col, row, filterParam) => {
   return (dispatch) => {
-  if (!filterParam || filterParam == '') {
+  if (!filterParam) {
     return adopterApi.getAdopters(col, row).then(adopters => {
       dispatch(loadAdoptersSuccess(adopters, row));
     }).catch(err => {
       throw (err);
     });
   } else {
-    return adopterApi.getSerchAdopters(col, row, filterParam).then(adopters => {
+    let parsedFilters = parseFilter(filterParam);
+    return adopterApi.getSerchAdopters(col, row, parsedFilters).then(adopters => {
       dispatch(loadSerchSuccess(adopters, row, filterParam));
     }).catch(err => {
       throw (err);
