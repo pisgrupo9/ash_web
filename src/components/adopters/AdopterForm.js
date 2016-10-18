@@ -68,7 +68,7 @@ const AdopterForm = ({ adopter, onSave, onChange, onCancel, errors }) => {
           Lista Negra
         </Checkbox>
       </div>
-      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
+      <ModalAnimalButtons title="INGRESAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };

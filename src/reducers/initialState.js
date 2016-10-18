@@ -18,7 +18,8 @@ export default {
     totalPages: 0,
     animals: [],
     firstPage: false,
-    filterParam: ''
+    filterParam: {},
+    searchReady: false
   },
   eventForm: {
     errors: '',

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import '../../styles/animal-form.scss';
 
-const ModalButtons = ({ onSubmit, onClose }) => {
+const ModalButtons = ({ title, onSubmit, onClose }) => {
   return (
     <div className="animal-buttons">
       <input className="btn submit-button"
               type="submit"
-              value="ENVIAR"
+              value={title || "ENVIAR"}
               onClick={onSubmit} />
       <button className="btn cancel-button" onClick={onClose}>
         CANCELAR
@@ -15,9 +15,10 @@ const ModalButtons = ({ onSubmit, onClose }) => {
   );
 };
 
-const { func } = PropTypes;
+const { func, string } = PropTypes;
 
 ModalButtons.propTypes = {
+  title: string,
   onSubmit: func.isRequired,
   onClose: func.isRequired
 };

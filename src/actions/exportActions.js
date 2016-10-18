@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import animalApi from '../api/animalApi';
+import animalApi, { parseFilter } from '../api/animalApi';
 import eventApi from '../api/eventApi';
 import { toastr } from 'react-redux-toastr';
 import * as messages from '../constants/apiMessage';
@@ -70,7 +70,8 @@ export const exportAnimals = (filterParam) => {
     let id = Math.floor((Math.random() * 10000) + 1);
     toastr.info('', messages.REPORTE_CREADO);
     dispatch(exportAnimalListStart(id));
-    return animalApi.getExportAnimalsList(filterParam).then((response) => {
+    let parsedFilter = parseFilter(filterParam);
+    return animalApi.getExportAnimalsList(parsedFilter).then((response) => {
       dispatch(exportAnimalList(response.url, id));
       toastr.success('', messages.REPORTE_TERMINADO);
     });

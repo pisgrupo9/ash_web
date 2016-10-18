@@ -209,6 +209,11 @@ input[type=button] {
   outline: none;
 }
 
+body button,
+input[type=button] {
+  outline: none;
+}
+
 .section-title {
   color: $black;
   font-size: 19px;

@@ -140,6 +140,12 @@ $dark-orange: #f60;
   min-width: 250px;
 }
 
+.wrapper-flex-modal {
+  @extend .wrapper-flex;
+
+  border: none;
+}
+
 .animal-item-container {
   display: flex;
   background-color: $light-grey;
@@ -167,6 +173,12 @@ $dark-orange: #f60;
   margin-bottom: 20px;
 }
 
+.titles-container-adoption{
+  @extend .titles-container;
+
+  margin-right: 50px;
+}
+
 .event-titles-container {
   display: flex;
   margin-left: 60px;
@@ -183,7 +195,6 @@ $dark-orange: #f60;
 
 .title-inside {
   flex: 5;
-  margin-left: 12px;
 }
 
 .title-ficha {
@@ -209,6 +220,10 @@ $dark-orange: #f60;
 
 .general-event-list {
   margin: 10px;
+}
+
+.general-list-link {
+  margin: 30px 3% 10px;
 }
 
 .clear { clear: both; }
@@ -253,6 +268,14 @@ $dark-orange: #f60;
   text-align: center;
   min-width: 45px;
   align-self: center;
+
+  .adopt-checkbox {
+    margin: 0;
+
+    label {
+      display: block;
+    }
+  }
 }
 
 .event-name {
