@@ -24,6 +24,7 @@ class AdopterListWrapper extends Component {
     this.onClick = this.onClick.bind(this);
     this.onClickViewMore = this.onClickViewMore.bind(this);
     this.onToggleSearch = this.onToggleSearch.bind(this);
+    this.startLoading = this.startLoading.bind(this);
   }
 
   componentWillMount() {
@@ -58,7 +59,7 @@ class AdopterListWrapper extends Component {
   onToggleSearch() {
     let { rows, showBlacklist } = this.state;
     let { filterParam } = this.props.adopters;
-    let filter = Object.assign({}, filterParam, {});
+    let filter = Object.assign({}, filterParam);
     if (!showBlacklist) {
       filter.blacklisted = true;
     } else {
@@ -68,13 +69,18 @@ class AdopterListWrapper extends Component {
     this.props.actions.loadAdopters(rows, 1, filter);
   }
 
+  startLoading() {
+    this.setState({ loadingList: true });
+  }
+
   render() {
     const { adopters } = this.props;
     const showViewMore = this.state.currPage < adopters.totalPages;
     return (
       <div className="general-list">
         <AdopterListHeader onToggleSearch={this.onToggleSearch}
-                            showBlacklist={this.state.showBlacklist}/>
+                            showBlacklist={this.state.showBlacklist}
+                            startLoading={this.startLoading}/>
         {adopters.searchReady ?
          <SpinnerComponent active={adopters.searchReady} />
           :

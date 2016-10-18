@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
 import * as util from '../../util/validateForm';
+import '../../styles/adopter-list.scss';
 
 class AddAdopterButton extends Component {
   constructor(props, context) {
@@ -26,7 +27,7 @@ class AddAdopterButton extends Component {
     let { userPermission } = this.props;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-                      <div>
+                      <div className="add-adopter-button">
                         <button className="button-animal" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
