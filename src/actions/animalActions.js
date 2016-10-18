@@ -200,7 +200,8 @@ export const loadAnimals = (col, row, filterParam) => {
         throw (err);
       });
     } else {
-      return animalApi.getSerchAnimals(col, row, filterParam).then(animals => {
+      let parsedFilter = parseFilter(filterParam);
+      return animalApi.getSerchAnimals(col, row, parsedFilter).then(animals => {
         dispatch(loadAnimalsSuccess(animals, row, filterParam));
       }).catch(err => {
         throw (err);
@@ -232,7 +233,7 @@ export const searchAnimal = (filter) => {
     dispatch(serchAnimalsStart());
     let filterParam = parseFilter(filter);
     return animalApi.getSerchAnimals(consts.ANIMAL_PAGE_SIZE, 1, filterParam).then(response => {
-      dispatch(serchAnimalsSuccess(response, filterParam));
+      dispatch(serchAnimalsSuccess(response, filter));
     }).catch(err => {
       dispatch(serchAnimalsError(err));
     });

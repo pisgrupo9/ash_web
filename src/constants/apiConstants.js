@@ -4,6 +4,7 @@ export const API_STAGING = 'http://ash-api-staging.herokuapp.com';
 export const SECCION_STORAGE = 'ASH-SECCION-TOKEN';
 export const ANIMAL_PAGE_SIZE = 15;
 export const ADOPTER_PAGE_SIZE = 10;
+export const ANIMAL_LINK_PAGE_SIZE = 8;
 export const EVENT_PAGE_SIZE = 8;
 export const GENEDERS = [ { id: "male", name: "Macho" },
                           { id: "female", name: "Hembra" } ];

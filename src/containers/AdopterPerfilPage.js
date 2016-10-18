@@ -7,6 +7,7 @@ import AdopterAnimals from '../components/adopters/perfil/AdopterAnimals';
 import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
 import * as confirmActions from '../actions/confirmActions';
+import AddAdoptionButton from '../components/adoptions/AddAdoptionButton';
 import _ from 'lodash';
 
 class AdopterPerfilPage extends Component {
@@ -48,7 +49,7 @@ class AdopterPerfilPage extends Component {
   }
 
   render() {
-    const { adopter } = this.props;
+    const { adopter, routeParams } = this.props;
     const { loading, adopterId } = this.state;
     const animalList = (<AdopterAnimals animals={adopter.animals}
                     onClick={this.onClickAnimalId}
@@ -71,6 +72,8 @@ class AdopterPerfilPage extends Component {
           <div className="animal-list-div">
             <div className="animal-list-title"> Animales adoptados por {adopter.first_name}:</div>
             {animalList}
+            { !loading && !adopter.blacklisted &&
+              <AddAdoptionButton adopterId={routeParams.id} /> }
           </div>
           <div className="coment-div">
             COMENTARIOS

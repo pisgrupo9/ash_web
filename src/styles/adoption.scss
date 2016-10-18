@@ -1,0 +1,17 @@
+@import "./animal-form.scss";
+
+.adoption-title-wrapper {
+  height: 55px;
+}
+
+.adoption-form-title {
+  @extend .animal-form-title;
+
+  margin-bottom: 5px;
+}
+
+.adoption-form-subtitle {
+  @extend .animal-form-title;
+
+  font-size: 15px;
+}
