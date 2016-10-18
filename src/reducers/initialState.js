@@ -51,5 +51,6 @@ export default {
     adopters: [],
     firstPage: false,
     filterParam: {}
-  }
+  },
+  adopter: {}
 };

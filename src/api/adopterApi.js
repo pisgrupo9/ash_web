@@ -14,6 +14,10 @@ class AdopterApi {
   static getSerchAdopters(row, col, filterParam) {
     return api.get(`${consts.API_STAGING_URL}/adopters/search?page=${col}&row=${row}${filterParam}`);
   }
+
+  static showAdopter(id) {
+    return api.get(`${consts.API_STAGING_URL}/adopters/${id}`);
+  }
 }
 
 export default AdopterApi;

@@ -44,6 +44,13 @@ export const cleanAdoptersSuccess = () => {
   };
 };
 
+export const showAdopter = (adopter) => {
+  return {
+    type: types.SHOW_ADOPTER_PROFILE,
+    adopter
+  };
+};
+
 export const sendAdopterForm = (adopter) => {
   return (dispatch) => {
     let adopterJson = parseAdopter(adopter);
@@ -77,5 +84,13 @@ export const loadAdopters = (col, row, filterParam) => {
 export const cleanAdopters = () => {
   return (dispatch) => {
     dispatch(cleanAdoptersSuccess());
+  };
+};
+
+export const showPerfilAdopter = (id) => {
+  return (dispatch) => {
+    return adopterApi.showAdopter(id).then(adopter => {
+      dispatch(showAdopter(adopter));
+    });
   };
 };

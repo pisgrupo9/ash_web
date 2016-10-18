@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Collapse } from 'react-bootstrap';
+import { Link } from 'react-router';
 import MiniAdopterPerfil from './MiniAdopterPerfil';
 import '../../styles/animal-perfil.scss';
 
@@ -16,8 +17,10 @@ const AdopterItem = ({ adopter, selectedAdopterId, onClick }) => {
           {showAdopter ? focusedbutton : unfocusedbutton}
         </button>
         <div className="adopter-name">
-          {adopter.blacklisted ? <div className="light-red"> {adopter.first_name} </div>
-                        : adopter.first_name}
+          <Link className="link-style" to={`/adoptantes/${adopter.id}`}>
+            {adopter.blacklisted ? <div className="light-red"> {adopter.first_name} </div>
+                          : adopter.first_name}
+          </Link>
         </div>
         <div className="view-interested-icon">
           {adopter.blacklisted ? <i className="material-icons light-red">not_interested</i>

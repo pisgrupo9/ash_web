@@ -1,0 +1,14 @@
+@import "./animal-perfil.scss";
+
+.coment-div {
+  @extend .section-div;
+
+  min-height: 200px;
+}
+
+.animal-list-div {
+  @extend .section-div;
+
+  min-height: 200px;
+}
+
