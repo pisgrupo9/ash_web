@@ -44,29 +44,29 @@ class AnimalPerfilPage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { edit_gallery, image_page, animalId } = this.state;
-    const { animal, exportUrl } = this.props;
+    const { image_page, animalId } = this.state;
+    const { animal, exportUrl, animalImages } = this.props;
     if (nextProps.animal.name) {
       this.setState({ loading: false });
     }
     if (nextProps.animal != animal) {
       this.setState({ pdfUrl: null, pdfStart: true });
     }
-    if (nextProps.animal.images != animal.images) {
-      let moreImages = edit_gallery || (nextProps.animal.images.length >= (15 * image_page));
+    if (nextProps.animalImages.images!= animalImages.images) {
+      let moreImages = (nextProps.animalImages.total_pages > image_page);
       this.setState({ loading_gallery: false, more_page: moreImages });
-      if (!nextProps.animal.images.length) {
+      if (!nextProps.animalImages.images.length) {
         this.setState({ edit_gallery: false });
       }
     }
-    if (nextProps.animal.uplaodImages) {
+    if (nextProps.animalImages.uplaodImages) {
       this.setState({ loading_gallery: true, image_page: 1 });
     }
-    if (nextProps.animal.removeImages) {
+    if (nextProps.animalImages.removeImages) {
       this.setState({ loading_gallery: false });
     }
-    if (nextProps.animal.error) {
-      toastr.error('ERROR', nextProps.animal.error);
+    if (nextProps.animalImages.error) {
+      toastr.error('ERROR', nextProps.animalImages.error);
       this.setState({ loading_gallery: true });
     }
     if (nextProps.exportUrl.urlPdf != exportUrl.urlPdf & nextProps.exportUrl.animalId == animalId) {
@@ -80,7 +80,7 @@ class AnimalPerfilPage extends Component {
 
   editGallery() {
     const { edit_gallery } = this.state;
-    const { images } = this.props.animal;
+    const { images } = this.props.animalImages;
     if (images.length) {
       this.setState({ edit_gallery: !edit_gallery });
     } else {
@@ -133,7 +133,7 @@ class AnimalPerfilPage extends Component {
     const { permissions } = this.props.user;
     const { id } = this.props.routeParams;
     const showButton = util.editAnimalPerfil(permissions);
-    const { animal } = this.props;
+    const { animal, animalImages } = this.props;
     const { loading, loading_gallery, edit_gallery } = this.state;
     return (
       <div className="profile-page-flex">
@@ -158,8 +158,7 @@ class AnimalPerfilPage extends Component {
               </button>
               }
             </div>
-            { animal.images &&
-            <ImagesGallery images={animal.images}
+            <ImagesGallery images={animalImages.images}
                             styleClass="slick-container"
                             onMoreImages={this.onMoreImages}
                             moreImages={this.state.more_page}
@@ -167,7 +166,6 @@ class AnimalPerfilPage extends Component {
                             edit={edit_gallery}
                             onChangeRemove={this.onRemoveImage}
                             />
-            }
           </div>
           <div className="event-div">
             <AnimalEventWrapper animalId={id} />
@@ -182,6 +180,7 @@ const { object } = PropTypes;
 
 AnimalPerfilPage.propTypes = {
   animal: object.isRequired,
+  animalImages: object.isRequired,
   user: object.isRequired,
   exportUrl: object.isRequired,
   animalActions: object.isRequired,
@@ -198,7 +197,8 @@ const mapState = (state) => {
   return {
     animal: state.animal,
     user: state.user,
-    exportUrl: state.exportUrl
+    exportUrl: state.exportUrl,
+    animalImages: state.animalImages
   };
 };
 
