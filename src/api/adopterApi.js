@@ -12,7 +12,7 @@ class AdopterApi {
   }
 
   static getSerchAdopters(row, col, filterParam) {
-    return api.get(`${consts.API_STAGING_URL}/adopters/search?blacklisted=${filterParam}&page=${col}&row=${row}`);
+    return api.get(`${consts.API_STAGING_URL}/adopters/search?page=${col}&row=${row}${filterParam}`);
   }
 }
 
@@ -43,4 +43,12 @@ export const parseErrors = (errors) => {
     parsedErrors[camelProp] = errors[prop];
   }
   return parsedErrors;
+};
+
+export const parseFilter = (filter) => {
+  let parse = '';
+  for (let name in filter) {
+     parse += `&${name}=${filter[name]}`;
+  }
+  return parse;
 };

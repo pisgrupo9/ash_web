@@ -7,7 +7,16 @@ const adoptersReducer = (state = initialState.adopters, action) => {
       let newAdopters = action.row === 1 ? [] : state.adopters;
       const { adopters, total_pages } = action.response;
       newAdopters = newAdopters.concat(adopters);
-      return Object.assign({}, state, { totalPages: total_pages, adopters: newAdopters, firstPage: false });
+      let newValues = {
+        totalPages: total_pages,
+        adopters: newAdopters,
+        firstPage: false,
+        filterParam: action.filterParam || {}
+      };
+      return Object.assign({}, state, newValues);
+    }
+    case types.SEND_ADOPTER_FORM_SUCCESS: {
+      return initialState.adopters;
     }
     case types.CLEAN_ADOPTERS_SUCCESS: {
       return Object.assign({}, state, { totalPages: 0, adopters: [], firstPage: false });

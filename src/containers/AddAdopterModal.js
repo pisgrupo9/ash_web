@@ -9,6 +9,7 @@ import AdopterForm from '../components/adopters/AdopterForm';
 import '../styles/animal-form.scss';
 import _ from 'lodash';
 import Spinner from 'react-spinkit';
+import * as consts from '../constants/apiConstants';
 
 class AddAdopterModal extends Component {
   constructor(props, context) {
@@ -52,6 +53,8 @@ class AddAdopterModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.success) {
+      let { filterParam } = this.props;
+      this.props.actions.loadAdopters(consts.ADOPTER_PAGE_SIZE, 1, filterParam);
       toastr.success('', messages.SUCCESS_CREATE_ADOPTER);
       this.onClose();
     } else {
@@ -142,6 +145,7 @@ const { object, func, bool } = PropTypes;
 AddAdopterModal.propTypes = {
   errors: object.isRequired,
   success: bool.isRequired,
+  filterParam: object.isRequired,
   onClose: func.isRequired,
   actions: object.isRequired
 };
@@ -155,7 +159,8 @@ const mapState = (state) => {
 
   return {
     errors: errors,
-    success: state.adopterForm.success
+    success: state.adopterForm.success,
+    filterParam: state.adopters.filterParam
   };
 };
 
