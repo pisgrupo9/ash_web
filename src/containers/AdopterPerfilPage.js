@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StickyContainer } from 'react-sticky';
+import AdopterInfo from '../components/adopter/AdopterInfo';
 import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
 import _ from 'lodash';
@@ -31,14 +32,18 @@ class AdopterPerfilPage extends Component {
 
   render() {
     const { adopter } = this.props;
+    const { loading } = this.state;
     return (
       <div className="profile-page-flex">
-        <StickyContainer className="perfil-div">
+        <StickyContainer className="perfil-div adopter">
           <div className="h-100">
-            INFO {adopter.ci}
+            <AdopterInfo styleClass="info-div profile-section"
+                          loading={loading}
+                          adopter={adopter}
+                       />
           </div>
         </StickyContainer>
-        <div className="other-section">
+        <div className="other-section adopter">
           <div className="animal-list-div">
             ANIMALES
           </div>
