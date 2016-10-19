@@ -57,7 +57,7 @@ class AnimalFilters extends Component {
         filter[name] = this.state.filter[name];
       }
     }
-    this.props.actions.serchAnimal(filter);
+    this.props.actions.searchAnimal(filter);
   }
 
   onKeyPress(e) {

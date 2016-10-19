@@ -15,11 +15,10 @@ export default {
   animal: {
   },
   animals: {
-    total_pages: 0,
+    totalPages: 0,
     animals: [],
-    first_page: false,
-    filterParam: '',
-    searchReady: false
+    firstPage: false,
+    filterParam: ''
   },
   eventForm: {
     errors: '',

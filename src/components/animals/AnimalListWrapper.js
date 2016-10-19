@@ -42,7 +42,7 @@ class AnimalListWrapper extends Component {
     let { pdfAnimals, pdfStart } = this.state;
     let { urlXls, urlPdf, filterParam } = this.props.exportUrl;
     this.setState({ loading: false });
-    if (nextProps.animals.first_page) {
+    if (nextProps.animals.firstPage) {
       this.setState({ currPage: 1 });
     }
     if (nextProps.animals.filterParam != filterParam) {
@@ -58,6 +58,10 @@ class AnimalListWrapper extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.actions.cleanAnimals();
+  }
+
   onClick(animalId) {
     const equalsId = this.state.selectedAnimalId === animalId.toString();
     this.setState({ selectedAnimalId: equalsId ? '' : animalId.toString() });
@@ -69,7 +73,7 @@ class AnimalListWrapper extends Component {
     const { animals } = this.props;
     this.setState({ currPage: nextPage });
     this.setState({ loading: true });
-    this.props.actions.loadMoreAnimals(rows, nextPage, animals.filterParam);
+    this.props.actions.loadAnimals(rows, nextPage, animals.filterParam);
   }
 
   exportPdf() {
@@ -100,7 +104,7 @@ class AnimalListWrapper extends Component {
 
   render() {
     const { animals } = this.props;
-    const showViewMore = this.state.currPage < animals.total_pages;
+    const showViewMore = this.state.currPage < animals.totalPages;
     return (
       <div className="general-list">
         <AnimalListHeader
