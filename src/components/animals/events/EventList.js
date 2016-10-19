@@ -13,25 +13,26 @@ const EventList = ({ events, infoEvent, onClick, selectedEventId, showViewMore, 
         <div className="event-title-inside">FECHA</div>
       </div>
       {loading ? spinner
-                : <div> {events.length == 0 ? <div className="empty-events-container">
-                              <p> No hay eventos </p>
-                            </div>
-                          : <div className="events-container">
-                            { events.map(event => {
-                              return (
-                                <EventItem event={event}
-                                            infoEvent={infoEvent}
-                                            key={event.id}
-                                            selectedEventId={selectedEventId}
-                                            onClick={onClick}
-                                            loading={loadingEvent} />
-                              );
-                            })}
-                            <div className="view-more-container">
-                              {loadingMore ? spinnerMore : showViewMore ?
-                              <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
-                            </div>
-                          </div>}
+                : <div className="events-container">
+                    {events.length == 0 ? <div className="empty-events-container">
+                    <p> No hay eventos </p>
+                  </div>
+                                        : <div>
+                                          { events.map(event => {
+                                            return (
+                                              <EventItem event={event}
+                                                          infoEvent={infoEvent}
+                                                          key={event.id}
+                                                          selectedEventId={selectedEventId}
+                                                          onClick={onClick}
+                                                          loading={loadingEvent} />
+                                            );
+                                          })}
+                                          <div className="view-more-container">
+                                            {loadingMore ? spinnerMore : showViewMore ?
+                                            <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
+                                          </div>
+                                        </div>}
                   </div>}
     </div>
   );

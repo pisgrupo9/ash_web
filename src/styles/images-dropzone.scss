@@ -24,6 +24,13 @@ $light-grey: #f7f7f7;
   margin: 10px 0;
 }
 
+.edit-dropzone {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: $dark-grey;
+  margin: 10px 15px 130px 10px;
+}
+
 .dropzone {
   display: flex;
   justify-content: center;
@@ -103,6 +110,7 @@ $light-grey: #f7f7f7;
   height: 140px;
   overflow: hidden;
   margin-bottom: 0;
+  position: relative;
 }
 
 .profile-image {
@@ -115,4 +123,8 @@ $light-grey: #f7f7f7;
   font-size: x-small;
   font-weight: 400;
   line-height: 2px;
+}
+
+.edit-profile-container {
+  display: none;
 }

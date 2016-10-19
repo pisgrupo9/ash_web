@@ -10,16 +10,16 @@ const MiniEvent = ({ event, loading }) => {
 
   return (
     <div className="event-container">
-      {loading ? spinner :
-        <div>
-          <div className="event-description">{event.description}</div>
-            {event.images && event.images.length ?
-            <ImagesGallery images={event.images}
-              styleClass="event-gallery"
-              loading={false}
-              moreImages={false}/>
-            : ''}
-        </div>}
+      {loading ? spinner
+              : <div className="event-description">
+                {event.description}
+                {event.images && event.images.length
+                    ? <ImagesGallery images={event.images}
+                      styleClass="event-gallery"
+                      loading={false}
+                      moreImages={false}/>
+                    : ''}
+                </div>}
     </div>
   );
 };
