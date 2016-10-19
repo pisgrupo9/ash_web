@@ -58,17 +58,18 @@ export const uploadImageAnimalError = (errors) => {
   };
 };
 
-export const loadAnimalsSuccess = (response) => {
+export const loadAnimalsSuccess = (response, row, filterParam) => {
   return {
     type: types.LOAD_ANIMALS_SUCCESS,
+    row,
+    filterParam,
     response
   };
 };
 
-export const loadMoreAnimalsSuccess = (response) => {
+export const cleanAnimalsSuccess = () => {
   return {
-    type: types.LOAD_MORE_ANIMALS_SUCCESS,
-    response
+    type: types.CLEAN_ANIMALS_SUCCESS
   };
 };
 
@@ -182,32 +183,27 @@ export const removePerfilAnimalImages = (id_animal, id_image) => {
   };
 };
 
-export const loadAnimals = (col, row) => {
+export const loadAnimals = (col, row, filterParam) => {
   return (dispatch) => {
-    return animalApi.getAnimals(col, row).then(animals => {
-      dispatch(loadAnimalsSuccess(animals, col));
-    }).catch(err => {
-      throw (err);
-    });
-  };
-};
-
-export const loadMoreAnimals = (col, row, filterParam) => {
-  return (dispatch) => {
-    if (!filterParam || filterParam == '') {
+    if (!filterParam) {
       return animalApi.getAnimals(col, row).then(animals => {
-        dispatch(loadMoreAnimalsSuccess(animals, col));
+        dispatch(loadAnimalsSuccess(animals, row));
       }).catch(err => {
         throw (err);
       });
     } else {
-        return animalApi.getSerchAnimals(col, row, filterParam).then(animals => {
-        dispatch(loadMoreAnimalsSuccess(animals, col));
+      return animalApi.getSerchAnimals(col, row, filterParam).then(animals => {
+        dispatch(loadAnimalsSuccess(animals, row, filterParam));
       }).catch(err => {
         throw (err);
       });
     }
+  };
+};
 
+export const cleanAnimals = () => {
+  return (dispatch) => {
+    dispatch(cleanAnimalsSuccess());
   };
 };
 
@@ -223,7 +219,7 @@ export const editAnimal = (id_animal, animal) => {
   };
 };
 
-export const serchAnimal = (filter) => {
+export const searchAnimal = (filter) => {
   return (dispatch) => {
     dispatch(serchAnimalsStart());
     let filterParam = parseFilter(filter);

@@ -5,14 +5,16 @@ const animalsReducer = (state = initialState.animals, action) => {
 
   switch (action.type) {
     case types.LOAD_ANIMALS_SUCCESS: {
+      let newAnimals = action.row === 1 ? [] : state.animals;
       const { animals, total_pages } = action.response;
-      return { total_pages: total_pages, animals: animals, first_page: true, filterParam: '' };
-    }
-    case types.LOAD_MORE_ANIMALS_SUCCESS: {
-      let newAnimals = state.animals ? state.animals : [];
-      const { animals } = action.response;
       newAnimals = newAnimals.concat(animals);
-      return Object.assign({}, state, { animals: newAnimals, first_page: false });
+      let newValues = {
+        totalPages: total_pages,
+        animals: newAnimals,
+        firstPage: action.row === 1,
+        filterParam: action.filterParam || ''
+      };
+      return Object.assign({}, state, newValues);
     }
     case types.SEARCH_ANIMALS_START: {
       return Object.assign({}, state, { searchReady: true });
@@ -20,9 +22,9 @@ const animalsReducer = (state = initialState.animals, action) => {
     case types.SEARCH_ANIMALS_SUCCESS: {
       const { animals, total_pages } = action.response;
       return Object.assign({}, state, {
-                total_pages: total_pages,
-                animals: animals,
-                first_page: true,
+                totalPages: total_pages,
+                animals,
+                firstPage: true,
                 filterParam: action.filterParam,
                 searchReady: false
               });
@@ -32,6 +34,9 @@ const animalsReducer = (state = initialState.animals, action) => {
                 searchReady: false,
                 error: 'ERROR'
               });
+    }
+    case types.CLEAN_ANIMALS_SUCCESS: {
+      return initialState.animals;
     }
     default:
       return state;

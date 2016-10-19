@@ -10,7 +10,7 @@ const adoptersReducer = (state = initialState.adopters, action) => {
       let newValues = {
         totalPages: total_pages,
         adopters: newAdopters,
-        firstPage: false,
+        firstPage: action.row === 1,
         filterParam: action.filterParam || {}
       };
       return Object.assign({}, state, newValues);
