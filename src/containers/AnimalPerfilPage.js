@@ -147,7 +147,7 @@ class AnimalPerfilPage extends Component {
                           exportPerfil={this.exportPerfil}/>
           </div>
         </StickyContainer>
-        <div className="events-gallery-section">
+        <div className="other-section">
         <div className="gallery-div">
             <div className="gallery-buttons">
               <p className="section-title center">GALERÍA</p>
