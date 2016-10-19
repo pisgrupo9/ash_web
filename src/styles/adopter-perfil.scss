@@ -12,3 +12,32 @@
   min-height: 200px;
 }
 
+.perfil-div.adopter {
+  width: 400px;
+}
+
+.other-section.adopter {
+  -webkit-flex: 1 0 40%;
+  flex: 1 0 40%;
+}
+
+.tabel-div.adopter {
+  width: 100%;
+  max-width: 380px;
+  padding: 10px 0;
+
+  .title-desc {
+    margin-bottom: 0;
+    margin-top: 5px;
+  }
+
+  td {
+    max-width: none;
+  }
+}
+
+.house-des {
+  word-wrap: break-word;
+  font-size: 15px;
+  color: $dark-grey;
+}

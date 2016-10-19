@@ -98,6 +98,9 @@ $shadow: #888;
 
   td {
     height: 27px;
+    max-width: 150px;
+    word-wrap: break-word;
+    padding: 2px;
   }
 
   tr {
