@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StickyContainer } from 'react-sticky';
-import AdopterInfo from '../components/adopter/AdopterInfo';
+import AdopterInfo from '../components/adopters/perfil/AdopterInfo';
 import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
 import _ from 'lodash';
@@ -13,15 +13,17 @@ class AdopterPerfilPage extends Component {
     this.state = {
       loading: true,
       loadingComent: true,
-      adoptanteId: null,
+      adopterId: '',
       loadingAdopt: true
     };
+
+    this.loading = this.loading.bind(this);
   }
 
   componentWillMount() {
-    let adoptanteId = this.props.routeParams.id;
-    this.props.adopterActions.showPerfilAdopter(adoptanteId);
-    this.setState({ adoptanteId, loading: true });
+    let adopterId = this.props.routeParams.id;
+    this.props.adopterActions.showPerfilAdopter(adopterId);
+    this.setState({ adopterId, loading: true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,16 +32,24 @@ class AdopterPerfilPage extends Component {
     }
   }
 
+  loading() {
+    const { adopterId } = this.state;
+    this.props.adopterActions.showPerfilAdopter(adopterId);
+    this.setState({ loading: true });
+  }
+
   render() {
     const { adopter } = this.props;
-    const { loading } = this.state;
+    const { loading, adopterId } = this.state;
     return (
       <div className="profile-page-flex">
         <StickyContainer className="perfil-div adopter">
           <div className="h-100">
             <AdopterInfo styleClass="info-div profile-section"
                           loading={loading}
+                          adopterId={adopterId}
                           adopter={adopter}
+                          loadingFunc={this.loading}
                        />
           </div>
         </StickyContainer>
@@ -60,6 +70,7 @@ const { object } = PropTypes;
 
 AdopterPerfilPage.propTypes = {
   adopter: object.isRequired,
+  user: object.isRequired,
   routeParams: object.isRequired,
   adopterActions: object.isRequired
 };
@@ -71,6 +82,7 @@ AdopterPerfilPage.contextTypes = {
 const mapState = (state) => {
   return {
     adopter: state.adopter,
+    user: state.user
   };
 };
 

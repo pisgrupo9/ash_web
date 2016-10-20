@@ -18,6 +18,11 @@ class AdopterApi {
   static showAdopter(id) {
     return api.get(`${consts.API_STAGING_URL}/adopters/${id}`);
   }
+
+  static editAdopter(id, adopter) {
+    return api.put(`${consts.API_STAGING_URL}/adopters/${id}`, adopter);
+  }
+
 }
 
 export default AdopterApi;

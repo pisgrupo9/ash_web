@@ -28,6 +28,7 @@ export const FICHA_CREADO = 'Se esta generando la ficha para el animal';
 export const FICHA_TERMINDA = 'Se ha terminado de realizar la ficha de un animal';
 export const FICHA_YA_CREADA = 'Ya existe la ficha para este animal, vea la sección de reportes';
 export const SUCCESS_CREATE_ADOPTER = 'Nuevo adoptante creado con exito';
+export const SUCCESS_UPDATE_ADOPTER = 'El adoptante se ha modificado con exito';
 export const ERROR_CI = 'No es una CI válida';
 export const ERROR_PHONE = 'No es un teléfono válido';
 export const ERROR_EMPTY_FULLNAME = 'Ingrese nombre y apellido';
