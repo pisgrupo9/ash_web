@@ -30,7 +30,7 @@ $shadow: #888;
   min-width: 300px;
   display: flex;
   -webkit-flex-flow: column wrap;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   max-width: 100%;
 }
 
@@ -181,6 +181,8 @@ $shadow: #888;
 
 .event-container {
   border: 2px solid $grey;
+  overflow: auto;
+  max-height: 600px;
 }
 
 .edit-button {
