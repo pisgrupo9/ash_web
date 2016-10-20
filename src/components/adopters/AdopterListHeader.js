@@ -3,20 +3,11 @@ import AddAdopterButton from './AddAdopterButton';
 import AdopterSearch from './AdopterSearch';
 import '../../styles/animal-list.scss';
 
-const AdopterListHeader = ({ showBlacklist, onToggleSearch, startLoading }) => {
-  const buttonBlacklist = (<button className="button-list" onClick={onToggleSearch}>
-                              <p> Ver Blacklisted </p>
-                            </button>);
-  const buttonShowAll = (<button className="button-list" onClick={onToggleSearch}>
-                              <p> Ver Todos </p>
-                            </button>);
+const AdopterListHeader = ({ startLoading }) => {
   return (
       <div className="animal-header">
         <div className="animal-header-title section-title">
           LISTADO
-          <div className="list-button-container">
-            {showBlacklist ? buttonShowAll : buttonBlacklist}
-          </div>
         </div>
         <div className="float-right">
           <AddAdopterButton />
@@ -26,11 +17,9 @@ const AdopterListHeader = ({ showBlacklist, onToggleSearch, startLoading }) => {
   );
 };
 
-const { func, bool } = PropTypes;
+const { func } = PropTypes;
 
 AdopterListHeader.propTypes = {
-  showBlacklist: bool.isRequired,
-  onToggleSearch: func.isRequired,
   startLoading: func.isRequired
 };
 

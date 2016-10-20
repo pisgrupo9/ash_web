@@ -16,8 +16,8 @@ const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onCli
             );
         });
   return (
-    <div>
-      <div className="titles-container">
+    <div className="list-container">
+      <div className="titles-container m-top20">
         <div className="title-inside">NOMBRE</div>
         <div className="title-status">STATUS</div>
       </div>
