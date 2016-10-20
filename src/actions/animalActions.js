@@ -24,6 +24,13 @@ export const loadSpeciesSuccess = (response) => {
   };
 };
 
+export const loadSpeciesError = (errors) => {
+  return {
+    type: types.LOAD_SPECIES_ERROR,
+    errors
+  };
+};
+
 export const cancelAnimalForm = () => {
   return {
     type: types.CANCEL_ANIMAL_FORM
