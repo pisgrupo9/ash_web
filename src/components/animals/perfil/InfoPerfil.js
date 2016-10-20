@@ -62,14 +62,14 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                   <td>{animal.death_date ? animal.death_date : '-'}</td>
                 </tr>
                 <tr>
-                  <td>VACUNADO:</td>
+                  <td>{especieOption ? 'VACUNADO:' : ''}</td>
                   <td>{especieOption &&
                         (animal.vaccines ? <font color="green"> SI </font>
                                           : <font color="red"> NO </font>)}
                   </td>
                 </tr>
                 <tr>
-                  <td>CASTRADO:</td>
+                  <td>{especieOption ? 'VACUNADO:' : ''}</td>
                   <td>{especieOption &&
                         (animal.castrated ? <font color="green"> SI </font>
                                           : <font color="red"> NO </font>)}

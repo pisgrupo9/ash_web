@@ -18,8 +18,12 @@ const AdopterItem = ({ adopter, selectedAdopterId, onClick }) => {
         </button>
         <div className="adopter-name">
           <Link className="link-style" to={`/adoptantes/${adopter.id}`}>
-            {adopter.blacklisted ? <div className="light-red"> {adopter.first_name} </div>
-                          : adopter.first_name}
+            {adopter.blacklisted ? <div className="light-red">
+                                    {adopter.first_name} {adopter.last_name}
+                                  </div>
+                          : <div>
+                              {adopter.first_name} {adopter.last_name}
+                            </div>}
           </Link>
         </div>
         <div className="view-interested-icon">
