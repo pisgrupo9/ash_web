@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
-import EditAdopterModal from '../../../containers/EditAdopterModal';
+import EditAdopterModal from '../../../containers/modal/EditAdopterModal';
 import * as util from '../../../util/validateForm';
 
 class EditAdopterButton extends Component {

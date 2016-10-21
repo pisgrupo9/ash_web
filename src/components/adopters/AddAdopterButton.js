@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AddAdopterModal from '../../containers/AddAdopterModal';
+import AddAdopterModal from '../../containers/modal/AddAdopterModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';

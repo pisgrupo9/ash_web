@@ -1,15 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as adopterActions from '../actions/adopterActions';
-import * as valid from '../util/validateForm';
+import * as adopterActions from '../../actions/adopterActions';
+import * as valid from '../../util/validateForm';
 import { toastr } from 'react-redux-toastr';
-import * as messages from '../constants/apiMessage';
-import AdopterForm from '../components/adopters/AdopterForm';
-import '../styles/animal-form.scss';
+import * as messages from '../../constants/apiMessage';
+import AdopterForm from '../../components/adopters/AdopterForm';
+import '../../styles/animal-form.scss';
 import _ from 'lodash';
 import Spinner from 'react-spinkit';
-import * as consts from '../constants/apiConstants';
+import * as consts from '../../constants/apiConstants';
 
 class AddAdopterModal extends Component {
   constructor(props, context) {

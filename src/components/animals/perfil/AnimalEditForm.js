@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
-import SelectInput from '../common/SelectInput';
-import Input from '../common/Input';
+
+import Input from '../../common/Input';
 import EditProfileDropzone from './EditProfileDropzone';
+import SelectInput from '../../common/SelectInput';
+
 import { Checkbox } from 'react-bootstrap';
-import '../../styles/animal-perfil.scss';
-import '../../styles/animal-form.scss';
+import '../../../styles/animal-perfil.scss';
+import '../../../styles/animal-form.scss';
 
 const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors, editImage }) => {
 

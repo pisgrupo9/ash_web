@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as messages from '../constants/apiMessage';
-import * as animalActions from '../actions/animalActions';
-import AnimalForm from '../components/animals/AnimalForm';
-import '../styles/animal-form.scss';
-import * as valid from '../util/validateForm';
+import * as messages from '../../constants/apiMessage';
+import * as animalActions from '../../actions/animalActions';
+import AnimalForm from '../../components/animals/AnimalForm';
+import '../../styles/animal-form.scss';
+import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
-import UploadImageMessage from '../components/common/UploadImageMessage';
+import UploadImageMessage from '../../components/common/UploadImageMessage';
 import { toastr } from 'react-redux-toastr';
 
 class NewAnimalModal extends Component {

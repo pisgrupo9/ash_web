@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import AddGalleryModal from '../../containers/AddGalleryModal';
+import AddGalleryModal from '../../../containers/modal/AddGalleryModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
-import * as util from '../../util/validateForm';
+import * as util from '../../../util/validateForm';
 
 class AddGalleryButton extends Component {
   constructor(props, context) {

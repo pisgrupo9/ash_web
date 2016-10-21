@@ -1,12 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as messages from '../constants/apiMessage';
-import * as animalActions from '../actions/animalActions';
-import '../styles/animal-form.scss';
-import UploadImageMessage from '../components/common/UploadImageMessage';
-import ImagesDropzone from '../components/common/ImagesDropzone';
-import ModalAnimalButtons from '../components/common/ModalAnimalButtons';
+import * as messages from '../../constants/apiMessage';
+import * as animalActions from '../../actions/animalActions';
+import '../../styles/animal-form.scss';
+import UploadImageMessage from '../../components/common/UploadImageMessage';
+import ImagesDropzone from '../../components/common/ImagesDropzone';
+import ModalAnimalButtons from '../../components/common/ModalAnimalButtons';
 import { toastr } from 'react-redux-toastr';
 
 class AddGalleryModal extends Component {
