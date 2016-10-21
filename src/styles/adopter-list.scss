@@ -2,6 +2,7 @@ $grey: #e6e6e6;
 $light-grey: #f7f7f7;
 $dark-grey: #9b9b9b;
 $orange: #e8a948;
+$grey: #e6e6e6;
 
 .titles-container {
   display: flex;
@@ -45,19 +46,18 @@ $orange: #e8a948;
   color: $orange;
 }
 
-.button-list {
-  font-weight: 300;
-  font-size: 15px;
-  color: $orange;
-  border: none;
-  background: none;
-  padding: 0;
-}
-
-.list-button-container {
-  margin: 1px;
-}
-
 .add-adopter-button {
   text-align: right;
+}
+
+.list-container {
+  margin: 0 10px;
+}
+
+.nav-tabs > li > a {
+  color: grey;
+}
+
+.nav-tabs > li.active > a {
+  color: orange !important;
 }
