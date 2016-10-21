@@ -25,9 +25,11 @@ class ConfirmModalBox extends Component {
   }
 
   render() {
+    const { confirm } = this.props;
+    const size = confirm.size ? confirm.size : 'small';
     return (
-        <Modal show={this.state.showConfirm} onHide={this.onClose} bsSize="small">
-          <ConfirmModal onClose={this.onClose} confirm={this.props.confirm} />
+        <Modal show={this.state.showConfirm} onHide={this.onClose} bsSize={size} className={confirm.styleClass}>
+          <ConfirmModal onClose={this.onClose} confirm={confirm} />
         </Modal>
     );
   }
