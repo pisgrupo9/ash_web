@@ -82,7 +82,7 @@ class AdopterListWrapper extends Component {
       let { rows } = this.state;
       let { filterParam } = this.props.adopters;
       let filter = Object.assign({}, filterParam);
-      filter.blacklisted = tabKey === 1;
+      filter.blacklisted = tabKey === 2;
       this.setState({ loadingList: true, currPage: 1 });
       this.props.actions.loadAdopters(rows, 1, filter);
     }

@@ -157,7 +157,8 @@ export const loadSpecies = () => {
     return animalApi.getSpecies().then(species => {
       dispatch(loadSpeciesSuccess(species));
     }).catch(err => {
-      throw (err);
+      window.location.replace("/login");
+      dispatch(loadSpeciesError(err));
     });
   };
 };
