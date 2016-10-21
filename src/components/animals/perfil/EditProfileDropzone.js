@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import Dropzone from 'react-dropzone';
 import { Image } from 'react-bootstrap';
-import '../../styles/images-dropzone.scss';
-import '../../styles/animal-perfil.scss';
+import '../../../styles/images-dropzone.scss';
+import '../../../styles/animal-perfil.scss';
 
 class EditProfileDropzone extends Component {
   constructor(props, context) {

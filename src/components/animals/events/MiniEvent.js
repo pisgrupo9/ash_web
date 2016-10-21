@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import ImagesGallery from '../ImagesGallery';
+import ImagesGallery from '../perfil/ImagesGallery';
 import '../../../styles/animal-perfil.scss';
 import '../../../styles/animal-form.scss';
 import '../../../styles/animal-list.scss';

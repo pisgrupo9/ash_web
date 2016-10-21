@@ -1,16 +1,16 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as eventActions from '../actions/eventActions';
-import * as animalActions from '../actions/animalActions';
-import * as valid from '../util/validateForm';
+import * as eventActions from '../../actions/eventActions';
+import * as animalActions from '../../actions/animalActions';
+import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
-import UploadImageMessage from '../components/common/UploadImageMessage';
-import '../styles/animal-form.scss';
-import EventForm from '../components/animals/events/EventForm';
+import UploadImageMessage from '../../components/common/UploadImageMessage';
+import '../../styles/animal-form.scss';
+import EventForm from '../../components/animals/events/EventForm';
 import { toastr } from 'react-redux-toastr';
-import * as messages from '../constants/apiMessage';
-import * as constants from '../constants/apiConstants';
+import * as messages from '../../constants/apiMessage';
+import * as constants from '../../constants/apiConstants';
 import moment from 'moment';
 
 class AddEventModal extends Component {

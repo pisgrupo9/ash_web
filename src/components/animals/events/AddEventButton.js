@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import AddEventModal from '../../../containers/AddEventModal';
+import AddEventModal from '../../../containers/modal/AddEventModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';

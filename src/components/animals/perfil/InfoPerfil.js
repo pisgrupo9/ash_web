@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import Spinner from '../common/SpinnerComponent';
-import ImageLightBox from '../common/ImageLightBox';
-import * as valid from '../../util/validateForm';
-import StickyResponsive from '../common/StickyResponsive';
+import Spinner from '../../common/SpinnerComponent';
+import ImageLightBox from '../../common/ImageLightBox';
+import * as valid from '../../../util/validateForm';
+import StickyResponsive from '../../common/StickyResponsive';
 import EditAnimalButton from './EditAnimalButton';
 
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {

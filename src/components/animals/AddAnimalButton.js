@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import NewAnimalModal from '../../containers/NewAnimalModal';
+import NewAnimalModal from '../../containers/modal/NewAnimalModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';

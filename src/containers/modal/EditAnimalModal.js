@@ -1,13 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as animalActions from '../actions/animalActions';
-import AnimalEditForm from '../components/animals/AnimalEditForm';
-import * as valid from '../util/validateForm';
+import * as animalActions from '../../actions/animalActions';
+import AnimalEditForm from '../../components/animals/perfil/AnimalEditForm';
+import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
-import * as messages from '../constants/apiMessage';
-import '../styles/animal-perfil.scss';
-import '../styles/animal-form.scss';
+import * as messages from '../../constants/apiMessage';
+import '../../styles/animal-perfil.scss';
+import '../../styles/animal-form.scss';
 
 class EditAnimalModal extends Component {
   constructor(props, context) {

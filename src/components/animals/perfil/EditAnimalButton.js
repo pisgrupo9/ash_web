@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
-import EditAnimalModal from '../../containers/EditAnimalModal';
-import * as util from '../../util/validateForm';
+import EditAnimalModal from '../../../containers/modal/EditAnimalModal';
+import * as util from '../../../util/validateForm';
 
 class EditAnimalButton extends Component {
   constructor(props, context) {
