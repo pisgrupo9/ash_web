@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
-import Spinner from '../common/SpinnerComponent';
-import StickyResponsive from '../common/StickyResponsive';
+import Spinner from '../../common/SpinnerComponent';
+import StickyResponsive from '../../common/StickyResponsive';
+import EditAdopterButton from './EditAdopterButton';
 
-const AdopterInfo = ({ adopter, loading, styleClass }) => {
+const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) => {
   return (
     <div className={`${styleClass} perfil-box`}>
       { loading ? (<Spinner active={loading} />) : (
@@ -43,6 +44,7 @@ const AdopterInfo = ({ adopter, loading, styleClass }) => {
               <p className="black-color">DESCRIPCIÓN CASA</p>
               {adopter.house_description}
             </div>
+            <EditAdopterButton adopter={adopter} loading={loadingFunc} adopterId={adopterId}/>
           </div>
         </StickyResponsive>
       </div>
@@ -51,12 +53,14 @@ const AdopterInfo = ({ adopter, loading, styleClass }) => {
   );
 };
 
-const { object, string, bool } = PropTypes;
+const { object, string, bool, func } = PropTypes;
 
 AdopterInfo.propTypes = {
   adopter: object.isRequired,
+  adopterId: string.isRequired,
   loading: bool.isRequired,
   styleClass: string,
+  loadingFunc: func.isRequired
 };
 
 export default AdopterInfo;

@@ -72,7 +72,7 @@ DatePickerInput.propTypes = {
   name: string.isRequired,
   value: string,
   type: string,
-  onChange: func.isRequired
+  onChange: func
 };
 
 export default DatePickerInput;

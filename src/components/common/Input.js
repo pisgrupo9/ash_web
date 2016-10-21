@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import DatePickerInput from './DatePickerInput';
 
-const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, placeholder, value, error }) => {
+const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, placeholder, value, error, disabled }) => {
   let wrapperClass = `form-group ${styleClass}`;
 
   if (error && error.length > 0) {
@@ -18,6 +18,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
                         onChange={onChange}
                         onBlur={onBlur}
                         onKeyPress={onKeyPress}
+                        disabled={disabled}
                         className="form-control" />);
 
   const textArea = (<textarea type={type}
@@ -26,6 +27,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
                               value={value}
                               onChange={onChange}
                               onBlur={onBlur}
+                              disabled={disabled}
                               className="form-control" />);
 
   const date = (<DatePickerInput
@@ -55,7 +57,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
   );
 };
 
-const { string, func } = PropTypes;
+const { string, func, bool } = PropTypes;
 
 Input.propTypes = {
   styleClass: string,
@@ -63,11 +65,12 @@ Input.propTypes = {
   label: string,
   placeholder: string,
   type: string.isRequired,
-  onChange: func.isRequired,
+  onChange: func,
   onBlur: func,
   onKeyPress: func,
   value: string,
-  error: string
+  error: string,
+  disabled: bool
 };
 
 export default Input;

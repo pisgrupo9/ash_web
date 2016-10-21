@@ -94,3 +94,14 @@ export const showPerfilAdopter = (id) => {
     });
   };
 };
+
+export const editAdopterForm = (id, adopter) => {
+  return (dispatch) => {
+    let adopterJson = parseAdopter(adopter);
+    return adopterApi.editAdopter(id, adopterJson).then((response) => {
+      dispatch(sendAdopterFormSuccess(response));
+    }).catch(err => {
+      dispatch(sendAdopterFormError(err));
+    });
+  };
+};
