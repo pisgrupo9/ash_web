@@ -128,6 +128,10 @@ class NewAnimalModal extends Component {
     return name === 'death_date' || name === 'birthdate' || name === 'admission_date';
   }
 
+  isNegativeWeight(name, value) {
+    return name === 'weight' && value && value < 0;
+  }
+
   validateForm(animal) {
     let { errors, requiredFields } = this.state;
     const death_or_addmission = (name) => {
@@ -163,6 +167,7 @@ class NewAnimalModal extends Component {
     const field = e.target.name;
     const checkbox = field === 'castrated' || field === 'vaccines';
     const value = checkbox ? e.target.checked : e.target.value;
+    if (this.isNegativeWeight(field, value)) return;
     let animal = this.state.animal;
     animal[ field ] = value;
     this.setState({ animal });
