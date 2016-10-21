@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import SelectInput from '../common/SelectInput';
 import Input from '../common/Input';
-import ProfileDropzone from './ProfileDropzone';
+import EditProfileDropzone from './EditProfileDropzone';
 import { Checkbox } from 'react-bootstrap';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
-const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
+const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors, editImage }) => {
 
   let fecha_cumple = animal.birthdate &&
                                 animal.birthdate.length == 10
@@ -30,10 +30,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                    { id: "Hembra", name: "Hembra" } ];
   return (
     <div>
-      <div className="dropzones-container">
-        <ProfileDropzone profilePic={profilePic}
-                         onDrop={onDropProfile} />
-      </div>
+      <EditProfileDropzone profilePic={profilePic} onDrop={onDropProfile} animal={animal} editImage={editImage} />
       <div className="form-container">
         <p> * campos necesarios </p>
         <div className="animal-form">
@@ -122,7 +119,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
   );
 };
 
-const { object, array, func } = PropTypes;
+const { object, array, func, bool } = PropTypes;
 
 AnimalEditForm.propTypes = {
   animal: object.isRequired,
@@ -132,7 +129,8 @@ AnimalEditForm.propTypes = {
   onClose: func.isRequired,
   onChange: func.isRequired,
   onDropProfile: func.isRequired,
-  errors: object.isRequired
+  errors: object.isRequired,
+  editImage: bool.isRequired
 };
 
 export default AnimalEditForm;

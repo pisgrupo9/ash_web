@@ -210,3 +210,18 @@ $shadow: #888;
     margin-left: 15px;
   }
 }
+
+.edit-profile-image {
+  width: 140px;
+  height: 140px;
+}
+
+.edit-image-container {
+  z-index: 2;
+  position: fixed;
+}
+
+.drop-visible-container {
+  z-index: 1;
+  position: fixed;
+}
