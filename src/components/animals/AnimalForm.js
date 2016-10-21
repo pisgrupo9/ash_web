@@ -5,6 +5,7 @@ import { Checkbox } from 'react-bootstrap';
 import ImagesDropzone from '../common/ImagesDropzone';
 import ProfileDropzone from './ProfileDropzone';
 import ModalAnimalButtons from '../common/ModalAnimalButtons';
+import * as util from '../../util/validateForm';
 import * as consts from '../../constants/apiConstants.js';
 
 const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
@@ -79,7 +80,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                       />
         <Input styleClass="animal-input"
                 name="race"
-                label="Raza"
+                label={util.requiredRace(animal.species_id) ? "Raza *" : "Raza"}
                 type="text"
                 value={animal.race}
                 onChange={onChange}

@@ -70,6 +70,13 @@ class AnimalFilters extends Component {
     const field = e.target.name;
     const value = e.target.value;
     const { filter } = this.state;
+    const { species_id } = this.state.filter;
+    const isAdoptable = species_id === "1" || species_id === "2" || species_id === "";
+    const changefield = isAdoptable && field == "species_id" && value != "1" && value != "2";
+    if (changefield) {
+      filter.castrated = "";
+      filter.vaccines = "";
+    }
     filter[ field ] = value;
     this.setState({ filter });
   }

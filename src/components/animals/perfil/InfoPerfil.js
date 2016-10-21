@@ -69,7 +69,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                   </td>
                 </tr>
                 <tr>
-                  <td>{especieOption ? 'VACUNADO:' : ''}</td>
+                  <td>{especieOption ? 'CASTRADO:' : ''}</td>
                   <td>{especieOption &&
                         (animal.castrated ? <font color="green"> SI </font>
                                           : <font color="red"> NO </font>)}
