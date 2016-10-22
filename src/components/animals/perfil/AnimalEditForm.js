@@ -97,7 +97,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
           <Input styleClass="profile-animal-input"
                           name="weight"
                           label="Peso"
-                          type="text"
+                          type="number"
                           value={animal.weight != null ? animal.weight.toString() : ""}
                           onChange={onChange}
                           error={errors.weight}/>

@@ -5,7 +5,6 @@ import * as animalActions from '../../actions/animalActions';
 import AnimalEditForm from '../../components/animals/perfil/AnimalEditForm';
 import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
-import * as messages from '../../constants/apiMessage';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
@@ -43,6 +42,20 @@ class EditAnimalModal extends Component {
         race: false,
         castrated: false,
         vaccines: false,
+        weight: false
+      },
+      requiredFields: {
+        chip_num: false,
+        species_id: true,
+        sex: true,
+        admission_date: true,
+        name: true,
+        birthdate: true,
+        race: false,
+        death_date: false,
+        castrated: false,
+        vaccines: false,
+        profile_image: true,
         weight: false
       },
       errors: {
@@ -96,17 +109,27 @@ class EditAnimalModal extends Component {
     return name === 'death_date' || name === 'birthdate' || name === 'admission_date';
   }
 
+  isNegativeWeight(name, value) {
+    return name === 'weight' && value && value < 0;
+  }
+
   validateForm(animal) {
-    let errors = this.state.errors;
+    let { errors, requiredFields } = this.state;
     const death_or_addmission = (name) => {
       return name === 'death_date' || name === 'admission_date';
     };
+    requiredFields.race = valid.requiredRace(animal.species_id);
     for (let name in animal) {
+     if (requiredFields[name]) {
+        errors[name] = valid.validateEmptyField(animal[name]);
+      }
       if (animal[name] && this.isDateType(name)) {
         errors[name] = valid.lessThanToday(animal[name]);
         if (!errors.birthdate && !errors[name] && death_or_addmission(name)) {
           errors[name] = valid.compareDates(animal[name], animal.birthdate, 'Nacimiento');
         }
+      } else if (!animal[name] && !requiredFields[name]) {
+        errors[name] = '';
       }
     }
     this.setState({ errors });
@@ -114,25 +137,17 @@ class EditAnimalModal extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.validateForm(this.state.animal);
-    let { species_id } = this.state.animal;
-    let errors = this.state.errors;
-    let { race } = this.state.animal;
-    if ((this.state.modifiedFields[ "name" ]) && (this.state.animal[ "name" ] == "")) {
-      errors.name = messages.ERROR_EMPTY_NAME;
-      this.setState({ errors: errors });
-    } else if (valid.requiredRace(species_id) && (!race)) {
-      errors.race = messages.ERROR_EMPTY_RACE;
-      this.setState({ errors: errors });
-    } else {
-      let animal = {};
-      for (let name in this.state.animal) {
+    let { animal, errors } = this.state;
+    this.validateForm(animal);
+    if (valid.notErrors(errors)) {
+      let animalNew = {};
+      for (let name in animal) {
         if (this.state.modifiedFields[name]) {
           if (name == "sex") {
-            const value = (this.state.animal[name] == "Macho" ? "male" : "female");
-            animal[name] = value;
+            const value = (animal[name] == "Macho" ? "male" : "female");
+            animalNew[name] = value;
           } else {
-            animal[name] = this.state.animal[name];
+            animalNew[name] = animal[name];
           }
         }
       }
@@ -150,6 +165,7 @@ class EditAnimalModal extends Component {
     const field = e.target.name;
     const checkbox = field === 'vaccines' || field === 'castrated';
     const value = checkbox ? e.target.checked : e.target.value;
+    if (this.isNegativeWeight(field, value)) return;
     animal[ field ] = value;
     modifiedFields[field] = true;
     this.setState({ animal, modifiedFields });
