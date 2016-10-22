@@ -232,12 +232,16 @@ input[type=button] {
 }
 
 .btn-circle {
+  @extend .btn-circle-general;
+
   position: absolute;
   right: 15px;
   float: right;
 }
 
 .btn-circle-edit {
+  @extend .btn-circle-general;
+
   position: relative;
   top: 110px;
   left: 150px;

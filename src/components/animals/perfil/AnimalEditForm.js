@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import Input from '../../common/Input';
 import EditProfileDropzone from './EditProfileDropzone';
 import SelectInput from '../../common/SelectInput';
-
+import * as util from '../../../util/validateForm';
 import { Checkbox } from 'react-bootstrap';
 import '../../../styles/animal-perfil.scss';
 import '../../../styles/animal-form.scss';
@@ -68,7 +68,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                           error={errors.sex}/>
           <Input styleClass="profile-animal-input"
                           name="race"
-                          label="Raza"
+                          label={util.requiredRace(animal.species_id) ? "Raza *" : "Raza"}
                           type="text"
                           value={animal.race != null ? animal.race : ""}
                           onChange={onChange}
