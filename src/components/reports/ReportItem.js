@@ -15,9 +15,9 @@ const ReportItem = ({ report }) => {
 
   return (
       <div className="report-titles-container-item report-item">
-        <div className="report-inside">{report.dateTime}</div>
+        <div className="report-inside">{report.generated_date}</div>
         <div className="report-inside">{report.name}</div>
-        <div className="report-inside-type">{report.type === 'pdf' ? pdf : xls }</div>
+        <div className="report-inside-type">{report.type_file === 'pdf' ? pdf : xls }</div>
         <div className="report-inside">{estado}</div>
       </div>
   );

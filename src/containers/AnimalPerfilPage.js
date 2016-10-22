@@ -24,7 +24,7 @@ class AnimalPerfilPage extends Component {
       image_page: 1,
       more_page: true,
       edit_gallery: false,
-      pdfUrl: null,
+      sendPdf: false,
       pdfStart: true,
       animalId: null
     };
@@ -40,7 +40,7 @@ class AnimalPerfilPage extends Component {
     let animalId = this.props.routeParams.id;
     this.props.animalActions.showPerfilAnimal(animalId);
     this.props.animalActions.showPerfilAnimalImages(animalId, 1);
-    this.setState({ pdfUrl: null, animalId: animalId, image_page: 1 });
+    this.setState({ sendPdf: false, animalId: animalId, image_page: 1 });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -50,7 +50,7 @@ class AnimalPerfilPage extends Component {
       this.setState({ loading: false });
     }
     if (nextProps.animal != animal) {
-      this.setState({ pdfUrl: null, pdfStart: true });
+      this.setState({ sendPdf: false, pdfStart: true });
     }
     if (nextProps.animalImages.images!= animalImages.images) {
       let moreImages = (nextProps.animalImages.total_pages > image_page);
@@ -69,8 +69,8 @@ class AnimalPerfilPage extends Component {
       toastr.error('ERROR', nextProps.animalImages.error);
       this.setState({ loading_gallery: true });
     }
-    if (nextProps.exportUrl.urlPdf != exportUrl.urlPdf & nextProps.exportUrl.animalId == animalId) {
-      this.setState({ pdfUrl: nextProps.exportUrl.urlPdf });
+    if (nextProps.exportUrl != exportUrl && nextProps.exportUrl.animalId == animalId) {
+      this.setState({ sendPdf: nextProps.exportUrl.sendPdf });
     }
   }
 
@@ -108,8 +108,8 @@ class AnimalPerfilPage extends Component {
   }
 
   exportPerfil() {
-    let { pdfUrl, pdfStart, animalId } = this.state;
-    if ( pdfUrl ) {
+    let { sendPdf, pdfStart, animalId } = this.state;
+    if ( sendPdf ) {
       toastr.warning('', message.FICHA_YA_CREADA);
     } else if (pdfStart) {
       this.props.exportActions.exportAnimal(animalId);
