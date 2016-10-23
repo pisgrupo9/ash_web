@@ -22,7 +22,7 @@ class AnimalEventWrapper extends Component {
       loading: true,
       currPage: 1,
       rows: consts.EVENT_PAGE_SIZE,
-      evetnXls: '',
+      evetnXls: false,
       eventXlsStart: true
     };
 
@@ -35,18 +35,18 @@ class AnimalEventWrapper extends Component {
     let { rows, currPage } = this.state;
     let { animalId, events } = this.props;
     this.props.actions.loadEvents(animalId, events.filter, rows, currPage);
-    this.setState({ evetnXls: '', eventStart: true });
+    this.setState({ evetnXls: false, eventStart: true });
   }
 
   componentWillReceiveProps(nextProps) {
-    let { urlXls } = this.props.exportUrl;
+    let { exportUrl } = this.props.exportUrl;
     let { animalId } = this.props;
     this.setState({ loadingMore: false, loadingEvent: false, loading: false });
     if (nextProps.events.firstPage) {
       this.setState({ currPage: 1 });
     }
-    if (nextProps.exportUrl.urlXls !== urlXls && nextProps.exportUrl.animalId === animalId) {
-      this.setState({ evetnXls: nextProps.exportUrl.urlXls, eventXlsStart: true });
+    if (nextProps.exportUrl !== exportUrl && nextProps.exportUrl.sendXls && nextProps.exportUrl.animalId === animalId) {
+      this.setState({ evetnXls: nextProps.exportUrl.sendXls });
     }
   }
 

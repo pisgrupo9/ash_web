@@ -12,11 +12,18 @@ $middle-grey: #e6e6e6;
   padding: 5px;
   background-color: $white;
   border: 2px solid $middle-grey;
+  position: relative;
 
   .report-table {
     width: 100%;
     flex: 17 1 auto;
     margin: 10px 20px;
+  }
+
+  .refresh-button {
+    position: absolute;
+    left: 3px;
+    top: 3px;
   }
 }
 

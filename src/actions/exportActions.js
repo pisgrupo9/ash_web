@@ -4,87 +4,49 @@ import eventApi from '../api/eventApi';
 import { toastr } from 'react-redux-toastr';
 import * as messages from '../constants/apiMessage';
 
-export const exportAnimalPerfil = (url, animalId, id) => {
-  return {
-    type: types.EXPORT_ANIMAL_PDF,
-    url,
-    animalId,
-    id
-  };
-};
-
-export const exportAnimalList = (url, id) => {
-  return {
-    type: types.EXPORT_ANIMALS_XLS,
-    url,
-    id
-  };
-};
-
-export const exportAnimalPerfilStart = (animalId, id) => {
+export const exportAnimalPerfilStart = (animalId) => {
   return {
     type: types.EXPORT_ANIMAL_PDF_START,
-    animalId,
-    id
+    animalId
   };
 };
 
-export const exportAnimalListStart = (id) => {
+export const exportAnimalListStart = () => {
   return {
-    type: types.EXPORT_ANIMALS_XLS_START,
-    id
+    type: types.EXPORT_ANIMALS_XLS_START
   };
 };
 
-export const exportAnimalEventReportStart = (animalId, id) => {
+export const exportAnimalEventReportStart = (animalId) => {
   return {
     type: types.EXPORT_ANIMAL_EVENT_START,
     animalId,
-    id
-  };
-};
-
-export const exportAnimalEventReport = (url, animalId, id) => {
-  return {
-    type: types.EXPORT_ANIMAL_EVENT,
-    url,
-    animalId,
-    id
   };
 };
 
 export const exportAnimal = (animalId) => {
   return (dispatch) => {
-    let id = Math.floor((Math.random() * 10000) + 1);
-    toastr.info('', messages.FICHA_CREADO);
-    dispatch(exportAnimalPerfilStart(animalId, id));
-    return animalApi.getExportAnimal(animalId).then((response) => {
-      dispatch(exportAnimalPerfil(response.url, animalId, id));
-      toastr.success('', messages.FICHA_TERMINDA);
+    return animalApi.getExportAnimal(animalId).then(() => {
+      toastr.info('', messages.FICHA_CREADO);
+      dispatch(exportAnimalPerfilStart(animalId));
     });
   };
 };
 
 export const exportAnimals = (filterParam) => {
   return (dispatch) => {
-    let id = Math.floor((Math.random() * 10000) + 1);
-    toastr.info('', messages.REPORTE_CREADO);
-    dispatch(exportAnimalListStart(id));
-    return animalApi.getExportAnimalsList(filterParam).then((response) => {
-      dispatch(exportAnimalList(response.url, id));
-      toastr.success('', messages.REPORTE_TERMINADO);
+    return animalApi.getExportAnimalsList(filterParam).then(() => {
+      toastr.info('', messages.REPORTE_CREADO);
+      dispatch(exportAnimalListStart());
     });
   };
 };
 
 export const exportAnimalEvent = (animalId) => {
   return (dispatch) => {
-    let id = Math.floor((Math.random() * 10000) + 1);
-    toastr.info('', messages.REPORTE_CREADO);
-    dispatch(exportAnimalEventReportStart(animalId, id));
-    return eventApi.getExportAnimalEvent(animalId).then((response) => {
-      dispatch(exportAnimalEventReport(response.url, animalId, id));
-      toastr.success('', messages.REPORTE_TERMINADO);
+    return eventApi.getExportAnimalEvent(animalId).then(() => {
+      toastr.info('', messages.REPORTE_CREADO);
+      dispatch(exportAnimalEventReportStart(animalId));
     });
   };
 };

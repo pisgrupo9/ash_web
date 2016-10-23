@@ -40,21 +40,24 @@ class AnimalListWrapper extends Component {
 
   componentWillReceiveProps(nextProps) {
     let { pdfAnimals, pdfStart } = this.state;
-    let { urlXls, urlPdf, filterParam } = this.props.exportUrl;
+    let { exportUrl, animals } = this.props;
+
     this.setState({ loading: false });
     if (nextProps.animals.firstPage) {
       this.setState({ currPage: 1 });
     }
-    if (nextProps.animals.filterParam != filterParam) {
+    if (nextProps.animals.filterParam != animals.filterParam) {
       this.setState({ xlsAnimals: '', xlsStart: true });
     }
-    if (nextProps.exportUrl.urlPdf != urlPdf) {
-      pdfAnimals[nextProps.exportUrl.animalId] = nextProps.exportUrl.urlPdf;
-      pdfStart[nextProps.exportUrl.animalId] = true;
-      this.setState({ pdfAnimals, pdfStart });
-    }
-    if (nextProps.exportUrl.urlXls != urlXls) {
-      this.setState({ xlsAnimals: nextProps.exportUrl.urlXls, xlsStart: true });
+    if (nextProps.exportUrl != exportUrl) {
+      if (nextProps.exportUrl.sendPdf) {
+        pdfAnimals[nextProps.exportUrl.animalId] = nextProps.exportUrl.sendPdf;
+        pdfStart[nextProps.exportUrl.animalId] = true;
+        this.setState({ pdfAnimals, pdfStart });
+      }
+      if (nextProps.exportUrl.sendXls) {
+        this.setState({ xlsAnimals: nextProps.exportUrl.sendXls, xlsStart: true });
+      }
     }
   }
 

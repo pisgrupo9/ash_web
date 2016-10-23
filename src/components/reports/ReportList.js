@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReportItem from './ReportItem';
+import Spinner from '../common/SpinnerComponent';
 
-const ReportList = ({ reports }) => {
+const ReportList = ({ reports, loading }) => {
 
   return (
      <div className="report-table" >
@@ -11,17 +12,20 @@ const ReportList = ({ reports }) => {
         <div className="report-inside-type">TIPO</div>
         <div className="report-inside">ESTADO</div>
       </div>
-      { reports.map(report => {
-          return (<ReportItem report={report} key={report.fecha}/>);
-      })}
+      {loading ? <Spinner active={loading} /> :
+       reports.map(report => {
+          return (<ReportItem report={report} key={report.name+report.generated_date}/>);
+        })
+      }
     </div>
   );
 };
 
-const { array } = PropTypes;
+const { array, bool } = PropTypes;
 
 ReportList.propTypes = {
   reports: array.isRequired,
+  loading: bool
 };
 
 export default ReportList;
