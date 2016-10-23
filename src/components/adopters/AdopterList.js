@@ -7,7 +7,9 @@ import SpinnerComponent from '../common/SpinnerComponent';
 const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   const spinnerList = (<SpinnerComponent active={loadingList} />);
-  let adopterShowList = adopters.map(adopter => {
+  let adopterShowList;
+  if (adopters.length) {
+    adopterShowList = adopters.map(adopter => {
           return (
             <AdopterItem adopter={adopter}
                           key={adopter.id}
@@ -15,6 +17,9 @@ const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onCli
                           onClick={onClick}/>
             );
         });
+  } else {
+    adopterShowList = !loading && (<div className="no-result-search">NO SE ENCONTRARON ADOPTANTES</div>);
+  }
   return (
     <div className="list-container">
       <div className="titles-container m-top20">
