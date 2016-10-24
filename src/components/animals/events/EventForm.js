@@ -40,7 +40,7 @@ const EventForm = ({ event, images, onSave, onChange, onChangeDate, onCancel, on
                         onDrop={onDrop}
                         onDelete={onDelete} />
       </div>
-      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
+      <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };

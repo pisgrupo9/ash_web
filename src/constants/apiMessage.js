@@ -35,3 +35,6 @@ export const ERROR_EMPTY_FULLNAME = 'Ingrese nombre y apellido';
 export const ADD_BLACK_LIST_TITLE = 'AGREGAR ADOPTANTE A BLACKLIST';
 export const ADD_BLACK_LIST_MESSAGE = '¿Estás seguro que deseas agregar este adoptante a la blacklist?';
 export const ADD_BLACK_LIST_SUCCES = 'Se a agregado al adoptante a la lista negra';
+export const SUCCESS_ADOPTION_ANIMAL = 'El animal fue adoptado con éxito';
+export const SUCCESS_ADOPTION_ANIMALS = 'Los animales fueron adoptados con éxito';
+export const ERROR_ADOPTION_ANIMAL = 'Ocurrió un error al adoptar los animales, puede que no todos los animales hayan sido adoptados';
