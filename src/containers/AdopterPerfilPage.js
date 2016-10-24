@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { StickyContainer } from 'react-sticky';
 import AdopterInfo from '../components/adopters/perfil/AdopterInfo';
+import AdopterAnimals from '../components/adopters/perfil/AdopterAnimals';
 import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
 import * as confirmActions from '../actions/confirmActions';
@@ -15,10 +16,12 @@ class AdopterPerfilPage extends Component {
       loading: true,
       loadingComent: true,
       adopterId: '',
-      loadingAdopt: true
+      loadingAdopt: true,
+      selectedAnimalId: ''
     };
 
     this.loading = this.loading.bind(this);
+    this.onClickAnimalId = this.onClickAnimalId.bind(this);
   }
 
   componentWillMount() {
@@ -39,9 +42,19 @@ class AdopterPerfilPage extends Component {
     this.setState({ loading: true });
   }
 
+  onClickAnimalId(animalId) {
+    const equalsId = this.state.selectedAnimalId === animalId.toString();
+    this.setState({ selectedAnimalId: equalsId ? '' : animalId.toString() });
+  }
+
   render() {
     const { adopter } = this.props;
     const { loading, adopterId } = this.state;
+    const animalList = (<AdopterAnimals animals={adopter.animals}
+                    onClick={this.onClickAnimalId}
+                    selectedAnimalId={this.state.selectedAnimalId}
+                    loading={loading}
+                    />);
     return (
       <div className="profile-page-flex">
         <StickyContainer className="perfil-div adopter">
@@ -56,7 +69,8 @@ class AdopterPerfilPage extends Component {
         </StickyContainer>
         <div className="other-section adopter">
           <div className="animal-list-div">
-            ANIMALES
+            <div className="animal-list-title"> Animales adoptados por {adopter.first_name}:</div>
+            {animalList}
           </div>
           <div className="coment-div">
             COMENTARIOS
