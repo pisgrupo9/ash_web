@@ -3,6 +3,7 @@ import { Collapse } from 'react-bootstrap';
 import { Link } from 'react-router';
 import MiniInfoPerfil from './MiniInfoPerfil';
 import '../../styles/animal-perfil.scss';
+import _ from 'lodash';
 
 const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
 
@@ -24,7 +25,7 @@ const AnimalItem = ({ animal, selectedAnimalId, onClick }) => {
           </Link>
         </div>
         <div className="animal-state not-so-dark-grey-color"> {animal.species} </div>
-        <div className="animal-state"> {animal.id % 2 === 1 ? adopt : notAdopt} </div>
+        <div className="animal-state"> {_.isUndefined(animal.adopted) ? '': animal.adopted ? adopt : notAdopt} </div>
         <div className="view-info-icon">
           <Link className="link-style" to={`/animales/${animal.id}`}>
             <i className="material-icons dark-grey-color">description</i>
