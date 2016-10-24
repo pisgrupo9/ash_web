@@ -243,7 +243,6 @@ class NewAnimalModal extends Component {
         return body;
       }
     };
-
     return (
       <div>
         { getView() }

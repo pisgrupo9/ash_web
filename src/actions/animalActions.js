@@ -24,6 +24,13 @@ export const loadSpeciesSuccess = (response) => {
   };
 };
 
+export const loadSpeciesError = (errors) => {
+  return {
+    type: types.LOAD_SPECIES_ERROR,
+    errors
+  };
+};
+
 export const cancelAnimalForm = () => {
   return {
     type: types.CANCEL_ANIMAL_FORM
@@ -150,7 +157,8 @@ export const loadSpecies = () => {
     return animalApi.getSpecies().then(species => {
       dispatch(loadSpeciesSuccess(species));
     }).catch(err => {
-      throw (err);
+      window.location.replace("/login");
+      dispatch(loadSpeciesError(err));
     });
   };
 };

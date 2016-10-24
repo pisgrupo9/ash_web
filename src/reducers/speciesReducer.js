@@ -13,6 +13,14 @@ const speciesReducer = (state = initialState.species, action) => {
       );
       return sortSpecies;
     }
+    case types.LOAD_SPECIES_ERROR: {
+      if (action.errors.errors[0] === "Debe proveer un token válido") {
+        let speciesError = { error: "NOT_LOGGED" };
+        return speciesError;
+      }
+
+      return state;
+    }
     default:
       return state;
   }
