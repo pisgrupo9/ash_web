@@ -8,6 +8,13 @@ export const sendAdopterFormSuccess = (response) => {
   };
 };
 
+export const addToBlackListSuccess= (response) => {
+  return {
+    type: types.ADD_TO_BLACKLIST_SUCCESS,
+    response
+  };
+};
+
 export const loadAdoptersSuccess = (response, row) => {
   return {
     type: types.LOAD_ADOPTERS_SUCCESS,
@@ -102,6 +109,17 @@ export const editAdopterForm = (id, adopter) => {
       dispatch(sendAdopterFormSuccess(response));
     }).catch(err => {
       dispatch(sendAdopterFormError(err));
+    });
+  };
+};
+
+export const addToBlackList = (id) => {
+  return (dispatch) => {
+    let adopterJson = { blacklisted: true };
+    return adopterApi.editAdopter(id, adopterJson).then((response) => {
+      dispatch(addToBlackListSuccess(response));
+    }).catch(err => {
+      throw (err);
     });
   };
 };

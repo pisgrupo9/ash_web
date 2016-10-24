@@ -45,3 +45,53 @@
 .btn-circle.adopter {
   bottom: -27px;
 }
+
+.btn-circle.blacklisted {
+  bottom: -27px;
+  right: 50px;
+}
+
+.black-list .modal-content {
+  margin: 5% 0 10%;
+  border-radius: 0;
+
+  .confirm-message {
+    margin: 5% 0;
+    font-size: 18px;
+  }
+
+  .btn-div {
+    text-align: center;
+
+    .btn {
+      font-size: 15px;
+      border-radius: 0;
+    }
+
+    .btn-confirm {
+      background: $orange;
+      color: white;
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    }
+
+    .btn-confirm:hover {
+      background: $dark-orange;
+      color: white;
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    }
+
+    .btn-cancel {
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    }
+
+    .btn-cancel:hover {
+      color: white;
+      background: $ligth-dark-gery;
+      -webkit-transition-duration: 0.4s;
+      transition-duration: 0.4s;
+    }
+  }
+}

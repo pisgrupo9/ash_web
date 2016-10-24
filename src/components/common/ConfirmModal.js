@@ -23,7 +23,7 @@ class ConfirmModal extends Component {
   render() {
     const { confirm } = this.props;
     return (
-        <div className={confirm.styleClass ? (confirm.styleClass + ' ') : '' + 'confirm-modal'}>
+        <div className="confirm-modal">
           {confirm.title &&
             <h1 className="confirm-title">
             {confirm.title}
@@ -35,11 +35,11 @@ class ConfirmModal extends Component {
             </div>
           }
           <div className="btn-div">
-            <button onClick={this.onConfirm} className="btn bg-orange-color">
-              {confirm.confirmLabel ? confirm.confirmLabel : 'CONFIRMAR'}
-            </button>
-            <button onClick={this.onCancel} className="btn bg-dark-grey-color">
+           <button onClick={this.onCancel} className="btn btn-cancel  bg-dark-grey-color">
               {confirm.cancelLabel ? confirm.cancelLabel : 'CANCELAR'}
+            </button>
+            <button onClick={this.onConfirm} className="btn btn-confirm bg-orange-color">
+              {confirm.confirmLabel ? confirm.confirmLabel : 'CONFIRMAR'}
             </button>
           </div>
         </div>

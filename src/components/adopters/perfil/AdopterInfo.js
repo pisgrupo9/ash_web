@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import Spinner from '../../common/SpinnerComponent';
 import StickyResponsive from '../../common/StickyResponsive';
 import EditAdopterButton from './EditAdopterButton';
+import AddToBlackListButton from './AddToBlackListButton';
 
 const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) => {
   return (
@@ -44,6 +45,7 @@ const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) =
               <p className="black-color">DESCRIPCIÓN CASA</p>
               {adopter.house_description}
             </div>
+            {!adopter.blacklisted && <AddToBlackListButton loading={loadingFunc} adopterId={adopterId}/>}
             <EditAdopterButton adopter={adopter} loading={loadingFunc} adopterId={adopterId}/>
           </div>
         </StickyResponsive>

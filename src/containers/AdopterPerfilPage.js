@@ -5,6 +5,7 @@ import { StickyContainer } from 'react-sticky';
 import AdopterInfo from '../components/adopters/perfil/AdopterInfo';
 import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
+import * as confirmActions from '../actions/confirmActions';
 import _ from 'lodash';
 
 class AdopterPerfilPage extends Component {
@@ -72,7 +73,8 @@ AdopterPerfilPage.propTypes = {
   adopter: object.isRequired,
   user: object.isRequired,
   routeParams: object.isRequired,
-  adopterActions: object.isRequired
+  adopterActions: object.isRequired,
+  confirmActions: object.isRequired
 };
 
 AdopterPerfilPage.contextTypes = {
@@ -89,6 +91,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     adopterActions: bindActionCreators(adopterActions, dispatch),
+    confirmActions: bindActionCreators(confirmActions, dispatch)
   };
 };
 

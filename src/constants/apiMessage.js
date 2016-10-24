@@ -32,3 +32,6 @@ export const SUCCESS_UPDATE_ADOPTER = 'El adoptante se ha modificado con exito';
 export const ERROR_CI = 'No es una CI válida';
 export const ERROR_PHONE = 'No es un teléfono válido';
 export const ERROR_EMPTY_FULLNAME = 'Ingrese nombre y apellido';
+export const ADD_BLACK_LIST_TITLE = 'AGREGAR ADOPTANTE A BLACKLIST';
+export const ADD_BLACK_LIST_MESSAGE = '¿Estás seguro que deseas agregar este adoptante a la blacklist?';
+export const ADD_BLACK_LIST_SUCCES = 'Se a agregado al adoptante a la lista negra';
