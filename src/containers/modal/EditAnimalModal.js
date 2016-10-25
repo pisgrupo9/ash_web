@@ -151,8 +151,8 @@ class EditAnimalModal extends Component {
           }
         }
       }
-      if (JSON.stringify(animal) != "{}") {
-        this.props.animalActions.editAnimal(this.props.route_id, { animal });
+      if (JSON.stringify(animalNew) != "{}") {
+        this.props.animalActions.editAnimal(this.props.route_id, { animal: animalNew });
         this.setState({ loading: true });
       } else {
         this.onClose();
