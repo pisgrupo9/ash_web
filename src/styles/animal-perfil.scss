@@ -51,17 +51,16 @@ $ligth-dark-gery: #5d5d5d;
   position: relative;
 }
 
-.perfil-div {
+#app .perfil-div {
   @extend .section-div;
 
   margin: 0 5px 5px;
   width: 340px;
 
   .export-perfil {
-    position: absolute;
-    right: 50px;
-    font-size: 15px;
-    bottom: 7px;
+    padding: 5px;
+    font-size: 18px;
+    margin: 0 2px;
   }
 }
 

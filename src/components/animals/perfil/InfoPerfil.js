@@ -5,6 +5,7 @@ import ImageLightBox from '../../common/ImageLightBox';
 import * as valid from '../../../util/validateForm';
 import StickyResponsive from '../../common/StickyResponsive';
 import EditAnimalButton from './EditAnimalButton';
+import { ButtonGroup, Button } from 'react-bootstrap';
 
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {
   let imagen = animal.profile_image;
@@ -85,10 +86,13 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 </tr>}
               </tbody>
             </table>
-            <button
-              className="btn btn-export export-perfil bg-orange-color"
-              onClick={exportPerfil}>PDF
-            </button>
+            <ButtonGroup>
+              <Button className="btn btn-export export-perfil bg-orange-color"
+              onClick={exportPerfil}>PDF</Button>
+              <Button className="edit-perfil bg-orange-color">
+                <i className="material-icons color">mode_edit</i>
+              </Button>
+            </ButtonGroup>
             <div className="edit-button">
               <EditAnimalButton loading={loadingfunc} animal={animal} route_id={animalId}/>
             </div>
