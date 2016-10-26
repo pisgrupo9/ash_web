@@ -6,11 +6,13 @@ import '../../styles/animal-list.scss';
 const AdopterListHeader = ({ startLoading }) => {
   return (
       <div className="animal-header">
-        <div className="animal-header-title section-title">
+        <div className="animal-header-title section-title adopter">
           LISTADO
+          <div className="float-right">
+            <AddAdopterButton />
+          </div>
         </div>
         <div className="float-right">
-          <AddAdopterButton />
           <AdopterSearch startLoading={startLoading}/>
         </div>
       </div>
