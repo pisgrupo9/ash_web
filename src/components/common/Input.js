@@ -34,6 +34,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
                           name={name}
                           value={value}
                           onChange={onChange}
+                          placeholder={placeholder}
                           type={type} />);
 
   const getInput = () => {

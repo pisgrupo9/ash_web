@@ -14,12 +14,13 @@ class AnimalFilters extends Component {
                     chip_num: '',
                     species_id: '',
                     sex: '',
-                    admission_date: null,
+                    admission_date_from: null,
+                    admission_date_to: null,
+                    adopted: '',
                     name: '',
                     race: '',
                     castrated: "",
-                    vaccines: "",
-                    state: ""
+                    vaccines: ""
                   },
                   windowWidth: window.innerWidth,
                   allField: false
@@ -179,10 +180,10 @@ class AnimalFilters extends Component {
                   options={boolean}
                  />
                 <SelectInput styleClass={'filter-field'+(
-                                filter.state == "" ? ' default' : '')}
-                  name="state"
+                                filter.adopted == "" ? ' default' : '')}
+                  name="adopted"
                   defaultOption="Estado"
-                  value={filter.state ? filter.state : ''}
+                  value={filter.adopted ? filter.adopted : ''}
                   onChange={this.onChange}
                   options={states}
                  />
@@ -192,13 +193,24 @@ class AnimalFilters extends Component {
             <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
               <div className="filter-date">
                 <p className="filter-text">Fec. Admisión:</p>
-                <Input styleClass="filter-field"
-                name="admission_date"
-                type="date"
-                value={filter.admission_date ? filter.admission_date : ''}
-                onChange={this.onChange}
-                onKeyPress={this.onKeyPress}
-                />
+                <div className={smallWindows ? 'filter-component-flex' : ''}>
+                  <Input styleClass="filter-field"
+                    name="admission_date_from"
+                    placeholder="Desde"
+                    type="date"
+                    value={filter.admission_date_from ? filter.admission_date_from : ''}
+                    onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
+                  />
+                  <Input styleClass="filter-field"
+                    name="admission_date_to"
+                    placeholder="Hasta"
+                    type="date"
+                    value={filter.admission_date_to ? filter.admission_date_to : ''}
+                    onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
+                  />
+                </div>
               </div>
           </div>
           }
