@@ -167,6 +167,11 @@ html {
   font-size: 24px;
 }
 
+.material-icons.edit {
+  color: $white;
+  font-size: 20px;
+}
+
 .not-border {
   border: none;
 }
@@ -332,6 +337,15 @@ input[type=button] {
   color: $white;
   letter-spacing: 1px;
   margin: 2px;
+}
+
+#app .btn-edit {
+  font-size: 1px;
+  padding: 0 7px;
+  font-weight: bolder;
+  color: $white;
+  letter-spacing: 1px;
+  margin-top: 2px;
 }
 
 #app .btn-export:hover {

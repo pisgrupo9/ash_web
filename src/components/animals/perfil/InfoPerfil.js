@@ -85,12 +85,11 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 </tr>}
               </tbody>
             </table>
-            <button
-              className="btn btn-export export-perfil bg-orange-color"
-              onClick={exportPerfil}>PDF
-            </button>
             <div className="edit-button">
-              <EditAnimalButton loading={loadingfunc} animal={animal} route_id={animalId}/>
+              <EditAnimalButton loading={loadingfunc}
+                                animal={animal}
+                                route_id={animalId}
+                                exportPerfil={exportPerfil} />
             </div>
           </div>
         </StickyResponsive>
