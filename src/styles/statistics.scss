@@ -1,0 +1,27 @@
+@import "./animal-perfil.scss";
+
+$grey: #e6e6e6;
+
+.statistic-page-flex {
+  @extend .profile-page-flex;
+  flex-flow: column wrap;
+}
+
+.outer-flex {
+  @extend .mini-profile-flex;
+  align-content: center;
+  flex-flow: row wrap;
+}
+
+.statistic-div {
+  border: 2px solid $grey;
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: white;
+}
+
+.inner-flex {
+  flex: 1 0 auto;
+  position: relative;
+  min-width: 300px;
+}
