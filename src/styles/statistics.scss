@@ -1,22 +1,16 @@
+@import "./animal-perfil.scss";
+
 $grey: #e6e6e6;
 
-.profile-page-flex {
-  display: flex;
+.statistic-page-flex {
+  @extend .profile-page-flex;
   flex-flow: column wrap;
-  justify-content: center;
-  align-content: flex-start;
-  align-self: flex-start;
-  margin: 0 15px 20px;
 }
 
 .outer-flex {
-  -webkit-flex: 1 0 70%;
-  flex: 1 0 60%;
-  min-width: 300px;
-  display: flex;
-  -webkit-flex-flow: row wrap;
+  @extend .mini-profile-flex;
+  align-content: center;
   flex-flow: row wrap;
-  max-width: 100%;
 }
 
 .statistic-div {
