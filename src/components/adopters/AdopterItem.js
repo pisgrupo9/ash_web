@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 import MiniAdopterPerfil from './MiniAdopterPerfil';
 import '../../styles/animal-perfil.scss';
 
-const AdopterItem = ({ adopter, selectedAdopterId, onClick }) => {
+const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList }) => {
 
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
@@ -25,7 +25,9 @@ const AdopterItem = ({ adopter, selectedAdopterId, onClick }) => {
         </div>
         <div className="view-interested-icon">
           {adopter.blacklisted ? <i className="material-icons light-red">not_interested</i>
-                        : <i className="material-icons dark-grey-color">not_interested</i>
+                        : <i className="material-icons dark-grey-color"
+                          onClick={() => addToBlackList(adopter.id)}>
+                          not_interested</i>
           }
         </div>
       </div>
@@ -43,7 +45,8 @@ const { object, string, func } = PropTypes;
 AdopterItem.propTypes = {
   adopter: object.isRequired,
   selectedAdopterId: string.isRequired,
-  onClick: func.isRequired
+  onClick: func.isRequired,
+  addToBlackList: func.isRequired
 };
 
 export default AdopterItem;
