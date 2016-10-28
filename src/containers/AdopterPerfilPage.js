@@ -8,6 +8,7 @@ import '../styles/adopter-perfil.scss';
 import * as adopterActions from '../actions/adopterActions';
 import * as confirmActions from '../actions/confirmActions';
 import AddAdoptionButton from '../components/adoptions/AddAdoptionButton';
+import AdopterComments from '../components/adopters/comments/AdopterComments';
 import _ from 'lodash';
 
 class AdopterPerfilPage extends Component {
@@ -64,8 +65,7 @@ class AdopterPerfilPage extends Component {
                           loading={loading}
                           adopterId={adopterId}
                           adopter={adopter}
-                          loadingFunc={this.loading}
-                       />
+                          loadingFunc={this.loading}/>
           </div>
         </StickyContainer>
         <div className="other-section adopter">
@@ -76,7 +76,7 @@ class AdopterPerfilPage extends Component {
               <AddAdoptionButton adopterId={routeParams.id} /> }
           </div>
           <div className="coment-div">
-            COMENTARIOS
+            <AdopterComments adopterId={routeParams.id} />
           </div>
         </div>
       </div>

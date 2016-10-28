@@ -25,4 +25,3 @@ export const addAdoption = (adopterId, animalId, date) => {
     });
   };
 };
-

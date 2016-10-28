@@ -56,5 +56,9 @@ export default {
   adoptionForm: {
     adoptionsSended: 0,
     success: true
+  },
+  commentForm: {
+    success: false,
+    errors: ''
   }
 };

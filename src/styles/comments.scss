@@ -1,0 +1,9 @@
+@import "./styles.scss";
+
+.comment-submit-btn {
+  @extend .submit-btn;
+
+  width: 120px;
+  float: right;
+  margin-right: 7px;
+}
