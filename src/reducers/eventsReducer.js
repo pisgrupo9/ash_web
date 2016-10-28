@@ -10,7 +10,7 @@ const eventsReducer = (state = initialState.events, action) => {
       return Object.assign({}, state, { totalPages: total_pages, events: newEvents, firstPage: false });
     }
     case types.SEND_EVENT_FORM_SUCCESS: {
-      return Object.assign({}, state, { events: [] });
+      return Object.assign({}, state, { events: [], firstPage: true });
     }
     case types.CLEAN_EVENTS_SUCCESS: {
       return Object.assign({}, state, { events: [] });
