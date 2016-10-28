@@ -7,22 +7,17 @@ import '../../../styles/animal-perfil.scss';
 class EditProfileDropzone extends Component {
   constructor(props, context) {
     super(props, context);
-    this.state = {
-      editImage: false
-    };
     this.onOpenClick = this.onOpenClick.bind(this);
   }
 
   onOpenClick() {
     this.dropzone.open();
-    this.setState({ editImage: true });
   }
 
   render() {
     const image = (<img className="profile-image" src={this.props.profilePic.preview} />);
     const no_image = (<i className="material-icons">add_a_photo</i> );
     const picture = Object.keys(this.props.profilePic).length === 0 ? no_image : image;
-    let { editImage } = this.state;
     let drop = (<Dropzone className="profile-dropzone"
                         activeClassName="dropzone-active"
                         ref={(node) => {
@@ -40,10 +35,7 @@ class EditProfileDropzone extends Component {
     return (
       <div className="edit-dropzone">
         <p>Foto de perfil</p>
-          { editImage
-            ? ''
-            : perfImage
-          }
+          { perfImage }
         <div className="drop-visible-container">
           {drop}
         </div>
