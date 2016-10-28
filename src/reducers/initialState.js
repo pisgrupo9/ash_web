@@ -60,5 +60,10 @@ export default {
   commentForm: {
     success: false,
     errors: ''
+  },
+  comments: {
+    totalPages: 0,
+    comments: [],
+    currPage: 0
   }
 };

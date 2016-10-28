@@ -5,6 +5,7 @@ import * as commentActions from '../../../actions/commentActions';
 import * as valid from '../../../util/validateForm';
 import Input from '../../common/Input';
 import Spinner from 'react-spinkit';
+import * as consts from '../../../constants/apiConstants.js';
 import '../../../styles/comments.scss';
 
 class AddComment extends Component {
@@ -27,6 +28,8 @@ class AddComment extends Component {
         loading: false,
         comment: { text: '' }
       });
+      const { adopterId, actions } = this.props;
+      actions.loadComments(consts.COMMENTS_PAGE_SIZE, 1, adopterId);
     } else if (nextProps.errors) {
       this.setState({ loading: false });
     }
@@ -59,7 +62,7 @@ class AddComment extends Component {
 
   render() {
     const { comment, loading } = this.state;
-    const { errors } = this.props;
+    const { errors, userPermission } = this.props;
     const submitButton = (
       <input type="button"
               className="btn comment-submit-btn"
@@ -71,10 +74,9 @@ class AddComment extends Component {
         <Spinner spinnerName="three-bounce" noFadeIn />
       </div>
     );
-
-    return (
-      <div>
-        <Input styleClass="description-input"
+    const commentForm = (
+      <div className="add-comment-container">
+        <Input styleClass="comment-input"
                 name="description"
                 placeholder="Escribe un comentario..."
                 type="textarea"
@@ -82,6 +84,13 @@ class AddComment extends Component {
                 error={errors.text || errors}
                 onChange={this.onChange} />
         { loading ? loadingButton : submitButton }
+      </div>
+    );
+    const showForm = valid.editAdopterPerfil(userPermission);
+
+    return (
+      <div>
+        { showForm && commentForm }
       </div>
     );
   }
@@ -92,12 +101,14 @@ const { object, string } = PropTypes;
 AddComment.propTypes = {
   adopterId: string.isRequired,
   errors: string.isRequired,
+  userPermission: string.isRequired,
   actions: object.isRequired
 };
 
 const mapState = (state) => ({
   success: state.commentForm.success,
-  errors: state.commentForm.errors
+  errors: state.commentForm.errors,
+  userPermission: state.user.permissions || ''
 });
 
 const mapDispatch = (dispatch) => {
