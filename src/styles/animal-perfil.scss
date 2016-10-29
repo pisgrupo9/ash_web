@@ -58,10 +58,12 @@ $ligth-dark-gery: #5d5d5d;
   width: 340px;
 
   .export-perfil {
-    position: absolute;
-    right: 50px;
-    font-size: 15px;
-    bottom: 7px;
+    font-size: 14px;
+    padding: 0 7px;
+    font-weight: bolder;
+    color: $white;
+    letter-spacing: 1px;
+    margin: 2px;
   }
 }
 
@@ -189,8 +191,7 @@ $ligth-dark-gery: #5d5d5d;
 
 .edit-button {
   position: absolute;
-  right: 0;
-  bottom: 10px;
+  right: 100px;
 }
 
 .btn-circle {
