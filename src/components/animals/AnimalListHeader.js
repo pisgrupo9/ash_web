@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import AddAnimalButton from './AddAnimalButton.js';
+import { ButtonGroup } from 'react-bootstrap';
 
 const AnimalListHeader = ({ exportXLS, exportPDF }) => {
   return (
@@ -7,17 +8,21 @@ const AnimalListHeader = ({ exportXLS, exportPDF }) => {
       <div className="animal-header">
         <div className="animal-header-title section-title">
             <p>LISTADO
-              <button
-                className="btn btn-export bg-orange-color"
-                onClick={exportPDF}>PDF
-              </button>
-              <button
-                className="btn btn-export bg-dark-grey-color"
-                onClick={exportXLS}>XLS
-              </button>
+              <ButtonGroup>
+                <button
+                  className="btn btn-export bg-orange-color"
+                  onClick={exportPDF}> PDF
+                </button>
+                <button
+                  className="btn btn-export bg-dark-grey-color"
+                  onClick={exportXLS}> XLS
+                </button>
+              </ButtonGroup>
             </p>
         </div>
-        <div className="float-right"><AddAnimalButton /></div>
+        <div className="float-right">
+          <AddAnimalButton />
+        </div>
       </div>
     </div>
   );
