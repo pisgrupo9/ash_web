@@ -3,6 +3,7 @@ $light-grey: #f7f7f7;
 $dark-grey: #9b9b9b;
 $orange: #f44;
 $dark-orange: #f60;
+$red: #f00;
 
 .flex-title {
   display: flex;
@@ -338,4 +339,10 @@ $dark-orange: #f60;
   @extend .titles-container;
 
   margin-left: 20px;
+}
+
+.filterError {
+  color: $red;
+  font-size: 12px;
+  margin-left: 3px;
 }
