@@ -169,7 +169,7 @@ html {
 
 .material-icons.edit {
   color: $white;
-  font-size: 20px;
+  font-size: 24px;
 }
 
 .not-border {
@@ -240,6 +240,10 @@ input[type=button] {
   background-color: $orange;
   box-shadow: 1px 1px 1px $grey-shadow;
   border-radius: 30px;
+}
+
+.btn-rec {
+  
 }
 
 .btn-circle {
@@ -331,16 +335,16 @@ input[type=button] {
 }
 
 #app .btn-export {
-  font-size: 10px;
+  font-size: 15px;
   padding: 0 7px;
   font-weight: bolder;
   color: $white;
   letter-spacing: 1px;
-  margin: 2px;
+  margin: 1px;
 }
 
 #app .btn-edit {
-  font-size: 1px;
+  font-size: 3px;
   padding: 0 7px;
   font-weight: bolder;
   color: $white;

@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toastr } from 'react-redux-toastr';
+import { ButtonGroup } from 'react-bootstrap';
 import * as util from '../../../util/validateForm';
 import * as message from '../../../constants/apiMessage';
 import * as adopterActions from '../../../actions/adopterActions';
@@ -45,7 +46,7 @@ class AddToBlackListButton extends Component {
     const button = (
       <button className="btn-circle blacklisted" onClick={this.addToBlackList}>
          <i className="material-icons color">not_interested</i>
-       </button>
+      </button>
     );
 
     return (
