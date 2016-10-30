@@ -21,6 +21,7 @@ import adopters from './adoptersReducer';
 import adopter from './adopterReducer';
 import adoptionForm from './adoptionFormReducer';
 import commentForm from './commentFormReducer';
+import comments from './commentsReducer';
 import { reducer as toastrReducer } from 'react-redux-toastr';
 
 const rootReducer = combineReducers({
@@ -45,6 +46,7 @@ const rootReducer = combineReducers({
   adopter,
   adoptionForm,
   commentForm,
+  comments,
   toastr: toastrReducer,
   routing: routerReducer
 });
