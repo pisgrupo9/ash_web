@@ -3,6 +3,16 @@ import ReportItem from './ReportItem';
 import Spinner from '../common/SpinnerComponent';
 
 const ReportList = ({ reports, loading }) => {
+  let reportList;
+  if (reports.length) {
+    reportList = reports.map(report => {
+      return (
+        <ReportItem report={report} key={report.name+report.generated_date}/>
+      );
+    });
+  } else {
+    reportList =(<div className="no-result-search">NO SE ENCONTRARON REPORTES</div>);
+  }
 
   return (
      <div className="report-table" >
@@ -13,9 +23,7 @@ const ReportList = ({ reports, loading }) => {
         <div className="report-inside">ESTADO</div>
       </div>
       {loading ? <Spinner active={loading} /> :
-       reports.map(report => {
-          return (<ReportItem report={report} key={report.name+report.generated_date}/>);
-        })
+        reportList
       }
     </div>
   );
