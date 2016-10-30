@@ -35,6 +35,7 @@ class AdopterListWrapper extends Component {
   componentWillMount() {
     let { rows, currPage } = this.state;
     let filter = { blacklisted: false };
+    this.setState({ filter });
     this.props.actions.loadAdopters(rows, currPage, filter);
   }
 
@@ -76,7 +77,7 @@ class AdopterListWrapper extends Component {
     } else {
       filter.blacklisted = false;
     }
-    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1 });
+    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1, filter });
     this.props.actions.loadAdopters(rows, 1, filter);
   }
 
@@ -96,14 +97,13 @@ class AdopterListWrapper extends Component {
     }
   }
 
-  addToBlackList(adopterId) {
+  addToBlackList(adopterId, animalsSize) {
     const confirmf = () => {
       this.props.actions.addToBlackList(adopterId);
     };
-
     this.props.confirmActions.confirmDialog({
       title: message.ADD_BLACK_LIST_TITLE,
-      message: message.ADD_BLACK_LIST_MESSAGE,
+      message: message.ADD_BLACK_LIST_MESSAGE(animalsSize),
       confirmF: confirmf,
       styleClass: 'black-list',
       size: 'large',
@@ -112,7 +112,7 @@ class AdopterListWrapper extends Component {
   }
 
   render() {
-    const { adopters } = this.props;
+    const { adopters, userPermission } = this.props;
     const showViewMore = this.state.currPage < adopters.totalPages;
     const tabContent = (
      <AdopterList adopters={adopters.adopters}
@@ -122,7 +122,8 @@ class AdopterListWrapper extends Component {
                 onClickViewMore={this.onClickViewMore}
                 loading={this.state.loading}
                 loadingList={this.state.loadingList}
-                addToBlackList={this.addToBlackList}/>);
+                addToBlackList={this.addToBlackList}
+                userPermission={userPermission}/>);
 
     return (
       <div className="general-list">
@@ -136,18 +137,20 @@ class AdopterListWrapper extends Component {
   }
 }
 
-const { object } = PropTypes;
+const { object, string } = PropTypes;
 
 AdopterListWrapper.propTypes = {
   adopters: object.isRequired,
   actions: object.isRequired,
   adopter: object.isRequired,
-  confirmActions: object.isRequired
+  confirmActions: object.isRequired,
+  userPermission: string.isRequired
 };
 
 const mapState = (state) => ({
   adopters: state.adopters,
-  adopter: state.adopter
+  adopter: state.adopter,
+  userPermission: state.user.permissions || ''
 });
 
 const mapDispatch = (dispatch) => {

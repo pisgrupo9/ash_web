@@ -23,7 +23,7 @@ class AddToBlackListButton extends Component {
   }
 
   addToBlackList() {
-    const { adopterId } = this.props;
+    const { adopterId, adopter } = this.props;
 
     const confirmf = () => {
       this.props.adopterActions.addToBlackList(adopterId);
@@ -31,7 +31,7 @@ class AddToBlackListButton extends Component {
 
     this.props.confirmActions.confirmDialog({
       title: message.ADD_BLACK_LIST_TITLE,
-      message: message.ADD_BLACK_LIST_MESSAGE,
+      message: message.ADD_BLACK_LIST_MESSAGE(adopter.animals.length),
       confirmF: confirmf,
       styleClass: 'black-list',
       size: 'large',
@@ -61,6 +61,7 @@ const { string, object, func } = PropTypes;
 AddToBlackListButton.propTypes = {
   userPermission: string.isRequired,
   adopterId: string.isRequired,
+  adopter: object.isRequired,
   loading: func.isRequired,
   adopterActions: object.isRequired,
   confirmActions: object.isRequired
