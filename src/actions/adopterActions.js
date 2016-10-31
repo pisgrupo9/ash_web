@@ -115,8 +115,7 @@ export const editAdopterForm = (id, adopter) => {
 
 export const addToBlackList = (id) => {
   return (dispatch) => {
-    let adopterJson = { blacklisted: true };
-    return adopterApi.editAdopter(id, adopterJson).then((response) => {
+    return adopterApi.addBlackListAdopter(id).then((response) => {
       dispatch(addToBlackListSuccess(response));
     }).catch(err => {
       throw (err);

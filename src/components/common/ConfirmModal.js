@@ -22,6 +22,11 @@ class ConfirmModal extends Component {
 
   render() {
     const { confirm } = this.props;
+    let messageDialog = confirm.message.split("<br/>")
+      .map( (message, index) => {
+        return (<div key={index}>{message}<br/></div>);
+      });
+
     return (
         <div className="confirm-modal">
           {confirm.title &&
@@ -31,7 +36,7 @@ class ConfirmModal extends Component {
           }
           {this.props.confirm.message &&
             <div className="confirm-message dark-grey-color">
-            {confirm.message}
+              {messageDialog}
             </div>
           }
           <div className="btn-div">

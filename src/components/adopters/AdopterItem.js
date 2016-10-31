@@ -3,9 +3,10 @@ import { Collapse } from 'react-bootstrap';
 import { Link } from 'react-router';
 import MiniAdopterPerfil from './MiniAdopterPerfil';
 import '../../styles/animal-perfil.scss';
+import * as util from '../../util/validateForm';
 
-const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList }) => {
-
+const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList, userPermission }) => {
+  const showButton = util.editAdopterPerfil(userPermission);
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
   const showAdopter = selectedAdopterId === adopter.id.toString();
@@ -25,9 +26,11 @@ const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList }) =>
         </div>
         <div className="view-interested-icon">
           {adopter.blacklisted ? <i className="material-icons light-red">not_interested</i>
-                        : <i className="material-icons dark-grey-color"
-                          onClick={() => addToBlackList(adopter.id)}>
+                        : showButton ? <i className="material-icons dark-grey-color"
+                          onClick={() => addToBlackList(adopter.id, adopter.animals.length)}>
                           not_interested</i>
+                          : <i className="material-icons dark-grey-color">
+                            not_interested</i>
           }
         </div>
       </div>
@@ -44,6 +47,7 @@ const { object, string, func } = PropTypes;
 
 AdopterItem.propTypes = {
   adopter: object.isRequired,
+  userPermission: string.isRequired,
   selectedAdopterId: string.isRequired,
   onClick: func.isRequired,
   addToBlackList: func.isRequired
