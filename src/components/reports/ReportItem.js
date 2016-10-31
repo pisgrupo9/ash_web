@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import moment from 'moment';
 
 const ReportItem = ({ report }) => {
 
@@ -12,10 +13,9 @@ const ReportItem = ({ report }) => {
   }
   let pdf = <div className="report-type-pdf"> PDF </div>;
   let xls = <div className="report-type-xls"> XLS </div>;
-
   return (
       <div className="report-titles-container-item report-item">
-        <div className="report-inside">{report.generated_date}</div>
+        <div className="report-inside">{moment(report.generated_date).format('D-M-YYYY h:mm:ss')}</div>
         <div className="report-inside">{report.name}</div>
         <div className="report-inside-type">{report.type_file === 'pdf' ? pdf : xls }</div>
         <div className="report-inside">{estado}</div>
