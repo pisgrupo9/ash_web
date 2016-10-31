@@ -1,16 +1,23 @@
 import React, { PropTypes } from 'react';
-import { PieChart } from 'react-chartjs';
+import { Pie } from 'react-chartjs';
+import SpinnerComponent from '../common/SpinnerComponent';
 
-const AnimalStatistic = ( info ) => {
+const AnimalStatistic = ({ info, loading, options }) => {
+  const spinner = (<SpinnerComponent active={loading} />);
   return (
-    <PieChart data={info}>
+    <div>
+      <div className="statistic-title">Cantidad de animales en el sistema por especie:</div>
+      { loading ? spinner : (<Pie data={info} options={options} />) }
+    </div>
   );
 };
 
-const { object } = PropTypes;
+const { object, bool, array } = PropTypes;
 
-AnimalStatistics.propTypes = {
-  info: object.isRequired
+AnimalStatistic.propTypes = {
+  info: array.isRequired,
+  options: object.isRequired,
+  loading: bool.isRequired
 };
 
 export default AnimalStatistic;

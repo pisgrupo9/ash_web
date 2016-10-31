@@ -51,5 +51,6 @@ export default {
     firstPage: false,
     filterParam: {}
   },
-  adopter: {}
+  adoptionStat: {},
+  adopter: {},
 };

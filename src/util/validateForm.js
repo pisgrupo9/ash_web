@@ -63,3 +63,18 @@ export const validateEmail = (email) => {
 export const validatePhone = (phone) => {
   return stringValid.onlyNumbers(phone) ? '' : messages.ERROR_PHONE;
 };
+
+export const validateDateStatistic = (date_start, date_finish) => {
+  if (!date_start || !date_finish) {
+    return false;
+  }
+  let dateBegin = date_start.split('-');
+  let dateFinish = date_finish.split('-');
+  let monthB = parseInt(dateBegin[1]);
+  let monthF = parseInt(dateFinish[1]);
+  let yearB = parseInt(dateBegin[0]);
+  let yearF = parseInt(dateFinish[0]);
+  let cond1 = yearB === yearF && (monthF - monthB) <= 3;
+  let cond2 = yearB === yearF - 1 && ((monthF + monthB) % 12) <= 3;
+  return cond1 || cond2;
+};

@@ -1,6 +1,5 @@
 @import "./animal-perfil.scss";
-
-$grey: #e6e6e6;
+@import "./animal-form.scss";
 
 .statistic-page-flex {
   @extend .profile-page-flex;
@@ -11,6 +10,7 @@ $grey: #e6e6e6;
   @extend .mini-profile-flex;
   align-content: center;
   flex-flow: row wrap;
+  min-height: 200px;
 }
 
 .statistic-div {
@@ -21,7 +21,26 @@ $grey: #e6e6e6;
 }
 
 .inner-flex {
-  flex: 1 0 auto;
-  position: relative;
+  flex: 1 0 0;
   min-width: 300px;
+}
+
+.statistic-title {
+  width: 100%;
+  font-weight: 500;
+  color: $dark-grey;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.stat-input {
+  flex: 1 1 auto;
+  align-self: auto;
+  margin: 0 7px;
+  min-width: 50px;
+}
+
+.adoption-statistic-container {
+  display: flex;
+  flex-direction: row;
 }
