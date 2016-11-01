@@ -3,6 +3,7 @@ $light-grey: #f7f7f7;
 $dark-grey: #9b9b9b;
 $orange: #f44;
 $dark-orange: #f60;
+$black: #4a4a4a;
 $red: #f00;
 
 .flex-title {
@@ -194,10 +195,7 @@ $red: #f00;
   font-size: 20px;
   margin-left: 20px;
   letter-spacing: 1px;
-}
-
-.animal-header-title {
-  float: left;
+  color: $black;
   margin-bottom: 15px;
 }
 
@@ -217,6 +215,7 @@ $red: #f00;
 
 .float-left {
   float: left;
+  margin-right: 5px;
 }
 
 .float-right {

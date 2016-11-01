@@ -242,8 +242,15 @@ input[type=button] {
   border-radius: 30px;
 }
 
-.btn-rec {
-  
+#app .btn-rec {
+  font-size: 15px;
+  padding-top: 3px;
+  font-weight: bolder;
+  color: $white;
+  letter-spacing: 1px;
+  margin: 1px;
+  border: 1px solid transparent;
+  border-radius: 4px;
 }
 
 .btn-circle {
@@ -335,7 +342,7 @@ input[type=button] {
 }
 
 #app .btn-export {
-  font-size: 15px;
+  font-size: 12px;
   padding: 0 7px;
   font-weight: bolder;
   color: $white;
@@ -350,10 +357,6 @@ input[type=button] {
   color: $white;
   letter-spacing: 1px;
   margin-top: 2px;
-}
-
-#app .btn-export:hover {
-  color: $white;
 }
 
 .submit-btn {
