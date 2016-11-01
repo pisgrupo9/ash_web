@@ -37,7 +37,7 @@ class AddAnimalButton extends Component {
                     );
 
     return (
-      <div>
+      <div className="float-right">
         { showButton ? button : '' }
       </div>
     );

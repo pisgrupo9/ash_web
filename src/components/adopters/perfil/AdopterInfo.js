@@ -45,9 +45,9 @@ const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) =
               <p className="black-color">DESCRIPCIÓN CASA</p>
               {adopter.house_description}
             </div>
-            <div className="acction-button adopter">
-              {!adopter.blacklisted && <AddToBlackListButton loading={loadingFunc} adopterId={adopterId}/>}
+            <div className="acction-button">
               <EditAdopterButton adopter={adopter} loading={loadingFunc} adopterId={adopterId}/>
+              {!adopter.blacklisted && <AddToBlackListButton loading={loadingFunc} adopterId={adopterId}/>}
             </div>
           </div>
         </StickyResponsive>
