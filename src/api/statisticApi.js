@@ -9,11 +9,18 @@ class StatisticApi {
   static showAdoptionStatistic(date_start, date_finish) {
     return api.get(`${consts.API_STAGING_URL}/statistics/adoptions_by_week?date_from=${date_start}&date_to=${date_finish}`);
   }
+
+  static showAnimalStatistic() {
+    return api.get(`${consts.API_STAGING_URL}/statistics/animals_by_species`);
+  }
 }
 
 export default StatisticApi;
 
-const parseDate = (date) => {
+export const parseDate = (date) => {
+  if (date === '') {
+    return date;
+  }
   let arrayDate = date.split("-");
   return arrayDate[2] + "/" + arrayDate[1] + "/" + arrayDate[0];
 };
@@ -31,13 +38,27 @@ export const parseAdopterStat = (adopterStat) => {
     labels: labels,
     datasets: [
       {
-        label: "Cant. de animales adoptados",
+        fillColor: '#E06900',
+        label: 'Cant. de animales adoptados',
         borderWidth: 1,
         data: data,
-        length: 1
+        length: 1,
+        strokeColor: '#FF871F'
       }
     ]
   };
   return ret;
+};
 
+export const parseAnimalStat = (animalStat) => {
+  const color = ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"];
+  const highlight = ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"];
+  let ret = [];
+  for (let i = 0; i < animalStat.length; i++) {
+    ret[i] = { value: animalStat[i].animals_count,
+                     label: animalStat[i].species_name,
+                     color: color[i % highlight.length],
+                     highlight: highlight[i % highlight.length] };
+  }
+  return ret;
 };

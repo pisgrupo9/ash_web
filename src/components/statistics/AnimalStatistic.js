@@ -4,10 +4,11 @@ import SpinnerComponent from '../common/SpinnerComponent';
 
 const AnimalStatistic = ({ info, loading, options }) => {
   const spinner = (<SpinnerComponent active={loading} />);
+  const pieChart = (<div className="pie-chart"><Pie data={info} options={options} /></div>);
   return (
     <div>
       <div className="statistic-title">Cantidad de animales en el sistema por especie:</div>
-      { loading ? spinner : (<Pie data={info} options={options} />) }
+      { loading ? spinner : pieChart }
     </div>
   );
 };

@@ -5,7 +5,7 @@ import * as statisticActions from '../actions/statisticActions';
 import AnimalStatistic from '../components/statistics/AnimalStatistic';
 import AdoptionStatistic from '../components/statistics/AdoptionStatistic';
 import * as valid from '../util/validateForm';
-import { parseAdopterStat } from '../api/statisticApi';
+import { parseAdopterStat, parseAnimalStat } from '../api/statisticApi';
 import '../styles/statistics.scss';
 
 class EstadisticasPage extends Component {
@@ -17,11 +17,16 @@ class EstadisticasPage extends Component {
         start_date: '',
         end_date: ''
       },
-      loading: true,
+      loadingBar: true,
+      loadingPie: true,
       errors: {
         start_date: '',
         end_date: ''
       },
+      show_dates_adoption: {
+        start_date: '',
+        end_date: '',
+      }
     };
 
     this.onChangeAdoption = this.onChangeAdoption.bind(this);
@@ -30,11 +35,15 @@ class EstadisticasPage extends Component {
 
   componentWillMount() {
     this.props.actions.loadDefaultAdoptionStatistic();
+    this.props.actions.loadAnimalStatistic();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps) {
-      this.setState({ loading: false });
+    if (nextProps.adoptStat) {
+      this.setState({ loadingBar: false });
+    }
+    if (nextProps.animalStat) {
+      this.setState({ loadingPie: false });
     }
   }
 
@@ -42,11 +51,15 @@ class EstadisticasPage extends Component {
     if (valid.validateDateStatistic(this.state.dates_adoption.start_date, this.state.dates_adoption.end_date)) {
       let errors = { start_date: '', end_date: '' };
       this.setState({ errors: errors });
-      this.setState({ loading: true });
-      this.props.actions.loadAdoptionStatistic(this.state.start_date, this.state.end_date);
+      this.setState({ loadingBar: true });
+      this.props.actions.loadAdoptionStatistic(this.state.dates_adoption.start_date, this.state.dates_adoption.end_date);
+      let show_dates_adoption = {};
+      show_dates_adoption.start_date = this.state.dates_adoption.start_date;
+      show_dates_adoption.end_date = this.state.dates_adoption.end_date;
+      this.setState({ show_dates_adoption: show_dates_adoption });
     } else {
-      let errors = { start_date: "El rango maximo es 3 meses",
-                      end_date: "El rango maximo es 3 meses"
+      let errors = { start_date: "El rango máximo es 3 meses",
+                      end_date: "El rango máximo es 3 meses"
       };
       this.setState ({ errors: errors });
     }
@@ -63,128 +76,26 @@ class EstadisticasPage extends Component {
   }
 
   render() {
-    let pieData = [
-                  {
-                      value: 300,
-                      color: "#F7464A",
-                      highlight: "#FF5A5E",
-                      label: "Red"
-                  },
-                  {
-                      value: 50,
-                      color: "#46BFBD",
-                      highlight: "#5AD3D1",
-                      label: "Green"
-                  },
-                  {
-                      value: 100,
-                      color: "#FDB45C",
-                      highlight: "#FFC870",
-                      label: "Yellow"
-                  },
-                  {
-                      value: 40,
-                      color: "#949FB1",
-                      highlight: "#A8B3C5",
-                      label: "Grey"
-                  },
-                  {
-                      value: 120,
-                      color: "#4D5360",
-                      highlight: "#616774",
-                      label: "Dark Grey"
-                  }
-              ];
     let chartOptions = {
       responsive: true,
-      maintainAspectRatio: true,
-      labels: {
-        display: false
-      }
+      maintainAspectRatio: true
     };
-
-    let barData = [
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-09-26",
-        "date_finish": "2016-10-02",
-        "adoptions_count": 20
-      },
-      {
-        "date_start": "2016-10-03",
-        "date_finish": "2016-10-09",
-        "adoptions_count": 40
-      }
-    ];
     return (
       <div className="statistic-page-flex">
         <div className="outer-flex">
           <div className="statistic-div inner-flex pie-div">
-            <AnimalStatistic info={pieData}
+            <AnimalStatistic info={parseAnimalStat(this.props.animalStat)}
                              options={chartOptions}
-                             loading={this.state.loading} />
+                             loading={this.state.loadingPie} />
           </div>
           <div className="statistic-div inner-flex">
-            <AdoptionStatistic info={parseAdopterStat(barData)}
+            <AdoptionStatistic info={parseAdopterStat(this.props.adoptStat)}
                                options={chartOptions}
-                               loading={this.state.loading}
+                               loading={this.state.loadingBar}
                                errors={this.state.errors}
                                start_date={this.state.dates_adoption.start_date}
                                end_date={this.state.dates_adoption.end_date}
+                               show_dates={this.state.show_dates_adoption}
                                onChange={this.onChangeAdoption}
                                onClick={this.onClickRefreshAdoption} />
           </div>
@@ -197,16 +108,18 @@ class EstadisticasPage extends Component {
   }
 }
 
-const { object } = PropTypes;
+const { object, array } = PropTypes;
 
 EstadisticasPage.propTypes = {
-  adoption_statistic: object.isRequired,
+  adoptStat: array.isRequired,
+  animalStat: array.isRequired,
   actions: object.isRequired
 };
 
 const mapState = (state) => ({
-  adoption_statistic: state.adoptionStat
-})
+      adoptStat: state.statistic.adoptStat,
+      animalStat: state.statistic.animalStat
+});
 
 const mapDispatch = (dispatch) => {
   return {

@@ -3,11 +3,13 @@
 
 .statistic-page-flex {
   @extend .profile-page-flex;
+
   flex-flow: column wrap;
 }
 
 .outer-flex {
   @extend .mini-profile-flex;
+  
   align-content: center;
   flex-flow: row wrap;
   min-height: 200px;
@@ -43,4 +45,8 @@
 .adoption-statistic-container {
   display: flex;
   flex-direction: row;
+}
+
+.pie-chart {
+  margin-top: 40px;
 }

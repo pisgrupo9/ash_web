@@ -51,6 +51,9 @@ export default {
     firstPage: false,
     filterParam: {}
   },
-  adoptionStat: {},
   adopter: {},
+  statistic: {
+    adoptStat: [],
+    animalStat: []
+  }
 };
