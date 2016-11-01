@@ -1,24 +1,25 @@
 import * as types from './actionTypes';
-import statisticApi from '../api/statisticApi';
+import statisticApi, { parseAdopterStat, parseAnimalStat } from '../api/statisticApi';
 
-export const showAdoptionStatisticSuccess = (response) => {
+export const showAdoptionStatisticSuccess = (statInfo) => {
   return {
     type: types.REQUEST_ADOPTION_STATISTIC_SUCCESS,
-    response
+    statInfo
   };
 };
 
-export const showAnimalStatisticSuccess = (response) => {
+export const showAnimalStatisticSuccess = (statInfo) => {
   return {
     type: types.REQUEST_ANIMAL_STATISTIC_SUCCESS,
-    response
+    statInfo
   };
 };
 
-export const loadAdoptionStatistic = (date_start, date_finish) => {
+export const loadAdoptionStatistic = (dateStart, dateFinish) => {
   return (dispatch) => {
-    return statisticApi.showAdoptionStatistic(date_start, date_finish).then((response) => {
-      dispatch(showAdoptionStatisticSuccess(response));
+    return statisticApi.showAdoptionStatistic(dateStart, dateFinish).then((response) => {
+      let statInfo = parseAdopterStat(response.datos);
+      dispatch(showAdoptionStatisticSuccess(statInfo));
     }).catch(err => {
       throw err;
     });
@@ -28,7 +29,8 @@ export const loadAdoptionStatistic = (date_start, date_finish) => {
 export const loadDefaultAdoptionStatistic = () => {
   return (dispatch) => {
     return statisticApi.showDefaultAdoptionStatistic().then((response) => {
-      dispatch(showAdoptionStatisticSuccess(response));
+      let statInfo = parseAdopterStat(response.datos);
+      dispatch(showAdoptionStatisticSuccess(statInfo));
     }).catch(err => {
       throw err;
     });
@@ -38,7 +40,8 @@ export const loadDefaultAdoptionStatistic = () => {
 export const loadAnimalStatistic = () => {
   return (dispatch) => {
     return statisticApi.showAnimalStatistic().then((response) => {
-      dispatch(showAnimalStatisticSuccess(response));
+      let statInfo = parseAnimalStat(response.datos);
+      dispatch(showAnimalStatisticSuccess(statInfo));
     }).catch(err => {
       throw err;
     });

@@ -5,7 +5,7 @@ import Spinner from 'react-spinkit';
 
 const ResetForm = ({ form, error, onChange, onSubmit, loading }) => {
 
-  const submitButton = (<input type="button" className="btn user-submit-btn bg-orange-color" value="Enviar Mail" onClick={onSubmit}/>);
+  const submitButton = (<input type="button" className="btn submit-btn" value="Enviar Mail" onClick={onSubmit}/>);
 
   const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
                          <Spinner spinnerName="three-bounce" noFadeIn />

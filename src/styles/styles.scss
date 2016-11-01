@@ -1,6 +1,7 @@
 $light-red: #ff6f59;
 $pink: #f67787;
 $orange: #e8a948;
+$dark-orange: #f60;
 $black: #4a4a4a;
 $dark-grey: #9b9b9b;
 $grey: #e6e6e6;
@@ -166,6 +167,11 @@ html {
   font-size: 24px;
 }
 
+.material-icons.edit {
+  color: $white;
+  font-size: 20px;
+}
+
 .not-border {
   border: none;
 }
@@ -212,6 +218,11 @@ html {
 #app button,
 input[type=button] {
   outline: none;
+}
+
+body button,
+input[type=button] {
+  outline: none !important;
 }
 
 .section-title {
@@ -328,6 +339,38 @@ input[type=button] {
   margin: 2px;
 }
 
+#app .btn-edit {
+  font-size: 1px;
+  padding: 0 7px;
+  font-weight: bolder;
+  color: $white;
+  letter-spacing: 1px;
+  margin-top: 2px;
+}
+
 #app .btn-export:hover {
   color: $white;
+}
+
+.submit-btn {
+  color: white;
+  transition-duration: 0.4s;
+  border-radius: 1px;
+  width: 100%;
+  background: $orange;
+
+  .three-bounce > div {
+    background-color: white;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.submit-btn:hover {
+  color: white !important;
+  background: $dark-orange;
+}
+
+.submit-btn:focus {
+  color: white !important;
 }

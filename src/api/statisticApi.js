@@ -1,5 +1,6 @@
 import api from './apiService';
 import * as consts from '../constants/apiConstants';
+import moment from 'moment';
 
 class StatisticApi {
   static showDefaultAdoptionStatistic() {
@@ -17,25 +18,17 @@ class StatisticApi {
 
 export default StatisticApi;
 
-export const parseDate = (date) => {
-  if (date === '') {
-    return date;
-  }
-  let arrayDate = date.split("-");
-  return arrayDate[2] + "/" + arrayDate[1] + "/" + arrayDate[0];
-};
-
 export const parseAdopterStat = (adopterStat) => {
   let data = [];
   let labels = [];
   let label = '';
   for (let i = 0; i < adopterStat.length; i++) {
-    label = parseDate(adopterStat[i].date_start);
+    label = moment(adopterStat[i].date_start).format("DD/MM/YYYY");
     data.push(adopterStat[i].adoptions_count);
     labels.push(label);
   }
   let ret = {
-    labels: labels,
+    labels,
     datasets: [
       {
         fillColor: '#E06900',

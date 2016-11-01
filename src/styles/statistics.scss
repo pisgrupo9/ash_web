@@ -9,7 +9,7 @@
 
 .outer-flex {
   @extend .mini-profile-flex;
-  
+
   align-content: center;
   flex-flow: row wrap;
   min-height: 200px;
@@ -17,13 +17,13 @@
 
 .statistic-div {
   border: 2px solid $grey;
-  margin-bottom: 5px;
+  margin: 0 2.5px 5px;
   padding: 5px;
   background-color: white;
 }
 
 .inner-flex {
-  flex: 1 0 0;
+  flex: 1 1 auto;
   min-width: 300px;
 }
 
@@ -45,8 +45,13 @@
 .adoption-statistic-container {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .pie-chart {
   margin-top: 40px;
+}
+
+.redraw-chart-button {
+  margin: 30px 4px 0 0;
 }

@@ -8,7 +8,7 @@ import { Checkbox } from 'react-bootstrap';
 import '../../../styles/animal-perfil.scss';
 import '../../../styles/animal-form.scss';
 
-const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors, editImage }) => {
+const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
 
   let fecha_cumple = animal.birthdate &&
                                 animal.birthdate.length == 10
@@ -32,7 +32,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                    { id: "Hembra", name: "Hembra" } ];
   return (
     <div>
-      <EditProfileDropzone profilePic={profilePic} onDrop={onDropProfile} animal={animal} editImage={editImage} />
+      <EditProfileDropzone profilePic={profilePic} onDrop={onDropProfile} animal={animal} />
       <div className="form-container">
         <p> * campos necesarios </p>
         <div className="animal-form">
@@ -121,7 +121,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
   );
 };
 
-const { object, array, func, bool } = PropTypes;
+const { object, array, func } = PropTypes;
 
 AnimalEditForm.propTypes = {
   animal: object.isRequired,
@@ -131,8 +131,7 @@ AnimalEditForm.propTypes = {
   onClose: func.isRequired,
   onChange: func.isRequired,
   onDropProfile: func.isRequired,
-  errors: object.isRequired,
-  editImage: bool.isRequired
+  errors: object.isRequired
 };
 
 export default AnimalEditForm;

@@ -3,6 +3,7 @@ $light-grey: #f7f7f7;
 $dark-grey: #9b9b9b;
 $orange: #f44;
 $dark-orange: #f60;
+$red: #f00;
 
 .flex-title {
   display: flex;
@@ -140,6 +141,12 @@ $dark-orange: #f60;
   min-width: 250px;
 }
 
+.wrapper-flex-modal {
+  @extend .wrapper-flex;
+
+  border: none;
+}
+
 .animal-item-container {
   display: flex;
   background-color: $light-grey;
@@ -167,9 +174,14 @@ $dark-orange: #f60;
   margin-bottom: 20px;
 }
 
+.titles-container-adoption {
+  @extend .titles-container;
+
+  margin-right: 50px;
+}
+
 .title-inside {
   flex: 5;
-  margin-left: 12px;
 }
 
 .title-ficha {
@@ -191,6 +203,14 @@ $dark-orange: #f60;
 
 .general-list {
   margin: 30px 3% 80px;
+}
+
+.general-event-list {
+  margin: 10px;
+}
+
+.general-list-link {
+  margin: 30px 3% 10px;
 }
 
 .clear { clear: both; }
@@ -235,6 +255,14 @@ $dark-orange: #f60;
   text-align: center;
   min-width: 45px;
   align-self: center;
+
+  .adopt-checkbox {
+    margin: 0;
+
+    label {
+      display: block;
+    }
+  }
 }
 
 .button-show {
@@ -305,4 +333,16 @@ $dark-orange: #f60;
   text-align: center;
   margin-top: 40px;
   color: $dark-grey;
+}
+
+.titles-adopted-list {
+  @extend .titles-container;
+
+  margin-left: 20px;
+}
+
+.filterError {
+  color: $red;
+  font-size: 12px;
+  margin-left: 3px;
 }

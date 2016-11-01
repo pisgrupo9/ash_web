@@ -5,11 +5,11 @@ const statisticReducer = (state = initialState.statistic, action) => {
 
   switch (action.type) {
     case types.REQUEST_ADOPTION_STATISTIC_SUCCESS: {
-      let adoptStat = action.response.datos;
+      let adoptStat = action.statInfo;
       return Object.assign({}, state, { adoptStat: adoptStat });
     }
     case types.REQUEST_ANIMAL_STATISTIC_SUCCESS: {
-      let animalStat = action.response.datos;
+      let animalStat = action.statInfo;
       return Object.assign({}, state, { animalStat: animalStat });
     }
     default:

@@ -2,7 +2,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as consts from '../../constants/apiConstants.js';
+import * as message from '../../constants/apiMessage.js';
 import * as adopterActions from '../../actions/adopterActions';
+import * as confirmActions from '../../actions/confirmActions';
 import AdopterListHeader from './AdopterListHeader';
 import AdopterList from './AdopterList';
 import '../../styles/animal-list.scss';
@@ -27,11 +29,13 @@ class AdopterListWrapper extends Component {
     this.onToggleSearch = this.onToggleSearch.bind(this);
     this.startLoading = this.startLoading.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
+    this.addToBlackList = this.addToBlackList.bind(this);
   }
 
   componentWillMount() {
     let { rows, currPage } = this.state;
     let filter = { blacklisted: false };
+    this.setState({ filter });
     this.props.actions.loadAdopters(rows, currPage, filter);
   }
 
@@ -39,6 +43,11 @@ class AdopterListWrapper extends Component {
     this.setState({ loading: false, loadingList: false });
     if (nextProps.adopters.firstPage) {
       this.setState({ currPage: 1 });
+    }
+    if (nextProps.adopter.blackListSuccess && nextProps.adopter != this.props.adopter) {
+      let { rows, filter } = this.state;
+      this.props.actions.loadAdopters(rows, 1, filter);
+      this.setState({ currPage: 1, loadingList: true });
     }
   }
 
@@ -68,7 +77,7 @@ class AdopterListWrapper extends Component {
     } else {
       filter.blacklisted = false;
     }
-    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1 });
+    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1, filter });
     this.props.actions.loadAdopters(rows, 1, filter);
   }
 
@@ -88,8 +97,22 @@ class AdopterListWrapper extends Component {
     }
   }
 
+  addToBlackList(adopterId, animalsSize) {
+    const confirmf = () => {
+      this.props.actions.addToBlackList(adopterId);
+    };
+    this.props.confirmActions.confirmDialog({
+      title: message.ADD_BLACK_LIST_TITLE,
+      message: message.ADD_BLACK_LIST_MESSAGE(animalsSize),
+      confirmF: confirmf,
+      styleClass: 'black-list',
+      size: 'large',
+      confirmLabel: 'AGREGAR'
+    });
+  }
+
   render() {
-    const { adopters } = this.props;
+    const { adopters, userPermission } = this.props;
     const showViewMore = this.state.currPage < adopters.totalPages;
     const tabContent = (
      <AdopterList adopters={adopters.adopters}
@@ -98,7 +121,9 @@ class AdopterListWrapper extends Component {
                 showViewMore={showViewMore}
                 onClickViewMore={this.onClickViewMore}
                 loading={this.state.loading}
-                loadingList={this.state.loadingList}/>);
+                loadingList={this.state.loadingList}
+                addToBlackList={this.addToBlackList}
+                userPermission={userPermission}/>);
 
     return (
       <div className="general-list">
@@ -112,20 +137,26 @@ class AdopterListWrapper extends Component {
   }
 }
 
-const { object } = PropTypes;
+const { object, string } = PropTypes;
 
 AdopterListWrapper.propTypes = {
   adopters: object.isRequired,
-  actions: object.isRequired
+  actions: object.isRequired,
+  adopter: object.isRequired,
+  confirmActions: object.isRequired,
+  userPermission: string.isRequired
 };
 
 const mapState = (state) => ({
-  adopters: state.adopters
+  adopters: state.adopters,
+  adopter: state.adopter,
+  userPermission: state.user.permissions || ''
 });
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(adopterActions, dispatch)
+    actions: bindActionCreators(adopterActions, dispatch),
+    confirmActions: bindActionCreators(confirmActions, dispatch)
   };
 };
 

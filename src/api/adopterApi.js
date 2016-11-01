@@ -23,6 +23,9 @@ class AdopterApi {
     return api.put(`${consts.API_STAGING_URL}/adopters/${id}`, adopter);
   }
 
+  static addBlackListAdopter(id) {
+    return api.post(`${consts.API_STAGING_URL}/adopters/${id}/set_as_blacklisted`, {});
+  }
 }
 
 export default AdopterApi;

@@ -15,7 +15,6 @@ class EditAnimalModal extends Component {
     this.state = {
       profilePic: {},
       loading: false,
-      editImage: false,
       animal: {
         chip_num: '',
         species_id: '',
@@ -81,6 +80,7 @@ class EditAnimalModal extends Component {
 
   componentWillMount() {
     this.props.animalActions.loadSpecies();
+    this.setState({ loading: true });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -101,7 +101,6 @@ class EditAnimalModal extends Component {
 
   onClose() {
     this.props.animalActions.cancelAnimalForm();
-    this.setState({ editImage: false });
     this.props.onClose();
   }
 
@@ -151,8 +150,8 @@ class EditAnimalModal extends Component {
           }
         }
       }
-      if (JSON.stringify(animal) != "{}") {
-        this.props.animalActions.editAnimal(this.props.route_id, { animal });
+      if (JSON.stringify(animalNew) != "{}") {
+        this.props.animalActions.editAnimal(this.props.route_id, { animal: animalNew });
         this.setState({ loading: true });
       } else {
         this.onClose();
@@ -200,8 +199,7 @@ class EditAnimalModal extends Component {
                                     onClose={this.onClose}
                                     onChange={this.onChange}
                                     onDropProfile={this.onDropProfile}
-                                    errors={localErrors ? this.state.errors : this.props.errors}
-                                    editImage={this.state.editImage} />
+                                    errors={localErrors ? this.state.errors : this.props.errors}/>
                   </div>);
     const getView = () => {
       if (this.state.loading) {

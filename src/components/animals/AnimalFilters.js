@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as animalActions from '../../actions/animalActions';
+import * as message from '../../constants/apiMessage';
 import Input from '../common/Input';
 import SelectInput from '../common/SelectInput';
 
@@ -14,13 +15,15 @@ class AnimalFilters extends Component {
                     chip_num: '',
                     species_id: '',
                     sex: '',
-                    admission_date: null,
+                    admission_date_from: null,
+                    admission_date_to: null,
+                    adopted: '',
                     name: '',
                     race: '',
                     castrated: "",
-                    vaccines: "",
-                    state: ""
+                    vaccines: ""
                   },
+                  errorDate: '',
                   windowWidth: window.innerWidth,
                   allField: false
                 };
@@ -30,6 +33,7 @@ class AnimalFilters extends Component {
     this.onKeyPress = this.onKeyPress.bind(this);
     this.moreFilter = this.moreFilter.bind(this);
     this.handleResize = this.handleResize.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   componentWillMount() {
@@ -50,14 +54,27 @@ class AnimalFilters extends Component {
     this.setState({ allField: !allField });
   }
 
-  onSubmit() {
-    let filter = {};
-    for (let name in this.state.filter) {
-      if (this.state.filter[name]) {
-        filter[name] = this.state.filter[name];
-      }
+  validateForm() {
+    let { admission_date_from, admission_date_to } = this.state.filter;
+    if (admission_date_from && admission_date_to &&
+      admission_date_to <= admission_date_from) {
+      this.setState({ errorDate: message.ERROR_DATE_FILTER });
+      return false;
     }
-    this.props.actions.searchAnimal(filter);
+    this.setState({ errorDate: '' });
+    return true;
+  }
+
+  onSubmit() {
+    if (this.validateForm()) {
+      let filter = {};
+      for (let name in this.state.filter) {
+        if (this.state.filter[name]) {
+          filter[name] = this.state.filter[name];
+        }
+      }
+      this.props.actions.searchAnimal(filter);
+    }
   }
 
   onKeyPress(e) {
@@ -78,11 +95,12 @@ class AnimalFilters extends Component {
       filter.vaccines = "";
     }
     filter[ field ] = value;
+    this.validateForm();
     this.setState({ filter });
   }
 
   render() {
-    const { filter, windowWidth, allField } = this.state;
+    const { filter, windowWidth, allField, errorDate } = this.state;
     const boolean = [ { id: true, name: "SI" },
                     { id: false, name: "NO" } ];
     const states = [ { id: true, name: "ADOPTADO" },
@@ -179,10 +197,10 @@ class AnimalFilters extends Component {
                   options={boolean}
                  />
                 <SelectInput styleClass={'filter-field'+(
-                                filter.state == "" ? ' default' : '')}
-                  name="state"
+                                filter.adopted == "" ? ' default' : '')}
+                  name="adopted"
                   defaultOption="Estado"
-                  value={filter.state ? filter.state : ''}
+                  value={filter.adopted ? filter.adopted : ''}
                   onChange={this.onChange}
                   options={states}
                  />
@@ -191,14 +209,26 @@ class AnimalFilters extends Component {
             {activeField &&
             <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
               <div className="filter-date">
-                <p className="filter-text">Fec. Admisión:</p>
-                <Input styleClass="filter-field"
-                name="admission_date"
-                type="date"
-                value={filter.admission_date ? filter.admission_date : ''}
-                onChange={this.onChange}
-                onKeyPress={this.onKeyPress}
-                />
+                <p className="filter-text">Fec. Admisión:
+                  {errorDate && (<span className="filterError">{errorDate}</span>) }</p>
+                <div className={smallWindows ? 'filter-component-flex' : ''}>
+                  <Input styleClass="filter-field"
+                    name="admission_date_from"
+                    placeholder="Desde"
+                    type="date"
+                    value={filter.admission_date_from ? filter.admission_date_from : ''}
+                    onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
+                  />
+                  <Input styleClass="filter-field"
+                    name="admission_date_to"
+                    placeholder="Hasta"
+                    type="date"
+                    value={filter.admission_date_to ? filter.admission_date_to : ''}
+                    onChange={this.onChange}
+                    onKeyPress={this.onKeyPress}
+                  />
+                </div>
               </div>
           </div>
           }

@@ -33,5 +33,15 @@ export const ERROR_CI = 'No es una CI válida';
 export const ERROR_PHONE = 'No es un teléfono válido';
 export const ERROR_EMPTY_FULLNAME = 'Ingrese nombre y apellido';
 export const ADD_BLACK_LIST_TITLE = 'AGREGAR ADOPTANTE A BLACKLIST';
-export const ADD_BLACK_LIST_MESSAGE = '¿Estás seguro que deseas agregar este adoptante a la blacklist?';
-export const ADD_BLACK_LIST_SUCCES = 'Se a agregado al adoptante a la lista negra';
+export const ADD_BLACK_LIST_MESSAGE_QUESTION = '¿Estás seguro que deseas agregar este adoptante a la blacklist?';
+export const ADD_BLACK_LIST_MESSAGE_HAVE_ANIMAL = '<br/>El Adoptante tiene animales en adopcion, estos se desvincularan al continuar con la accion';
+export const ADD_BLACK_LIST_MESSAGE = (animalsSize) => {
+    return `${ADD_BLACK_LIST_MESSAGE_QUESTION}${animalsSize ? ADD_BLACK_LIST_MESSAGE_HAVE_ANIMAL : ''}`;
+  };
+export const ADD_BLACK_LIST_SUCCES = 'Se ha agregado al adoptante a la lista negra';
+export const SUCCESS_ADOPTION_ANIMAL = 'El animal fue adoptado con éxito';
+export const SUCCESS_ADOPTION_ANIMALS = 'Los animales fueron adoptados con éxito';
+export const ERROR_ADOPTION_ANIMAL = 'Ocurrió un error al adoptar los animales, puede que no todos los animales hayan sido adoptados';
+export const ERROR_DATE_FILTER = 'Rango Invalido';
+
+export const ERROR_STATISTIC_RANGE = 'El rango máximo es 3 meses';

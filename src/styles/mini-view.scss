@@ -8,8 +8,6 @@ $black: #4a4a4a;
   justify-content: center;
   align-content: flex-start;
   align-self: flex-start;
-  margin-bottom: 7px;
-  margin-top: 3px;
 }
 
 .image-flex {
@@ -61,4 +59,7 @@ $black: #4a4a4a;
   padding: 10px;
   font-size: 15px;
   color: $dark-grey;
+  max-height: 200px;
+  overflow: auto;
+  text-overflow: ellipsis;
 }

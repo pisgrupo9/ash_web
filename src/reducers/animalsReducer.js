@@ -12,7 +12,7 @@ const animalsReducer = (state = initialState.animals, action) => {
         totalPages: total_pages,
         animals: newAnimals,
         firstPage: action.row === 1,
-        filterParam: action.filterParam || ''
+        filterParam: action.filterParam || {}
       };
       return Object.assign({}, state, newValues);
     }

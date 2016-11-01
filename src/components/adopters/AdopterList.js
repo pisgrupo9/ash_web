@@ -4,7 +4,7 @@ import '../../styles/animal-list.scss';
 import '../../styles/adopter-list.scss';
 import SpinnerComponent from '../common/SpinnerComponent';
 
-const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList }) => {
+const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList, addToBlackList, userPermission }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   const spinnerList = (<SpinnerComponent active={loadingList} />);
   let adopterShowList;
@@ -14,7 +14,9 @@ const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onCli
             <AdopterItem adopter={adopter}
                           key={adopter.id}
                           selectedAdopterId={selectedAdopterId}
-                          onClick={onClick}/>
+                          onClick={onClick}
+                          addToBlackList={addToBlackList}
+                          userPermission={userPermission}/>
             );
         });
   } else {
@@ -44,7 +46,9 @@ AdopterList.propTypes = {
   adopters: array.isRequired,
   onClick: func.isRequired,
   onClickViewMore: func.isRequired,
+  addToBlackList: func.isRequired,
   selectedAdopterId: string.isRequired,
+  userPermission: string.isRequired,
   showViewMore: bool.isRequired,
   loading: bool.isRequired,
   loadingList: bool.isRequired

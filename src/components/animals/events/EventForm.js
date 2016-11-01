@@ -26,7 +26,7 @@ const EventForm = ({ event, images, onSave, onChange, onChangeDate, onCancel, on
                           value={event.date}
                           onChange={onChangeDate}
                           error={errors.date} />
-        <Input styleClass="animal-input description-input"
+        <Input styleClass="description-input"
                 name="description"
                 label="DESCRIPCIÓN *"
                 type="textarea"
@@ -40,7 +40,7 @@ const EventForm = ({ event, images, onSave, onChange, onChangeDate, onCancel, on
                         onDrop={onDrop}
                         onDelete={onDelete} />
       </div>
-      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
+      <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };

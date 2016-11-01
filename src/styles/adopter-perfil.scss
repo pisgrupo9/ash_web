@@ -42,12 +42,12 @@
   color: $dark-grey;
 }
 
-.btn-circle.adopter {
-  bottom: -27px;
+.btn-circle.adopter,
+.btn-circle.blacklisted {
+  bottom: 10px;
 }
 
 .btn-circle.blacklisted {
-  bottom: -27px;
   right: 50px;
 }
 
@@ -94,4 +94,19 @@
       transition-duration: 0.4s;
     }
   }
+}
+
+.adopted-container {
+  margin: 15px;
+}
+
+.animal-list-title {
+  font-weight: 500;
+  font-size: 17px;
+  margin: 10px;
+  color: grey;
+}
+
+.acction-button.adopter {
+  height: 35px;
 }

@@ -116,7 +116,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                         onDrop={onDrop}
                         onDelete={onDelete} />
       </div>
-      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
+      <ModalAnimalButtons title="INGRESAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };

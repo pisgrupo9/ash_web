@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import Spinner from '../../common/SpinnerComponent';
 import ImageLightBox from '../../common/ImageLightBox';
 import * as valid from '../../../util/validateForm';
@@ -61,28 +62,34 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                   <td>FEC. DE MUERTE:</td>
                   <td>{animal.death_date ? animal.death_date : '-'}</td>
                 </tr>
+                {especieOption &&
                 <tr>
-                  <td>{especieOption ? 'VACUNADO:' : ''}</td>
-                  <td>{especieOption &&
-                        (animal.vaccines ? <font color="green"> SI </font>
-                                          : <font color="red"> NO </font>)}
+                  <td>VACUNADO:</td>
+                  <td>{animal.vaccines ? <font color="green"> SI </font> : <font color="red"> NO </font>}
                   </td>
-                </tr>
+                </tr>}
+                {especieOption &&
                 <tr>
-                  <td>{especieOption ? 'CASTRADO:' : ''}</td>
-                  <td>{especieOption &&
-                        (animal.castrated ? <font color="green"> SI </font>
-                                          : <font color="red"> NO </font>)}
+                  <td>CASTRADO:</td>
+                  <td>{animal.castrated ? <font color="green"> SI </font> : <font color="red"> NO </font>}
                   </td>
-                </tr>
+                </tr>}
+                {especieOption &&
+                <tr>
+                  <td>ESTADO:</td>
+                  <td>{animal.adopted ?
+                    <Link className="adopted-animal"
+                    to={`/adoptantes/${animal.adopter_id}`}> ADOPTADO </Link>
+                    : <font color="red"> EN ADOPCIÓN </font>}
+                  </td>
+                </tr>}
               </tbody>
             </table>
-            <button
-              className="btn btn-export export-perfil bg-orange-color"
-              onClick={exportPerfil}>PDF
-            </button>
             <div className="edit-button">
-              <EditAnimalButton loading={loadingfunc} animal={animal} route_id={animalId}/>
+              <EditAnimalButton loading={loadingfunc}
+                                animal={animal}
+                                route_id={animalId}
+                                exportPerfil={exportPerfil} />
             </div>
           </div>
         </StickyResponsive>

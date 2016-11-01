@@ -5,9 +5,9 @@ import { Col, Row } from 'react-bootstrap';
 import Spinner from 'react-spinkit';
 
 const LoginForm = ({ form, error, onChange, loading, onSubmit, onKeyPress }) => {
-  const submitButton = (<input type="button" className="btn user-submit-btn" value="INGRESAR" onClick={onSubmit}/>);
+  const submitButton = (<input type="button" className="btn submit-btn" value="INGRESAR" onClick={onSubmit}/>);
 
-  const loadingButton = (<div className="btn user-submit-btn">
+  const loadingButton = (<div className="btn submit-btn">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                          </div>);
 

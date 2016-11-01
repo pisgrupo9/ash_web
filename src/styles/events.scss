@@ -1,3 +1,5 @@
+@import './animal-form.scss';
+
 $dark-grey: #9b9b9b;
 $black: #4a4a4a;
 $dark-orange: #f60;
@@ -20,6 +22,8 @@ $grey: #e6e6e6;
 }
 
 .description-input {
+  @extend .animal-input;
+
   flex: 0 1 100%;
 
   .form-control {

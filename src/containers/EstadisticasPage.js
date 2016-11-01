@@ -5,27 +5,28 @@ import * as statisticActions from '../actions/statisticActions';
 import AnimalStatistic from '../components/statistics/AnimalStatistic';
 import AdoptionStatistic from '../components/statistics/AdoptionStatistic';
 import * as valid from '../util/validateForm';
-import { parseAdopterStat, parseAnimalStat } from '../api/statisticApi';
 import '../styles/statistics.scss';
+import * as messages from '../constants/apiMessage';
+import moment from 'moment';
 
 class EstadisticasPage extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      dates_adoption: {
-        start_date: '',
-        end_date: ''
+      datesAdoption: {
+        startDate: '',
+        endDate: ''
       },
       loadingBar: true,
       loadingPie: true,
       errors: {
-        start_date: '',
-        end_date: ''
+        startDate: '',
+        endDate: ''
       },
-      show_dates_adoption: {
-        start_date: '',
-        end_date: '',
+      showDatesAdoption: {
+        startDate: '',
+        endDate: ''
       }
     };
 
@@ -48,31 +49,35 @@ class EstadisticasPage extends Component {
   }
 
   onClickRefreshAdoption() {
-    if (valid.validateDateStatistic(this.state.dates_adoption.start_date, this.state.dates_adoption.end_date)) {
-      let errors = { start_date: '', end_date: '' };
-      this.setState({ errors: errors });
-      this.setState({ loadingBar: true });
-      this.props.actions.loadAdoptionStatistic(this.state.dates_adoption.start_date, this.state.dates_adoption.end_date);
-      let show_dates_adoption = {};
-      show_dates_adoption.start_date = this.state.dates_adoption.start_date;
-      show_dates_adoption.end_date = this.state.dates_adoption.end_date;
-      this.setState({ show_dates_adoption: show_dates_adoption });
-    } else {
-      let errors = { start_date: "El rango máximo es 3 meses",
-                      end_date: "El rango máximo es 3 meses"
+    let { startDate, endDate } = this.state.datesAdoption;
+    if (moment(startDate).isSameOrAfter(endDate)) {
+      let errors = {
+        endDate: messages.ERROR_GREATER_DATE("inicio")
       };
-      this.setState ({ errors: errors });
+      this.setState({ errors });
+    } else if (valid.validateDateStatistic(startDate, endDate)) {
+      let errors = { startDate: '', endDate: '' };
+      this.setState({ errors, loadingBar: true });
+      this.props.actions.loadAdoptionStatistic(startDate, endDate);
+      let showDatesAdoption = {};
+      showDatesAdoption.startDate = startDate;
+      showDatesAdoption.endDate = endDate;
+      this.setState({ showDatesAdoption });
+    } else {
+      let errors = {
+        startDate: messages.ERROR_STATISTIC_RANGE,
+        endDate: messages.ERROR_STATISTIC_RANGE
+      };
+      this.setState ({ errors });
     }
   }
 
   onChangeAdoption(e) {
     const field = e.target.name;
-    let dates_adoption = this.state.dates_adoption;
-    dates_adoption[field] = e.target.value;
-    let errors = this.state.errors;
-    errors[field] = valid.validateEmptyField(dates_adoption[field]);
-    this.setState({ errors });
-    this.setState({ dates_adoption });
+    let { datesAdoption, errors } = this.state;
+    datesAdoption[field] = e.target.value;
+    errors[field] = valid.validateEmptyField(datesAdoption[field]);
+    this.setState({ errors, datesAdoption });
   }
 
   render() {
@@ -80,22 +85,23 @@ class EstadisticasPage extends Component {
       responsive: true,
       maintainAspectRatio: true
     };
+    let { loadingPie, loadingBar, errors, datesAdoption, showDatesAdoption } = this.state;
     return (
       <div className="statistic-page-flex">
         <div className="outer-flex">
           <div className="statistic-div inner-flex pie-div">
-            <AnimalStatistic info={parseAnimalStat(this.props.animalStat)}
+            <AnimalStatistic info={this.props.animalStat}
                              options={chartOptions}
-                             loading={this.state.loadingPie} />
+                             loading={loadingPie} />
           </div>
           <div className="statistic-div inner-flex">
-            <AdoptionStatistic info={parseAdopterStat(this.props.adoptStat)}
+            <AdoptionStatistic info={this.props.adoptStat}
                                options={chartOptions}
-                               loading={this.state.loadingBar}
-                               errors={this.state.errors}
-                               start_date={this.state.dates_adoption.start_date}
-                               end_date={this.state.dates_adoption.end_date}
-                               show_dates={this.state.show_dates_adoption}
+                               loading={loadingBar}
+                               errors={errors}
+                               startDate={datesAdoption.startDate}
+                               endDate={datesAdoption.endDate}
+                               showDates={showDatesAdoption}
                                onChange={this.onChangeAdoption}
                                onClick={this.onClickRefreshAdoption} />
           </div>
@@ -111,14 +117,14 @@ class EstadisticasPage extends Component {
 const { object, array } = PropTypes;
 
 EstadisticasPage.propTypes = {
-  adoptStat: array.isRequired,
+  adoptStat: object.isRequired,
   animalStat: array.isRequired,
   actions: object.isRequired
 };
 
 const mapState = (state) => ({
-      adoptStat: state.statistic.adoptStat,
-      animalStat: state.statistic.animalStat
+  adoptStat: state.statistic.adoptStat,
+  animalStat: state.statistic.animalStat
 });
 
 const mapDispatch = (dispatch) => {
