@@ -13,7 +13,9 @@
 }
 
 .perfil-div.adopter {
-  width: 400px;
+  padding-top: 15px;
+  flex: 1 1 auto;
+  max-width: 385px;
 }
 
 .other-section.adopter {
@@ -112,4 +114,13 @@
   text-align: center;
   height: 50px;
   margin-top: 10px;
+}
+
+.adopter-info-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.row-title {
+  min-width: 12rem;
 }
