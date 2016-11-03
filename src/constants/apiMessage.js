@@ -45,3 +45,5 @@ export const ERROR_ADOPTION_ANIMAL = 'Ocurrió un error al adoptar los animales,
 export const ERROR_DATE_FILTER = 'Rango Invalido';
 
 export const ERROR_STATISTIC_RANGE = 'El rango máximo es 3 meses';
+
+export const ERROR_NOT_AUTHORIZED = 'No autorizado';

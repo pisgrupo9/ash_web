@@ -1,6 +1,9 @@
 import fetch from 'isomorphic-fetch';
 import * as message from '../constants/apiMessage';
 import * as session from '../actions/sessionActions';
+import * as loginInfo from '../api/redirectLoginApi';
+import { browserHistory } from 'react-router';
+import { toastr } from 'react-redux-toastr';
 
 const handleErrors = (response) =>
   new Promise((resolve, reject) => {
@@ -12,6 +15,14 @@ const handleErrors = (response) =>
     if (response.ok) {
       resolve(response);
       return;
+    }
+
+    if (response.status == 401) {
+      if (loginInfo.isLogged()) {
+        session.deleteSession();
+        browserHistory.replace('/login');
+        toastr.error('ERROR', message.ERROR_NOT_AUTHORIZED);
+      }
     }
 
     response.json()
