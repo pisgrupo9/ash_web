@@ -20,8 +20,8 @@ class AnimalFilters extends Component {
                     adopted: '',
                     name: '',
                     race: '',
-                    castrated: "",
-                    vaccines: ""
+                    castrated: '',
+                    vaccines: ''
                   },
                   errorDate: '',
                   windowWidth: window.innerWidth,
@@ -34,6 +34,7 @@ class AnimalFilters extends Component {
     this.moreFilter = this.moreFilter.bind(this);
     this.handleResize = this.handleResize.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.cleanFilter = this.cleanFilter.bind(this);
   }
 
   componentWillMount() {
@@ -99,18 +100,40 @@ class AnimalFilters extends Component {
     this.setState({ filter });
   }
 
+  cleanFilter() {
+     const filter = {
+      chip_num: '',
+      species_id: '',
+      sex: '',
+      admission_date_from: null,
+      admission_date_to: null,
+      adopted: '',
+      name: '',
+      race: '',
+      castrated: '',
+      vaccines: ''
+    };
+    this.setState({ filter, errorDate: '' });
+    this.props.actions.searchAnimal({});
+  }
+
   render() {
     const { filter, windowWidth, allField, errorDate } = this.state;
     const boolean = [ { id: true, name: "SI" },
                     { id: false, name: "NO" } ];
     const states = [ { id: true, name: "ADOPTADO" },
-                    { id: false, name: "NO ADOPTADO" } ];
+                    { id: false, name: "EN ADOPCIÓN" } ];
     const sex = [ { id: 0, name: "MACHO" },
                     { id: 1, name: "HEMBRA" } ];
     let smallWindows = (windowWidth <= 541);
     let activeField = (!smallWindows || allField);
     let extraFilter = (filter.species_id == "") || (filter.species_id <= 2);
     let buttonFind = (<div className="btn-find-div">
+                        <button
+                          className="btn btn-find"
+                          onClick={this.cleanFilter}>
+                          LIMPIAR
+                        </button>
                         <button
                           className="btn btn-find"
                           onClick={this.onSubmit}>
