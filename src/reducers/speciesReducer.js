@@ -18,7 +18,6 @@ const speciesReducer = (state = initialState.species, action) => {
         let speciesError = { error: "NOT_LOGGED" };
         return speciesError;
       }
-
       return state;
     }
     default:
