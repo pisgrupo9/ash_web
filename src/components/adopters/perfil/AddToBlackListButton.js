@@ -43,13 +43,13 @@ class AddToBlackListButton extends Component {
     const { userPermission } = this.props;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-      <button className="btn-circle blacklisted" onClick={this.addToBlackList}>
+      <button className="btn-rec blacklisted bg-orange-color" onClick={this.addToBlackList}>
          <i className="material-icons color">not_interested</i>
-       </button>
+      </button>
     );
 
     return (
-      <div>
+      <div className="btn-edit-adopter">
         { showButton ? button : '' }
       </div>
     );

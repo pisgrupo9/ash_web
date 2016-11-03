@@ -26,7 +26,7 @@ class EditAdopterButton extends Component {
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
                       <div>
-                        <button className="btn-circle adopter" onClick={this.onOpen}>
+                        <button className="btn-rec adopter bg-orange-color" onClick={this.onOpen}>
                           <i className="material-icons color">mode_edit</i>
                         </button>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">

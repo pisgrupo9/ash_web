@@ -42,13 +42,14 @@
   color: $dark-grey;
 }
 
-.btn-circle.adopter,
-.btn-circle.blacklisted {
-  bottom: 10px;
+.btn-edit-adopter {
+  position: relative;
+  bottom: 38px;
+  right: 40px;
 }
 
-.btn-circle.blacklisted {
-  right: 50px;
+.blacklisted {
+  font-size: 30px;
 }
 
 .black-list .modal-content {
@@ -107,6 +108,8 @@
   color: grey;
 }
 
-.acction-button.adopter {
-  height: 35px;
+.acction-button {
+  text-align: center;
+  height: 50px;
+  margin-top: 10px;
 }
