@@ -128,24 +128,21 @@ class AnimalFilters extends Component {
     let smallWindows = (windowWidth <= 541);
     let activeField = (!smallWindows || allField);
     let extraFilter = (filter.species_id == "") || (filter.species_id <= 2);
-    let buttonFind = (<div className="btn-find-div">
-                        <button
+    let buttonClean = (<button
                           className="btn btn-find"
                           onClick={this.cleanFilter}>
                           LIMPIAR
-                        </button>
-                        <button
-                          className="btn btn-find"
-                          onClick={this.onSubmit}>
-                          BUSCAR
-                        </button>
-                      </div>);
-     let buttonMore = (<div className="btn-find-div">
-                        <button className={'btn btn-find' + (allField ? ' cancel-more-button' :'')}
+                        </button>);
+    let buttonFind = (<button
+                        className="btn btn-find"
+                        onClick={this.onSubmit}>
+                        BUSCAR
+                      </button>);
+
+     let buttonMore = (<button className={'btn btn-find' + (allField ? ' cancel-more-button' :'')}
                             onClick={this.moreFilter}>
                           {allField ? 'MENOS' : 'MAS'} FILTROS
-                        </button>
-                      </div>);
+                        </button>);
     return (
       <div>
           <p className="filter-title">FILTROS</p>
@@ -167,8 +164,9 @@ class AnimalFilters extends Component {
                     onKeyPress={this.onKeyPress}
                      />
             {smallWindows &&
-              <div className="btn-small-div">
+              <div className="btn-find-div btn-small-div">
                 {buttonFind}
+                {buttonClean}
                 {buttonMore}
               </div>
             }
@@ -255,7 +253,12 @@ class AnimalFilters extends Component {
               </div>
           </div>
           }
-          {!smallWindows && buttonFind}
+          {!smallWindows &&
+            <div className="btn-find-div">
+              {buttonFind}
+              {buttonClean}
+            </div>
+          }
       </div>
       );
   }

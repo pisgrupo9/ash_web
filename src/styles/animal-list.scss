@@ -46,8 +46,8 @@ $red: #f00;
     padding: 0 10px;
 
     .filter-field {
-      flex: 1 0 auto;
-      min-width: 120px;
+      flex: 1 0 40%;
+      min-width: 100px;
       padding: 1px;
       margin: 5px 0;
 
@@ -56,11 +56,16 @@ $red: #f00;
       }
     }
 
-    .btn-small-div {
+    .btn-find-div.btn-small-div {
       @extend .flex-title;
 
       flex: 2 0 auto;
       min-width: 280px;
+
+      .btn-find {
+        min-width: 90px;
+        margin: 0 5px 10px;
+      }
     }
 
     .filter-field.default {
@@ -85,7 +90,7 @@ $red: #f00;
     }
 
     .filter-date {
-      flex: 1;
+      flex: 1 0 50%;
       min-width: 150px;
       padding: 1px;
       margin: 5px 0;
@@ -99,7 +104,7 @@ $red: #f00;
 
 .btn-find-div {
   text-align: center;
-  flex: 1;
+  flex: 1 0 auto;
   margin: 5px 0;
 
   .btn-find {
