@@ -1,5 +1,6 @@
 import * as messages from '../constants/apiMessage';
 import * as stringValid from './StringValidate';
+import moment from 'moment';
 
 export const validateEmptyField = (value) => {
   return value ? '' : messages.ERROR_REQUIRED_FIELD;
@@ -62,4 +63,8 @@ export const validateEmail = (email) => {
 
 export const validatePhone = (phone) => {
   return stringValid.onlyNumbers(phone) ? '' : messages.ERROR_PHONE;
+};
+
+export const validateDateStatistic = (dateStart, dateFinish) => {
+  return moment(dateStart).add(3, 'months').isSameOrAfter(dateFinish);
 };

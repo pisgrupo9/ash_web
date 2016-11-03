@@ -53,6 +53,10 @@ export default {
     filterParam: {}
   },
   adopter: {},
+  statistic: {
+    adoptStat: {},
+    animalStat: []
+  },
   adoptionForm: {
     adoptionsSended: 0,
     success: true

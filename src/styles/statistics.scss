@@ -1,0 +1,57 @@
+@import "./animal-perfil.scss";
+@import "./animal-form.scss";
+
+.statistic-page-flex {
+  @extend .profile-page-flex;
+
+  flex-flow: column wrap;
+}
+
+.outer-flex {
+  @extend .mini-profile-flex;
+
+  align-content: center;
+  flex-flow: row wrap;
+  min-height: 200px;
+}
+
+.statistic-div {
+  border: 2px solid $grey;
+  margin: 0 2.5px 5px;
+  padding: 5px;
+  background-color: white;
+}
+
+.inner-flex {
+  flex: 1 1 auto;
+  min-width: 300px;
+}
+
+.statistic-title {
+  width: 100%;
+  font-weight: 500;
+  color: $dark-grey;
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.stat-input {
+  flex: 1 1 auto;
+  align-self: auto;
+  margin: 0 7px;
+  min-width: 50px;
+}
+
+.adoption-statistic-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.pie-chart {
+  margin-top: 40px;
+}
+
+.redraw-chart-button {
+  margin: 30px 4px 0 0;
+}

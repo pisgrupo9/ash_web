@@ -19,6 +19,7 @@ import reports from './reportReducer';
 import adopterForm from './adopterFormReducer';
 import adopters from './adoptersReducer';
 import adopter from './adopterReducer';
+import statistic from './statisticReducer';
 import adoptionForm from './adoptionFormReducer';
 import commentForm from './commentFormReducer';
 import comments from './commentsReducer';
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   adopterForm,
   adopters,
   adopter,
+  statistic,
   adoptionForm,
   commentForm,
   comments,
