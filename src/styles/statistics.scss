@@ -13,6 +13,7 @@
   align-content: center;
   flex-flow: row wrap;
   min-height: 200px;
+  margin-bottom: 10px;
 }
 
 .statistic-div {
@@ -23,8 +24,9 @@
 }
 
 .inner-flex {
-  flex: 1 1 auto;
+  flex: 1 1 40rem;
   min-width: 300px;
+  margin-bottom: 5px;
 }
 
 .statistic-title {
@@ -36,7 +38,7 @@
 }
 
 .stat-input {
-  flex: 1 1 auto;
+  flex: 1 1 40rem;
   align-self: auto;
   margin: 0 7px;
   min-width: 50px;
@@ -54,4 +56,8 @@
 
 .redraw-chart-button {
   margin: 30px 4px 0 0;
+}
+
+.species-stat-container {
+  margin: 0 15px 10px;
 }

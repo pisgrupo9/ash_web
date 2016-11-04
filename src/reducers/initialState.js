@@ -55,7 +55,8 @@ export default {
   adopter: {},
   statistic: {
     adoptStat: {},
-    animalStat: []
+    animalStat: [],
+    speciesStat: {}
   },
   adoptionForm: {
     adoptionsSended: 0,

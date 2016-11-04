@@ -12,6 +12,10 @@ const statisticReducer = (state = initialState.statistic, action) => {
       let animalStat = action.statInfo;
       return Object.assign({}, state, { animalStat: animalStat });
     }
+    case types.REQUEST_SPECIES_STATISTIC_SUCCESS: {
+      let speciesStat = action.statInfo;
+      return Object.assign({}, state, { speciesStat: speciesStat });
+    }
     default:
       return state;
   }
