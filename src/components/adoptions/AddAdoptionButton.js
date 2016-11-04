@@ -3,7 +3,9 @@ import AddAdoptionModal from '../../containers/modal/AddAdoptionModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../util/validateForm';
+import * as message from '../../constants/apiMessage';
 
 class AddAdoptionButton extends Component {
   constructor(props, context) {
@@ -27,9 +29,12 @@ class AddAdoptionButton extends Component {
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
       <div>
-        <button className="button-add-images" onClick={this.onOpen}>
+        <button className="button-add-images" onClick={this.onOpen} data-tip data-for="add-adoption">
           <Icon className="add-button orange-color" name="plus-circle"/>
         </button>
+        <ReactTooltip id="add-adoption" delayShow={500} place="top" type="warning" effect="solid">
+          {message.TOOLTIP_ADD_ADOPTER_ANIAML}
+        </ReactTooltip>
         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="lg">
           <AddAdoptionModal onClose={this.onClose} adopterId={this.props.adopterId} />
         </Modal>

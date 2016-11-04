@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import ReactTooltip from 'react-tooltip';
 import * as animalActions from '../actions/animalActions';
 import * as confirmActions from '../actions/confirmActions';
 import * as exportActions from '../actions/exportActions';
@@ -154,9 +155,17 @@ class AnimalPerfilPage extends Component {
               <p className="section-title center">GALERÍA</p>
               <AddGalleryButton animalId={this.props.routeParams.id} disabled={edit_gallery}/>
               { showButton &&
-              <button className={edit_gallery ? 'button-edit-galery active' : 'button-edit-galery'} onClick={this.editGallery}>
-                <i className="material-icons">mode_edit</i>
-              </button>
+              <div>
+                <button
+                  className={edit_gallery ? 'button-edit-galery active' : 'button-edit-galery'}
+                  onClick={this.editGallery}
+                  data-tip data-for="edit-galery">
+                  <i className="material-icons">mode_edit</i>
+                </button>
+                <ReactTooltip id="edit-galery" delayShow={500} place="left" type="warning" effect="solid">
+                    {message.TOOLTIP_EDIT_ANIMAL_IMG}
+                </ReactTooltip>
+              </div>
               }
             </div>
             <ImagesGallery images={animalImages.images}

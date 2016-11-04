@@ -3,7 +3,9 @@ import AddAdopterModal from '../../containers/modal/AddAdopterModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../util/validateForm';
+import * as message from '../../constants/apiMessage';
 import '../../styles/adopter-list.scss';
 
 class AddAdopterButton extends Component {
@@ -28,9 +30,12 @@ class AddAdopterButton extends Component {
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
                       <div className="add-adopter-button">
-                        <button className="button-animal" onClick={this.onOpen}>
+                        <button className="button-animal" data-tip data-for="add-adopter" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
+                        <ReactTooltip id="add-adopter" delayShow={500} place="left" type="warning" effect="solid">
+                          {message.TOOLTIP_ADD_ADOPTER}
+                        </ReactTooltip>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
                           <AddAdopterModal onClose={this.onClose} />
                         </Modal>

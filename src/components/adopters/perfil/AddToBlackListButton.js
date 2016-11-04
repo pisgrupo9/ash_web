@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toastr } from 'react-redux-toastr';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../../util/validateForm';
 import * as message from '../../../constants/apiMessage';
 import * as adopterActions from '../../../actions/adopterActions';
@@ -43,9 +44,17 @@ class AddToBlackListButton extends Component {
     const { userPermission } = this.props;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-      <button className="btn-rec blacklisted bg-orange-color" onClick={this.addToBlackList}>
-         <i className="material-icons color">not_interested</i>
-      </button>
+      <div>
+        <button
+          className="btn-rec blacklisted bg-orange-color"
+          onClick={this.addToBlackList}
+          data-tip data-for="add-blacklist">
+           <i className="material-icons color">not_interested</i>
+        </button>
+        <ReactTooltip id="add-blacklist" delayShow={500} place="top" type="warning" effect="solid">
+          {message.TOOLTIP_ADD_ADOPTER_BLACKLIST}
+        </ReactTooltip>
+      </div>
     );
 
     return (

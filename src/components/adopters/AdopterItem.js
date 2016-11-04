@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
 import { Collapse } from 'react-bootstrap';
 import { Link } from 'react-router';
+import ReactTooltip from 'react-tooltip';
 import MiniAdopterPerfil from './MiniAdopterPerfil';
 import '../../styles/animal-perfil.scss';
 import * as util from '../../util/validateForm';
+import * as message from '../../constants/apiMessage';
 
 const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList, userPermission }) => {
   const showButton = util.editAdopterPerfil(userPermission);
@@ -26,12 +28,16 @@ const AdopterItem = ({ adopter, selectedAdopterId, onClick, addToBlackList, user
         </div>
         <div className="view-interested-icon">
           {adopter.blacklisted ? <i className="material-icons light-red">not_interested</i>
-                        : showButton ? <i className="material-icons dark-grey-color"
-                          onClick={() => addToBlackList(adopter.id, adopter.animals.length)}>
+                        : showButton ? <i className="material-icons dark-grey-color cursor-button"
+                          onClick={() => addToBlackList(adopter.id, adopter.animals.length)}
+                          data-tip data-for="add-blacklist">
                           not_interested</i>
                           : <i className="material-icons dark-grey-color">
                             not_interested</i>
           }
+        <ReactTooltip id="add-blacklist" delayShow={500} place="left" type="warning" effect="solid">
+          {message.TOOLTIP_ADD_ADOPTER_BLACKLIST}
+        </ReactTooltip>
         </div>
       </div>
       <Collapse in={showAdopter}>

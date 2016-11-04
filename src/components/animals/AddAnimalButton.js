@@ -3,7 +3,9 @@ import NewAnimalModal from '../../containers/modal/NewAnimalModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../util/validateForm';
+import * as message from '../../constants/apiMessage';
 
 class AddAnimalButton extends Component {
   constructor(props, context) {
@@ -27,9 +29,12 @@ class AddAnimalButton extends Component {
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
                       <div>
-                        <button className="button-animal" onClick={this.onOpen}>
+                        <button className="button-animal" data-tip data-for="add-animal" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
+                        <ReactTooltip id="add-animal" delayShow={500} place="left" type="warning" effect="solid">
+                          {message.TOOLTIP_ADD_ANIMAL}
+                        </ReactTooltip>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
                           <NewAnimalModal onClose={this.onClose} />
                         </Modal>

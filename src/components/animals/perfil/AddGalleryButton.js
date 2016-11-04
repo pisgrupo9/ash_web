@@ -3,7 +3,9 @@ import AddGalleryModal from '../../../containers/modal/AddGalleryModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../../util/validateForm';
+import * as message from '../../../constants/apiMessage';
 
 class AddGalleryButton extends Component {
   constructor(props, context) {
@@ -27,15 +29,18 @@ class AddGalleryButton extends Component {
     const { userPermission } = this.props;
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
-                    <div>
-                      <button className="button-add-images" onClick={this.onOpen}>
-                        <Icon className={'add-button' + (this.props.disabled ? ' grey-color' : ' orange-color')} name="plus-circle"/>
-                      </button>
-                      <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-                        <AddGalleryModal id={this.props.animalId} onClose={this.onClose} />
-                      </Modal>
-                    </div>
-                  );
+      <div>
+        <button className="button-add-images" data-tip data-for="add-galery" onClick={this.onOpen}>
+          <Icon className={'add-button' + (this.props.disabled ? ' grey-color' : ' orange-color')} name="plus-circle"/>
+        </button>
+        <ReactTooltip id="add-galery" delayShow={500} place="left" type="warning" effect="solid">
+          {message.TOOLTIP_ADD_ANIMAL_IMG}
+        </ReactTooltip>
+        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
+          <AddGalleryModal id={this.props.animalId} onClose={this.onClose} />
+        </Modal>
+      </div>
+    );
 
     return (
       <div>
