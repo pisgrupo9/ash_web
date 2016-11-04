@@ -58,7 +58,7 @@ const AdopterFormEdit = ({ adopter, onSave, onChange, onCancel, errors }) => {
                 error={errors.houseDescription}
                  />
       </div>
-      <ModalAnimalButtons onSubmit={onSave} onClose={onCancel} />
+      <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );
 };
