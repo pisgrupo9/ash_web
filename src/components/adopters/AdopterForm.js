@@ -21,7 +21,7 @@ const AdopterForm = ({ adopter, onSave, onChange, onCancel, errors }) => {
                  />
         <Input styleClass="animal-input"
                 name="ci"
-                label="CI *"
+                label="CI * (sin puntos ni guiones)"
                 type="text"
                 value={adopter.ci}
                 onChange={onChange}
