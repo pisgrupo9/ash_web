@@ -133,7 +133,7 @@ class AddAdopterModal extends Component {
                   </div>);
 
     return (
-      <div>
+      <div id="modal">
         { loading ? loadingView : body }
       </div>
     );

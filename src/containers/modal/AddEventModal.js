@@ -200,7 +200,7 @@ class AddEventModal extends Component {
     };
 
     return (
-      <div>
+      <div id="modal">
         { getView() }
       </div>
     );

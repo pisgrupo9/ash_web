@@ -47,3 +47,8 @@ export const ERROR_DATE_FILTER = 'Rango Invalido';
 export const ERROR_STATISTIC_RANGE = 'El rango máximo es 3 meses';
 
 export const ERROR_NOT_AUTHORIZED = 'No autorizado';
+
+export const DELETE_ANIMAL_TITLE = 'ELIMINAR ANIMAL';
+export const DELETE_ANIMAL_MESSAGE = '¿Estás seguro que deseas eliminar este animal?';
+export const DELETE_ANIMAL_SUCCESS = 'El animal fue eliminado con éxito';
+export const DELETE_ANIMAL_ERROR = 'Ocurrió un error al eliminar el animal';

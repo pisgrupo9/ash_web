@@ -28,7 +28,7 @@ class ConfirmModal extends Component {
       });
 
     return (
-        <div className="confirm-modal">
+        <div id="modal" className="confirm-modal">
           {confirm.title &&
             <h1 className="confirm-title">
             {confirm.title}
@@ -39,12 +39,12 @@ class ConfirmModal extends Component {
               {messageDialog}
             </div>
           }
-          <div className="btn-div">
-           <button onClick={this.onCancel} className="btn btn-cancel  bg-dark-grey-color">
-              {confirm.cancelLabel ? confirm.cancelLabel : 'CANCELAR'}
-            </button>
-            <button onClick={this.onConfirm} className="btn btn-confirm bg-orange-color">
+          <div className="center-buttons">
+            <button onClick={this.onConfirm} className="btn">
               {confirm.confirmLabel ? confirm.confirmLabel : 'CONFIRMAR'}
+            </button>
+            <button onClick={this.onCancel} className="btn cancel-button">
+              {confirm.cancelLabel ? confirm.cancelLabel : 'CANCELAR'}
             </button>
           </div>
         </div>

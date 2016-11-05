@@ -94,10 +94,11 @@ class AnimalPerfilPage extends Component {
       this.setState({ loading_gallery: true });
     };
     this.props.confirmActions.confirmDialog({
-                  title: message.REMOVE_IMAGE_TITLE,
-                  message: message.REMOVE_IMAGE_MESSAGE,
-                  confirmF: confirmf
-                });
+      title: message.REMOVE_IMAGE_TITLE,
+      message: message.REMOVE_IMAGE_MESSAGE,
+      confirmF: confirmf,
+      size: 'large'
+    });
   }
 
   onMoreImages() {

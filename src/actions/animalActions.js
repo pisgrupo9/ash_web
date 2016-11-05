@@ -130,6 +130,19 @@ export const removeAnimalImageError = (response) => {
   };
 };
 
+export const deleteAnimalSuccess = () => {
+  return {
+    type: types.DELETE_ANIMAL_SUCCESS
+  };
+};
+
+export const deleteAnimalError = (response) => {
+  return {
+    type: types.DELETE_ANIMAL_ERROR,
+    response
+  };
+};
+
 export const sendAnimalForm = (animal) => {
   return (dispatch) => {
     let animalJson = parseAnimal(animal);
@@ -236,6 +249,16 @@ export const searchAnimal = (filter) => {
       dispatch(serchAnimalsSuccess(response, filter));
     }).catch(err => {
       dispatch(serchAnimalsError(err));
+    });
+  };
+};
+
+export const deleteAnimal = (animalId) => {
+  return (dispatch) => {
+    return animalApi.deleteAnimal(animalId).then(() => {
+      dispatch(deleteAnimalSuccess());
+    }).catch(err => {
+      dispatch(deleteAnimalError(err));
     });
   };
 };

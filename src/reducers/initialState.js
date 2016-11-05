@@ -10,7 +10,9 @@ export default {
     success: false,
     success_image: false,
     sended_images: 0,
-    id: ''
+    id: '',
+    deleteSuccess: false,
+    deleteError: ''
   },
   animal: {
   },

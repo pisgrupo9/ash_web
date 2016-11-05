@@ -5,8 +5,8 @@ import EditProfileDropzone from './EditProfileDropzone';
 import SelectInput from '../../common/SelectInput';
 import * as util from '../../../util/validateForm';
 import { Checkbox } from 'react-bootstrap';
+import ModalAnimalButtons from '../../common/ModalAnimalButtons';
 import '../../../styles/animal-perfil.scss';
-import '../../../styles/animal-form.scss';
 
 const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange, onDropProfile, errors }) => {
 
@@ -104,18 +104,10 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
 
           </div>
           <div>
-        { showCheckboxes ? checkboxCastrated : ''}
-        { showCheckboxes ? checkboxVaccines : ''}
+            { showCheckboxes ? checkboxCastrated : ''}
+            { showCheckboxes ? checkboxVaccines : ''}
           </div>
-          <div className="animal-buttons">
-            <input className="btn submit-button"
-                      type="submit"
-                      value="GUARDAR"
-                      onClick={onSave}/>
-            <button className="btn cancel-button" onClick={onClose}>
-              CANCELAR
-            </button>
-          </div>
+          <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onClose} />
       </div>
     </div>
   );

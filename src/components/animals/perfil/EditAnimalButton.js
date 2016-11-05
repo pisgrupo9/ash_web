@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Modal, ButtonGroup } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 import EditAnimalModal from '../../../containers/modal/EditAnimalModal';
 import * as util from '../../../util/validateForm';
 
@@ -22,32 +22,25 @@ class EditAnimalButton extends Component {
   }
 
   render() {
-    const showButton = util.editAnimalPerfil(this.props.userPermission);
+    const { loading, animal, routeId, userPermission } = this.props;
+    const { onOpen, onClose } = this;
+    const showButton = util.editAnimalPerfil(userPermission);
     const button = (
-                      <ButtonGroup>
-                        <button
-                          type="button"
-                          className="btn btn-edit bg-orange-color"
-                          onClick={this.onOpen}>
-                          <i className="material-icons edit">mode_edit</i>
-                        </button>
-                        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-                          <EditAnimalModal loading={this.props.loading} onClose={this.onClose} animal={this.props.animal} route_id={this.props.route_id}/>
-                        </Modal>
-                      </ButtonGroup>
-                    );
+      <button
+        type="button"
+        className="btn btn-edit bg-orange-color"
+        onClick={onOpen}>
+        <i className="material-icons edit">mode_edit</i>
+      </button>
+    );
 
     return (
-      <ButtonGroup>
-        <ButtonGroup>
-          <button
-            type="button"
-            className="btn export-perfil bg-orange-color"
-            onClick={this.props.exportPerfil}>PDF
-          </button>
-        </ButtonGroup>
-        { showButton ? button : '' }
-      </ButtonGroup>
+      <span>
+        { showButton && button }
+        <Modal show={this.state.showModal} onHide={onClose} bsSize="large">
+          <EditAnimalModal {...{ loading, onClose, animal, routeId }} />
+        </Modal>
+      </span>
     );
   }
 }
@@ -57,9 +50,8 @@ const { string, object, func } = PropTypes;
 EditAnimalButton.propTypes = {
   userPermission: string.isRequired,
   animal: object.isRequired,
-  route_id: string.isRequired,
-  loading: func.isRequired,
-  exportPerfil: func.isRequired
+  routeId: string.isRequired,
+  loading: func.isRequired
 };
 
 const mapState = (state) => {

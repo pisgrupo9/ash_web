@@ -45,6 +45,10 @@ class AnimalApi {
   static getExportAnimal(animalId) {
     return api.get(`${consts.API_STAGING_URL}/animals/${animalId}/export_pdf`);
   }
+
+  static deleteAnimal(animalId) {
+    return api.delete(`${consts.API_STAGING_URL}/animals/${animalId}`);
+  }
 }
 
 export default AnimalApi;

@@ -133,11 +133,10 @@ class EditAdopterModal extends Component {
       </div>);
     const body = (
         <AdopterFormEdit adopter={adopter}
-                      onSave={this.onSubmit}
-                      onChange={this.onChange}
-                      onCancel={this.onClose}
-                      errors={localErrors ? errors : this.props.errors}
-                      />
+                          onSave={this.onSubmit}
+                          onChange={this.onChange}
+                          onCancel={this.onClose}
+                          errors={localErrors ? errors : this.props.errors}/>
     );
     const getView = () => {
       if (loading) {
@@ -147,11 +146,9 @@ class EditAdopterModal extends Component {
       }
     };
     return (
-      <div>
-       <div className="animal-form-wrapper">
-          <h2 className="animal-form-title"> EDITAR DE ADOPTANTE </h2>
-            {getView()}
-         </div>
+      <div id="modal" className="animal-form-wrapper">
+        <h2 className="animal-form-title"> EDITAR DE ADOPTANTE </h2>
+        {getView()}
       </div>
     );
   }
