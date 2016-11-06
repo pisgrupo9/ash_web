@@ -52,11 +52,12 @@ class AdopterPerfilPage extends Component {
   render() {
     const { adopter, routeParams } = this.props;
     const { loading, adopterId } = this.state;
-    const animalList = (<AdopterAnimals animals={adopter.animals}
-                    onClick={this.onClickAnimalId}
-                    selectedAnimalId={this.state.selectedAnimalId}
-                    loading={loading}
-                    />);
+    const animalList = (
+      <AdopterAnimals animals={adopter.animals}
+                      onClick={this.onClickAnimalId}
+                      selectedAnimalId={this.state.selectedAnimalId}
+                      loading={loading}/>
+    );
     return (
       <div className="profile-page-flex">
         <StickyContainer className="perfil-div adopter">

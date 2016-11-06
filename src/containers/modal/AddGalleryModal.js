@@ -21,7 +21,6 @@ class AddGalleryModal extends Component {
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onDeleteImage = this.onDeleteImage.bind(this);
   }
@@ -41,7 +40,7 @@ class AddGalleryModal extends Component {
       } else {
         toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
       }
-      this.onClose();
+      this.props.onClose();
     }
   }
 
@@ -64,14 +63,11 @@ class AddGalleryModal extends Component {
     e.preventDefault();
     this.setState({ uploading_images: true });
     if (this.state.images.length > 0) {
+      this.props.onToggleBackdrop();
       this.sendImages();
     } else {
-      this.onClose();
+      this.props.onClose();
     }
-  }
-
-  onClose() {
-    this.props.onClose();
   }
 
   onDrop(images) {
@@ -99,7 +95,9 @@ class AddGalleryModal extends Component {
                                     images={this.state.images}
                                     onDrop={this.onDrop}
                                     onDelete={this.onDeleteImage} />
-                    <ModalAnimalButtons onSubmit={this.onSubmit} onClose={this.onClose} />
+                    <ModalAnimalButtons title="GUARDAR"
+                                        onSubmit={this.onSubmit}
+                                        onClose={this.props.onClose} />
                   </div>);
 
     return (
@@ -116,6 +114,7 @@ AddGalleryModal.propTypes = {
   id: string.isRequired,
   sended_images: number.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   actions: object.isRequired
 };
 

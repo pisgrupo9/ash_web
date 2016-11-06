@@ -11,7 +11,7 @@ const CommentsList = ({ comments, showViewMore, onClickViewMore, loading, loadin
     });
   } else {
     commentsList = !loading && (<div className="no-result-search">
-                                  NO SE ENCONTRARON COMENTARIOS
+                                  No se encontraron comentarios
                                 </div>);
   }
 

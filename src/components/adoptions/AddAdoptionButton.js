@@ -11,9 +11,14 @@ class AddAdoptionButton extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false,
+      backdrop: true,
+    };
+
     this.onClose = this.onClose.bind(this);
     this.onOpen = this.onOpen.bind(this);
+    this.onToggleBackdrop = this.onToggleBackdrop.bind(this);
   }
 
   onClose() {
@@ -21,29 +26,36 @@ class AddAdoptionButton extends Component {
   }
 
   onOpen() {
-    this.setState({ showModal: true });
+    this.setState({ showModal: true, backdrop: true });
+  }
+
+  onToggleBackdrop() {
+    const { backdrop } = this.state;
+    this.setState({ backdrop: !backdrop });
   }
 
   render() {
-    let { userPermission } = this.props;
+    let { userPermission, adopterId } = this.props;
+    let { showModal, backdrop } = this.state;
+    let { onClose, onOpen, onToggleBackdrop } = this;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
       <div>
-        <button className="button-add-images" onClick={this.onOpen} data-tip data-for="add-adoption">
+        <button className="button-add-images" onClick={onOpen} data-tip data-for="add-adoption">
           <Icon className="add-button orange-color" name="plus-circle"/>
         </button>
         <ReactTooltip id="add-adoption" delayShow={500} place="top" type="warning" effect="solid">
           {message.TOOLTIP_ADD_ADOPTER_ANIAML}
         </ReactTooltip>
-        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="lg">
-          <AddAdoptionModal onClose={this.onClose} adopterId={this.props.adopterId} />
+        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="lg">
+          <AddAdoptionModal {...{ onClose, onToggleBackdrop, adopterId }} />
         </Modal>
       </div>
     );
 
     return (
       <div>
-        { showButton ? button : '' }
+        { showButton && button }
       </div>
     );
   }

@@ -7,28 +7,39 @@ import DeleteAnimalModal from '../../../containers/modal/DeleteAnimalModal';
 import * as util from '../../../util/validateForm';
 import * as message from '../../../constants/apiMessage';
 import * as animalActions from '../../../actions/animalActions';
-import * as confirmActions from '../../../actions/confirmActions';
 
 class DeleteAnimalButton extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false,
+      backdrop: true
+    };
+
     this.onClose = this.onClose.bind(this);
     this.onOpen = this.onOpen.bind(this);
+    this.onToggleBackdrop = this.onToggleBackdrop.bind(this);
   }
 
   onClose() {
+    this.props.actions.cancelAnimalForm();
     this.setState({ showModal: false });
   }
 
   onOpen() {
-    this.setState({ showModal: true });
+    this.setState({ showModal: true, backdrop: true });
+  }
+
+  onToggleBackdrop() {
+    const { backdrop } = this.state;
+    this.setState({ backdrop: !backdrop });
   }
 
   render() {
     const { animalId, userPermission } = this.props;
-    const { onOpen, onClose } = this;
+    const { showModal, backdrop } = this.state;
+    const { onClose, onOpen, onToggleBackdrop } = this;
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
       <button
@@ -43,10 +54,10 @@ class DeleteAnimalButton extends Component {
       <span className="delete-button-wrapper">
         { showButton && button }
         <ReactTooltip id="delete-animal" delayShow={500} place="top" type="warning" effect="solid">
-            {message.TOOLTIP_EDIT_ANIMAL_IMG}
+            {message.TOOLTIP_ELIMINAR_ANIMAL}
         </ReactTooltip>
-        <Modal show={this.state.showModal} onHide={onClose} bsSize="large">
-          <DeleteAnimalModal {...{ onClose, animalId }} />
+        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="large">
+          <DeleteAnimalModal {...{ onClose, onToggleBackdrop, animalId }} />
         </Modal>
       </span>
     );
@@ -58,8 +69,7 @@ const { string, object } = PropTypes;
 DeleteAnimalButton.propTypes = {
   userPermission: string.isRequired,
   animalId: string.isRequired,
-  actions: object.isRequired,
-  confirmActions: object.isRequired
+  actions: object.isRequired
 };
 
 const mapState = (state) => {
@@ -72,8 +82,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    actions: bindActionCreators(animalActions, dispatch),
-    confirmActions: bindActionCreators(confirmActions, dispatch)
+    actions: bindActionCreators(animalActions, dispatch)
   };
 };
 

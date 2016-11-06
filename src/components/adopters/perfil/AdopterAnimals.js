@@ -15,7 +15,7 @@ const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading }) => {
       );
     });
   } else {
-    animalsList = <div className="no-result-search">El adoptante no tiene animales a su cargo.</div>;
+    animalsList = <div className="no-result-search">El adoptante no tiene animales a su cargo</div>;
   }
   return (
     <div className="adopted-container">

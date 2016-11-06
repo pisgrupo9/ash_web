@@ -11,9 +11,14 @@ class AddGalleryButton extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false,
+      backdrop: true
+    };
+
     this.onClose = this.onClose.bind(this);
     this.onOpen = this.onOpen.bind(this);
+    this.onToggleBackdrop = this.onToggleBackdrop.bind(this);
   }
 
   onClose() {
@@ -22,29 +27,37 @@ class AddGalleryButton extends Component {
 
   onOpen() {
     if (!this.props.disabled)
-      this.setState({ showModal: true });
+      this.setState({ showModal: true, backdrop: true });
+  }
+
+  onToggleBackdrop() {
+    const { backdrop } = this.state;
+    this.setState({ backdrop: !backdrop });
   }
 
   render() {
-    const { userPermission } = this.props;
+    let { userPermission, disabled, animalId } = this.props;
+    let { showModal, backdrop } = this.state;
+    let { onClose, onOpen, onToggleBackdrop } = this;
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
       <div>
-        <button className="button-add-images" data-tip data-for="add-galery" onClick={this.onOpen}>
-          <Icon className={'add-button' + (this.props.disabled ? ' grey-color' : ' orange-color')} name="plus-circle"/>
+        <button className="button-add-images" data-tip data-for="add-galery" onClick={onOpen}>
+          <Icon className={'add-button' + (disabled ? ' grey-color' : ' orange-color')}
+                name="plus-circle"/>
         </button>
         <ReactTooltip id="add-galery" delayShow={500} place="left" type="warning" effect="solid">
           {message.TOOLTIP_ADD_ANIMAL_IMG}
         </ReactTooltip>
-        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-          <AddGalleryModal id={this.props.animalId} onClose={this.onClose} />
+        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="large">
+          <AddGalleryModal id={animalId} {...{ onClose, onToggleBackdrop }} />
         </Modal>
       </div>
     );
 
     return (
       <div>
-        { showButton ? button : '' }
+        { showButton && button }
       </div>
     );
   }

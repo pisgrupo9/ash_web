@@ -48,15 +48,15 @@ class AddAdopterModal extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    this.props.onToggleBackdrop();
     if (nextProps.success) {
       let { filterParam } = this.props;
       this.props.actions.loadAdopters(consts.ADOPTER_PAGE_SIZE, 1, filterParam);
       toastr.success('', messages.SUCCESS_CREATE_ADOPTER);
-      this.onClose();
+      this.props.onClose();
     } else {
       this.setState({ loading: false });
     }
@@ -90,6 +90,7 @@ class AddAdopterModal extends Component {
     e.preventDefault();
     this.validateForm(this.state.adopter);
     if (valid.notErrors(this.state.errors)) {
+      this.props.onToggleBackdrop();
       this.setState({ loading: true });
       this.props.actions.sendAdopterForm(this.state.adopter);
     }
@@ -111,11 +112,6 @@ class AddAdopterModal extends Component {
     }
   }
 
-  onClose() {
-    this.props.actions.cancelAdopterForm();
-    this.props.onClose();
-  }
-
   render() {
     let { adopter, errors, loading } = this.state;
     const localErrors = !valid.notErrors(errors);
@@ -127,7 +123,7 @@ class AddAdopterModal extends Component {
                     <AdopterForm adopter={adopter}
                                   onSave={this.onSubmit}
                                   onChange={this.onChange}
-                                  onCancel={this.onClose}
+                                  onCancel={this.props.onClose}
                                   errors={localErrors ? errors : this.props.errors}
                                   />
                   </div>);
@@ -147,6 +143,7 @@ AddAdopterModal.propTypes = {
   success: bool.isRequired,
   filterParam: object.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   actions: object.isRequired
 };
 

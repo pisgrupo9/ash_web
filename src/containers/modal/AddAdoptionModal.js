@@ -28,6 +28,7 @@ class AddAdoptionModal extends Component {
   componentWillReceiveProps(nextProps) {
     let { adoptionsToSend, checkedAnimals, success } = this.state;
     if (!nextProps.success) {
+      this.props.onToggleBackdrop();
       this.setState({ success: false });
     }
     if (nextProps.adoptionsSended === adoptionsToSend) {
@@ -41,6 +42,7 @@ class AddAdoptionModal extends Component {
       } else {
         toastr.error('', messages.ERROR_ADOPTION_ANIMAL);
       }
+      this.props.onToggleBackdrop();
       this.props.onClose();
     }
   }
@@ -62,6 +64,7 @@ class AddAdoptionModal extends Component {
     let { checkedAnimals } = this.state;
     let { adopterId, actions, adoptionsSended } = this.props;
     if (!_.isEmpty(checkedAnimals)) {
+      this.props.onToggleBackdrop();
       this.setState({
         loading: true,
         adoptionsToSend: adoptionsSended + checkedAnimals.length
@@ -103,6 +106,7 @@ const { object, func, string, number } = PropTypes;
 
 AddAdoptionModal.propTypes = {
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   adopterId: string.isRequired,
   adoptionsSended: number.isRequired,
   actions: object.isRequired,
