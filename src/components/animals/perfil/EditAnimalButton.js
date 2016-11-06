@@ -1,8 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
+import ReactTooltip from 'react-tooltip';
 import EditAnimalModal from '../../../containers/modal/EditAnimalModal';
 import * as util from '../../../util/validateForm';
+import * as message from '../../../constants/apiMessage';
 
 class EditAnimalButton extends Component {
   constructor(props, context) {
@@ -29,6 +31,7 @@ class EditAnimalButton extends Component {
       <button
         type="button"
         className="btn btn-edit bg-orange-color"
+        data-tip data-for="edit-animal"
         onClick={onOpen}>
         <i className="material-icons edit">mode_edit</i>
       </button>
@@ -37,6 +40,9 @@ class EditAnimalButton extends Component {
     return (
       <span>
         { showButton && button }
+        <ReactTooltip id="edit-animal" delayShow={500} place="top" type="warning" effect="solid">
+          {message.TOOLTIP_EDIT_ANIMAL}
+        </ReactTooltip>
         <Modal show={this.state.showModal} onHide={onClose} bsSize="large">
           <EditAnimalModal {...{ loading, onClose, animal, routeId }} />
         </Modal>

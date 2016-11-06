@@ -3,7 +3,9 @@ import AddEventModal from '../../../containers/modal/AddEventModal';
 import { connect } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import { Icon } from 'react-fa';
+import ReactTooltip from 'react-tooltip';
 import * as util from '../../../util/validateForm';
+import * as message from '../../../constants/apiMessage';
 
 class AddEventButton extends Component {
   constructor(props, context) {
@@ -27,9 +29,12 @@ class AddEventButton extends Component {
     const showButton = util.editAnimalPerfil(userPermission);
     const button = (
                       <div>
-                        <button className="button-add-images" onClick={this.onOpen}>
+                        <button className="button-add-images" data-tip data-for="add-event" onClick={this.onOpen}>
                           <Icon className="add-button orange-color" name="plus-circle"/>
                         </button>
+                        <ReactTooltip id="add-event" delayShow={500} place="left" type="warning" effect="solid">
+                          {message.TOOLTIP_ADD_ANIMAL_EVENT}
+                        </ReactTooltip>
                         <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
                           <AddEventModal onClose={this.onClose} animalId={this.props.animalId} />
                         </Modal>

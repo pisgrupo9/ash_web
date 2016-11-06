@@ -52,3 +52,14 @@ export const DELETE_ANIMAL_TITLE = 'ELIMINAR ANIMAL';
 export const DELETE_ANIMAL_MESSAGE = '¿Estás seguro que deseas eliminar este animal?';
 export const DELETE_ANIMAL_SUCCESS = 'El animal fue eliminado con éxito';
 export const DELETE_ANIMAL_ERROR = 'Ocurrió un error al eliminar el animal';
+
+export const TOOLTIP_ADD_ADOPTER = 'Crear un adoptante';
+export const TOOLTIP_ADD_ANIMAL = 'Crear un animal';
+export const TOOLTIP_ADD_ANIMAL_EVENT = 'Crear evento';
+export const TOOLTIP_ADD_ANIMAL_IMG = 'Agregar imágenes';
+export const TOOLTIP_ADD_ADOPTER_ANIAML = 'Adoptar Animales';
+export const TOOLTIP_ADD_ADOPTER_BLACKLIST = 'Agragar a la lista negra';
+export const TOOLTIP_EDIT_ADOPTER = 'Editar adoptante';
+export const TOOLTIP_EDIT_ANIMAL = 'Editar animal';
+export const TOOLTIP_EDIT_ANIMAL_IMG = 'Editar galería';
+export const TOOLTIP_ELIMINAR_ANIMAL = 'Borrar animal';
