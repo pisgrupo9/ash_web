@@ -8,6 +8,7 @@ $grey: #e6e6e6;
 $light-grey: #f7f7f7;
 $grey-shadow: #888;
 $white: #fff;
+$dark-grey-hover: #5d5d5d;
 
 .red-color {
   color: red;
@@ -319,11 +320,12 @@ input[type=button] {
   }
 
   .confirm-message {
-    margin: 10px;
+    margin: 5% 0;
+    font-size: 18px;
   }
 
   .btn-div {
-    text-align: right;
+    text-align: center;
   }
 
   .btn {
@@ -341,22 +343,34 @@ input[type=button] {
   position: relative;
 }
 
-#app .btn-export {
-  font-size: 12px;
-  padding: 0 7px;
-  font-weight: bolder;
-  color: $white;
-  letter-spacing: 1px;
-  margin: 1px;
-}
+#app {
+  .btn-export {
+    font-size: 12px;
+    padding: 0 7px;
+    font-weight: bolder;
+    color: $white;
+    letter-spacing: 1px;
+    margin: 1px;
+  }
 
-#app .btn-edit {
-  font-size: 3px;
-  padding: 0 7px;
-  font-weight: bolder;
-  color: $white;
-  letter-spacing: 1px;
-  margin-top: 2px;
+  .btn-edit {
+    font-size: 3px;
+    padding: 0 7px;
+    font-weight: bolder;
+    color: $white;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .btn-delete {
+    @extend .btn-edit;
+
+    border-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 }
 
 .submit-btn {
@@ -380,4 +394,46 @@ input[type=button] {
 
 .submit-btn:focus {
   color: white !important;
+}
+
+#modal {
+  font-family: 'Roboto', sans-serif;
+
+  .buttons-wrapper {
+    display: flex;
+    flex-flow: row-reverse wrap;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    background: $orange;
+    color: white;
+    transition-duration: 0.4s;
+    border-radius: 0;
+    font-size: 15px;
+    margin: 0 10px 10px;
+    width: 125px;
+  }
+
+  .btn:hover {
+    background: $dark-orange;
+  }
+
+  .cancel-button {
+    background: $dark-grey;
+  }
+
+  .cancel-button:hover {
+    background: $dark-grey-hover;
+  }
+
+  .center-buttons {
+    @extend .buttons-wrapper;
+
+    justify-content: center;
+  }
+}
+
+.test {
+  justify-content: center !important;
 }

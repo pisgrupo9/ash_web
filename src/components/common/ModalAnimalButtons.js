@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
-import '../../styles/animal-form.scss';
 
 const ModalButtons = ({ title, onSubmit, onClose }) => {
   return (
-    <div className="animal-buttons">
-      <input className="btn submit-button"
+    <div className="buttons-wrapper">
+      <input className="btn"
               type="submit"
               value={title || "ENVIAR"}
               onClick={onSubmit} />

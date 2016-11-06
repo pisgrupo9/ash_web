@@ -7,7 +7,9 @@ const animalFormReducer = (state = initialState.animalForm, action) => {
     success: false,
     success_image: false,
     sended_images: state.sended_images,
-    id: ''
+    id: '',
+    deleteSuccess: false,
+    deleteError: ''
   };
 
   switch (action.type) {
@@ -35,6 +37,11 @@ const animalFormReducer = (state = initialState.animalForm, action) => {
       let cantImages = state.sended_images + 1;
       return Object.assign({}, state, { success_image: false, sended_images: cantImages });
     }
+    case types.DELETE_ANIMAL_SUCCESS: {
+      return Object.assign({}, state, { deleteSuccess: true });
+    }
+    case types.DELETE_ANIMAL_ERROR:
+      return Object.assign({}, state, { deleteError: action.response.error });
     default:
       return state;
   }

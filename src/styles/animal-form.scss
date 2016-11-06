@@ -79,51 +79,6 @@ $dark-orange: #f60;
   }
 }
 
-.animal-buttons {
-  display: flex;
-  flex-flow: row-reverse wrap;
-  justify-content: flex-start;
-
-  .submit-button {
-    background: $orange;
-    color: white;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    border-radius: 1px;
-    width: 125px;
-    margin: 0 10px 10px;
-  }
-
-  .submit-button:hover {
-    background: $dark-orange;
-    color: white;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    border-radius: 1px;
-    width: 125px;
-  }
-
-  .submit-button:focus {
-    color: white;
-    outline: none;
-  }
-
-  .cancel-button {
-    @extend .submit-button;
-
-    background: $dark-grey;
-  }
-
-  .cancel-button:hover {
-    color: white;
-    background: #5d5d5d;
-  }
-
-  .cancel-button:focus {
-    @extend .submit-button:focus;
-  }
-}
-
 .animal-input {
   order: 1;
   flex: 1 1 auto;

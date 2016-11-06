@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import Spinner from '../../common/SpinnerComponent';
 import ImageLightBox from '../../common/ImageLightBox';
+import { ButtonGroup } from 'react-bootstrap';
 import * as valid from '../../../util/validateForm';
 import StickyResponsive from '../../common/StickyResponsive';
 import EditAnimalButton from './EditAnimalButton';
+import DeleteAnimalButton from './DeleteAnimalButton';
 
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {
   let imagen = animal.profile_image;
@@ -85,11 +87,18 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 </tr>}
               </tbody>
             </table>
-            <div className="edit-button">
-              <EditAnimalButton loading={loadingfunc}
-                                animal={animal}
-                                route_id={animalId}
-                                exportPerfil={exportPerfil} />
+            <div className="animal-buttons-wrapper">
+              <ButtonGroup>
+                <DeleteAnimalButton {...{ animalId }}/>
+                <button
+                  type="button"
+                  className="btn export-perfil bg-orange-color"
+                  onClick={exportPerfil}>PDF
+                </button>
+                <EditAnimalButton loading={loadingfunc}
+                                  animal={animal}
+                                  routeId={animalId} />
+              </ButtonGroup>
             </div>
           </div>
         </StickyResponsive>

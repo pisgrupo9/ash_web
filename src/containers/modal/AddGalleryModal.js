@@ -103,7 +103,7 @@ class AddGalleryModal extends Component {
                   </div>);
 
     return (
-      <div>
+      <div id="modal">
         { this.state.uploading_images ? loadingImagesView : body }
       </div>
     );

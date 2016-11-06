@@ -193,9 +193,10 @@ $ligth-dark-gery: #5d5d5d;
   max-height: 600px;
 }
 
-.edit-button {
-  position: absolute;
-  right: 100px;
+.animal-buttons-wrapper {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
 }
 
 .btn-circle {
@@ -235,4 +236,8 @@ $ligth-dark-gery: #5d5d5d;
 
 a.adopted-animal {
   text-decoration: none;
+}
+
+.delete-button-wrapper {
+  float: left;
 }

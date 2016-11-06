@@ -151,7 +151,7 @@ class EditAnimalModal extends Component {
         }
       }
       if (JSON.stringify(animalNew) != "{}") {
-        this.props.animalActions.editAnimal(this.props.route_id, { animal: animalNew });
+        this.props.animalActions.editAnimal(this.props.routeId, { animal: animalNew });
         this.setState({ loading: true });
       } else {
         this.onClose();
@@ -190,7 +190,7 @@ class EditAnimalModal extends Component {
     const loadingView = (<div className="loading-container">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                         </div>);
-    const body = (<div className="animal-form-wrapper">
+    const body = (<div id="modal" className="animal-form-wrapper">
                     <h2 className="animal-form-title"> EDITAR ANIMALES </h2>
                     <AnimalEditForm animal={this.state.animal}
                                     species={this.props.species}
@@ -222,7 +222,7 @@ EditAnimalModal.propTypes = {
   onClose: func.isRequired,
   animalActions: object.isRequired,
   animal: object.isRequired,
-  route_id: string.isRequired,
+  routeId: string.isRequired,
   loading: func.isRequired
 };
 

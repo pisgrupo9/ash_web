@@ -90,7 +90,7 @@ class AddAdoptionModal extends Component {
     );
 
     return (
-      <div className="list-flex">
+      <div id="modal" className="list-flex">
         <div className="wrapper-flex-modal">
           { loading ? loadingView : animalList }
         </div>
