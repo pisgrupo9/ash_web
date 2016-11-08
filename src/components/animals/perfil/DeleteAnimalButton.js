@@ -43,7 +43,7 @@ class DeleteAnimalButton extends Component {
       <span className="delete-button-wrapper">
         { showButton && button }
         <ReactTooltip id="delete-animal" delayShow={500} place="top" type="warning" effect="solid">
-            {message.TOOLTIP_EDIT_ANIMAL_IMG}
+            {message.TOOLTIP_ELIMINAR_ANIMAL}
         </ReactTooltip>
         <Modal show={this.state.showModal} onHide={onClose} bsSize="large">
           <DeleteAnimalModal {...{ onClose, animalId }} />
