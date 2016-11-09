@@ -3,6 +3,7 @@ import Spinner from '../../common/SpinnerComponent';
 import StickyResponsive from '../../common/StickyResponsive';
 import EditAdopterButton from './EditAdopterButton';
 import AddToBlackListButton from './AddToBlackListButton';
+import { ButtonGroup } from 'react-bootstrap';
 
 const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) => {
   return (
@@ -39,9 +40,11 @@ const AdopterInfo = ({ adopter, loading, styleClass, loadingFunc, adopterId }) =
               <p className="black-color">DESCRIPCIÓN CASA</p>
               <p>{adopter.house_description}</p>
             </div>
-            <div className="acction-button">
-              <EditAdopterButton adopter={adopter} loading={loadingFunc} adopterId={adopterId}/>
-              {!adopter.blacklisted && <AddToBlackListButton loading={loadingFunc} adopterId={adopterId}/>}
+            <div className="perfil-buttons-wrapper">
+              <ButtonGroup>
+                <EditAdopterButton adopter={adopter} loading={loadingFunc} adopterId={adopterId}/>
+                {!adopter.blacklisted && <AddToBlackListButton loading={loadingFunc} adopterId={adopterId}/>}
+              </ButtonGroup>
             </div>
           </div>
         </StickyResponsive>

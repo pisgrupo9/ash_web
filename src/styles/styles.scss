@@ -441,3 +441,9 @@ input[type=button] {
 .cursor-button {
   cursor: pointer;
 }
+
+.perfil-buttons-wrapper {
+  display: flex;
+  flex-flow: nowrap row;
+  justify-content: center;
+}

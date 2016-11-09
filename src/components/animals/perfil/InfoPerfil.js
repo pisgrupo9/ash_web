@@ -87,7 +87,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 </tr>}
               </tbody>
             </table>
-            <div className="animal-buttons-wrapper">
+            <div className="perfil-buttons-wrapper">
               <ButtonGroup>
                 <DeleteAnimalButton {...{ animalId }}/>
                 <button
