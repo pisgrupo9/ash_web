@@ -7,6 +7,7 @@ import * as adopterActions from '../../actions/adopterActions';
 import * as confirmActions from '../../actions/confirmActions';
 import AdopterListHeader from './AdopterListHeader';
 import AdopterList from './AdopterList';
+import AdopterSearch from './AdopterSearch';
 import '../../styles/animal-list.scss';
 import { Tabs, Tab } from 'react-bootstrap';
 
@@ -115,19 +116,25 @@ class AdopterListWrapper extends Component {
     const { adopters, userPermission } = this.props;
     const showViewMore = this.state.currPage < adopters.totalPages;
     const tabContent = (
-     <AdopterList adopters={adopters.adopters}
-                onClick={this.onClick}
-                selectedAdopterId={this.state.selectedAdopterId}
-                showViewMore={showViewMore}
-                onClickViewMore={this.onClickViewMore}
-                loading={this.state.loading}
-                loadingList={this.state.loadingList}
-                addToBlackList={this.addToBlackList}
-                userPermission={userPermission}/>);
+      <div>
+        <div className="adopter-search-wrapper">
+          <AdopterSearch startLoading={this.startLoading}/>
+        </div>
+        <AdopterList adopters={adopters.adopters}
+                  onClick={this.onClick}
+                  selectedAdopterId={this.state.selectedAdopterId}
+                  showViewMore={showViewMore}
+                  onClickViewMore={this.onClickViewMore}
+                  loading={this.state.loading}
+                  loadingList={this.state.loadingList}
+                  addToBlackList={this.addToBlackList}
+                  userPermission={userPermission}/>
+      </div>
+    );
 
     return (
       <div className="general-list">
-        <AdopterListHeader startLoading={this.startLoading} />
+        <AdopterListHeader/>
         <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="AdopterList" animation={false}>
           <Tab eventKey={1} title="Adoptantes">{tabContent}</Tab>
           <Tab eventKey={2} title="Lista Negra">{tabContent}</Tab>
