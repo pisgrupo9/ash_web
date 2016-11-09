@@ -9,7 +9,6 @@ import LogoutPage from './containers/LogoutPage';
 import ResetPasswordPage from './containers/ResetPasswordPage';
 import UpdatePassPage from './containers/UpdatePassPage';
 import AnimalListPage from './containers/AnimalListPage';
-import PerfilPage from './containers/PerfilPage';
 import AdoptantesPage from './containers/AdoptantesPage';
 import EstadisticasPage from './containers/EstadisticasPage';
 import AnimalPerfilPage from './containers/AnimalPerfilPage';
@@ -26,7 +25,6 @@ export default (
     <Route path="reset" onEnter={auth.CheckIfUnlogged} component={ResetPasswordPage}/>
     <Route path="updatePass" onEnter={auth.CheckIfUnlogged} component={UpdatePassPage}/>
     <Route path="animales" onEnter={auth.CheckAuth} component={AnimalListPage}/>
-    <Route path="perfil" onEnter={auth.CheckAuth} component={PerfilPage}/>
     <Route path="animales/:id" onEnter={auth.CheckAuth} component={AnimalPerfilPage}/>
     <Route path="adoptantes/:id" onEnter={auth.CheckAuth} component={AdopterPerfilPage}/>
     <Route path="adoptantes" onEnter={auth.CheckAuth} component={AdoptantesPage}/>
