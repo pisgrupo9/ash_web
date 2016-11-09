@@ -30,7 +30,7 @@ class AddEventModal extends Component {
       },
       requiredFields: {
         name: true,
-        description: false,
+        description: true,
         date: true
       },
       loading: false,
@@ -43,7 +43,6 @@ class AddEventModal extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onDeleteImage = this.onDeleteImage.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -56,7 +55,7 @@ class AddEventModal extends Component {
         toastr.success('', messages.SUCCES_CREATE_EVENT);
         let { animalId, filter } = this.props;
         this.props.actions.loadEvents(animalId, filter, constants.EVENT_PAGE_SIZE, 1);
-        this.onClose();
+        this.props.onClose();
       } else if (this.state.imagesToSend) {
         let successUpload = this.state.successUploadingImages;
         let noMoreImages = nextProps.sendedImages === this.state.imagesToSend;
@@ -75,7 +74,7 @@ class AddEventModal extends Component {
           }
           let { animalId, filter } = this.props;
           this.props.actions.loadEvents(animalId, filter, constants.EVENT_PAGE_SIZE, 1);
-          this.onClose();
+          this.props.onClose();
         }
       } else {
         this.sendImages();
@@ -135,6 +134,7 @@ class AddEventModal extends Component {
     let { event, errors } = this.state;
     this.validateForm(event);
     if (valid.notErrors(errors)) {
+      this.props.onToggleBackdrop();
       this.setState({ loading: true });
       this.props.actions.sendEventForm(event, this.props.animalId);
     }
@@ -162,11 +162,6 @@ class AddEventModal extends Component {
     this.setState({ errors: errors });
   }
 
-  onClose() {
-    this.props.actions.cancelEventForm();
-    this.props.onClose();
-  }
-
   render() {
     let { event, images, errors, windowWidth } = this.state;
     const localErrors = !valid.notErrors(this.state.errors);
@@ -180,7 +175,7 @@ class AddEventModal extends Component {
                                   images={images}
                                   onSave={this.onSubmit}
                                   onChange={this.onChange}
-                                  onCancel={this.onClose}
+                                  onCancel={this.props.onClose}
                                   onDrop={this.onDrop}
                                   onDelete={this.onDeleteImage}
                                   onChangeDate={this.handleDateChange}
@@ -213,6 +208,7 @@ AddEventModal.propTypes = {
   errors: object.isRequired,
   success: bool.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   eventId: string.isRequired,
   sendedImages: number.isRequired,
   successImage: bool.isRequired,

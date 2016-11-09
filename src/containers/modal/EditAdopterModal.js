@@ -43,7 +43,6 @@ class EditAdopterModal extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
   }
 
   componentWillMount() {
@@ -57,14 +56,19 @@ class EditAdopterModal extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { loading, success } = this.props;
+    const { loading, success, onToggleBackdrop } = this.props;
+    onToggleBackdrop();
     if (nextProps.success != success) {
       toastr.success('', messages.SUCCESS_UPDATE_ADOPTER);
       loading();
-      this.onClose();
+      this.props.onClose();
     } else {
       this.setState({ loading: false });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.actions.cancelAdopterForm();
   }
 
   validateForm(adopter) {
@@ -89,10 +93,11 @@ class EditAdopterModal extends Component {
   }
 
   onSubmit() {
-    const { adopter, adopterId } = this.props;
+    const { adopter, adopterId, onToggleBackdrop } = this.props;
     const myAdoter = this.state.adopter;
     this.validateForm(this.state.adopter);
     if (valid.notErrors(this.state.errors)) {
+      onToggleBackdrop();
       let editAnimal = {};
       for (let name in myAdoter) {
         if (myAdoter[name] !== adopter[_.snakeCase(name)]) {
@@ -119,15 +124,10 @@ class EditAdopterModal extends Component {
     }
   }
 
-  onClose() {
-    this.props.actions.cancelAdopterForm();
-    this.props.onClose();
-  }
-
   render() {
     let { adopter, errors, loading } = this.state;
     const localErrors = !valid.notErrors(errors);
-     const loadingView = (
+    const loadingView = (
       <div className="loading-container">
         <Spinner spinnerName="three-bounce" noFadeIn />
       </div>);
@@ -135,7 +135,7 @@ class EditAdopterModal extends Component {
         <AdopterFormEdit adopter={adopter}
                           onSave={this.onSubmit}
                           onChange={this.onChange}
-                          onCancel={this.onClose}
+                          onCancel={this.props.onClose}
                           errors={localErrors ? errors : this.props.errors}/>
     );
     const getView = () => {
@@ -163,6 +163,7 @@ EditAdopterModal.propTypes = {
   errors: object.isRequired,
   success: bool.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   actions: object.isRequired
 };
 

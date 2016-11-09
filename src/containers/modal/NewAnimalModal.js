@@ -67,7 +67,6 @@ class NewAnimalModal extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onDeleteImage = this.onDeleteImage.bind(this);
     this.onDropProfile = this.onDropProfile.bind(this);
@@ -83,7 +82,7 @@ class NewAnimalModal extends Component {
       if (this.state.images.length === 0) {
         this.props.actions.loadAnimals(15, 1);
         toastr.success('', messages.SUCCES_CREATE_ANIMAL);
-        this.onClose();
+        this.props.onClose();
       } else if (this.state.images_to_send) {
         let success_upload = this.state.success_uploading_images;
         let noMoreImages = nextProps.sended_images === this.state.images_to_send;
@@ -100,7 +99,7 @@ class NewAnimalModal extends Component {
           } else {
             toastr.error('Galeria', messages.GALLERY_LOAD_ERROR);
           }
-          this.onClose();
+          this.props.onClose();
         }
       } else {
         this.sendImages();
@@ -158,6 +157,7 @@ class NewAnimalModal extends Component {
     e.preventDefault();
     this.validateForm(this.state.animal);
     if (valid.notErrors(this.state.errors)) {
+      this.props.onToggleBackdrop();
       this.setState({ loading: true });
       this.props.actions.sendAnimalForm(this.state.animal);
     }
@@ -188,11 +188,6 @@ class NewAnimalModal extends Component {
       animal["profile_image"] = upload.target.result;
       this.setState({ animal });
     };
-  }
-
-  onClose() {
-    this.props.actions.cancelAnimalForm();
-    this.props.onClose();
   }
 
   onDrop(images) {
@@ -226,7 +221,7 @@ class NewAnimalModal extends Component {
                                 profilePic={this.state.profilePic}
                                 onSave={this.onSubmit}
                                 onChange={this.onChange}
-                                onCancel={this.onClose}
+                                onCancel={this.props.onClose}
                                 onDrop={this.onDrop}
                                 onDelete={this.onDeleteImage}
                                 onDropProfile={this.onDropProfile}
@@ -257,6 +252,7 @@ NewAnimalModal.propTypes = {
   errors: object.isRequired,
   success: bool.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   species: array.isRequired,
   id: string.isRequired,
   sended_images: number.isRequired,

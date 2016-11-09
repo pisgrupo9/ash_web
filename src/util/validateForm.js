@@ -1,9 +1,10 @@
 import * as messages from '../constants/apiMessage';
 import * as stringValid from './StringValidate';
 import moment from 'moment';
+import _ from 'lodash';
 
 export const validateEmptyField = (value) => {
-  return value ? '' : messages.ERROR_REQUIRED_FIELD;
+  return _.trim(value) ? '' : messages.ERROR_REQUIRED_FIELD;
 };
 
 export const notErrors = (errors) => {

@@ -10,9 +10,14 @@ class EditAdopterButton extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = { showModal: false };
+    this.state = {
+      showModal: false,
+      backdrop: true
+    };
+
     this.onClose = this.onClose.bind(this);
     this.onOpen = this.onOpen.bind(this);
+    this.onToggleBackdrop = this.onToggleBackdrop.bind(this);
   }
 
   onClose() {
@@ -20,36 +25,38 @@ class EditAdopterButton extends Component {
   }
 
   onOpen() {
-    this.setState({ showModal: true });
+    this.setState({ showModal: true, backdrop: true });
+  }
+
+  onToggleBackdrop() {
+    const { backdrop } = this.state;
+    this.setState({ backdrop: !backdrop });
   }
 
   render() {
     const { loading, adopter, adopterId, userPermission } = this.props;
+    let { showModal, backdrop } = this.state;
+    let { onClose, onOpen, onToggleBackdrop } = this;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-                      <div>
-                        <button
-                          className="btn-rec adopter bg-orange-color"
-                          data-tip data-for="edit-adopter"
-                          onClick={this.onOpen}>
-                          <i className="material-icons color">mode_edit</i>
-                        </button>
-                       <ReactTooltip id="edit-adopter" delayShow={500} place="top" type="warning" effect="solid">
-                            {message.TOOLTIP_EDIT_ADOPTER}
-                        </ReactTooltip>
-                        <Modal show={this.state.showModal} onHide={this.onClose} bsSize="large">
-                          <EditAdopterModal
-                            loading={loading}
-                            onClose={this.onClose}
-                            adopter={adopter}
-                            adopterId={adopterId}/>
-                        </Modal>
-                      </div>
-                    );
+      <div>
+        <button className="btn-rec adopter bg-orange-color"
+                data-tip data-for="edit-adopter"
+                onClick={onOpen}>
+          <i className="material-icons color">mode_edit</i>
+        </button>
+       <ReactTooltip id="edit-adopter" delayShow={500} place="top" type="warning" effect="solid">
+            {message.TOOLTIP_EDIT_ADOPTER}
+        </ReactTooltip>
+        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="large">
+          <EditAdopterModal {...{ loading, onClose, onToggleBackdrop, adopter, adopterId }} />
+        </Modal>
+      </div>
+    );
 
     return (
       <div>
-        { showButton ? button : '' }
+        { showButton && button }
       </div>
     );
   }

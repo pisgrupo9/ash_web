@@ -16,15 +16,15 @@ class DeleteAnimalModal extends Component {
     };
 
     this.onSubmit = this.onSubmit.bind(this);
-    this.onClose = this.onClose.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.success ) {
-      this.onClose();
+      this.props.onClose();
       toastr.info('', messages.DELETE_ANIMAL_SUCCESS);
       browserHistory.push('/');
     } else if (nextProps.error) {
+      this.props.onToggleBackdrop();
       this.setState({ loading: false });
       toastr.error('', messages.DELETE_ANIMAL_ERROR);
     }
@@ -32,13 +32,9 @@ class DeleteAnimalModal extends Component {
 
   onSubmit() {
     this.setState({ loading: true });
-    const { animalId, actions } = this.props;
+    const { animalId, actions, onToggleBackdrop } = this.props;
+    onToggleBackdrop();
     actions.deleteAnimal(animalId);
-  }
-
-  onClose() {
-    this.props.actions.cancelAnimalForm();
-    this.props.onClose();
   }
 
   render() {
@@ -58,7 +54,7 @@ class DeleteAnimalModal extends Component {
           <button onClick={this.onSubmit} className="btn">
             ELIMINAR
           </button>
-          <button onClick={this.onClose} className="btn cancel-button">
+          <button onClick={this.props.onClose} className="btn cancel-button">
             CANCELAR
           </button>
         </div>
@@ -80,6 +76,7 @@ DeleteAnimalModal.propTypes = {
   success: bool.isRequired,
   animalId: string.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   actions: object.isRequired
 };
 

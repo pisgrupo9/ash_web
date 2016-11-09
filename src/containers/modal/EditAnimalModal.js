@@ -74,7 +74,6 @@ class EditAnimalModal extends Component {
     this.validateForm = this.validateForm.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.onClose = this.onClose.bind(this);
     this.onDropProfile = this.onDropProfile.bind(this);
   }
 
@@ -85,23 +84,21 @@ class EditAnimalModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.success) {
+      this.props.onToggleBackdrop();
       this.props.loading();
-      this.onClose();
+      this.props.onClose();
     }
     if (Object.keys(nextProps.errors).length === 0) {
       let animal = Object.assign({}, this.state.animal, this.props.animal);
       this.setState({ animal: animal });
+    } else {
+      this.props.onToggleBackdrop();
     }
     this.setState({ loading: false });
   }
 
   componentWillUnmount() {
     this.props.animalActions.cancelAnimalForm();
-  }
-
-  onClose() {
-    this.props.animalActions.cancelAnimalForm();
-    this.props.onClose();
   }
 
   isDateType(name) {
@@ -151,10 +148,11 @@ class EditAnimalModal extends Component {
         }
       }
       if (JSON.stringify(animalNew) != "{}") {
+        this.props.onToggleBackdrop();
         this.props.animalActions.editAnimal(this.props.routeId, { animal: animalNew });
         this.setState({ loading: true });
       } else {
-        this.onClose();
+        this.props.onClose();
       }
     }
   }
@@ -196,7 +194,7 @@ class EditAnimalModal extends Component {
                                     species={this.props.species}
                                     profilePic={this.state.profilePic}
                                     onSave={this.onSubmit}
-                                    onClose={this.onClose}
+                                    onClose={this.props.onClose}
                                     onChange={this.onChange}
                                     onDropProfile={this.onDropProfile}
                                     errors={localErrors ? this.state.errors : this.props.errors}/>
@@ -220,6 +218,7 @@ EditAnimalModal.propTypes = {
   errors: object.isRequired,
   species: array.isRequired,
   onClose: func.isRequired,
+  onToggleBackdrop: func.isRequired,
   animalActions: object.isRequired,
   animal: object.isRequired,
   routeId: string.isRequired,
