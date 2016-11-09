@@ -39,25 +39,25 @@ class EditAdopterButton extends Component {
     let { onClose, onOpen, onToggleBackdrop } = this;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-      <div>
+      <span>
         <button className="btn-rec adopter bg-orange-color"
                 data-tip data-for="edit-adopter"
                 onClick={onOpen}>
           <i className="material-icons color">mode_edit</i>
         </button>
-       <ReactTooltip id="edit-adopter" delayShow={500} place="top" type="warning" effect="solid">
+        <ReactTooltip id="edit-adopter" delayShow={500} place="top" type="warning" effect="solid">
             {message.TOOLTIP_EDIT_ADOPTER}
         </ReactTooltip>
-        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="large">
-          <EditAdopterModal {...{ loading, onClose, onToggleBackdrop, adopter, adopterId }} />
-        </Modal>
-      </div>
+      </span>
     );
 
     return (
-      <div>
+      <span>
         { showButton && button }
-      </div>
+        <Modal show={showModal} backdrop={backdrop || 'static'} onHide={onClose} bsSize="large">
+          <EditAdopterModal {...{ loading, onClose, onToggleBackdrop, adopter, adopterId }} />
+        </Modal>
+      </span>
     );
   }
 }

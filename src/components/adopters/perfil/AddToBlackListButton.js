@@ -44,7 +44,7 @@ class AddToBlackListButton extends Component {
     const { userPermission } = this.props;
     const showButton = util.editAdopterPerfil(userPermission);
     const button = (
-      <div>
+      <span>
         <button
           className="btn-rec blacklisted bg-orange-color"
           onClick={this.addToBlackList}
@@ -54,13 +54,13 @@ class AddToBlackListButton extends Component {
         <ReactTooltip id="add-blacklist" delayShow={500} place="top" type="warning" effect="solid">
           {message.TOOLTIP_ADD_ADOPTER_BLACKLIST}
         </ReactTooltip>
-      </div>
+      </span>
     );
 
     return (
-      <div className="btn-edit-adopter">
+      <span>
         { showButton ? button : '' }
-      </div>
+      </span>
     );
   }
 }
