@@ -85,11 +85,9 @@ class Header extends Component {
             </Link>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-            <Link to="/perfil" onClick={this.onClickLink}>
-              <i className="material-icons">account_circle</i>
-              <span className="header-span"> Hola {this.props.user.first_name}</span>
-            </Link>
-              <span className="header-span">&nbsp;|&nbsp;</span>
+            <i className="material-icons">account_circle</i>
+            <span className="header-span"> Hola {this.props.user.first_name}</span>
+            <span className="header-span">&nbsp;|&nbsp;</span>
             <button className="logout-button" onClick={this.onClickLogout}>SALIR</button>
           </ul>
         </Navbar.Collapse>
