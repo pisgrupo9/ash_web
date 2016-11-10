@@ -7,35 +7,49 @@ import '../../../styles/animal-perfil.scss';
 class EditProfileDropzone extends Component {
   constructor(props, context) {
     super(props, context);
+    this.state = {
+      click: false
+    };
+
     this.onOpenClick = this.onOpenClick.bind(this);
   }
 
   onOpenClick() {
-    this.dropzone.open();
+    const { click } = this.state;
+    if (!click) {
+      this.dropzone.open();
+      this.setState({ click: true });
+      const timeout = () => {
+        this.setState({ click: false });
+      };
+      setTimeout( timeout, 1000);
+    }
   }
 
   render() {
-    const image = (<img className="profile-image" src={this.props.profilePic.preview} />);
+    const perfImage = (<Image className="edit-profile-image" src={this.props.animal.profile_image} rounded />);
+    const { preview } = this.props.profilePic;
+    const image = (<img className="profile-image" src={preview} />);
     const no_image = (<i className="material-icons">add_a_photo</i> );
     const picture = Object.keys(this.props.profilePic).length === 0 ? no_image : image;
-    let drop = (<Dropzone className="profile-dropzone"
+    let dropStyleClass = preview ? 'profile-dropzone' : 'profile-dropzone-not-bordes';
+    let drop = (<Dropzone className={dropStyleClass}
                         activeClassName="dropzone-active"
                         ref={(node) => {
                           this.dropzone = node;
                         }}
                         onDrop={this.props.onDrop}
                         multiple={false}
+                        disableClick={true}
                         accept="image/*"
                         >
-                    <div> {picture} </div>
+                    <div className="click-div" onClick={this.onOpenClick}>
+                      {preview ? picture : perfImage}
+                    </div>
                   </Dropzone>);
-    let perfImage = (<div className="edit-image-container">
-                      <Image className="edit-profile-image" src={this.props.animal.profile_image} rounded />
-                    </div>);
     return (
       <div className="edit-dropzone">
-        <p>Foto de perfil</p>
-          { perfImage }
+        <p>Foto de perfil {preview && '(editada)'}</p>
         <div className="drop-visible-container">
           {drop}
         </div>
