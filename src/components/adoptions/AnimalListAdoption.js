@@ -70,7 +70,7 @@ class AnimalListAdoption extends Component {
     let showViewMore = this.state.currPage < animals.totalPages;
 
     return (
-      <div className="general-list-link">
+      <div className="general-list-link adoption-list">
         <AnimalAdoptionHeader animalCount={this.props.checkedAnimals.length}
                               onStartLoading={this.onStartLoading}/>
         <AnimalList animals={animals.animals}

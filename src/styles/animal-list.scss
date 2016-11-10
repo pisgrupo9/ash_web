@@ -1,10 +1,11 @@
 $grey: #e6e6e6;
 $light-grey: #f7f7f7;
 $dark-grey: #9b9b9b;
-$orange: #f44;
+$orange: #e8a948;
 $dark-orange: #f60;
 $black: #4a4a4a;
 $red: #f00;
+$red-light: #f44;
 
 .flex-title {
   display: flex;
@@ -227,6 +228,10 @@ $red: #f00;
   float: right;
 }
 
+.form-group.not-margin {
+  margin: 0;
+}
+
 .arrow-button {
   margin-left: 5px;
   margin-right: 5px;
@@ -280,7 +285,7 @@ $red: #f00;
 }
 
 .not-adopted-animal {
-  color: $orange;
+  color: $red-light;
 }
 
 .link-style {
@@ -350,3 +355,23 @@ $red: #f00;
   font-size: 12px;
   margin-left: 3px;
 }
+
+.adoption-list .not-adopted-animal {
+  color: $orange;
+}
+
+.adopter-search-container {
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: flex-start;
+  align-self: flex-start;
+  flex: 1;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.adopter-search-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+

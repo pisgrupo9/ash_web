@@ -51,8 +51,8 @@ class AdopterSearch extends Component {
     let { name } = this.state.filter;
 
     return (
-      <div className="event-search-container">
-        <Input styleClass="filter-event-field grey-color"
+      <div className="adopter-search-container">
+        <Input styleClass="filter-event-field grey-color not-margin"
                 name="name"
                 placeholder="Nombre"
                 type="text"
