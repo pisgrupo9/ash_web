@@ -39,7 +39,9 @@ const MiniInfoPerfil = ({ animal }) => {
       <div className="flex-items">
         <div className="vertical-flex-container">
           <div className="vertical-flex bottom-border titles-font">Peso</div>
-          <div className="vertical-flex dark-grey-color">{animal.weight ? animal.weight : 'N/A'}</div>
+          <div className="vertical-flex dark-grey-color">
+            {animal.weight ? animal.weight.toString().concat(' KG') : 'N/A'}
+          </div>
         </div>
       </div>
       {catDog ? castrated : ''}

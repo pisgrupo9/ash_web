@@ -3,12 +3,10 @@ import moment from 'moment';
 
 const ReportItem = ({ report }) => {
 
-  let estado = (report.state);
+  let name = (report.name);
   if (report.url) {
-    estado = (<a id="downloadFiled"
-            href={report.url}
-            download="yourfilename">
-            {report.state}
+    name = (<a id="downloadFiled" href={report.url} download="yourfilename">
+            {report.name}
             </a>);
   }
   let pdf = <div className="report-type-pdf"> PDF </div>;
@@ -16,9 +14,9 @@ const ReportItem = ({ report }) => {
   return (
       <div className="report-titles-container-item report-item">
         <div className="report-inside">{moment(report.generated_date).format('D-M-YYYY h:mm:ss')}</div>
-        <div className="report-inside">{report.name}</div>
+        <div className="report-inside">{name}</div>
         <div className="report-inside-type">{report.type_file === 'pdf' ? pdf : xls }</div>
-        <div className="report-inside">{estado}</div>
+        <div className="report-inside">{report.state}</div>
       </div>
   );
 };
