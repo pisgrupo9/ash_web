@@ -4,9 +4,9 @@ import { Col, Row } from 'react-bootstrap';
 import Spinner from 'react-spinkit';
 
 const UpdatePassForm = ({ form, error, onChange, loading, onSubmit }) => {
-  const submitButton = (<input type="button" className="btn user-submit-btn bg-orange-color" value="CONFIRMAR" onClick={onSubmit}/>);
+  const submitButton = (<input type="button" className="btn submit-btn" value="CONFIRMAR" onClick={onSubmit}/>);
 
-  const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
+  const loadingButton = (<div className="btn submit-btn">
                           <Spinner spinnerName="three-bounce" noFadeIn />
                          </div>);
 

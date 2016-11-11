@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import AddAnimalButton from './AddAnimalButton.js';
 import { ButtonGroup } from 'react-bootstrap';
 
-const AnimalListHeader = ({ exportXLS, exportPDF }) => {
+const AnimalListHeader = ({ exportXLS, exportPDF, animalsLength }) => {
   return (
     <div className="animal-header">
       <div className="float-left">
@@ -13,21 +13,24 @@ const AnimalListHeader = ({ exportXLS, exportPDF }) => {
           className="btn btn-export bg-orange-color"
           onClick={exportPDF}> PDF
         </button>
-        <button
-          className="btn btn-export bg-dark-grey-color"
-          onClick={exportXLS}> XLS
-        </button>
+        { animalsLength > 0 &&
+          <button
+            className="btn btn-export bg-dark-grey-color"
+            onClick={exportXLS}> XLS
+          </button>
+        }
       </ButtonGroup>
       <AddAnimalButton />
     </div>
   );
 };
 
-const { func } = PropTypes;
+const { func, number } = PropTypes;
 
 AnimalListHeader.propTypes = {
   exportXLS: func.isRequired,
-  exportPDF: func.isRequired
+  exportPDF: func.isRequired,
+  animalsLength: number.isRequired
 };
 
 export default AnimalListHeader;

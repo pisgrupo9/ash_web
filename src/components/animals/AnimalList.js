@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import AnimalItem from "./AnimalItem";
 import '../../styles/animal-list.scss';
 import SpinnerComponent from '../common/SpinnerComponent';
+import _ from 'lodash';
 
 const AnimalList = ({ animals, onClick, onCheck, selectedAnimalId, checkedAnimals, showViewMore, onClickViewMore, loading, loadingList }) => {
   const spinner = (<SpinnerComponent active={loading} />);
@@ -22,12 +23,14 @@ const AnimalList = ({ animals, onClick, onCheck, selectedAnimalId, checkedAnimal
 
   return (
     <div>
-      <div className={onCheck ? "titles-container-adoption" : "titles-container"}>
-        <div className="title-inside">NOMBRE</div>
-        <div className="title-inside">ESPECIE</div>
-        <div className="title-inside">ESTADO</div>
-        { !onCheck && (<div className="title-ficha">FICHA</div>) }
-      </div>
+      { !_.isEmpty(animals) &&
+        <div className={onCheck ? "titles-container-adoption" : "titles-container"}>
+          <div className="title-inside">NOMBRE</div>
+          <div className="title-inside">ESPECIE</div>
+          <div className="title-inside">ESTADO</div>
+          { !onCheck && (<div className="title-ficha">FICHA</div>) }
+        </div>
+      }
       { !loadingList && animalsList }
       <div className="view-more-container">
         {loading ? spinner : showViewMore ?

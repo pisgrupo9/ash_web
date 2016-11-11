@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import AdopterItem from "./AdopterItem";
 import '../../styles/animal-list.scss';
 import '../../styles/adopter-list.scss';
+import _ from 'lodash';
 import SpinnerComponent from '../common/SpinnerComponent';
 
 const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onClickViewMore, loading, loadingList, addToBlackList, userPermission }) => {
@@ -24,10 +25,12 @@ const AdopterList = ({ adopters, onClick, selectedAdopterId, showViewMore, onCli
   }
   return (
     <div className="list-container">
-      <div className="titles-container m-top20">
-        <div className="title-inside">NOMBRE</div>
-        <div className="title-status">STATUS</div>
-      </div>
+      { !_.isEmpty(adopters) &&
+        <div className="titles-container m-top20">
+          <div className="title-inside">NOMBRE</div>
+          <div className="title-status">STATUS</div>
+        </div>
+      }
       { loadingList ? spinnerList :
         <div>
           {adopterShowList}

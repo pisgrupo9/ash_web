@@ -54,15 +54,30 @@ class DatePickerInput extends Component {
                           onChange={onChange}
                           />);
 
-    const webView = (<DatePicker
-                      className="form-control date-picker"
+    const webView = () => {
+      if (isMonthType) {
+        return (
+          <DatePicker className="form-control date-picker"
                       dateFormat={dateFormat}
+                      showYearDropdown
                       locale="es"
                       selected={dateValue}
                       placeholderText={placeholder}
-                      onChange={this.onChange} />);
+                      onChange={this.onChange} />
+        );
+      } else {
+        return (
+            <DatePicker className="form-control date-picker"
+                        dateFormat={dateFormat}
+                        locale="es"
+                        selected={dateValue}
+                        placeholderText={placeholder}
+                        onChange={this.onChange} />
+        );
+      }
+    };
 
-    return mobileSize ? mobileView : webView;
+    return mobileSize ? mobileView : webView();
   }
 }
 

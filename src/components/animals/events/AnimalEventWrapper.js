@@ -95,7 +95,9 @@ class AnimalEventWrapper extends Component {
 
     return (
       <div className="general-event-list">
-        <AnimalEventHeader animalId={this.props.animalId} onXlsExport={this.exportXls}/>
+        <AnimalEventHeader animalId={this.props.animalId}
+                            onXlsExport={this.exportXls}
+                            eventsLength={events.events.length}/>
         { events.searchReady ? spinner : eventList}
       </div>
     );

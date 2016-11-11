@@ -5,7 +5,8 @@ $orange: #e8a948;
 $dark-orange: #f60;
 $black: #4a4a4a;
 $red: #f00;
-$red-light: #f44;
+$red-light: #ff6f59;
+$green: #43aa8b;
 
 .flex-title {
   display: flex;
@@ -281,7 +282,7 @@ $red-light: #f44;
 }
 
 .adopted-animal {
-  color: green;
+  color: $green;
 }
 
 .not-adopted-animal {

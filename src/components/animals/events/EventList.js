@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import EventItem from "./EventItem";
 import '../../../styles/animal-list.scss';
+import _ from 'lodash';
 import SpinnerComponent from '../../common/SpinnerComponent';
 
 const EventList = ({ events, infoEvent, onClick, selectedEventId, showViewMore, onClickViewMore, loading, loadingMore, loadingEvent }) => {
@@ -8,32 +9,39 @@ const EventList = ({ events, infoEvent, onClick, selectedEventId, showViewMore, 
   const spinnerMore = (<SpinnerComponent active={loadingMore} />);
   return (
     <div>
-      <div className="event-titles-container">
-        <div className="title-inside">EVENTO</div>
-        <div className="event-title-inside">FECHA</div>
-      </div>
+      { !_.isEmpty(events) &&
+        <div className="event-titles-container">
+          <div className="title-inside">EVENTO</div>
+          <div className="event-title-inside">FECHA</div>
+        </div>
+      }
       {loading ? spinner
-                : <div className="events-container">
-                    {events.length == 0 ? <div className="empty-events-container">
-                    <p> No hay eventos </p>
-                  </div>
-                                        : <div>
-                                          { events.map(event => {
-                                            return (
-                                              <EventItem event={event}
-                                                          infoEvent={infoEvent}
-                                                          key={event.id}
-                                                          selectedEventId={selectedEventId}
-                                                          onClick={onClick}
-                                                          loading={loadingEvent} />
-                                            );
-                                          })}
-                                          <div className="view-more-container">
-                                            {loadingMore ? spinnerMore : showViewMore ?
-                                            <button className="button-show view-more-button" onClick={onClickViewMore}> Ver Más </button>: ''}
-                                          </div>
-                                        </div>}
-                  </div>}
+        :
+        <div className="events-container">
+          {events.length == 0 ?
+            <div className="empty-events-container">
+              <p> No hay eventos </p>
+            </div>
+            :
+            <div>
+              { events.map(event => {
+                return (
+                  <EventItem event={event}
+                              infoEvent={infoEvent}
+                              key={event.id}
+                              selectedEventId={selectedEventId}
+                              onClick={onClick}
+                              loading={loadingEvent} />
+                );
+              })}
+              <div className="view-more-container">
+                {loadingMore ? spinnerMore : showViewMore ?
+                  <button className="button-show view-more-button" onClick={onClickViewMore}>
+                    Ver Más
+                  </button> : ''}
+              </div>
+            </div>}
+        </div>}
     </div>
   );
 };
