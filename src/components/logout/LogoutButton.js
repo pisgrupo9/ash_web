@@ -8,7 +8,7 @@ const LogoutButton = ({ onClickLogout }) => {
         <div className="span7 text-center">
           <input
             type="button"
-            className="btn user-submit-btn bg-orange-color"
+            className="btn submit-btn"
             value="SALIR"
             onClick={onClickLogout}/>
         </div>

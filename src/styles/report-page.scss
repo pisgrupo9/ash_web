@@ -1,7 +1,8 @@
 $white: #fff;
 $grey: #f7f7f7;
 $dark-grey: #9b9b9b;
-$reddish: #e63900;
+$reddish: #ff6f59;
+$green: #43aa8b;
 $middle-grey: #e6e6e6;
 
 .report-page {
@@ -79,5 +80,5 @@ $middle-grey: #e6e6e6;
 }
 
 .report-type-xls {
-  color: green;
+  color: $green;
 }

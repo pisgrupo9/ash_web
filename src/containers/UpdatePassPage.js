@@ -96,16 +96,16 @@ class UpdatePassPage extends Component {
   }
 
   render() {
-    const title = 'Restablecer Password';
+    const title = 'Restablecer Contraseña';
     let error = (this.props.userForm && this.props.userForm.errorPass ? this.props.userForm.errorPass : undefined);
     return (
       <LoginBox>
         <LogoHeader title={title}/>
         <UpdatePassForm form={this.form}
-                    error={error}
-                    onChange={this.onChange}
-                    loading={this.state.loading}
-                    onSubmit={this.onSubmit}/>
+                        error={error}
+                        onChange={this.onChange}
+                        loading={this.state.loading}
+                        onSubmit={this.onSubmit}/>
         <div className="link-wrapper">
           <Link to="login" className="form-link">
             Ingresar

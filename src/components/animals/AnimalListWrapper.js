@@ -110,9 +110,9 @@ class AnimalListWrapper extends Component {
     const showViewMore = this.state.currPage < animals.totalPages;
     return (
       <div className="general-list">
-        <AnimalListHeader
-          exportXLS={this.exportXls}
-          exportPDF={this.exportPdf}
+        <AnimalListHeader exportXLS={this.exportXls}
+                          exportPDF={this.exportPdf}
+                          animalsLength={animals.animals.length}
         />
         {animals.searchReady ?
          <SpinnerComponent active={animals.searchReady} />

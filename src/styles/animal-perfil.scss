@@ -7,6 +7,8 @@ $dark: #4a4a4a;
 $shadow: #888;
 $dark-orange: #f60;
 $ligth-dark-gery: #5d5d5d;
+$red: #ff6f59;
+$green: #43aa8b;
 
 .profile-page-flex {
   display: flex;
@@ -234,4 +236,12 @@ a.adopted-animal {
 
 .delete-button-wrapper {
   float: left;
+}
+
+.positive-animal {
+  color: $green;
+}
+
+.negative-animal {
+  color: $red;
 }

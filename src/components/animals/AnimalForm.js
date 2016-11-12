@@ -90,6 +90,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                 name="birthdate"
                 label="Fecha de Nacimiento *"
                 type="month"
+                placeholder="MM/AA"
                 value={animal.birthdate}
                 onChange={onChange}
                 error={errors.birthdate}

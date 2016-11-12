@@ -33,7 +33,11 @@ const LoginForm = ({ form, error, onChange, loading, onSubmit, onKeyPress }) => 
                   onKeyPress={onKeyPress}
                   error={form.pass.error}/>
           { loading ? loadingButton : submitButton}
-          <p className="remLink"><Link to="reset" className="dark-grey-color">Olvide mi Contraseña</Link></p>
+          <p className="remLink">
+            <Link to="reset" className="dark-grey-color">
+              Olvide mi Contraseña
+            </Link>
+          </p>
         </div>
       </Col>
     </Row>

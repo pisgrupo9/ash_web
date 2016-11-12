@@ -67,14 +67,18 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 {especieOption &&
                 <tr>
                   <td>VACUNADO:</td>
-                  <td>{animal.vaccines ? <font color="green"> SI </font> : <font color="red"> NO </font>}
-                  </td>
+                  {animal.vaccines ?
+                    <td className="positive-animal"> SI </td> :
+                    <td className="negative-animal"> NO </td>
+                  }
                 </tr>}
                 {especieOption &&
                 <tr>
                   <td>CASTRADO:</td>
-                  <td>{animal.castrated ? <font color="green"> SI </font> : <font color="red"> NO </font>}
-                  </td>
+                  {animal.castrated ?
+                    <td className="positive-animal"> SI </td> :
+                    <td className="negative-animal"> NO </td>
+                  }
                 </tr>}
                 {especieOption &&
                 <tr>
@@ -82,7 +86,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                   <td>{animal.adopted ?
                     <Link className="adopted-animal"
                     to={`/adoptantes/${animal.adopter_id}`}> ADOPTADO </Link>
-                    : <font color="red"> EN ADOPCIÓN </font>}
+                    : <font className="negative-animal"> EN ADOPCIÓN </font>}
                   </td>
                 </tr>}
               </tbody>

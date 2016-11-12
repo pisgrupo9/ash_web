@@ -7,7 +7,7 @@ const ResetForm = ({ form, error, onChange, onSubmit, loading }) => {
 
   const submitButton = (<input type="button" className="btn submit-btn" value="Enviar Mail" onClick={onSubmit}/>);
 
-  const loadingButton = (<div className="btn user-submit-btn bg-orange-color">
+  const loadingButton = (<div className="btn submit-btn">
                          <Spinner spinnerName="three-bounce" noFadeIn />
                         </div>);
   return (
