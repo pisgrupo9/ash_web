@@ -4,7 +4,7 @@ import Spinner from '../../common/SpinnerComponent';
 import '../../../styles/animal-list.scss';
 import '../../../styles/adopter-perfil.scss';
 
-const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading }) => {
+const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading, blacklisted }) => {
   let animalsList;
   if (animals && animals.length) {
     animalsList = animals.map(animal => {
@@ -15,7 +15,10 @@ const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading }) => {
       );
     });
   } else {
-    animalsList = <div className="no-result-search">El adoptante no tiene animales a su cargo</div>;
+    animalsList = (<div className="no-result-search">
+                    {blacklisted ? "El adoptante se encuentra en la lista negra"
+                                          : "El adoptante no tiene animales a su cargo"}
+                  </div>);
   }
   return (
     <div className="adopted-container">
@@ -39,7 +42,8 @@ AdopterAnimals.propTypes = {
   animals: array,
   onClick: func.isRequired,
   selectedAnimalId: string.isRequired,
-  loading: bool.isRequired
+  loading: bool.isRequired,
+  blacklisted: bool.isRequired
 };
 
 export default AdopterAnimals;
