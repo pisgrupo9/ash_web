@@ -86,7 +86,7 @@ $ligth-dark-gery: #5d5d5d;
 
 .perfil-box {
   height: 100%;
-  max-height: 810px;
+  max-height: 850px;
   font-size: 14px;
   font-family: Roboto;
   color: $dark;
@@ -138,6 +138,7 @@ $ligth-dark-gery: #5d5d5d;
 
 .perfil-image {
   width: 100%;
+  object-fit: cover;
   max-height: 440px;
   border: 1px solid $dark-grey;
 }
@@ -214,6 +215,7 @@ $ligth-dark-gery: #5d5d5d;
 }
 
 .edit-profile-image {
+  object-fit: cover;
   width: 140px;
   height: 140px;
 }

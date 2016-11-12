@@ -35,8 +35,14 @@ $grey: #e6e6e6;
 .section-title-events {
   color: $black;
   font-size: 19px;
-  margin: 10px 0 25px 10px;
+  margin: 10px 0 15px 10px;
   position: relative;
+}
+
+.section-title-galery {
+  @extend .section-title-events;
+
+  margin: 0 20px;
 }
 
 .event-search-container {

@@ -12,8 +12,8 @@ const ImagesPreview = ({ images, onDelete }) => {
           Vista Previa ({images.length} {multiplePhotos ? 'fotos' : 'foto'})
         </p>
         <div className="images-preview">
-          {images.map((image) => (
-            <div className="image-wrapper" key={image.name}>
+          {images.map((image, index) => (
+            <div className="image-wrapper" key={index}>
               <button className="remove-button" onClick={() => onDelete(image.name)}>
                 <i className="material-icons remove-icon">highlight_off</i>
               </button>

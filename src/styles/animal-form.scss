@@ -104,6 +104,14 @@ $dark-orange: #f60;
   }
 }
 
+.adopter-input-desc {
+  @extend .animal-input;
+
+  textarea {
+    resize: none;
+  }
+}
+
 .profile-animal-input {
   order: 1;
   flex: 1 1 auto;
