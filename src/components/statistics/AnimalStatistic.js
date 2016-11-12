@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Pie } from 'react-chartjs';
 import SpinnerComponent from '../common/SpinnerComponent';
+import Legend from './Legend';
 
 const AnimalStatistic = ({ info, loading, options }) => {
   const spinner = (<SpinnerComponent active={loading} />);
@@ -9,6 +10,7 @@ const AnimalStatistic = ({ info, loading, options }) => {
     <div>
       <div className="statistic-title">Cantidad de animales en el sistema por especie:</div>
       { loading ? spinner : pieChart }
+      { !loading && (<Legend info={info} />) }
     </div>
   );
 };

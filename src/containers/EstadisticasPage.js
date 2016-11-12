@@ -19,13 +19,13 @@ class EstadisticasPage extends Component {
 
     this.state = {
       datesAdoption: {
-        startDate: '',
-        endDate: ''
+        startDate: moment().subtract(3, 'months').format("YYYY-MM-DD"),
+        endDate: moment().format("YYYY-MM-DD")
       },
       infoSpecies: {
-        startDate: '',
-        endDate: '',
-        specie: ''
+        startDate: moment().subtract(3, 'months').format("YYYY-MM-DD"),
+        endDate: moment().format("YYYY-MM-DD"),
+        specie: '1'
       },
       loadingBar: true,
       loadingPie: true,
@@ -48,7 +48,8 @@ class EstadisticasPage extends Component {
         startDate: '',
         endDate: '',
         specie: ''
-      }
+      },
+      legend: ''
     };
 
     this.onChangeAdoption = this.onChangeAdoption.bind(this);
@@ -86,7 +87,7 @@ class EstadisticasPage extends Component {
         endDate: messages.ERROR_GREATER_DATE("inicio")
       };
       this.setState({ adoptionErrors });
-    } else if (valid.validateDateStatistic(startDate, endDate)) {
+    } else if (valid.validateDateStatistic(endDate) && valid.validateDateStatistic(startDate)) {
       let adoptionErrors = { startDate: '', endDate: '' };
       this.setState({ adoptionErrors, loadingBar: true });
       this.props.actions.loadAdoptionStatistic(startDate, endDate);
@@ -95,8 +96,10 @@ class EstadisticasPage extends Component {
       showDatesAdoption.endDate = endDate;
       this.setState({ showDatesAdoption });
     } else {
-      let startDateError = startDate ? messages.ERROR_STATISTIC_RANGE : messages.ERROR_REQUIRED_FIELD ;
-      let endDateError = endDate ? messages.ERROR_STATISTIC_RANGE : messages.ERROR_REQUIRED_FIELD ;
+      let startDateError = valid.validateDateStatistic(startDate) ? '' : messages.ERROR_LESS_DATE;
+      let endDateError = valid.validateDateStatistic(endDate) ? '' : messages.ERROR_LESS_DATE;
+      startDateError = startDate ? startDateError : messages.ERROR_REQUIRED_FIELD ;
+      endDateError = endDate ? endDateError : messages.ERROR_REQUIRED_FIELD ;
       let adoptionErrors = {
         startDate: startDateError,
         endDate: endDateError
@@ -112,11 +115,11 @@ class EstadisticasPage extends Component {
         endDate: messages.ERROR_GREATER_DATE("inicio")
       };
       this.setState({ speciesErrors });
-    } else if ( !specie ) {
+    } else if (!specie) {
       let speciesErrors = Object.assign({}, this.state.speciesErrors);
-      speciesErrors[specie] = messages.ERROR_REQUIRED_FIELD;
+      speciesErrors.specie = messages.ERROR_REQUIRED_FIELD;
       this.setState({ speciesErrors });
-    } else if (valid.validateDateStatistic(startDate, endDate)) {
+    } else if (valid.validateDateStatistic(endDate) && valid.validateDateStatistic(startDate)) {
       let speciesErrors = { startDate: '', endDate: '' };
       this.setState({ speciesErrors, loadingLine: true });
       this.props.actions.loadSpeciesStatistic(startDate, endDate, specie);
@@ -128,8 +131,10 @@ class EstadisticasPage extends Component {
       };
       this.setState({ showInfoSpecies });
     } else {
-      let startDateError = startDate ? messages.ERROR_STATISTIC_RANGE : messages.ERROR_REQUIRED_FIELD;
-      let endDateError = endDate ? messages.ERROR_STATISTIC_RANGE : messages.ERROR_REQUIRED_FIELD;
+      let startDateError = valid.validateDateStatistic(startDate) ? '' : messages.ERROR_LESS_DATE;
+      let endDateError = valid.validateDateStatistic(endDate) ? '' : messages.ERROR_LESS_DATE;
+      startDateError = startDate ? startDateError : messages.ERROR_REQUIRED_FIELD ;
+      endDateError = endDate ? endDateError : messages.ERROR_REQUIRED_FIELD ;
       let speciesErrors = {
         startDate: startDateError,
         endDate: endDateError
@@ -159,12 +164,12 @@ class EstadisticasPage extends Component {
       responsive: true,
       maintainAspectRatio: true
     };
-    let { adoptionErrors, speciesErrors, datesAdoption, showDatesAdoption, infoSpecies, showInfoSpecies } = this.state;
+    let { adoptionErrors, speciesErrors, datesAdoption, showDatesAdoption, infoSpecies } = this.state;
     let { loadingPie, loadingBar, loadingLine, loadingSpecies } = this.state;
     return (
       <div className="statistic-page-flex">
         <div className="outer-flex">
-          <div className="statistic-div inner-flex pie-div">
+          <div className="statistic-div pie-div">
             <AnimalStatistic info={this.props.animalStat}
                              options={chartOptions}
                              loading={loadingPie} />
@@ -190,7 +195,6 @@ class EstadisticasPage extends Component {
                             endDate={infoSpecies.endDate}
                             specie={infoSpecies.specie}
                             species={this.props.species}
-                            showInfo={showInfoSpecies}
                             onChange={this.onChangeSpecies}
                             onClick={this.onClickRefreshSpecies} />
         </div>

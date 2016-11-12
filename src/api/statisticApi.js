@@ -27,8 +27,8 @@ class StatisticApi {
 export default StatisticApi;
 
 export const parseAnimalStat = (animalStat) => {
-  const color = ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"];
-  const highlight = ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"];
+  const color = ["#ED7506", "#F7464A", "#403075", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360", "#AA6C39"];
+  const highlight = ["#FD9738", "#FF5A5E", "#605292", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774", "#D49A6A"];
   let ret = [];
   for (let i = 0; i < animalStat.length; i++) {
     ret[i] = { value: animalStat[i].animals_count,
