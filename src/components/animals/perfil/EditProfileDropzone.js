@@ -28,28 +28,27 @@ class EditProfileDropzone extends Component {
 
   render() {
     const perfImage = (<Image className="edit-profile-image" src={this.props.animal.profile_image} rounded />);
-    const { preview } = this.props.profilePic;
-    const image = (<img className="profile-image" src={preview} />);
-    const no_image = (<i className="material-icons">add_a_photo</i> );
-    const picture = Object.keys(this.props.profilePic).length === 0 ? no_image : image;
-    let dropStyleClass = preview ? 'profile-dropzone' : 'profile-dropzone-not-bordes';
+    const { profilePic } = this.props;
+    const image = (<img className="profile-image" src={profilePic} />);
+    const noImage = (<i className="material-icons">add_a_photo</i> );
+    const picture = Object.keys(this.props.profilePic).length === 0 ? noImage : image;
+    let dropStyleClass = profilePic ? 'profile-dropzone' : 'profile-dropzone-not-bordes';
     let drop = (<Dropzone className={dropStyleClass}
-                        activeClassName="dropzone-active"
-                        ref={(node) => {
-                          this.dropzone = node;
-                        }}
-                        onDrop={this.props.onDrop}
-                        multiple={false}
-                        disableClick={true}
-                        accept="image/*"
-                        >
-                    <div className="click-div" onClick={this.onOpenClick}>
-                      {preview ? picture : perfImage}
-                    </div>
-                  </Dropzone>);
+                          activeClassName="dropzone-active"
+                          ref={(node) => {
+                            this.dropzone = node;
+                          }}
+                          onDrop={this.props.onDrop}
+                          multiple={false}
+                          disableClick={true}
+                          accept="image/*">
+                  <div className="click-div" onClick={this.onOpenClick}>
+                    {profilePic ? picture : perfImage}
+                  </div>
+                </Dropzone>);
     return (
       <div className="edit-dropzone">
-        <p>Foto de perfil {preview && '(editada)'}</p>
+        <p>Foto de perfil {profilePic && '(editada)'}</p>
         <div className="drop-visible-container">
           {drop}
         </div>
@@ -66,7 +65,7 @@ const { func, object, string } = PropTypes;
 
 EditProfileDropzone.propTypes = {
   onDrop: func.isRequired,
-  profilePic: object.isRequired,
+  profilePic: string.isRequired,
   animal: object.isRequired,
   error: string
 };

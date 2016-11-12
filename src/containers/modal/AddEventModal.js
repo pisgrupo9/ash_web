@@ -12,6 +12,7 @@ import { toastr } from 'react-redux-toastr';
 import * as messages from '../../constants/apiMessage';
 import * as constants from '../../constants/apiConstants';
 import moment from 'moment';
+import loadImage from 'blueimp-load-image';
 
 class AddEventModal extends Component {
   constructor(props, context) {
@@ -38,7 +39,7 @@ class AddEventModal extends Component {
       uploadingImages: false,
       successUploadingImages: true,
       images: [],
-      windowWidth: window.innerWidth
+      imagesPreview: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -84,10 +85,6 @@ class AddEventModal extends Component {
     }
   }
 
-  handleResize() {
-    this.setState({ windowWidth: window.innerWidth });
-  }
-
   sendImages() {
     this.setState({
       imagesToSend: this.state.images.length + this.props.sendedImages
@@ -102,21 +99,33 @@ class AddEventModal extends Component {
     }
   }
 
-  onDrop(images) {
-    let allImages = this.state.images.concat(images);
-    this.setState({
-      images: allImages,
-    });
+  onDrop(imgs) {
+    let { images, imagesPreview } = this.state;
+    for (let image of imgs) {
+      const options = {
+        maxWidth: 300,
+        orientation: true
+      };
+      const updateResults = (img) => {
+        img.name = image.name;
+        imagesPreview.push(img);
+        this.setState({ imagesPreview });
+      };
+      loadImage(image, updateResults, options);
+    }
+    images = images.concat(imgs);
+    this.setState({ images });
   }
 
   onDeleteImage(imageName) {
-    let images = this.state.images;
+    let { images, imagesPreview } = this.state;
     for (let i = 0; i < images.length; i++) {
       if (images[i].name == imageName) {
         images.splice(i, 1);
+        imagesPreview.splice(i, 1);
       }
     }
-    this.setState({ images: images });
+    this.setState({ images, imagesPreview });
   }
 
   validateForm(event) {
@@ -163,7 +172,7 @@ class AddEventModal extends Component {
   }
 
   render() {
-    let { event, images, errors, windowWidth } = this.state;
+    let { event, imagesPreview, errors } = this.state;
     const localErrors = !valid.notErrors(this.state.errors);
     const loadingView = (<div className="loading-container">
                           <Spinner spinnerName="three-bounce" noFadeIn />
@@ -172,7 +181,7 @@ class AddEventModal extends Component {
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> AGREGAR EVENTO </h2>
                       <EventForm event={event}
-                                  images={images}
+                                  images={imagesPreview}
                                   onSave={this.onSubmit}
                                   onChange={this.onChange}
                                   onCancel={this.props.onClose}
@@ -180,7 +189,6 @@ class AddEventModal extends Component {
                                   onDelete={this.onDeleteImage}
                                   onChangeDate={this.handleDateChange}
                                   errors={localErrors ? errors : this.props.errors}
-                                  mobile={windowWidth < 450}
                                   />
                   </div>);
 
