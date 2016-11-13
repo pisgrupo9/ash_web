@@ -3,41 +3,42 @@ import { Line } from 'react-chartjs';
 import SpinnerComponent from '../common/SpinnerComponent';
 import Input from '../common/Input';
 import SelectInput from '../common/SelectInput';
-import moment from 'moment';
 
-const AdoptionStatistic = ({ info, loading, options, startDate, endDate, showInfo, specie, species, errors, onChange, onClick }) => {
+const AdoptionStatistic = ({ info, loading, options, startDate, endDate, specie, species, errors, onChange, onClick }) => {
   const spinner = (<SpinnerComponent active={loading} />);
-  let last3Months = "Cantidad de animales de tipo Perro ingresados en los últimos 3 meses";
-  let startString = moment(showInfo.startDate).format("DD/MM/YYYY");
-  let endString = moment(showInfo.endDate).format("DD/MM/YYYY");
-  let dateDecided = `Cantidad de animales de especie ${showInfo.specie} ingresados del ${startString} al ${endString}`;
+  let title = "Cantidad de animales por especie ingresados en los últimos meses";
   return (
     <div className="species-stat-container">
-      <div className="statistic-title">{ showInfo.startDate === '' ? last3Months : dateDecided }:</div>
-      <div className="adoption-statistic-container">
-        <Input styleClass="stat-input"
-                name="startDate"
-                label="Fecha Inicial"
-                type="date"
-                value={startDate}
-                error={errors.startDate}
-                onChange={onChange} />
-        <Input styleClass="stat-input"
-               name="endDate"
-               label="Fecha Final"
-               type="date"
-               value={endDate}
-               error={errors.endDate}
-               onChange={onChange} />
-        <SelectInput styleClass="stat-input"
-                     name="specie"
-                     label="Especie"
-                     defaultOption="Especie"
-                     value={specie}
-                     onChange={onChange}
-                     options={species} />
-        <div className="redraw-chart-button">
-          <button className="button-show" onClick={onClick}><i className="material-icons">play_arrow</i></button>
+      <div className="statistic-title">{title}:</div>
+      <div className="species-statistic-container">
+        <div className="dates-flex">
+          <Input styleClass="stat-input-species"
+                  name="startDate"
+                  type="date"
+                  label="Fecha Inicial"
+                  value={startDate}
+                  error={errors.startDate}
+                  onChange={onChange} />
+          <Input styleClass="stat-input-species"
+                 name="endDate"
+                 label="Fecha Final"
+                 type="date"
+                 value={endDate}
+                 error={errors.endDate}
+                 onChange={onChange} />
+        </div>
+        <div className="dates-flex">
+          <SelectInput styleClass="stat-input-species"
+                       name="specie"
+                       label="Especie"
+                       defaultOption="Especie"
+                       value={specie}
+                       error={errors.specie}
+                       onChange={onChange}
+                       options={species} />
+          <div className="redraw-chart-button">
+            <button className="button-show redraw-chart-button-style" onClick={onClick}>Ver Resultado</button>
+          </div>
         </div>
       </div>
       { loading ? spinner : (<Line data={info} options={options} />) }
@@ -53,7 +54,6 @@ AdoptionStatistic.propTypes = {
   loading: bool.isRequired,
   startDate: string.isRequired,
   endDate: string.isRequired,
-  showInfo: object.isRequired,
   specie: string.isRequired,
   species: array.isRequired,
   errors: object.isRequired,

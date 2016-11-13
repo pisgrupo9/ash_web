@@ -66,6 +66,6 @@ export const validatePhone = (phone) => {
   return stringValid.onlyNumbers(phone) ? '' : messages.ERROR_PHONE;
 };
 
-export const validateDateStatistic = (dateStart, dateFinish) => {
-  return moment(dateStart).add(3, 'months').isSameOrAfter(dateFinish);
+export const validateDateStatistic = (date) => {
+  return moment().isSameOrAfter(date, 'day');
 };

@@ -24,8 +24,8 @@
 }
 
 .inner-flex {
-  flex: 1 1 40rem;
-  min-width: 300px;
+  flex: 3 1 40rem;
+  min-width: 200px;
   margin-bottom: 5px;
 }
 
@@ -55,9 +55,65 @@
 }
 
 .redraw-chart-button {
-  margin: 30px 4px 0 0;
+  margin: 30px 10px 0;
+  flex: 1 0 auto;
+  text-align: center;
+}
+
+.redraw-chart-button-style {
+  color: grey;
+}
+
+.redraw-chart-button-style:hover {
+  color: orange;
 }
 
 .species-stat-container {
   margin: 0 15px 10px;
+}
+
+.legend-container {
+  @extend .mini-profile-flex;
+
+  align-content: center;
+  flex-flow: row wrap;
+  text-align: center;
+  margin: 10px 30px 10px 50px;
+}
+
+.legend-item {
+  flex: 1 0 auto;
+  min-width: 60px;
+  font-size: 12px;
+  margin: 4px;
+
+  .color-round {
+    font-size: 11px;
+  }
+}
+
+.pie-div {
+  @extend .inner-flex;
+
+  flex: 1 1 40rem;
+}
+
+.stat-input-species {
+  @extend .stat-input;
+
+  flex: 1 1 40rem;
+}
+
+.species-statistic-container {
+  @extend .outer-flex;
+
+  flex-direction: row wrap;
+  min-height: 0;
+}
+
+.dates-flex {
+  @extend .inner-flex;
+
+  display: flex;
+  flex-direction: row wrap;
 }

@@ -6,7 +6,7 @@ import moment from 'moment';
 
 const AdoptionStatistic = ({ info, loading, options, startDate, endDate, showDates, errors, onChange, onClick }) => {
   const spinner = (<SpinnerComponent active={loading} />);
-  let last3Months = "Cantidad de animales adoptados en los últimos 3 meses";
+  let last3Months = "Cantidad de animales adoptados en los últimos meses";
   let startString = moment(showDates.startDate).format("DD/MM/YYYY");
   let endString = moment(showDates.endDate).format("DD/MM/YYYY");
   let dateDecided = `Cantidad de animales adoptados del ${startString} al ${endString}`;
@@ -29,7 +29,7 @@ const AdoptionStatistic = ({ info, loading, options, startDate, endDate, showDat
                error={errors.endDate}
                onChange={onChange} />
         <div className="redraw-chart-button">
-          <button className="button-show" onClick={onClick}><i className="material-icons">play_arrow</i></button>
+          <button className="button-show redraw-chart-button-style" onClick={onClick}>Ver Resultado</button>
         </div>
       </div>
       { loading ? spinner : (<Bar data={info} options={options} />) }
