@@ -451,3 +451,9 @@ input[type=button] {
   flex-flow: nowrap row;
   justify-content: center;
 }
+
+.empty-state {
+  color: $dark-grey;
+  text-align: center;
+  font-size: 18px;
+}
