@@ -17,7 +17,8 @@ class AddAdopterModal extends Component {
 
     this.state = {
       adopter: {
-        fullName: '',
+        firstName: '',
+        lastName: '',
         ci: '',
         email: '',
         phone: '',
@@ -36,7 +37,8 @@ class AddAdopterModal extends Component {
         blacklisted: ''
       },
       requiredFields: {
-        fullName: true,
+        firstName: true,
+        lastName: true,
         ci: true,
         email: false,
         phone: true,
@@ -66,18 +68,11 @@ class AddAdopterModal extends Component {
     let { errors, requiredFields } = this.state;
     for (let name in adopter) {
       if (requiredFields[name]) {
-        if (name === 'fullName') {
-          errors.firstName = valid.validateEmptyField(adopter.fullName);
-        } else {
-          errors[name] = valid.validateEmptyField(adopter[name]);
-        }
+        errors[name] = valid.validateEmptyField(adopter[name]);
       }
     }
     if (!errors.ci) {
       errors.ci = valid.validateCi(adopter.ci);
-    }
-    if (!errors.firstName && !errors.lastName) {
-      errors.firstName = valid.validateFullName(adopter.fullName);
     }
     if (!errors.phone) {
       errors.phone = valid.validatePhone(adopter.phone);
@@ -103,11 +98,7 @@ class AddAdopterModal extends Component {
     adopter[ name ] = value;
     this.setState({ adopter });
     if (this.state.requiredFields[ name ]) {
-      if (name === 'fullName') {
-        errors.firstName = valid.validateEmptyField(value);
-      } else {
-        errors[name] = valid.validateEmptyField(value);
-      }
+      errors[name] = valid.validateEmptyField(value);
       this.setState({ errors: errors });
     }
   }
