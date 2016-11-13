@@ -10,7 +10,7 @@ const CommentsList = ({ comments, showViewMore, onClickViewMore, loading, loadin
       return (<CommentItem key={comment.id} comment={comment}/>);
     });
   } else {
-    commentsList = !loading && (<div className="no-result-search">
+    commentsList = !loading && (<div className="empty-state">
                                   No se encontraron comentarios
                                 </div>);
   }

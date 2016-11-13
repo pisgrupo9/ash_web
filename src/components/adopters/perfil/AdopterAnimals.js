@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import AdopterAnimalItem from './AdopterAnimalItem';
 import Spinner from '../../common/SpinnerComponent';
+import _ from 'lodash';
 import '../../../styles/animal-list.scss';
 import '../../../styles/adopter-perfil.scss';
 
@@ -15,7 +16,7 @@ const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading, blacklist
       );
     });
   } else {
-    animalsList = (<div className="no-result-search">
+    animalsList = (<div className="empty-state">
                     {blacklisted ? "El adoptante se encuentra en la lista negra"
                                           : "El adoptante no tiene animales a su cargo"}
                   </div>);
@@ -24,11 +25,13 @@ const AdopterAnimals = ({ animals, onClick, selectedAnimalId, loading, blacklist
     <div className="adopted-container">
     { loading ? (<Spinner active={true} />) : (
       <div>
-        <div className="titles-adopted-list">
-          <div className="title-inside">NOMBRE</div>
-          <div className="title-inside">ESPECIE</div>
-          <div className="title-ficha">FICHA</div>
-        </div>
+        { !_.isEmpty(animals) &&
+          <div className="titles-adopted-list">
+            <div className="title-inside">NOMBRE</div>
+            <div className="title-inside">ESPECIE</div>
+            <div className="title-ficha">FICHA</div>
+          </div>
+        }
         { animalsList }
       </div>
     )}

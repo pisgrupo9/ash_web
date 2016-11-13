@@ -19,7 +19,7 @@ const EventList = ({ events, infoEvent, onClick, selectedEventId, showViewMore, 
         :
         <div className="events-container">
           {events.length == 0 ?
-            <div className="empty-events-container">
+            <div className="empty-state">
               <p> No hay eventos </p>
             </div>
             :

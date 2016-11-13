@@ -57,7 +57,7 @@ class AdopterPerfilPage extends Component {
                       onClick={this.onClickAnimalId}
                       selectedAnimalId={this.state.selectedAnimalId}
                       loading={loading}
-                      blacklisted={adopter.blacklisted}/>
+                      blacklisted={adopter.blacklisted || false}/>
     );
     return (
       <div className="profile-page-flex">
