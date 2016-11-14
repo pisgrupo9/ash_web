@@ -36,7 +36,7 @@ const AdopterFormEdit = ({ adopter, onSave, onChange, onCancel, errors }) => {
         <Input styleClass="animal-input"
                 name="phone"
                 label="Teléfono *"
-                type="tel"
+                type="text"
                 value={adopter.phone}
                 onChange={onChange}
                 error={errors.phone}
@@ -49,15 +49,16 @@ const AdopterFormEdit = ({ adopter, onSave, onChange, onCancel, errors }) => {
                 onChange={onChange}
                 error={errors.homeAddress}
                  />
-        <Input styleClass="animal-input"
+        </div>
+        <Input styleClass="animal-input textarea"
                 name="houseDescription"
                 label="Descripción de la casa"
-                type="text"
+                type="textarea"
                 value={adopter.houseDescription}
                 onChange={onChange}
                 error={errors.houseDescription}
                  />
-      </div>
+
       <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onCancel} />
     </div>
   );

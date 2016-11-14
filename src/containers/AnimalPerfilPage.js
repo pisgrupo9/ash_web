@@ -152,7 +152,7 @@ class AnimalPerfilPage extends Component {
         <div className="other-section">
         <div className="gallery-div">
             <div className="gallery-buttons">
-              <p className="section-title center">GALERÍA</p>
+              <p className="section-title-galery">GALERÍA</p>
               <AddGalleryButton animalId={this.props.routeParams.id} disabled={edit_gallery}/>
               { showButton &&
               <div>

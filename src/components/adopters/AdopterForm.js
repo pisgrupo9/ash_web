@@ -44,7 +44,7 @@ const AdopterForm = ({ adopter, onSave, onChange, onCancel, errors }) => {
         <Input styleClass="animal-input"
                 name="phone"
                 label="Teléfono *"
-                type="tel"
+                type="text"
                 value={adopter.phone}
                 onChange={onChange}
                 error={errors.phone}
@@ -57,15 +57,16 @@ const AdopterForm = ({ adopter, onSave, onChange, onCancel, errors }) => {
                 onChange={onChange}
                 error={errors.homeAddress}
                  />
-        <Input styleClass="animal-input"
+        </div>
+        <Input styleClass="adopter-input-desc"
                 name="houseDescription"
                 label="Descripción de la casa"
-                type="text"
+                type="textarea"
                 value={adopter.houseDescription}
                 onChange={onChange}
                 error={errors.houseDescription}
                  />
-      </div>
+
       <div>
         <Checkbox className="animal-input animal-checkbox"
                   name="blacklisted"
