@@ -122,13 +122,13 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
   );
 };
 
-const { object, func, array } = PropTypes;
+const { object, func, array, string } = PropTypes;
 
 AnimalForm.propTypes = {
   animal: object.isRequired,
   species: array.isRequired,
   images: array.isRequired,
-  profilePic: object.isRequired,
+  profilePic: string.isRequired,
   onSave: func.isRequired,
   onChange: func.isRequired,
   onCancel: func.isRequired,

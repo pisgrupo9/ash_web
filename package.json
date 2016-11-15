@@ -30,6 +30,7 @@
   "author": "PIS Grupo 9 2016",
   "license": "MIT",
   "dependencies": {
+    "blueimp-load-image": "2.9.0",
     "bootstrap": "3.3.7",
     "chart.js": "1.1.1",
     "isomorphic-fetch": "2.2.1",

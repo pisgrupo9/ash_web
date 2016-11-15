@@ -9,6 +9,7 @@ import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
 import UploadImageMessage from '../../components/common/UploadImageMessage';
 import { toastr } from 'react-redux-toastr';
+import loadImage from 'blueimp-load-image';
 
 class NewAnimalModal extends Component {
   constructor(props, context) {
@@ -62,7 +63,8 @@ class NewAnimalModal extends Component {
       uploading_images: false,
       success_uploading_images: true,
       images: [],
-      profilePic: {}
+      imagesPreview: [],
+      profilePic: ''
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -179,32 +181,51 @@ class NewAnimalModal extends Component {
   }
 
   onDropProfile(img) {
-    const reader = new FileReader();
     const file = img[0];
-    this.setState({ profilePic: file });
+    let options = {
+      maxWidth: 300,
+      orientation: true
+    };
+    const updateResults = (img) => {
+      this.setState({ profilePic: img.src || img.toDataURL() });
+    };
+    loadImage(file, updateResults, options);
+    const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (upload) => {
       let animal = this.state.animal;
-      animal["profile_image"] = upload.target.result;
+      animal.profile_image = upload.target.result;
       this.setState({ animal });
     };
   }
 
-  onDrop(images) {
-    let allImages = this.state.images.concat(images);
-    this.setState({
-      images: allImages,
-    });
+  onDrop(imgs) {
+    let { images, imagesPreview } = this.state;
+    for (let image of imgs) {
+      const options = {
+        maxWidth: 300,
+        orientation: true
+      };
+      const updateResults = (img) => {
+        img.name = image.name;
+        imagesPreview.push(img);
+        this.setState({ imagesPreview });
+      };
+      loadImage(image, updateResults, options);
+    }
+    images = images.concat(imgs);
+    this.setState({ images });
   }
 
   onDeleteImage(imageName) {
-    let images = this.state.images;
+    let { images, imagesPreview } = this.state;
     for (let i = 0; i < images.length; i++) {
       if (images[i].name == imageName) {
         images.splice(i, 1);
+        imagesPreview.splice(i, 1);
       }
     }
-    this.setState({ images: images });
+    this.setState({ images, imagesPreview });
   }
 
   render() {
@@ -217,7 +238,7 @@ class NewAnimalModal extends Component {
                     <h2 className="animal-form-title"> INGRESO DE ANIMALES </h2>
                     <AnimalForm animal={this.state.animal}
                                 species={this.props.species}
-                                images={this.state.images}
+                                images={this.state.imagesPreview}
                                 profilePic={this.state.profilePic}
                                 onSave={this.onSubmit}
                                 onChange={this.onChange}

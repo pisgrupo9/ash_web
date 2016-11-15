@@ -5,6 +5,7 @@ import * as animalActions from '../../actions/animalActions';
 import AnimalEditForm from '../../components/animals/perfil/AnimalEditForm';
 import * as valid from '../../util/validateForm';
 import Spinner from 'react-spinkit';
+import loadImage from 'blueimp-load-image';
 import '../../styles/animal-perfil.scss';
 import '../../styles/animal-form.scss';
 
@@ -13,7 +14,7 @@ class EditAnimalModal extends Component {
     super(props, context);
 
     this.state = {
-      profilePic: {},
+      profilePic: '',
       loading: false,
       animal: {
         chip_num: '',
@@ -169,17 +170,24 @@ class EditAnimalModal extends Component {
   }
 
   onDropProfile(img) {
-    const reader = new FileReader();
     const file = img[0];
-    this.setState({ profilePic: file });
+    let options = {
+      maxWidth: 300,
+      orientation: true
+    };
+    const updateResults = (img) => {
+      this.setState({ profilePic: img.src || img.toDataURL() });
+    };
+    loadImage(file, updateResults, options);
+    const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = (upload) => {
       let animal = this.state.animal;
-      animal["profile_image"] = upload.target.result;
+      animal.profile_image = upload.target.result;
       this.setState({ animal });
     };
-    const { modifiedFields } = this.state;
-    modifiedFields["profile_image"] = true;
+    let { modifiedFields } = this.state;
+    modifiedFields.profile_image = true;
     this.setState({ modifiedFields });
   }
 

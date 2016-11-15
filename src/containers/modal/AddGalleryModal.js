@@ -8,6 +8,7 @@ import UploadImageMessage from '../../components/common/UploadImageMessage';
 import ImagesDropzone from '../../components/common/ImagesDropzone';
 import ModalAnimalButtons from '../../components/common/ModalAnimalButtons';
 import { toastr } from 'react-redux-toastr';
+import loadImage from 'blueimp-load-image';
 
 class AddGalleryModal extends Component {
   constructor(props, context) {
@@ -15,6 +16,7 @@ class AddGalleryModal extends Component {
 
     this.state = {
       images: [],
+      imagesPreview: [],
       images_to_send: 0,
       uploading_images: false,
       success_uploading_images: true,
@@ -70,21 +72,33 @@ class AddGalleryModal extends Component {
     }
   }
 
-  onDrop(images) {
-    let allImages = this.state.images.concat(images);
-    this.setState({
-      images: allImages,
-    });
+  onDrop(imgs) {
+    let { images, imagesPreview } = this.state;
+    for (let image of imgs) {
+      const options = {
+        maxWidth: 300,
+        orientation: true
+      };
+      const updateResults = (img) => {
+        img.name = image.name;
+        imagesPreview.push(img);
+        this.setState({ imagesPreview });
+      };
+      loadImage(image, updateResults, options);
+    }
+    images = images.concat(imgs);
+    this.setState({ images });
   }
 
   onDeleteImage(imageName) {
-    let images = this.state.images;
+    let { images, imagesPreview } = this.state;
     for (let i = 0; i < images.length; i++) {
       if (images[i].name == imageName) {
         images.splice(i, 1);
+        imagesPreview.splice(i, 1);
       }
     }
-    this.setState({ images: images });
+    this.setState({ images, imagesPreview });
   }
 
   render() {
@@ -92,7 +106,7 @@ class AddGalleryModal extends Component {
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> AGREGAR IMAGENES </h2>
                     <ImagesDropzone title="Galeria"
-                                    images={this.state.images}
+                                    images={this.state.imagesPreview}
                                     onDrop={this.onDrop}
                                     onDelete={this.onDeleteImage} />
                     <ModalAnimalButtons title="GUARDAR"

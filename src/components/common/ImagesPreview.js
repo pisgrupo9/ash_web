@@ -17,7 +17,7 @@ const ImagesPreview = ({ images, onDelete }) => {
               <button className="remove-button" onClick={() => onDelete(image.name)}>
                 <i className="material-icons remove-icon">highlight_off</i>
               </button>
-              <img className="image-preview" src={image.preview} />
+              <img className="image-preview" src={image.src || image.toDataURL()} />
             </div>
           ))}
         </div>
