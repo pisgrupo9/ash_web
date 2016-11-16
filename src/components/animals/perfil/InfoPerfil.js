@@ -11,6 +11,16 @@ import DeleteAnimalButton from './DeleteAnimalButton';
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {
   let imagen = animal.profile_image;
   let especieOption = animal.species == "Perro" || animal.species == "Gato";
+  const adoptable = animal.type === 'Adoptable';
+  const adopted = (
+    <Link className="adopted-animal" to={`/adoptantes/${animal.adopter_id}`}>
+      ADOPTADO
+    </Link>
+  );
+  const notAdopted = (<font className="negative-animal"> EN ADOPCIÓN </font>);
+  const notAvailable = (<font className="not-available-animal"> NO DISPONIBLE </font>);
+  const availableStatus = animal.available ? notAdopted : notAvailable;
+
   return (
     <div className={(styleClass ? styleClass+' ' : '')+ 'perfil-box'}>
       { loading ? (<Spinner active={loading} />) : (
@@ -83,10 +93,8 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                 {especieOption &&
                 <tr>
                   <td>ESTADO:</td>
-                  <td>{animal.adopted ?
-                    <Link className="adopted-animal"
-                    to={`/adoptantes/${animal.adopter_id}`}> ADOPTADO </Link>
-                    : <font className="negative-animal"> EN ADOPCIÓN </font>}
+                  <td>
+                    { adoptable && (animal.adopted ? adopted : availableStatus) }
                   </td>
                 </tr>}
               </tbody>
