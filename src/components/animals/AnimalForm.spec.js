@@ -15,7 +15,7 @@ function setup(animal, onSave, onCancel) {
     animal,
     species: [],
     images: [],
-    profilePic: {},
+    profilePic: '',
     onSave,
     onChange: () => {},
     onCancel,
