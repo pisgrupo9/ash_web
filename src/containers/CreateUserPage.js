@@ -14,7 +14,8 @@ class CreateUserPage extends Component {
 
     this.state = {
       user: {
-        name: '',
+        first_name: '',
+        last_name: '',
         email: '',
         phone: '',
         password: '',
@@ -43,17 +44,9 @@ class CreateUserPage extends Component {
     }
   }
 
-  validateNames(name) {
-    let errors = this.state.errors;
-    const firstLastName = name.split(' ');
-    const valid = firstLastName[0] && firstLastName[1];
-    errors.name = valid ? '' : 'Ingrese nombre y apellido';
-    this.setState({ errors });
-  }
-
   validateEmail(email) {
     let errors = this.state.errors;
-    errors.email = checkEmail.isEmail(email) ? '' : 'Correo electronico invalido';
+    errors.email = checkEmail.isEmail(email) ? '' : 'Correo electronico inválido';
     this.setState({ errors });
   }
 
@@ -67,7 +60,7 @@ class CreateUserPage extends Component {
     let errors = this.state.errors;
     errors.password_confirmation = pass === passConfirmation ? '' : 'Las contraseñas no coinciden';
     if (pass.length < 8) {
-      errors.password = 'contraseña muy corta(minimo 8 caracteres)';
+      errors.password = 'Contraseña muy corta (mínimo 8 carácteres)';
     }
     this.setState({ errors });
   }
@@ -96,9 +89,7 @@ class CreateUserPage extends Component {
 
   validateField(field) {
     this.validateEmptyField(field.value, field.name);
-    if (field.name === 'name') {
-      this.validateNames(field.value);
-    } else if (field.name === 'email') {
+    if (field.name === 'email') {
       this.validateEmail(field.value);
     }
   }
@@ -120,12 +111,6 @@ class CreateUserPage extends Component {
     this.validateForm();
     if (this.state.form.valid) {
       let dataUser = Object.assign({}, this.state.user);
-      if (dataUser.name) {
-        const firstLastName = dataUser.name.split(' ');
-        dataUser.first_name = firstLastName[0];
-        dataUser.last_name = firstLastName[1];
-      }
-      delete dataUser.name;
       const user = { 'user': dataUser };
       this.props.actions.sendUserForm(user, this.context.router);
     } else {
