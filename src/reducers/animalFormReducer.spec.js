@@ -20,7 +20,9 @@ describe('Animal Form Reducer', () => {
       success: false,
       success_image: false,
       sended_images: 0,
-      id: ''
+      id: '',
+      deleteError: '',
+      deleteSuccess: false
     };
 
     expect(animalFormReducer(initialState.animalForm, action)).to.deep.equal(expectedForm);
@@ -34,7 +36,9 @@ describe('Animal Form Reducer', () => {
       success: true,
       success_image: false,
       sended_images: 0,
-      id: response.id
+      id: response.id,
+      deleteError: '',
+      deleteSuccess: false
     };
 
     expect(animalFormReducer(initialState.animalForm, action)).to.deep.equal(expectedForm);
@@ -47,7 +51,9 @@ describe('Animal Form Reducer', () => {
       success: false,
       success_image: false,
       sended_images: 0,
-      id: ''
+      id: '',
+      deleteError: '',
+      deleteSuccess: false
     };
 
     expect(animalFormReducer(initialState.animalForm, action)).to.deep.equal(expectedForm);
