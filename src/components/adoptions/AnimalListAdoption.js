@@ -19,10 +19,7 @@ class AnimalListAdoption extends Component {
       currPage: 1,
       rows: consts.ANIMAL_LINK_PAGE_SIZE,
       filter: {
-        type: 'Adoptable',
-        castrated: true,
-        vaccines: true,
-        adopted: false
+        available: 'true'
       }
     };
 

@@ -10,8 +10,6 @@ const AnimalItem = ({ animal, selectedAnimalId, checkedAnimals, onClick, onCheck
   const focusedbutton = (<i className="material-icons arrow-button">arrow_drop_up</i>);
   const unfocusedbutton = (<i className="material-icons arrow-button">arrow_drop_down</i>);
   const showAnimal = selectedAnimalId === animal.id.toString();
-  const adopt = (<div className="adopted-animal"> ADOPTADO </div>);
-  const notAdopt = (<div className="not-adopted-animal"> EN ADOPCIÓN </div>);
   const linkIcon = (
     <Link className="link-style" to={`/animales/${animal.id}`}>
       <i className="material-icons dark-grey-color">description</i>
@@ -27,6 +25,11 @@ const AnimalItem = ({ animal, selectedAnimalId, checkedAnimals, onClick, onCheck
               onChange={() => onCheck(animal.id)}
               checked={isChecked}/>
   );
+  const adoptable = animal.type === 'Adoptable';
+  const adopted = (<div className="adopted-animal"> ADOPTADO </div>);
+  const notAdopted = (<div className="not-adopted-animal"> EN ADOPCIÓN </div>);
+  const notAvailable = (<div className="not-available-animal"> NO DISPONIBLE </div>);
+  const availableStatus = animal.available ? notAdopted : notAvailable;
 
   return (
     <div>
@@ -40,7 +43,9 @@ const AnimalItem = ({ animal, selectedAnimalId, checkedAnimals, onClick, onCheck
           </Link>
         </div>
         <div className="animal-state not-so-dark-grey-color"> {animal.species} </div>
-        <div className="animal-state"> {_.isUndefined(animal.adopted) ? '': animal.adopted ? adopt : notAdopt} </div>
+        <div className="animal-state">
+          { adoptable && (animal.adopted ? adopted : availableStatus) }
+        </div>
         <div className="view-info-icon">
           {onCheck ? checkAnimal : linkIcon}
         </div>
