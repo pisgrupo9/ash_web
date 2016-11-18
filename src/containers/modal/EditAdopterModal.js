@@ -17,7 +17,8 @@ class EditAdopterModal extends Component {
     this.state = {
       adopter: {
         ci: '',
-        fullName: '',
+        firstName: '',
+        lastName: '',
         email: '',
         phone: '',
         homeAddress: '',
@@ -32,7 +33,8 @@ class EditAdopterModal extends Component {
         houseDescription: ''
       },
       requiredFields: {
-        fullName: true,
+        firstName: true,
+        lastName: true,
         email: false,
         phone: true,
         homeAddress: true,
@@ -75,15 +77,8 @@ class EditAdopterModal extends Component {
     let { errors, requiredFields } = this.state;
     for (let name in adopter) {
       if (requiredFields[name]) {
-        if (name === 'fullName') {
-          errors.firstName = valid.validateEmptyField(adopter.fullName);
-        } else {
           errors[name] = valid.validateEmptyField(adopter[name]);
-        }
       }
-    }
-    if (!errors.firstName && !errors.lastName) {
-      errors.firstName = valid.validateFullName(adopter.fullName);
     }
     if (!errors.phone) {
       errors.phone = valid.validatePhone(adopter.phone);

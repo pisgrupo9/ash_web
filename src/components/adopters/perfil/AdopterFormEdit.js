@@ -3,20 +3,25 @@ import Input from '../../common/Input';
 import ModalAnimalButtons from '../../common/ModalAnimalButtons';
 
 const AdopterFormEdit = ({ adopter, onSave, onChange, onCancel, errors }) => {
-
-  const errorsFullName = errors.firstName || errors.lastName;
-
   return (
     <div className="form-container">
       <p> * campos necesarios </p>
       <div className="animal-form">
-        <Input styleClass="animal-input"
-                name="fullName"
-                label="Nombre y Apellido *"
+       <Input styleClass="animal-input"
+                name="firstName"
+                label="Nombre *"
                 type="text"
-                value={adopter.fullName}
+                value={adopter.firstName}
                 onChange={onChange}
-                error={errorsFullName}
+                error={errors.firstName}
+                 />
+        <Input styleClass="animal-input"
+                name="lastName"
+                label="Apellido *"
+                type="text"
+                value={adopter.lastName}
+                onChange={onChange}
+                error={errors.lastName}
                  />
         <Input styleClass="animal-input disable"
                 name="ci"
