@@ -7,6 +7,8 @@ import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
 require('./favicon.ico'); // Tell webpack to load favicon.ico
+require('./ashicon-32.png');
+require('./ash-icon-16.png');
 import { syncHistoryWithStore } from 'react-router-redux';
 import './styles/styles.scss';
 import { showLoginUser } from './actions/userActions';
