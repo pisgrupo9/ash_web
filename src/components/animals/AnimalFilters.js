@@ -22,7 +22,8 @@ class AnimalFilters extends Component {
                     name: '',
                     race: '',
                     castrated: '',
-                    vaccines: ''
+                    vaccines: '',
+                    available: false,
                   },
                   speciesSelect: null,
                   errorDate: '',
@@ -98,8 +99,12 @@ class AnimalFilters extends Component {
         filter.castrated = '';
         filter.vaccines = '';
         filter.adopted = '';
+        filter.available = false
       }
       this.setState({ speciesSelect: newSpeciesSelect });
+    }
+    if (field === 'adopted') {
+      filter.available = value === 'false';
     }
     filter[ field ] = value;
     this.validateForm();
@@ -117,7 +122,8 @@ class AnimalFilters extends Component {
       name: '',
       race: '',
       castrated: '',
-      vaccines: ''
+      vaccines: '',
+      available: false
     };
     this.setState({ filter, errorDate: '', speciesSelect: null });
     this.props.actions.searchAnimal({});
@@ -128,7 +134,7 @@ class AnimalFilters extends Component {
     const boolean = [ { id: true, name: "SI" },
                     { id: false, name: "NO" } ];
     const states = [ { id: true, name: "ADOPTADO" },
-                    { id: false, name: "NO ADOPTADO" } ];
+                    { id: false, name: "EN ADOPCIÓN" } ];
     const sex = [ { id: 0, name: "MACHO" },
                     { id: 1, name: "HEMBRA" } ];
     let smallWindows = (windowWidth <= 541);
@@ -181,11 +187,11 @@ class AnimalFilters extends Component {
               <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
                 <SelectInput styleClass={'filter-field'+(
                                 filter.species_id == "" ? ' default' : '')}
-                      name="species_id"
-                      defaultOption="Especie"
-                      value={filter.species_id ? filter.species_id : ''}
-                      onChange={this.onChange}
-                      options={this.props.species}
+                              name="species_id"
+                              defaultOption="Especie"
+                              value={filter.species_id ? filter.species_id : ''}
+                              onChange={this.onChange}
+                              options={this.props.species}
                       />
                 <Input styleClass="filter-field grey-color"
                       name="race"
@@ -197,11 +203,11 @@ class AnimalFilters extends Component {
                        />
                 <SelectInput styleClass={'filter-field'+(
                                 filter.sex == "" ? ' default' : '')}
-                  name="sex"
-                  defaultOption="Sexo"
-                  value={filter.sex ? filter.sex : ''}
-                  onChange={this.onChange}
-                  options={sex}
+                              name="sex"
+                              defaultOption="Sexo"
+                              value={filter.sex ? filter.sex : ''}
+                              onChange={this.onChange}
+                              options={sex}
                    />
                 </div>
               }
@@ -209,27 +215,27 @@ class AnimalFilters extends Component {
               <div className={smallWindows ? 'filter-component-flex' : 'filter-component'}>
                 <SelectInput styleClass={'filter-field'+(
                                 filter.castrated == "" ? ' default' : '')}
-                  name="castrated"
-                  defaultOption="Castrado"
-                  value={filter.castrated ? filter.castrated : ''}
-                  onChange={this.onChange}
-                  options={boolean}
+                              name="castrated"
+                              defaultOption="Castrado"
+                              value={filter.castrated ? filter.castrated : ''}
+                              onChange={this.onChange}
+                              options={boolean}
                    />
                 <SelectInput styleClass={'filter-field'+(
                                 filter.vaccines == "" ? ' default' : '')}
-                  name="vaccines"
-                  defaultOption="Vacuna"
-                  value={filter.vaccines ? filter.vaccines : ''}
-                  onChange={this.onChange}
-                  options={boolean}
+                              name="vaccines"
+                              defaultOption="Vacuna"
+                              value={filter.vaccines ? filter.vaccines : ''}
+                              onChange={this.onChange}
+                              options={boolean}
                  />
                 <SelectInput styleClass={'filter-field'+(
                                 filter.adopted == "" ? ' default' : '')}
-                  name="adopted"
-                  defaultOption="Estado"
-                  value={filter.adopted ? filter.adopted : ''}
-                  onChange={this.onChange}
-                  options={states}
+                              name="adopted"
+                              defaultOption="Estado"
+                              value={filter.adopted ? filter.adopted : ''}
+                              onChange={this.onChange}
+                              options={states}
                  />
               </div>
             }
@@ -240,20 +246,20 @@ class AnimalFilters extends Component {
                   {errorDate && (<span className="filterError">{errorDate}</span>) }</p>
                 <div className={smallWindows ? 'filter-component-flex' : ''}>
                   <Input styleClass="filter-field"
-                    name="admission_date_from"
-                    placeholder="Desde"
-                    type="date"
-                    value={filter.admission_date_from ? filter.admission_date_from : ''}
-                    onChange={this.onChange}
-                    onKeyPress={this.onKeyPress}
+                          name="admission_date_from"
+                          placeholder="Desde"
+                          type="date"
+                          value={filter.admission_date_from ? filter.admission_date_from : ''}
+                          onChange={this.onChange}
+                          onKeyPress={this.onKeyPress}
                   />
                   <Input styleClass="filter-field"
-                    name="admission_date_to"
-                    placeholder="Hasta"
-                    type="date"
-                    value={filter.admission_date_to ? filter.admission_date_to : ''}
-                    onChange={this.onChange}
-                    onKeyPress={this.onKeyPress}
+                          name="admission_date_to"
+                          placeholder="Hasta"
+                          type="date"
+                          value={filter.admission_date_to ? filter.admission_date_to : ''}
+                          onChange={this.onChange}
+                          onKeyPress={this.onKeyPress}
                   />
                 </div>
               </div>
