@@ -122,7 +122,7 @@ class AnimalFilters extends Component {
     const boolean = [ { id: true, name: "SI" },
                     { id: false, name: "NO" } ];
     const states = [ { id: true, name: "ADOPTADO" },
-                    { id: false, name: "EN ADOPCIÓN" } ];
+                    { id: false, name: "NO ADOPTADO" } ];
     const sex = [ { id: 0, name: "MACHO" },
                     { id: 1, name: "HEMBRA" } ];
     let smallWindows = (windowWidth <= 541);
