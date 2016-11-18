@@ -10,9 +10,10 @@ import ModalAnimalButtons from '../common/ModalAnimalButtons';
 import SelectInput from '../common/SelectInput';
 import Input from '../common/Input';
 
-function setup(animal, onSave, onCancel) {
+function setup(animal, onSave, onCancel, speciesSelect) {
   let props = {
     animal,
+    speciesSelect: speciesSelect,
     species: [],
     images: [],
     profilePic: '',
@@ -58,9 +59,10 @@ describe('Elementos del formulario de crear un animal', () => {
 
   it('Cuando el animal es perro se muestran las opciones de vacunado y castrado', () => {
     const animal = { species_id: '1' };
+    const speciesSelect = { id: 1, adoptable: true };
     const onSave = () => {};
     const onCancel = () => {};
-    const wrapper = setup(animal, onSave, onCancel);
+    const wrapper = setup(animal, onSave, onCancel, speciesSelect);
     expect(wrapper.find(Checkbox)['node'].props.name).to.equal('castrated');
     expect(wrapper.find(Checkbox).last()['node'].props.name).to.equal('vaccines');
   });
@@ -69,16 +71,27 @@ describe('Elementos del formulario de crear un animal', () => {
     const animal = { species_id: '2' };
     const onSave = () => {};
     const onCancel = () => {};
-    const wrapper = setup(animal, onSave, onCancel);
+    const speciesSelect = { id: 2, adoptable: true };
+    const wrapper = setup(animal, onSave, onCancel, speciesSelect);
     expect(wrapper.find(Checkbox)['node'].props.name).to.equal('castrated');
     expect(wrapper.find(Checkbox).last()['node'].props.name).to.equal('vaccines');
   });
 
   it('Cuando el animal es de otra especie no se muestran las Checkbox', () => {
     const animal = { species_id: '3' };
+    const speciesSelect = { id: 2, adoptable: false };
     const onSave = () => {};
     const onCancel = () => {};
-    const wrapper = setup(animal, onSave, onCancel);
+    const wrapper = setup(animal, onSave, onCancel, speciesSelect);
+    expect(wrapper.find(Checkbox).length).to.equal(0);
+  });
+
+  it('Cuando el animal es de no tiene especie no se muestran las Checkbox', () => {
+    const animal = {};
+    const speciesSelect = null;
+    const onSave = () => {};
+    const onCancel = () => {};
+    const wrapper = setup(animal, onSave, onCancel, speciesSelect);
     expect(wrapper.find(Checkbox).length).to.equal(0);
   });
 

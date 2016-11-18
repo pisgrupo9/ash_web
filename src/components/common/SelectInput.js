@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, error, options, edit }) => {
+const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, error, options, edit, disabled }) => {
   let wrapperClass = `form-group ${styleClass}`;
 
   return (
@@ -10,7 +10,8 @@ const SelectInput = ({ styleClass, name, label, onChange, defaultOption, value, 
         <select name={name}
                 onChange={onChange}
                 className="form-control"
-                value={value}>
+                value={value}
+                disabled={disabled}>
           {!edit && <option value="" className="default">{defaultOption}</option>}
           {options.map(option => {
             return <option key={option.id} value={option.id}>{option.name}</option>;
@@ -33,6 +34,7 @@ SelectInput.propTypes = {
   value: string,
   error: string,
   edit: bool,
+  disabled: bool,
   options: arrayOf(object)
 };
 

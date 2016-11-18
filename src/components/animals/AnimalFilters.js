@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 import * as animalActions from '../../actions/animalActions';
 import * as message from '../../constants/apiMessage';
 import Input from '../common/Input';
@@ -23,6 +24,7 @@ class AnimalFilters extends Component {
                     castrated: '',
                     vaccines: ''
                   },
+                  speciesSelect: null,
                   errorDate: '',
                   windowWidth: window.innerWidth,
                   allField: false
@@ -88,12 +90,16 @@ class AnimalFilters extends Component {
     const field = e.target.name;
     const value = e.target.value;
     const { filter } = this.state;
-    const { species_id } = this.state.filter;
-    const isAdoptable = species_id === "1" || species_id === "2" || species_id === "";
-    const changefield = isAdoptable && field == "species_id" && value != "1" && value != "2";
-    if (changefield) {
-      filter.castrated = "";
-      filter.vaccines = "";
+    if (field === 'species_id') {
+      const { species } = this.props;
+      let newSpeciesSelect = value ? _.filter(species, { id: parseInt(value) })[0] : null;
+      let isAdoptable = !newSpeciesSelect || newSpeciesSelect.adoptable;
+      if (!isAdoptable) {
+        filter.castrated = '';
+        filter.vaccines = '';
+        filter.adopted = '';
+      }
+      this.setState({ speciesSelect: newSpeciesSelect });
     }
     filter[ field ] = value;
     this.validateForm();
@@ -113,12 +119,12 @@ class AnimalFilters extends Component {
       castrated: '',
       vaccines: ''
     };
-    this.setState({ filter, errorDate: '' });
+    this.setState({ filter, errorDate: '', speciesSelect: null });
     this.props.actions.searchAnimal({});
   }
 
   render() {
-    const { filter, windowWidth, allField, errorDate } = this.state;
+    const { filter, speciesSelect, windowWidth, allField, errorDate } = this.state;
     const boolean = [ { id: true, name: "SI" },
                     { id: false, name: "NO" } ];
     const states = [ { id: true, name: "ADOPTADO" },
@@ -127,7 +133,7 @@ class AnimalFilters extends Component {
                     { id: 1, name: "HEMBRA" } ];
     let smallWindows = (windowWidth <= 541);
     let activeField = (!smallWindows || allField);
-    let extraFilter = (filter.species_id == "") || (filter.species_id <= 2);
+    let extraFilter = !speciesSelect || speciesSelect.adoptable;
     let buttonClean = (<button
                           className="btn btn-find"
                           onClick={this.cleanFilter}>

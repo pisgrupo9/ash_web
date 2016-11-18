@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import _ from 'lodash';
 import * as messages from '../../constants/apiMessage';
 import * as animalActions from '../../actions/animalActions';
 import AnimalForm from '../../components/animals/AnimalForm';
@@ -58,6 +59,7 @@ class NewAnimalModal extends Component {
         profile_image: true,
         weight: false
       },
+      speciesSelect: null,
       loading: true,
       images_to_send: 0,
       uploading_images: false,
@@ -169,6 +171,12 @@ class NewAnimalModal extends Component {
     const field = e.target.name;
     const checkbox = field === 'castrated' || field === 'vaccines';
     const value = checkbox ? e.target.checked : e.target.value;
+    if (field === 'species_id') {
+      const { species } = this.props;
+      let new_speciesSelect = value ? _.filter(species, { id: parseInt(value) })[0] : null;
+      this.setState({ speciesSelect: new_speciesSelect });
+    }
+
     if (this.isNegativeWeight(field, value)) return;
     let animal = this.state.animal;
     animal[ field ] = value;
@@ -237,6 +245,7 @@ class NewAnimalModal extends Component {
     const body = (<div className="animal-form-wrapper">
                     <h2 className="animal-form-title"> INGRESO DE ANIMALES </h2>
                     <AnimalForm animal={this.state.animal}
+                                speciesSelect={this.state.speciesSelect}
                                 species={this.props.species}
                                 images={this.state.imagesPreview}
                                 profilePic={this.state.profilePic}

@@ -27,7 +27,7 @@ const MiniAdopterPerfil = ({ adopter }) => {
           <div className="vertical-flex-container">
             <div className="vertical-flex bottom-border titles-font">Adoptados</div>
               <div className="vertical-flex dark-grey-color">
-                <p> N/A </p>
+                <p>{adopter.animals.length}</p>
               </div>
           </div>
         </div>

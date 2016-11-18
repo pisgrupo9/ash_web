@@ -8,7 +8,7 @@ import ModalAnimalButtons from '../common/ModalAnimalButtons';
 import * as util from '../../util/validateForm';
 import * as consts from '../../constants/apiConstants.js';
 
-const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
+const AnimalForm = ({ animal, species, speciesSelect, images, profilePic, onSave, onChange, onCancel, onDrop, onDropProfile, onDelete, errors }) => {
 
   const checkboxCastrated = (<Checkbox className="animal-input animal-checkbox"
                                       name="castrated"
@@ -24,7 +24,7 @@ const AnimalForm = ({ animal, species, images, profilePic, onSave, onChange, onC
                               Vacunas
                             </Checkbox>);
 
-  let showCheckboxes = (animal.species_id == "1" || animal.species_id == "2");
+  let showCheckboxes = speciesSelect && speciesSelect.adoptable;
 
   return (
     <div className="form-container">
@@ -126,6 +126,7 @@ const { object, func, array, string } = PropTypes;
 
 AnimalForm.propTypes = {
   animal: object.isRequired,
+  speciesSelect: object,
   species: array.isRequired,
   images: array.isRequired,
   profilePic: string.isRequired,
