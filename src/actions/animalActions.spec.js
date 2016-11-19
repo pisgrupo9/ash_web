@@ -35,6 +35,42 @@ describe('Animal Actions', () => {
 
       expect(action).to.deep.equal(expectedAction);
     });
+
+    it('devuelve la acción showAnimalPerfil', () => {
+      const animal = {
+        chip_num: '1',
+        species_id: '1',
+        sex: 'female',
+        admission_date: '2010-10-10',
+        name: 'Test',
+        birthdate: '2010-10',
+        race: 'beagle',
+        death_date: '',
+        castrated: false,
+        vaccines: false,
+        profile_image: 'image_data',
+        weight: 15
+      };
+      const expectedAction = { type: types.SHOW_ANIMAL_PROFILE, animal };
+      const action = animalActions.showAnimalPerfil(animal);
+
+      expect(action).to.deep.equal(expectedAction);
+    });
+
+    it('devuelve la acción deleteAnimalSuccess', () => {
+      const expectedAction = { type: types.DELETE_ANIMAL_SUCCESS };
+      const action = animalActions.deleteAnimalSuccess();
+
+      expect(action).to.deep.equal(expectedAction);
+    });
+
+    it('devuelve la acción deleteAnimalError', () => {
+      const response = 'Error al borrar animal';
+      const expectedAction = { type: types.DELETE_ANIMAL_ERROR, response };
+      const action = animalActions.deleteAnimalError(response);
+
+      expect(action).to.deep.equal(expectedAction);
+    });
   });
 
   const middleware = [thunk];
