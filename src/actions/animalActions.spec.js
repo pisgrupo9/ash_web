@@ -45,47 +45,50 @@ describe('Animal Actions', () => {
       nock.cleanAll();
     });
 
-    describe('Exito al enviar el formulario del animal', () => {
-      const animal = {
-        chip_num: '1',
-        species_id: '1',
-        sex: 'female',
-        admission_date: '2010-10-10',
-        name: 'Test',
-        birthdate: '2010-10',
-        race: 'beagle',
-        death_date: '',
-        castrated: false,
-        vaccines: false,
-        profile_image: 'image_data',
-        weight: 15
-      };
-      nock(consts.API_STAGING_URL)
-        .post('/animals', parseAnimal(animal))
-        .reply(201, { id: 43 });
+    describe('Exitoso', () => {
 
-      it('Devuelve la acción sendAnimalFormSuccess con sendAnimalForm', () => {
-        const expectedAction = [{
-          type: 'SEND_ANIMAL_FORM_SUCCESS', response: { id: 43 }
-        }];
-
-        const store = mockStore(initialState.animalForm);
-
-        return store.dispatch(animalActions.sendAnimalForm(animal))
-          .then(() => {
-            expect(store.getActions()).to.deep.equal(expectedAction);
-          });
-      });
-
-      it('La acción sendAnimalFormSuccess cambia a success en el store', () => {
-        const expectedAction = {
-          type: 'SEND_ANIMAL_FORM_SUCCESS', response: { id: 43 }
+      it('Envío de un formulario de un animal', () => {
+        const animal = {
+          chip_num: '1',
+          species_id: '1',
+          sex: 'female',
+          admission_date: '2010-10-10',
+          name: 'Test',
+          birthdate: '2010-8',
+          race: 'beagle',
+          death_date: '',
+          castrated: false,
+          vaccines: false,
+          profile_image: 'image_data',
+          weight: 15
         };
+        nock(consts.API_STAGING_URL)
+          .post('/animals', parseAnimal(animal))
+          .reply(201, { id: 43 });
 
-        const store = createStore(rootReducer, initialState);
+        it('Devuelve la acción sendAnimalFormSuccess con sendAnimalForm', () => {
+          const expectedAction = {
+            type: 'SEND_ANIMAL_FORM_SUCCESS', response: { id: 43 }
+          };
 
-        store.dispatch(expectedAction);
-        expect(store.getState().animalForm.success).to.equal(true);
+          const store = mockStore(initialState);
+
+          return store.dispatch(animalActions.sendAnimalForm(animal))
+            .then(() => {
+              expect(store.getActions()).to.deep.equal(expectedAction);
+            });
+        });
+
+        it('La acción sendAnimalFormSuccess cambia a success en el store', () => {
+          const expectedAction = {
+            type: 'SEND_ANIMAL_FORM_SUCCESS', response: { id: 43 }
+          };
+
+          const store = createStore(rootReducer, initialState);
+
+          store.dispatch(expectedAction);
+          expect(store.getState().animalForm.success).to.equal(true);
+        });
       });
     });
 

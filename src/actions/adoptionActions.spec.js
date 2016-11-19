@@ -112,7 +112,7 @@ describe('Adoption Actions', () => {
 
     describe('No exitoso', () => {
 
-      describe('Cuando el token es inválido', () => {
+      it('Cuando el token es inválido', () => {
         const adopterId = 1;
         const animalId = 9;
         const date = '2016-11-17';
