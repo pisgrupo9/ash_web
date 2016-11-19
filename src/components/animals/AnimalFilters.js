@@ -99,7 +99,7 @@ class AnimalFilters extends Component {
         filter.castrated = '';
         filter.vaccines = '';
         filter.adopted = '';
-        filter.available = false
+        filter.available = false;
       }
       this.setState({ speciesSelect: newSpeciesSelect });
     }

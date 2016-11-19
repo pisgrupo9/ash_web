@@ -27,7 +27,6 @@ class AdopterListWrapper extends Component {
 
     this.onClick = this.onClick.bind(this);
     this.onClickViewMore = this.onClickViewMore.bind(this);
-    this.onToggleSearch = this.onToggleSearch.bind(this);
     this.startLoading = this.startLoading.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.addToBlackList = this.addToBlackList.bind(this);
@@ -69,19 +68,6 @@ class AdopterListWrapper extends Component {
     this.props.actions.loadAdopters(rows, nextPage, adopters.filterParam);
   }
 
-  onToggleSearch() {
-    let { rows, showBlacklist } = this.state;
-    let { filterParam } = this.props.adopters;
-    let filter = Object.assign({}, filterParam);
-    if (!showBlacklist) {
-      filter.blacklisted = true;
-    } else {
-      filter.blacklisted = false;
-    }
-    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1, filter });
-    this.props.actions.loadAdopters(rows, 1, filter);
-  }
-
   startLoading() {
     this.setState({ loadingList: true });
   }
@@ -116,26 +102,24 @@ class AdopterListWrapper extends Component {
     const { adopters, userPermission } = this.props;
     const showViewMore = this.state.currPage < adopters.totalPages;
     const tabContent = (
-      <div>
-        <div className="adopter-search-wrapper">
-          <AdopterSearch startLoading={this.startLoading}/>
-        </div>
-        <AdopterList adopters={adopters.adopters}
-                  onClick={this.onClick}
-                  selectedAdopterId={this.state.selectedAdopterId}
-                  showViewMore={showViewMore}
-                  onClickViewMore={this.onClickViewMore}
-                  loading={this.state.loading}
-                  loadingList={this.state.loadingList}
-                  addToBlackList={this.addToBlackList}
-                  userPermission={userPermission}/>
-      </div>
+      <AdopterList adopters={adopters.adopters}
+                    onClick={this.onClick}
+                    selectedAdopterId={this.state.selectedAdopterId}
+                    showViewMore={showViewMore}
+                    onClickViewMore={this.onClickViewMore}
+                    loading={this.state.loading}
+                    loadingList={this.state.loadingList}
+                    addToBlackList={this.addToBlackList}
+                    userPermission={userPermission}/>
     );
 
     return (
       <div className="general-list">
         <AdopterListHeader/>
         <Tabs activeKey={this.state.key} onSelect={this.handleSelect} id="AdopterList" animation={false}>
+          <div className="adopter-search-wrapper">
+            <AdopterSearch startLoading={this.startLoading}/>
+          </div>
           <Tab eventKey={1} title="Adoptantes">{tabContent}</Tab>
           <Tab eventKey={2} title="Lista Negra">{tabContent}</Tab>
         </Tabs>
