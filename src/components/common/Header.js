@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { Navbar, Image } from 'react-bootstrap';
 import { bindActionCreators } from 'redux';
+import * as constants from '../../constants/apiConstants';
 import * as logoutActions from '../../actions/logoutActions';
 import * as userActions from '../../actions/userActions';
 import '../../styles/header.scss';
@@ -46,7 +47,7 @@ class Header extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/animales" className="imageheader">
-               <Image src="https://s3-sa-east-1.amazonaws.com/ash-assets/ASH-white.png"/>
+               <Image src={`${constants.STATIC_RESOURCE}/ash-assets/ASH-white.png`}/>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle/>
