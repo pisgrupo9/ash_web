@@ -39,13 +39,14 @@ export const sendUserFormError = (errors) => {
 
 export const sendUserForm = (user, history) => {
   return (dispatch) => {
-      userApi.sendForm(user).then(() => {
-      history.push(`/login`);
-      toastr.success('', 'Tu solicitud de cuenta ha sido enviada');
-      dispatch(sendUserFormSuccess());
-    }).catch(err => {
-      dispatch(sendUserFormError(err));
-    });
+      return userApi.sendForm(user)
+      .then(() => {
+        history.push(`/login`);
+        toastr.success('', 'Tu solicitud de cuenta ha sido enviada');
+        dispatch(sendUserFormSuccess());
+      }).catch(err => {
+        dispatch(sendUserFormError(err));
+      });
   };
 };
 

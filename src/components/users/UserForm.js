@@ -67,7 +67,7 @@ const UserForm = ({ user, loading, onSave, onChange, onBlur, onKeyPress, errors 
                   onBlur={onBlur}
                   onKeyPress={onKeyPress}
                   error={errors.password_confirmation} />
-          { loading ? loadingButton : submitButton}
+          { loading ? loadingButton : submitButton }
         </div>
       </Col>
     </Row>

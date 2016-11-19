@@ -89,6 +89,7 @@
     "html-webpack-plugin": "2.22.0",
     "isparta": "4.0.0",
     "istanbul": "0.4.4",
+    "jsdom": "8.5.0",
     "mocha": "3.0.1",
     "mockdate": "1.0.4",
     "node-sass": "3.8.0",
