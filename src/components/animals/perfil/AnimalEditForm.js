@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-
 import Input from '../../common/Input';
 import EditProfileDropzone from './EditProfileDropzone';
 import SelectInput from '../../common/SelectInput';
@@ -27,7 +26,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                                       checked={animal.vaccines}>
                               Vacunas
                             </Checkbox>);
-  let showCheckboxes = animal.species_id.toString() === "1" || animal.species_id.toString() === "2";
+  const adoptable = animal.type === 'Adoptable';
   const genders = [ { id: "Macho", name: "Macho" },
                    { id: "Hembra", name: "Hembra" } ];
   return (
@@ -57,6 +56,7 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
                       onChange={onChange}
                       options={species}
                       edit={true}
+                      disabled={true}
                       error={errors.species_id}/>
           <SelectInput styleClass="profile-animal-input"
                           name="sex"
@@ -104,8 +104,8 @@ const AnimalEditForm = ({ animal, species, profilePic, onSave, onClose, onChange
 
           </div>
           <div>
-            { showCheckboxes ? checkboxCastrated : ''}
-            { showCheckboxes ? checkboxVaccines : ''}
+            { adoptable && checkboxCastrated }
+            { adoptable && checkboxVaccines }
           </div>
           <ModalAnimalButtons title="GUARDAR" onSubmit={onSave} onClose={onClose} />
       </div>

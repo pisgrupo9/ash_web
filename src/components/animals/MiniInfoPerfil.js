@@ -4,7 +4,7 @@ import '../../styles/mini-view.scss';
 
 const MiniInfoPerfil = ({ animal }) => {
   let imagen = animal.profile_image_thumb;
-  let catDog = (animal.species_id == "1" || animal.species_id == "2");
+  let adoptable = animal.type === 'Adoptable';
   let tick = (<i className="material-icons green-color">done</i>);
   let cross = (<i className="material-icons red-color">clear</i>);
   let castrated = (<div className="flex-items">
@@ -44,7 +44,7 @@ const MiniInfoPerfil = ({ animal }) => {
           </div>
         </div>
       </div>
-      {catDog ? castrated : ''}
+      {adoptable && castrated}
     </div>
   );
 };

@@ -10,7 +10,6 @@ import DeleteAnimalButton from './DeleteAnimalButton';
 
 const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, exportPerfil }) => {
   let imagen = animal.profile_image;
-  let especieOption = animal.species == "Perro" || animal.species == "Gato";
   const adoptable = animal.type === 'Adoptable';
   const adopted = (
     <Link className="adopted-animal" to={`/adoptantes/${animal.adopter_id}`}>
@@ -74,7 +73,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                   <td>FEC. DE MUERTE:</td>
                   <td>{animal.death_date ? animal.death_date : '-'}</td>
                 </tr>
-                {especieOption &&
+                {adoptable &&
                 <tr>
                   <td>VACUNADO:</td>
                   {animal.vaccines ?
@@ -82,7 +81,7 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                     <td className="negative-animal"> NO </td>
                   }
                 </tr>}
-                {especieOption &&
+                {adoptable &&
                 <tr>
                   <td>CASTRADO:</td>
                   {animal.castrated ?
@@ -90,11 +89,11 @@ const InfoPerfil = ({ animal, loading, animalId, styleClass, loadingfunc, export
                     <td className="negative-animal"> NO </td>
                   }
                 </tr>}
-                {especieOption &&
+                {adoptable &&
                 <tr>
                   <td>ESTADO:</td>
                   <td>
-                    { adoptable && (animal.adopted ? adopted : availableStatus) }
+                    {animal.adopted ? adopted : availableStatus}
                   </td>
                 </tr>}
               </tbody>
