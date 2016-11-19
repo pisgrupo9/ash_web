@@ -19,12 +19,12 @@ export const loginError = (response) => {
 
 export const login = (user, history) => {
   return (dispatch) => {
-    loginApi.postLogin(user).then(response => {
-        session.saveSession(response);
-        history.push(`/`);
-        dispatch(loginUser(response));
-        userAction.showLoginUser()(dispatch);
-      },
+    return loginApi.postLogin(user).then(response => {
+      session.saveSession(response);
+      history.push(`/`);
+      dispatch(loginUser(response));
+      userAction.showLoginUser()(dispatch);
+    },
       error => {
         dispatch(loginError(error));
       }
