@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as adopterActions from '../../actions/adopterActions';
 import Input from '../common/Input';
 import * as consts from '../../constants/apiConstants.js';
+import _ from 'lodash';
 import '../../styles/animal-list.scss';
 
 class AdopterSearch extends Component {
@@ -20,6 +21,14 @@ class AdopterSearch extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (_.isEmpty(nextProps.filterParam.name)) {
+      this.setState({
+        filter: { name: '' }
+      });
+    }
   }
 
   onKeyPress(e) {

@@ -27,7 +27,6 @@ class AdopterListWrapper extends Component {
 
     this.onClick = this.onClick.bind(this);
     this.onClickViewMore = this.onClickViewMore.bind(this);
-    this.onToggleSearch = this.onToggleSearch.bind(this);
     this.startLoading = this.startLoading.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.addToBlackList = this.addToBlackList.bind(this);
@@ -69,19 +68,6 @@ class AdopterListWrapper extends Component {
     this.props.actions.loadAdopters(rows, nextPage, adopters.filterParam);
   }
 
-  onToggleSearch() {
-    let { rows, showBlacklist } = this.state;
-    let { filterParam } = this.props.adopters;
-    let filter = Object.assign({}, filterParam);
-    if (!showBlacklist) {
-      filter.blacklisted = true;
-    } else {
-      filter.blacklisted = false;
-    }
-    this.setState({ showBlacklist: !showBlacklist, loadingList: true, currPage: 1, filter });
-    this.props.actions.loadAdopters(rows, 1, filter);
-  }
-
   startLoading() {
     this.setState({ loadingList: true });
   }
@@ -90,9 +76,7 @@ class AdopterListWrapper extends Component {
     if (tabKey != this.state.key) {
       this.setState({ tabKey });
       let { rows } = this.state;
-      let { filterParam } = this.props.adopters;
-      let filter = Object.assign({}, filterParam);
-      filter.blacklisted = tabKey === 2;
+      let filter = { blacklisted: tabKey === 2 };
       this.setState({ loadingList: true, currPage: 1 });
       this.props.actions.loadAdopters(rows, 1, filter);
     }
@@ -121,14 +105,14 @@ class AdopterListWrapper extends Component {
           <AdopterSearch startLoading={this.startLoading}/>
         </div>
         <AdopterList adopters={adopters.adopters}
-                  onClick={this.onClick}
-                  selectedAdopterId={this.state.selectedAdopterId}
-                  showViewMore={showViewMore}
-                  onClickViewMore={this.onClickViewMore}
-                  loading={this.state.loading}
-                  loadingList={this.state.loadingList}
-                  addToBlackList={this.addToBlackList}
-                  userPermission={userPermission}/>
+                      onClick={this.onClick}
+                      selectedAdopterId={this.state.selectedAdopterId}
+                      showViewMore={showViewMore}
+                      onClickViewMore={this.onClickViewMore}
+                      loading={this.state.loading}
+                      loadingList={this.state.loadingList}
+                      addToBlackList={this.addToBlackList}
+                      userPermission={userPermission}/>
       </div>
     );
 
