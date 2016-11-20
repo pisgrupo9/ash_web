@@ -74,7 +74,7 @@ class Header extends Component {
                   className="header-link"
                   to="/estadisticas"
                   onClick={this.onClickLink}>
-              ESTADISTICAS
+              ESTADÍSTICAS
             </Link>
           </ul>
            <ul className="nav navbar-nav item">

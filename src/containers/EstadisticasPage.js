@@ -49,13 +49,15 @@ class EstadisticasPage extends Component {
         endDate: '',
         specie: ''
       },
-      legend: ''
+      legend: '',
+      mobile: window.innerWidth <= 541
     };
 
     this.onChangeAdoption = this.onChangeAdoption.bind(this);
     this.onChangeSpecies = this.onChangeSpecies.bind(this);
     this.onClickRefreshAdoption = this.onClickRefreshAdoption.bind(this);
     this.onClickRefreshSpecies = this.onClickRefreshSpecies.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   componentWillMount() {
@@ -63,6 +65,16 @@ class EstadisticasPage extends Component {
     this.props.actions.loadAnimalStatistic();
     this.props.actions.loadDefaultSpeciesStatistic();
     this.props.animalActions.loadSpecies();
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    let mobile = window.innerWidth <= 541;
+    this.setState({ mobile });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -190,6 +202,7 @@ class EstadisticasPage extends Component {
           <SpeciesStatistic info={this.props.speciesStat}
                             options={chartOptions}
                             loading={loadingLine || loadingSpecies}
+                            mobile={this.state.mobile}
                             errors={speciesErrors}
                             startDate={infoSpecies.startDate}
                             endDate={infoSpecies.endDate}
