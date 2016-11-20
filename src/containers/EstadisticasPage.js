@@ -61,21 +61,12 @@ class EstadisticasPage extends Component {
   }
 
   componentWillMount() {
-    this.props.actions.loadDefaultAdoptionStatistic();
-    this.props.actions.loadAnimalStatistic();
-    this.props.actions.loadDefaultSpeciesStatistic();
-    this.props.animalActions.loadSpecies();
-    window.addEventListener('resize', this.handleResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize);
-  }
-
-  handleResize() {
-    let mobile = window.innerWidth <= 541;
-    this.setState({ mobile });
-  }
+      this.props.actions.loadDefaultAdoptionStatistic();
+      this.props.actions.loadAnimalStatistic();
+      this.props.actions.loadDefaultSpeciesStatistic();
+      this.props.animalActions.loadSpecies();
+      window.addEventListener('resize', this.handleResize);
+    }
 
   componentWillReceiveProps(nextProps) {
     if (!_.isEmpty(nextProps.adoptStat)) {
@@ -90,6 +81,15 @@ class EstadisticasPage extends Component {
     if (!_.isEmpty(nextProps.speciesStat)) {
       this.setState( { loadingLine: false });
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleResize);
+  }
+
+  handleResize() {
+    let mobile = window.innerWidth <= 541;
+    this.setState({ mobile });
   }
 
   onClickRefreshAdoption() {
