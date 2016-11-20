@@ -4,7 +4,7 @@ import SpinnerComponent from '../common/SpinnerComponent';
 import Input from '../common/Input';
 import SelectInput from '../common/SelectInput';
 
-const AdoptionStatistic = ({ info, loading, options, startDate, endDate, specie, species, errors, onChange, onClick }) => {
+const SpeciesStatistic = ({ info, loading, options, mobile, startDate, endDate, specie, species, errors, onChange, onClick }) => {
   const spinner = (<SpinnerComponent active={loading} />);
   let title = "Cantidad de animales por especie ingresados en los últimos meses";
   return (
@@ -41,17 +41,18 @@ const AdoptionStatistic = ({ info, loading, options, startDate, endDate, specie,
           </div>
         </div>
       </div>
-      { loading ? spinner : (<Line data={info} options={options} />) }
+      { loading ? spinner : (<Line data={info} options={options} height={mobile ? '200' : '100'} redraw/>) }
     </div>
   );
 };
 
 const { object, array, bool, string, func } = PropTypes;
 
-AdoptionStatistic.propTypes = {
+SpeciesStatistic.propTypes = {
   info: object.isRequired,
   options: object.isRequired,
   loading: bool.isRequired,
+  mobile: bool.isRequired,
   startDate: string.isRequired,
   endDate: string.isRequired,
   specie: string.isRequired,
@@ -61,4 +62,4 @@ AdoptionStatistic.propTypes = {
   onClick: func.isRequired
 };
 
-export default AdoptionStatistic;
+export default SpeciesStatistic;
