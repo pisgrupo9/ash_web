@@ -62,13 +62,16 @@ class AnimalListAdoption extends Component {
   }
 
   render() {
-    let { animals, onClose } = this.props;
+    let { animals, adoptionDate, errorDate, onChange, onClose } = this.props;
     let { selectedAnimalId, loadingList, loading } = this.state;
     let showViewMore = this.state.currPage < animals.totalPages;
 
     return (
       <div className="general-list-link adoption-list">
         <AnimalAdoptionHeader animalCount={this.props.checkedAnimals.length}
+                              adoptionDate={adoptionDate}
+                              errorDate={errorDate}
+                              onChange={onChange}
                               onStartLoading={this.onStartLoading}/>
         <AnimalList animals={animals.animals}
                     onClick={this.onClick}
@@ -93,6 +96,9 @@ AnimalListAdoption.propTypes = {
   animals: object.isRequired,
   adopterId: string.isRequired,
   checkedAnimals: array.isRequired,
+  adoptionDate: string.isRequired,
+  errorDate: string.isRequired,
+  onChange: func.isRequired,
   onClose: func.isRequired,
   onCheck: func.isRequired,
   onSubmit: func.isRequired,

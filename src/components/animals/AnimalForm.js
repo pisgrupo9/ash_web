@@ -67,6 +67,7 @@ const AnimalForm = ({ animal, species, speciesSelect, images, profilePic, onSave
                 label="Fecha de ingreso *"
                 type="date"
                 value={animal.admission_date}
+                showYearDropdown={true}
                 onChange={onChange}
                 error={errors.admission_date}
                  />

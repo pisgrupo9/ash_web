@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import DatePickerInput from './DatePickerInput';
 
-const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, placeholder, value, error, disabled }) => {
+const Input = ({ styleClass, name, label, type, showYearDropdown, onChange, onBlur, onKeyPress, placeholder, value, error, disabled }) => {
   let wrapperClass = `form-group ${styleClass}`;
 
   if (error && error.length > 0) {
@@ -35,6 +35,7 @@ const Input = ({ styleClass, name, label, type, onChange, onBlur, onKeyPress, pl
                           value={value}
                           onChange={onChange}
                           placeholder={placeholder}
+                          showYearDropdown={showYearDropdown}
                           type={type} />);
 
   const getInput = () => {
@@ -66,6 +67,7 @@ Input.propTypes = {
   label: string,
   placeholder: string,
   type: string.isRequired,
+  showYearDropdown: bool,
   onChange: func,
   onBlur: func,
   onKeyPress: func,

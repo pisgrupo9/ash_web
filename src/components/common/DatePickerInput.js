@@ -38,7 +38,7 @@ class DatePickerInput extends Component {
   }
 
   render() {
-    const { value, name, onChange, type, placeholder } = this.props;
+    const { value, name, onChange, type, placeholder, showYearDropdown } = this.props;
     const isMonthType = type === 'month';
     const dateFormat = isMonthType ? 'MM/YYYY' : 'DD/MM/YYYY' ;
     const dateFormatValue = isMonthType ? 'YYYY-MM' : 'YYYY-MM-DD';
@@ -71,6 +71,7 @@ class DatePickerInput extends Component {
                         dateFormat={dateFormat}
                         locale="es"
                         selected={dateValue}
+                        showYearDropdown={showYearDropdown}
                         placeholderText={placeholder}
                         onChange={this.onChange} />
         );
@@ -81,13 +82,14 @@ class DatePickerInput extends Component {
   }
 }
 
-const { string, func } = PropTypes;
+const { string, func, bool } = PropTypes;
 
 DatePickerInput.propTypes = {
   styleClass: string,
   name: string.isRequired,
   value: string,
   placeholder: string,
+  showYearDropdown: bool,
   type: string,
   onChange: func
 };
