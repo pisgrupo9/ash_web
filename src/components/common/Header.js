@@ -47,7 +47,7 @@ class Header extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/animales" className="imageheader">
-               <Image src={`${constants.STATIC_RESOURCE}/ash-assets/ASH-white.png`}/>
+               <Image src={`${constants.STATIC_RESOURCE}/ASH-white.png`}/>
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle/>
