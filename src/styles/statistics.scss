@@ -2,9 +2,7 @@
 @import "./animal-form.scss";
 
 .statistic-page-flex {
-  @extend .profile-page-flex;
-
-  flex-flow: column wrap;
+  margin: 0 15px 20px;
 }
 
 .outer-flex {
@@ -14,6 +12,7 @@
   flex-flow: row wrap;
   min-height: 200px;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .statistic-div {
