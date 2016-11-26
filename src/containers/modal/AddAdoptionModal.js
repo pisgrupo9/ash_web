@@ -9,6 +9,8 @@ import Spinner from 'react-spinkit';
 import { toastr } from 'react-redux-toastr';
 import _ from 'lodash';
 import '../../styles/animal-list.scss';
+import moment from 'moment';
+import * as valid from '../../util/validateForm';
 
 class AddAdoptionModal extends Component {
   constructor(props, context) {
@@ -18,10 +20,13 @@ class AddAdoptionModal extends Component {
       checkedAnimals: [],
       loading: false,
       adoptionsToSend: 0,
-      success: true
+      success: true,
+      adoptionDate: moment().format('YYYY-MM-DD'),
+      errorDate: ''
     };
 
     this.onCheck = this.onCheck.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -60,8 +65,14 @@ class AddAdoptionModal extends Component {
     this.setState({ checkedAnimals: animals });
   }
 
+  onChange(e) {
+    const value = e.target.value;
+    const errorDate = valid.lessThanToday(value);
+    this.setState({ adoptionDate: value, errorDate });
+  }
+
   onSubmit() {
-    let { checkedAnimals } = this.state;
+    let { checkedAnimals, adoptionDate } = this.state;
     let { adopterId, actions, adoptionsSended } = this.props;
     if (!_.isEmpty(checkedAnimals)) {
       this.props.onToggleBackdrop();
@@ -69,16 +80,15 @@ class AddAdoptionModal extends Component {
         loading: true,
         adoptionsToSend: adoptionsSended + checkedAnimals.length
       });
-      let today = new Date();
       checkedAnimals.forEach(function(animalId) {
-        actions.addAdoption(adopterId, animalId.toString(), today);
+        actions.addAdoption(adopterId, animalId.toString(), adoptionDate);
       });
     }
   }
 
   render() {
     let { onClose, adopterId } = this.props;
-    let { loading } = this.state;
+    let { loading, adoptionDate, errorDate } = this.state;
     const loadingView = (
       <div className="loading-container">
         <Spinner spinnerName="three-bounce" noFadeIn />
@@ -89,7 +99,10 @@ class AddAdoptionModal extends Component {
                           adopterId={adopterId}
                           onCheck={this.onCheck}
                           onSubmit={this.onSubmit}
-                          checkedAnimals={this.state.checkedAnimals}/>
+                          checkedAnimals={this.state.checkedAnimals}
+                          adoptionDate={adoptionDate}
+                          errorDate={errorDate}
+                          onChange={this.onChange}/>
     );
 
     return (

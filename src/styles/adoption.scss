@@ -1,5 +1,7 @@
 @import "./animal-form.scss";
 
+$orange: #e8a948;
+
 .adoption-title-wrapper {
   height: 55px;
 }
@@ -14,4 +16,18 @@
   @extend .animal-form-title;
 
   font-size: 15px;
+}
+
+.date-input {
+  @extend .animal-input;
+
+  margin-left: 0;
+  width: 180px;
+  min-width: 160px;
+
+  .form-control:focus {
+    outline: none;
+    border-color: $orange;
+    box-shadow: none;
+  }
 }
